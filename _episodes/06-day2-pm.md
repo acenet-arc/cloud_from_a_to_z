@@ -9,6 +9,4 @@ objectives:
 - "List of objectives"
 keypoints:
 - "A Keypoint 0"
-keypoints:
-- "A Keypoint 1"
 ---
