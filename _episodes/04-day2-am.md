@@ -1,7 +1,7 @@
 ---
 layout: episode
 title: "What is a Cloud"
-teaching: 105
+teaching: 180
 exercises: 0
 questions:
 - "What is a cloud and why would I use one?"
