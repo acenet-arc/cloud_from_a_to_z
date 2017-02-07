@@ -1,0 +1,23 @@
+---
+---
+
+//----------------------------------------
+// Specialized code blocks.
+//----------------------------------------
+
+@mixin cdSetup($color) {
+  color: $color;
+  border-left: solid 5px $color;
+  margin-bottom: 0px;
+}
+
+.error  { @include cdSetup($color-error); }
+.output { @include cdSetup($color-output); }
+.source { @include cdSetup($color-source); }
+
+.bash   { @include cdSetup($color-source); }
+.make   { @include cdSetup($color-source); }
+.matlab { @include cdSetup($color-source); }
+.python { @include cdSetup($color-source); }
+.r      { @include cdSetup($color-source); }
+.sql    { @include cdSetup($color-source); }
