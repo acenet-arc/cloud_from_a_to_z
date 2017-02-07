@@ -2,14 +2,11 @@
 # Values for this lesson.
 #------------------------------------------------------------
 
-# Which carpentry is this ("swc" or "dc")?
-carpentry: "swc"
-
 # Overall title for pages.
-title: "The Unix Shell"
+title: "Cloud Powering DH Research"
 
 # Contact email address.
-email: lessons@software-carpentry.org
+email: chris.geroux@ace-net.ca
 
 #------------------------------------------------------------
 # Generic settings (should not need to change).
