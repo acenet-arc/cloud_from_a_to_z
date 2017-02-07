@@ -16,8 +16,8 @@ This is a bullet list within that section
 
 ~~~
 $ ls -l
-{: .bash}
 ~~~
+{: .bash}
 
 ~~~
 total 4
