@@ -19,4 +19,5 @@ keypoints:
 - "The shell's main advantages are its high action-to-keystroke ratio, its support for automating repetitive tasks, and that it can be used to access networked machines."
 - "The shell's main disadvantages are its primarily textual nature and how cryptic its commands and operation can be."
 start: true
+start_time: 540
 ---
