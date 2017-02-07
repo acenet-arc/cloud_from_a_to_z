@@ -16,8 +16,9 @@ This is a bullet list within that section
 
 ~~~
 $ ls -l
-~~~
 {: .bash}
+~~~
+
 ~~~
 total 4
 -rw-rw-r-- 1 ubuntu ubuntu 23 Feb  7 16:25 index.md
