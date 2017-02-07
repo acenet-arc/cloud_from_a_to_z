@@ -15,7 +15,6 @@
   <table class="table table-striped">
   {% for episode in site.episodes %}
     {% if episode.start %} {% comment %} Starting a new day? {% endcomment %}
-      {% assign current = episode.start_time %}
       {% assign day = day | plus: 1 %}
       {% if day > 1 %} {% comment %} If about to start day 2 or later, show finishing time for previous day {% endcomment %}
         {% assign hours = current | divided_by: 60 %}
@@ -27,6 +26,7 @@
           <td class="col-md-7"></td>
         </tr>
       {% endif %}
+      {% assign current = episode.start_time %}
       <!--{% assign current = site.start_time %} {% comment %}Re-set start time of this episode to general daily start time {% endcomment %}-->
     {% endif %}
     {% assign hours = current | divided_by: 60 %}
