@@ -35,7 +35,6 @@ $color-testimonial: #fc8dc1 !default;
   color: $color;
   border-left: solid 5px $color;
   margin-bottom: 0px;
-  background-color: #000000;//#f5f5f5
 }
 
 .error  { @include cdSetup($color-error); }
