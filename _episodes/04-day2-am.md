@@ -1,4 +1,5 @@
 ---
+layout: episode
 title: "What is a Cloud"
 teaching: 105
 exercises: 0
