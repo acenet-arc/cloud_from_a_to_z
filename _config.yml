@@ -1,1 +1,4 @@
 theme: jekyll-theme-minimal
+
+# Turn off built-in syntax highlighting.
+highlighter: false
