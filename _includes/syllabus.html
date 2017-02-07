@@ -15,6 +15,7 @@
   <table class="table table-striped">
   {% for episode in site.episodes %}
     {% if episode.start %} {% comment %} Starting a new day? {% endcomment %}
+      {% assign current = episode.start_time %}
       {% assign day = day | plus: 1 %}
       {% if day > 1 %} {% comment %} If about to start day 2 or later, show finishing time for previous day {% endcomment %}
         {% assign hours = current | divided_by: 60 %}
