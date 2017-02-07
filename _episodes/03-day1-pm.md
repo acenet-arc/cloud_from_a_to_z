@@ -1,7 +1,7 @@
 ---
 layout: episode
 title: "Working with the CC Cloud"
-teaching: 105
+teaching: 150
 exercises: 0
 questions:
 - "How do I use a cloud?"
