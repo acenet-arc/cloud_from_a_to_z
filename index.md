@@ -1,4 +1,6 @@
 ---
+layout: lesson
+root: .
 ---
 
 DHSI cloud course page
