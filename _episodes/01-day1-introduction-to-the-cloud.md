@@ -28,7 +28,16 @@ A type of Internet-based computing that provides shared processing and data reso
 
 
 
-![Something](../fig/pstn.svg)
+![pstn](../fig/pstn.svg)
+![pstn](../fig/internet-users-link-to-cloud.svg)
+![pstn](../fig/internet-cloud-with-one-router.svg)
+![pstn](../fig/internet-cloud-two-separate-LANs.svg)
+![pstn](../fig/internet-cloud-two-connected-LANs.svg)
+![pstn](../fig/internet-cloud-two-connected-clouds-in-one-cloud-connected-to-others-as-one-cloud-with-nothing-in-it.svg)
+![pstn](../fig/internet-cloud-two-connected-clouds-in-one-cloud-connected-to-others-as-one-cloud.svg)
+![pstn](../fig/internet-cloud-two-connected-clouds-in-one-cloud-connected-to-others.svg)
+![pstn](../fig/internet-cloud-two-connected-clouds-in-one-cloud.svg)
+![pstn](../fig/internet-cloud-two-connected-clouds.svg)
 
 ## "Real" and "Virtual" in Computing
 
