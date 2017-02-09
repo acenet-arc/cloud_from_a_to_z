@@ -28,6 +28,7 @@ A type of Internet-based computing that provides shared processing and data reso
 
 
 
+![Something](../fig/pstn.svg)
 
 ## "Real" and "Virtual" in Computing
 
