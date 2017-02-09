@@ -19,6 +19,7 @@ start_time: 615
 
 ## What is Cloud Computing
 A type of Internet-based computing that provides shared processing and data resources on demand. Many everyday internet services we use are provided by cloud computing.
+
 * many websites are served from clouds, for example
   * Facebook
   * Google Docs
