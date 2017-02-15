@@ -8,9 +8,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="340.39999pt"
-   height="100.4pt"
-   viewBox="0 0 340.39999 100.4"
+   width="851pt"
+   height="251pt"
+   viewBox="0 0 851 251"
    version="1.1"
    id="svg2"
    inkscape:version="0.91 r13725"
@@ -23,7 +23,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -349,7 +349,7 @@
   </defs>
   <g
      id="surface710"
-     transform="scale(0.2,0.2)">
+     transform="scale(0.5,0.5)">
     <rect
        x="0"
        y="0"
