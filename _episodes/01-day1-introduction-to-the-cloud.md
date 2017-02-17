@@ -45,6 +45,32 @@ If your neighbour wanted to share some information with you on a website located
 
 That is the way all the services you access over the Internet work. Another computer connected to the Internet provides your computer with data (text, audio, video) stored on another computer.
 
+But when you want to go to a website you don't usually enter an IP address usually something like `google.ca`. This is what is known as a domain name. Domain names can be purchased from a domain name registrar (e.g. godaddy.com, rebel.ca). The domain name can then be linked to an IP address and requests to a domain name are translated to requests to an IP address.
+
+> ## What is your computer's IP?
+>
+> Try going to [whatismyipaddress.com](https://whatismyipaddress.com/) and seeing what your IP address is.
+> Try determining your IP from the command line.
+> 
+> If using Windows:
+> 1. open command prompt by searching "cmd.exe" in the start menu
+> 2. type `ipconfig`
+> 3. do any of the IP address match what you see at [whatismyipaddress.com](https://whatismyipaddress.com/)
+>
+> If using Linux:
+> 1. open the terminal (can be multiple ways)
+> 2. type `ifconfig`
+>
+> If using Mac:
+> 1. open the terminal (TODO: give steps to do this)
+> 2. type `ifconfig`
+>
+> There is a good chance that you will not see the same IP address in the command line and from [whatismyipaddress.com](https://whatismyipaddress.com/) why?
+> > ## Solution
+> > You likely just see a local or LAN IP address on the command line, while from [whatismyipaddress.com](https://whatismyipaddress.com/) you will see the IP address given to the router you are connecting to the Internet through.
+> {: .solution}
+{: .challenge}
+
 ## Cloud Computing
 
 ## "Real" and "Virtual" in Computing
