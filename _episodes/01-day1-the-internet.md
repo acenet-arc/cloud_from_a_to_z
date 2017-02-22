@@ -1,23 +1,25 @@
 ---
 layout: episode
-title: "Introduction to the cloud"
-teaching: 30
-exercises: 0
+title: "How the Internet works"
+teaching: 10
+exercises: 5
 questions:
-- "What is a cloud?"
-- "What does \"virtual\" mean when applied to a computer?"
-- "Why use Compute Canada's cloud?"
-- "What is OpenStack?"
+- "What is an IP address?"
+- "What is a LAN?"
+- "What are ports and what do they do?"
+- "What is a domain name?"
 objectives:
-- "To understand common cloud terminology"
-- "Get exposure to the various parts of OpenStacks Dashboard"
+- "Know your computer's IP address and if it is a LAN address"
+
 keypoints:
-- "A Keypoint 0"
+- "Computers often have an IP on a LAN and connect to the Internet through a router"
+- "You can see what your computer's IP is by using either `ipconfig` on windows or `ifconfig` on linux or Mac"
+- "You can see your computer's public IP using the site [whatismyipaddress.com](https://whatismyipaddress.com/)"
+- "Ports allow computers and routers to differentiate types network traffic"
 start: true
 start_time: 615
 ---
 
-## The Internet
 To put cloud computing into perspective, lets first take a look at how you use your computer and how it interacts with the Internet.
 
 These days everyone uses a computer connected to the Internet. Being connected to the Internet allows your computer to access multitudes of information, from bus schedules, maps and travel planning, to wikipedia. It also provides entertainment through services like netflix, spotify, and online gaming with other people. But how does this actually work, what is the Internet, and where does this data come from?
@@ -26,7 +28,7 @@ These days everyone uses a computer connected to the Internet. Being connected t
 
 The Internet is the world wide interconnection of networks of computers. So what is a network of computers? Many of us have a local network at home and at work. We have a router (often wi-fi) which our computer or computers connect to which routes information from one computer to another. We can communicate between software programs and transfer files between computers on such a network even if they were not connected to the Internet. This is what many of the first networks of computers were like, though using wires instead of wifi, and only allowing sharing of information between local computers, often called a Local Area Network (LAN).
 
-### IP Addresses
+## IP Addresses
 ![local network](../fig/local-networks.svg)
 
 How do these computers know where to send data to or where to request it from? They use what is known as Internet Protocol address (IP address). Each device on a network is assigned an IP address. This address is used to route data to the correct device. Within a LAN IP addresses often have the form `192.168.###.###` by convention.
@@ -35,7 +37,7 @@ Many of these local area networks exist around the world and the Internet connec
 
 ![interconnected networks](../fig/interconnected-networks.svg)
 
-To connect your LAN to the rest of the Internet your router is connected to an Internet Service Provider (ISP). Now how does a computer on your network know how to exchange information with a computer on your Neighbour's LAN? Again IP addresses are used. Each LAN connected to the Internet gets a unique IP address. 
+To connect your LAN to the rest of the Internet your router is connected to an Internet Service Provider (ISP). Your computer then accesses the Internet through the router often also called a "gateway". Now how does a computer on your network know how to exchange information with a computer on your Neighbour's LAN? Again IP addresses are used. Each LAN connected to the Internet gets a unique IP address. This is sometimes referred to as a "public IP" as it can be viewed by anyone connected to the Internet. This is in contrast to IPs on a LAN which are only meaningful within the LAN.
 
 
 > ## How many unique IPs are there?
@@ -66,7 +68,7 @@ To connect your LAN to the rest of the Internet your router is connected to an I
 > {: .solution}
 {: .challenge}
 
-### Ports
+## Ports
 If your neighbour wanted to share some information with you on a website located on his device with local address `192.168.1.103` how could your computer know to connect to that device to get that information? If you know the IP address of your neighbour's router (`206.113.222.122`) you could uniquely identify your neighbours LAN, but how to route the request for their website to the local device? Your neighbour must configure their router to forward traffic to the device with local address `192.168.103`, but which traffic? What if your neighbour wanted some information to be routed to one device and other information to be routed to another? The solution to this issue is to use ports. Different types of information requests are associated with different ports and the local network can be configured to forward a request associated with certain port to a specific device (known as port forwarding). In the case of a website the convention is to use port 80. You can combine IP address and ports with a `:` for example `206.113.222.122:80` could be entered into your web-browser to access a website on your neighbours device with local IP `192.168.1.103` once your neighbour configured their router to forward requests on port 80 to that device.
 
 > ## What happens if I specify the wrong port?
@@ -88,7 +90,7 @@ If your neighbour wanted to share some information with you on a website located
 > {: .solution}
 {: .challenge}
 
-### Domain Names
+## Domain Names
 
 All the services you access over the Internet work by using IP address and ports to access another computer connected to the Internet which provides your computer with information (text, audio, video) stored on another computer.
 
@@ -103,11 +105,3 @@ But when you want to go to a website you don't usually enter an IP address usual
 >
 > Do you get to the same page that you would have using the domain name?
 {: .challenge}
-
-## Cloud Computing
-
-## "Real" and "Virtual" in Computing
-
-## Examples
-
-
