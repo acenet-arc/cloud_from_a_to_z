@@ -10,3 +10,17 @@ objectives:
 keypoints:
 - "A Keypoint 0"
 ---
+
+---
+PREREQUISITES
+* should know about Linux file structures a little (e.g. /, /etc, /var etc.)
+* should know about sudo
+* should know an editor (vim or nano, SWC picked nano since it shows the commands)
+* should know some basic HTML
+---
+OUTLINE
+* use persistent VM setup on last episode
+* install apache
+* learn a bit about apache config files
+* edit some html
+* view the site

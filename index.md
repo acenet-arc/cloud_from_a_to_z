@@ -10,5 +10,7 @@ While there may be some generally applicable “best practices” for research a
 This course is intended for those involved in research who are looking for a flexible platform that can perform a variety of research tasks with beyond desktop performance. Familiarity with working within a unix style command line environment is strongly encouraged but not required. Emphasis will be divided between designing cloud based environments for a representative of sample of projects, multi virtual machine systems to power websites, run scraping projects, and support instances of generic web based tools and actually deploying these environments within the Compute Canada Cloud. Participants can expect to leave with the ability to oversee the provisioning of a variety cloud environments and, ideally, with the ability to do a good portion of that provisioning themselves. They will also have running template environments that they have built themselves. Other topics that will be covered include security, performance optimization, modular development practices, and networking. 
 
 > ## Prerequisites
-> Familarity with a command line tool is very helpful but not required. In addition python programing experience may be helpful but certainly not required.
+> Familiarity with a command line tool is very helpful but not required. 
+>
+> In addition python programing experience may be helpful but certainly not required.
 {: .prereq}

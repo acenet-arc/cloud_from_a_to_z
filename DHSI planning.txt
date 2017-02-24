@@ -1,0 +1,99 @@
+Note: what about working in linux on the command line. This isn't a hard requirement to have experience with this. How should we address this if it is missing? There is an hour and half SWC lesson on the Unix Shell, should we use that?
+http://swcarpentry.github.io/shell-novice/
+I think there is stuff we don't need, like loops, shell scripts etc. Also, not sure that the story aspect is really relevant to DHSI, may want to consider stealing some content from this. We probably need to think about some command line instruction at or around the "Create a first virtual machine" exercise.
+
+twitter scraper, easy to install and get data, hard to parse json as a human, there is a python code (https://github.com/recrm/ArchiveTools) which can extract items into csv format. Can do some stuff with excel etc. then.
+
+Day 1
+  - Overview
+  - Create a compute VM
+  - Create a persistent VM
+  - Create a webserver on persistent VM
+
+Day 2
+  - Create a (wordpress or mediawiki) site
+    - Create a LAMP server starting from webserver from Day 1
+      - install php
+      - install mysql
+      - save volume as image
+    - install wordpress on LAMP server
+  - SSL encryption
+    - self signed certificates (for testing)
+    - letsencrypt and certbot
+  
+  - OS Command line client
+  
+  - Backup a VM using Command line client
+  
+  - Python API (automating backups, etc.). This is probably beyond most students
+  
+Day 3
+  
+  - CloudInit
+    - YAML
+    - can be used to automate first time setup
+    - apt-get update
+    - apt-get upgrade
+    - apt-get install apache2
+    - apt-get install php/mysql etc.
+  
+  - Heat
+    - automate some of the OS stuff
+    - get them to use some example Heat templates (e.g. mediawiki,apahce,)
+Day 4/5
+  - Projects:
+    - twitter scraper?
+    - Mediawiki/wordpress/omeka site
+    - explore Python OS API
+    
+  - Data centre tour
+    
+Functional Tasks for Students 
+-----------------------------
+- Create a VM
+- Create a persistent VM
+- Create a webserver
+- Backup a VM
+- Provision a VM with CloudInit
+- Create a VM, add an IP, configure security rules with HEAT
+
+
+Content to cover
+----------------
+
+Overview:
+  - What is a cloud
+  - What is not a cloud
+  - Why use CC cloud
+
+Introduce OS (create a VM and connect to it
+  , edit files/upload files, create an apache webserver)
+  
+  - Overview of components
+  - Create a VM and connect
+  - Ping, Traceroute
+  - Access and Security settings
+  - ssh keys vs passwords
+  - flavors
+  - images
+  - snapshots
+  - volumes
+  - ephemeral
+  - network overview
+  - rsync
+  - scp
+  - sftp (winSCP, cyberduck, dolphin?)
+  
+OS command line
+  - creating images from volumes
+  - downloading images
+  
+OS Python API
+  - How to authenticate against a project
+  - Some basic functionality, listing images etc.
+  - Demo some scripts?
+
+OS CloudInit
+
+OS Heat Templates (HOT)
+
