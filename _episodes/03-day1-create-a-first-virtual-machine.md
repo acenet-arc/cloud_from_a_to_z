@@ -24,6 +24,10 @@ PREREQUISITES
   * wrx
   * `chmod`
 * need to know about `.ssh` folder
+  * `authorized_keys`
+  * `known_hosts`
+  * `id_rsa`
+  * `id_rsa.pub`
 
 ---
 OUTLINE
@@ -33,6 +37,7 @@ OUTLINE
     * need to mention about SSH
   * Creating one using the OS dashboard
   * Creating one on the client (Windows/Linux/Mac) and importing it into OS
+    * `ssh-keygen`
 * Launch a VM
   * Name: Valid host names apply
   * Flavor: describe meaning of flavor names

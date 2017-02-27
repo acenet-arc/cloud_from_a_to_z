@@ -15,6 +15,7 @@ keypoints:
 ---
 PREREQUISITES
 * create a first VM
+
 ---
 OUTLINE
 

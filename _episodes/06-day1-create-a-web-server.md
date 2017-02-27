@@ -17,6 +17,7 @@ PREREQUISITES
 * should know about sudo
 * should know an editor (vim or nano, SWC picked nano since it shows the commands)
 * should know some basic HTML
+
 ---
 OUTLINE
 * use persistent VM setup on last episode
