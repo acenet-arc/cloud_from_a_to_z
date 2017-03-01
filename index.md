@@ -3,14 +3,12 @@ layout: lesson
 root: .
 ---
 
-Introduction to cloud computing using the Compute Canada Cloud
+Cloud computing has become very popular recently. Part of the reason for this popularity is that it provides great flexibility allowing complete control of the computing environment. In addition the environment can be copied, backed up, created and recreated in an automated way. In these lessons we will start you on the path towards making use of the great flexibility and power of cloud computing.
 
-While there may be some generally applicable “best practices” for research across all the academic disciplines there is no “one size fits all” in terms of methods and techniques. Rather, general tools must be gathered and adapted to meet the research needs of each project. Having general tools that are flexible enough to allow these adaptations to take place without sacrificing their intended power becomes very important. Cloud environments are quickly becoming just such a flexible tool, allowing researchers to deploy websites, gather, store, and crunch data in a variety of ways all from a set of raw resources that can be repurposed in a variety of ways. Still, cloud computing remains more of a concept than a tangible actuality for most Humanities researchers and questions such as, “What is a cloud exactly ?”, “What can really be done in the cloud?”, and “How could I really run a cloud?”, linger, sapping momentum from what would otherwise be valuable research projects. 
-
-This course is intended for those involved in research who are looking for a flexible platform that can perform a variety of research tasks with beyond desktop performance. Familiarity with working within a unix style command line environment is strongly encouraged but not required. Emphasis will be divided between designing cloud based environments for a representative of sample of projects, multi virtual machine systems to power websites, run scraping projects, and support instances of generic web based tools and actually deploying these environments within the Compute Canada Cloud. Participants can expect to leave with the ability to oversee the provisioning of a variety cloud environments and, ideally, with the ability to do a good portion of that provisioning themselves. They will also have running template environments that they have built themselves. Other topics that will be covered include security, performance optimization, modular development practices, and networking. 
+One of the more interesting use cases for the cloud is its ability to provide web services. To explore the flexibility and power of cloud computing we will use the popular WordPress software as an example. WordPress is free as in 'free beer' and also as in 'free speech' since it is [OpenSource](https://en.wikipedia.org/wiki/Open-source_software) software. WordPress allows you you build great looking websites without the need to write all the code your self. It what is referred to as a Content Management System CMS. There are other CMS out there (e.g. Mediawiki, Drupal, Omeka) but WordPress is among one of the most popular and the methods learnt for WordPress setting up WordPress will also be applicable to other CMS software.
 
 > ## Prerequisites
-> Familiarity with a command line tool is very helpful but not required. 
->
-> In addition python programing experience may be helpful but certainly not required.
+> * Students should be comfortable working with computer file systems. They should know how to create and delete directories and files on their own personal computer.
+> * Familiarity with a Unix style command line environment is strongly encouraged but not required.
+> * Programming experience is an asset but also not required.
 {: .prereq}

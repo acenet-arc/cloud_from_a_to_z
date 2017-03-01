@@ -21,3 +21,5 @@ Should have a list of projects in the event that students don't have their own. 
 * Twitter scraper
 * ether pad
 * jupyter notebook
+* mediawiki (I have a template for this) 
+  * Maybe they could improve/modify it
