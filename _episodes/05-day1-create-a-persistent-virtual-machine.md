@@ -20,6 +20,7 @@ PREREQUISITES
 OUTLINE
 
 * Volumes
+  * could talk about mounting additional volumes, formating, LVM, etc. though this is getting off the wordpress path
 * Discuss flavors again esp. 'p' versus 'c'
 * Images (backup volumes)
   * but need CL client to download

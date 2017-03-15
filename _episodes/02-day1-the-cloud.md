@@ -12,7 +12,10 @@ objectives:
 - "To understand common cloud terminology"
 - "Get exposure to the various parts of OpenStacks Dashboard"
 keypoints:
-- "A Keypoint 0"
+- "Elasticity refers to the ability to scale devices up or down to meet demand."
+- "A Virtual Machine or Device is simulated with software running on physical hardware."
+- "A cloud allows one to borrow or rent virtual devices on-demand."
+- ""
 ---
 
 In the previous episode we looked at how the Internet works at a very basic level. To visit a website you enter an domain name into your browser which is converted to an IP address which directs your request to a computer (or LAN which then routes your request to a specific computer within that LAN based on the type of traffic) which then provides your computer with the data for the web page you requested. 
@@ -23,29 +26,22 @@ Anyone connected to the Internet can potentially put up a website for the world 
 
 Cloud computing can solve the problem of scalability and elasticity described above, but what is the cloud and how does it solve this problem?
 
-A first description of the cloud could be **it is someone else's computer that you rent or borrow**. But borrowing or renting your friend's laptop is not a cloud, so there is more to a cloud than being someone else's computer. Characteristics which a cloud should have are:
+A first description of the cloud could be **it is someone else's computer that you rent or borrow**. But borrowing or renting a laptop from someone is not a cloud, so there is more to a cloud than being someone else's computer that you rent or borrow. Generally a cloud isn't something you physically possess as a user, you **access a cloud remotely** across the Internet. However, people have been remotely accessing computers for a long time before the term cloud was used so there are still more characteristics which make clouds unique.
 
-* 
+What does a cloud computing environment have that these previously mentioned cases don't? One big characteristic is **on-demand service**. You are able to request resources (and get them) without additional human interaction. In other words, click some buttons on a website to get access to more devices, usually within seconds. More over, you can customize these devices using a web interface, for example request a computer with 2 CPUs, 7 GB of RAM, and 80 GB of disk space. Does this mean the providers of the cloud service had a computer sitting in their server room with exactly the hardware you requested waiting for you? No, they use a technology called **hardware virtualization** which is the simulation of hardware using software. What this means is that you can simulate the hardware you requested on different physical hardware. For example something with 16 CPUs, 64GB of RAM, and 2TB of disk space. In this way a single physical machine can provide multiple virtual machines (VM).
 
-What makes this more interesting, and more than anything, practical is that this "renting" or "loaning" of other people's computer is all done with software. A person, or more likely a company, runs a piece of software on their computers allowing you to choose your hardware through a web interface. This software uses what is called "virtualization" to simulate hardware using software. An example of virtualization is a file on the underlying computer operating system which acts like a physical hardrive in a virtual computer. It is not a real hard drive, but rather a file in the host operating system's file system.
-
-Why on earth would you want to simulate hardware within software? Consider the case that you have one computer with many CPUs, lots of RAM, and one very large disk and you want to rent it out and you want to allow the renter full control over the computing environment. That means then that you can only rent it out to one person, since different people can not setup different computing environments at the same time; there is only one operating system running on a computer at a time. Then you would only be able to rent it out to one person with very big requirements. With virtualization you can divide up the resources, more importantly the user can choose how many resources they need. For example one CPU can be used for one virtual computer and an other CPU can be used for another virtual computer. In this case a computer with two CPUs can allow for two smaller virtual computers to run simultaneously on it each running there own separate operating system.
+Multiple virtual machines can be simulated at once by running software within a host operating system, a virtual disk can be simulated by a file residing on the host operating system's file system. In addition it is possible to migrate virtual machines from one physical piece of hardware to another. This makes cloud infrastructure more **resilient** than traditional physical hardware in that a virtual machine can be migrated off a physical machine for upgrades and maintenance allowing the virtual machine to remain available while the original physical machine hosting the virtual machine is unavailable for maintenance.
 
 ![Virtualization](../fig/virtualization.svg)
 
+There are many different providers of cloud services for example, [Amazon Web Service](https://en.wikipedia.org/wiki/Amazon_Web_Services), [Microsoft Azure](https://en.wikipedia.org/wiki/Microsoft_Azure), [DigitalOcean](https://en.wikipedia.org/wiki/DigitalOcean), and many more. In general you pay for cloud services on a per usage bases. To make this billing possible there is almost always some form of **resource usage monitoring and tracking** built into a cloud platform. 
+
 ## Cloud Service Models
 
-* IaaS
-* PaaS
-* SaaS
-* XaaS
-  * e.g. DBaaS
-  * etc.
+So far we have been talking about clouds providing virtual devices as a service, also known as **Infrastructure as a Service (IaaS)**. There are other types of services which a cloud can provide. Infrastructure as a service allows the greatest amount of flexibility and power to configure and setup your computing environment as you like it apart from actually managing the hardware yourself. 
 
-## Cloud Providers
-* AWS
-* DigitalOcean
-* Microsoft Azure
+![Service Models](../fig/service-models.svg)
+
 
 ## Why Compute Canada Cloud?
 
