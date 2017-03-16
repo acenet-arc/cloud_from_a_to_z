@@ -15,7 +15,10 @@ keypoints:
 - "Elasticity refers to the ability to scale devices up or down to meet demand."
 - "A Virtual Machine or Device is simulated with software running on physical hardware."
 - "A cloud allows one to borrow or rent virtual devices on-demand."
-- ""
+- "Infrastructure as a Service (IaaS): the service provider provides you with the ability to create and manage virtual devices. You have complete control over VM configuration."
+- "Platform as a Service (PaaS): the service provider provides you with an environment to build and setup your software."
+- "Software as a Service (SaaS): the service provider provides the software and all the infrastructure and operating system configuration and management required to run the software. (e.g. gmail)."
+
 ---
 
 In the previous episode we looked at how the Internet works at a very basic level. To visit a website you enter an domain name into your browser which is converted to an IP address which directs your request to a computer (or LAN which then routes your request to a specific computer within that LAN based on the type of traffic) which then provides your computer with the data for the web page you requested. 
@@ -38,13 +41,14 @@ There are many different providers of cloud services for example, [Amazon Web Se
 
 ## Cloud Service Models
 
-So far we have been talking about clouds providing virtual devices as a service, also known as **Infrastructure as a Service (IaaS)**. There are other types of services which a cloud can provide. Infrastructure as a service allows the greatest amount of flexibility and power to configure and setup your computing environment as you like it apart from actually managing the hardware yourself. 
+So far we have been talking about clouds providing virtual devices as a service, also known as **Infrastructure as a Service (IaaS)**. This is one step above actually managing the hardware directly. Infrastructure as a service allows the greatest amount of flexibility and power to configure and setup your computing environment as you like it apart from actually managing the hardware yourself. With this great flexibility comes the responsibility to ensure that security patches and operating system updates are applied and that backups are made in case of disaster. This service model also requires that the user understand how to setup and configure their environments them selves. There are several other service models that are possible with clouds ranging form IaaS to **Software as a Service (SaaS)** at the other end of the spectrum where software services such as gmail or Facebook.  In the middle of these two extremes is **Platform as a Service (PaaS)** which provides an environment already configured with the tools required to develop software. An example of PaaS would be an high performance computing (HPC) environment where programing languages and libraries are installed and configured to allow the user to dive into writing code to solve their problem, or a Hadoop cluster where you can write Apache Spark code to process your data. Both of these use cases could be deployed within a cloud environment or directly on hardware.
 
 ![Service Models](../fig/service-models.svg)
 
 
 ## Why Compute Canada Cloud?
 
+First and for most it is a free service offered to researchers and librarians across Canada. 
 
 ## OpenStack
 
