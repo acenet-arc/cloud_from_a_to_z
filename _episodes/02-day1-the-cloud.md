@@ -12,12 +12,12 @@ objectives:
 - "To understand common cloud terminology"
 - "Get exposure to the various parts of OpenStacks Dashboard"
 keypoints:
-- "Elasticity refers to the ability to scale devices up or down to meet demand."
-- "A Virtual Machine or Device is simulated with software running on physical hardware."
-- "A cloud allows one to borrow or rent virtual devices on-demand."
-- "Infrastructure as a Service (IaaS): the service provider provides you with the ability to create and manage virtual devices. You have complete control over VM configuration."
-- "Platform as a Service (PaaS): the service provider provides you with an environment to build and setup your software."
-- "Software as a Service (SaaS): the service provider provides the software and all the infrastructure and operating system configuration and management required to run the software. (e.g. gmail)."
+- "**Elasticity** refers to the ability to scale devices up or down to meet demand."
+- "A **Virtual Machine** or **Virtual Device** is simulated with software running on physical hardware."
+- "A **cloud** allows one to borrow or rent virtual devices on-demand."
+- "Infrastructure as a Service (**IaaS**): the service provider provides you with the ability to create and manage virtual devices. You have complete control over VM configuration."
+- "Platform as a Service (**PaaS**): the service provider provides you with an environment to build and setup your software."
+- "Software as a Service (**SaaS**): the service provider provides the software and all the infrastructure and operating system configuration and management required to run the software. (e.g. gmail)."
 
 ---
 
@@ -48,13 +48,28 @@ So far we have been talking about clouds providing virtual devices as a service,
 
 ## Why Compute Canada Cloud?
 
-First and for most it is a free service offered to researchers and librarians across Canada. 
+First and for most it is a free service offered to faculty and librarians at academic institutions across Canada so that many of you may directly use what you learn hear. Second we have easy access to the resources and experts who created and maintain the Compute Canada Cloud. Third the Compute Canada cloud uses OpenStack which is a popular widely used open source cloud operating system. Many of the concepts learnt while working with the Compute Canada cloud will be applicable to many other cloud providers such as AWS and Azure with the notable exception of how those cloud providers monitor usage and bill for usage as the Compute Canada Cloud does not bill users but instead has allocation competitions to gain access to resource above default allocations. These allocation competitions work in a similar way as with other Compute Canada resources more information about resource allocation competitions see the [Compute Canada RAC](https://www.computecanada.ca/research-portal/accessing-resources/resource-allocation-competitions/) page.
 
 ## OpenStack
+If you have a Compute Canada cloud account at Arbutus (a.k.a west-cloud) you can login to the OpenStack dashboard (a.k.a Horizon) at the [Arbutus login](https://west.cloud.computecanada.ca/) or if you have an east-cloud account you can login at [east-cloud login](https://east.cloud.computecanada.ca/). Using either cloud should be fine though the two clouds do run different versions of OpenStack (see [CC Cloud Resources](https://docs.computecanada.ca/wiki/CC-Cloud_Resources) for current CC cloud OpenStack versions and hardware specs).
 
+Once you login to the OpenStack dashboard you will be presented with the "Overview" panel as shown below.
+ 
 <img src="../fig/os-screens/Overview.png" alt="OpenStack Dashboard Overview" style="width: 800px;"/>
 
+This panel shows you an overview (go figure) of your current usage and quota on OpenStack. Your OpenStack quota dictates the maximum number of VM instances, VCPUs, RAM, Floating IPs, Security Groups, Volumes and Volume/Snapshot Storage you may use. To increase these quotas you need to apply to a [RAC](https://www.computecanada.ca/research-portal/accessing-resources/resource-allocation-competitions/) as mentioned above.
+
+In the top right corner you have access to account settings and the sign out link. At the top is the current active project. You are likely only a member of one project, but you can potentially be a member of many projects and this drop down menu allows you to choose the project you are actively working on.
+
+### Instances (VMs)
+
 <img src="../fig/os-screens/Instances.png" alt="OpenStack Dashboard Instances" style="width: 800px;"/>
+
+### Volumes
+
+### Images
+
+### Access and Security
 
 * the cloud under the hood can be complicated luckily you don't need to look under the hood to use it. Many people just take their car to a mechanic when there is a problem under the hood similarly with the cloud, contact cloud@computecanada.ca
 

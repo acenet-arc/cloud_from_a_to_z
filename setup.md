@@ -4,7 +4,7 @@ title: Setup
 permalink: /setup/
 ---
 
-Setup that should preferably be done before you arrive at the course to help make the best use of your class time.
+This page describes setup that should preferably be done before you arrive at the course to help make the best use of your class time. The course exercises will be done on **your personal laptop** to better allow you to continue using what you learn in the course after you leave.
 
 ## Getting a Compute Canada Cloud account
 
@@ -13,7 +13,7 @@ There are two steps to getting a CC Cloud account
 1. Get a general Compute Canada account
 2. Get a Compute Canada Cloud account
 
-To get a Compute Canada account you need to either be a faculty member or librarian at a recognized academic institution in Canada or be sponsored by someone who is. To get a Compute Canada account follow the instructions provided on this [Compute Canada page](https://www.computecanada.ca/research-portal/account-management/apply-for-an-account/).
+To get a Compute Canada account you need to either be a faculty member or librarian at a recognized academic institution in Canada or be know someone who is that can sponsor your Compute Canada account. To get a Compute Canada account follow the instructions provided on this [Compute Canada page](https://www.computecanada.ca/research-portal/account-management/apply-for-an-account/).
 
 Once you have a CC account, you then apply for a cloud account [here](https://www.computecanada.ca/research-portal/national-services/compute-canada-cloud/create-a-cloud-account/). You will need to provide your CC account user name and an email associated with your CC account.
 
