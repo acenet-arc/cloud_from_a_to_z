@@ -20,7 +20,7 @@ start: true
 start_time: 615
 ---
 
-To put cloud computing into perspective, lets first take a look at how you use your computer and how it interacts with the Internet.
+To put cloud computing into perspective, lets first take a look at how you use your computer and how it interacts with the Internet. The ideas and understanding gained here will be applicable not only to understanding how the cloud works, but also when you want to create web services using your cloud account for others to access and use.
 
 These days everyone uses a computer connected to the Internet. Being connected to the Internet allows your computer to access multitudes of information, from bus schedules, maps and travel planning, to wikipedia. It also provides entertainment through services like netflix, spotify, and online gaming with other people. But how does this actually work, what is the Internet, and where does this data come from?
 

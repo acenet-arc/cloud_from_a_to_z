@@ -18,6 +18,7 @@ keypoints:
 - "Infrastructure as a Service (**IaaS**): the service provider provides you with the ability to create and manage virtual devices. You have complete control over VM configuration."
 - "Platform as a Service (**PaaS**): the service provider provides you with an environment to build and setup your software."
 - "Software as a Service (**SaaS**): the service provider provides the software and all the infrastructure and operating system configuration and management required to run the software. (e.g. gmail)."
+- "**OpenStack** is a cloud operating system which allows you to manage your virtual devices."
 
 ---
 
@@ -51,54 +52,33 @@ So far we have been talking about clouds providing virtual devices as a service,
 First and for most it is a free service offered to faculty and librarians at academic institutions across Canada so that many of you may directly use what you learn hear. Second we have easy access to the resources and experts who created and maintain the Compute Canada Cloud. Third the Compute Canada cloud uses OpenStack which is a popular widely used open source cloud operating system. Many of the concepts learnt while working with the Compute Canada cloud will be applicable to many other cloud providers such as AWS and Azure with the notable exception of how those cloud providers monitor usage and bill for usage as the Compute Canada Cloud does not bill users but instead has allocation competitions to gain access to resource above default allocations. These allocation competitions work in a similar way as with other Compute Canada resources more information about resource allocation competitions see the [Compute Canada RAC](https://www.computecanada.ca/research-portal/accessing-resources/resource-allocation-competitions/) page.
 
 ## OpenStack
-If you have a Compute Canada cloud account at Arbutus (a.k.a west-cloud) you can login to the OpenStack dashboard (a.k.a Horizon) at the [Arbutus login](https://west.cloud.computecanada.ca/) or if you have an east-cloud account you can login at [east-cloud login](https://east.cloud.computecanada.ca/). Using either cloud should be fine though the two clouds do run different versions of OpenStack (see [CC Cloud Resources](https://docs.computecanada.ca/wiki/CC-Cloud_Resources) for current CC cloud OpenStack versions and hardware specs).
+If you have a Compute Canada cloud account at Arbutus (a.k.a west-cloud) you can login to the OpenStack dashboard (a.k.a Horizon) at the [Arbutus login](https://west.cloud.computecanada.ca/) or if you have an east-cloud account you can login at [east-cloud login](https://east.cloud.computecanada.ca/). Using either cloud should be fine though the two clouds do run different versions of OpenStack (see [CC Cloud Resources](https://docs.computecanada.ca/wiki/CC-Cloud_Resources) for current CC cloud OpenStack versions and hardware specs) and you may notice some minor differences between the two.
 
 Once you login to the OpenStack dashboard you will be presented with the "Overview" panel as shown below.
  
-<img src="../fig/os-screens/Overview.png" alt="OpenStack Dashboard Overview" style="width: 800px;"/>
+<img src="../fig/os-screens/Overview.png" alt="OpenStack Dashboard Overview" style="width: 100%;"/>
 
-This panel shows you an overview (go figure) of your current usage and quota on OpenStack. Your OpenStack quota dictates the maximum number of VM instances, VCPUs, RAM, Floating IPs, Security Groups, Volumes and Volume/Snapshot Storage you may use. To increase these quotas you need to apply to a [RAC](https://www.computecanada.ca/research-portal/accessing-resources/resource-allocation-competitions/) as mentioned above.
+This panel shows you an overview (go figure) of your current usage and quota on OpenStack. Your OpenStack quota dictates the maximum number of VM instances, VCPUs, RAM, Floating IPs, Security Groups, Volumes, and Volume/Snapshot Storage you may use. To increase these quotas you need to apply to a [RAC](https://www.computecanada.ca/research-portal/accessing-resources/resource-allocation-competitions/) as mentioned above.
 
 In the top right corner you have access to account settings and the sign out link. At the top is the current active project. You are likely only a member of one project, but you can potentially be a member of many projects and this drop down menu allows you to choose the project you are actively working on.
 
 ### Instances (VMs)
+The "Instances" panel shows all running instances and information about those instances. It allows you to perform actions on an instance or set of instances such as "Shutdown", "Terminate", and "Reboot" and many others. You can click on the instance name to get even more information about the instance. Of particular note is the "Log" tab which is a log of actions the VM performs, for example things than happen when the VM boots or is restarted or shutdown. If for some reason your VM is not working as expected there may be clues in the log which can help you figure out what is going on. Most importantly this panel allows you to create new instances with the "Launch Instance" button which we will explore in the next episode.
 
-<img src="../fig/os-screens/Instances.png" alt="OpenStack Dashboard Instances" style="width: 800px;"/>
+<img src="../fig/os-screens/Instances.png" alt="OpenStack Dashboard Instances" style="width: 100%;"/>
 
 ### Volumes
+Volumes in OpenStack act like storage devices and can be attached to VMs like attaching an external hard drive or a USB stick. The Volumes panel allows you to view your currently created volumes and information about your volumes as well as creating and managing volumes.
+
+<img src="../fig/os-screens/Volumes.png" alt="OpenStack Dashboard Volumes" style="width: 100%;"/>
 
 ### Images
+Images allow you to make copies or backups of your volumes and virtual machines. Volumes can be created from an Image so that they contain the data in the Image. Images can be private to your project, shared with others, or completely public. There are a number of public images provided by the Compute Canada Cloud to be used as starting points for your virtual machines (e.g. Images containing the Ubuntu Linux operating system). Images can be downloaded and used in other clouds or with desktop tools such as [VirtualBox](https://www.virtualbox.org/) which allows you to run your cloud VMs on your laptop.
+
+<img src="../fig/os-screens/Images.png" alt="OpenStack Dashboard Images" style="width: 100%;"/>
 
 ### Access and Security
 
-* the cloud under the hood can be complicated luckily you don't need to look under the hood to use it. Many people just take their car to a mechanic when there is a problem under the hood similarly with the cloud, contact cloud@computecanada.ca
+The Access & Security panel serves a number of functions. It allows you to set rules to dictate which ports data can be sent and received from and to your VMs limiting the types of interactions your VM can have with the outside world using the "Security Groups" tab. You to specify a "key" to access your VMs on the "Key Pairs" tab (we will take more about keys in the next episode). The Access & Security panel allows you to set Floating IPs to access your VMs from the outside world, and finally to access your OpenStack projects from command line tools, which we will take about later in this course.
 
----
-PREREQUISITES 
-
----
-OUTLINE
-
-* What is a cloud
-  * Some one Else's computer **DONE**
-  * Virtual computers (simulated computers running on real computers) **DONE**
-  * Disk Images (simulated disks as files on real disks) **DONE**
-  * the descriptions of the above could maybe use some more work/elaboration
-* Go over components of Horizon (Dashboard)
-  * Overview (quotas)
-  * Instances (VMs)
-  * Volumes (disks)
-  * Images (archives of Volumes/Static disks)
-  * Access & Security
-    * Security Groups
-    * Key pairs
-    * Floating IPs
-
-These items could be left till much later or not mentioned at all
-
-* Access & Security
-  * leave API Access till later 
-* Networking 
-* Orchestration 
-* Identity
-  
+<img src="../fig/os-screens/Access-and-security.png" alt="OpenStack Dashboard Access and Security" style="width: 100%;"/>
