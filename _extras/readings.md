@@ -13,4 +13,4 @@ Other free documents which give a decent overview of the cloud are Vendor sponso
 
 There are also some youtube videos which give an overview of what OpenStack is: [OpenStack 101 - What is OpenStack?](https://youtu.be/Qz5gyDenqTI) and [What is OpenStack?](https://youtu.be/SnsWf0hyDXc). 
 
-Finally the [OpenStack user documentation](http://docs.openstack.org/user-guide/) is a good reference once you have begun working with OpenStack. Also there is some documentation specific to the Compute Canada Cloud on the Compute Canada [wiki](https://docs.computecanada.ca/wiki/CC-Cloud). The wiki content is a work in progress but does have some useful instructions for common tasks while working with VMs and OpenStack.
+Finally the [OpenStack user documentation](http://docs.openstack.org/user-guide/) is a good reference once you have begun working with OpenStack. Also there is some documentation specific to the Compute Canada Cloud on the Compute Canada [wiki](https://docs.computecanada.ca/wiki/CC-Cloud). The wiki content is a work in progress but does have some useful instructions for common tasks encountered while working with VMs and OpenStack.
