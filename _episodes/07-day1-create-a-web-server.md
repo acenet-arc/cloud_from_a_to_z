@@ -135,6 +135,63 @@ $ sudo apt install apache2 -y
 ~~~
 {: .bash}
 ~~~
-TODO ...
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following additional packages will be installed:
+  apache2-bin apache2-data apache2-utils libapr1 libaprutil1 libaprutil1-dbd-sqlite3 libaprutil1-ldap liblua5.1-0 ssl-cert
+Suggested packages:
+  www-browser apache2-doc apache2-suexec-pristine | apache2-suexec-custom openssl-blacklist
+The following NEW packages will be installed:
+  apache2 apache2-bin apache2-data apache2-utils libapr1 libaprutil1 libaprutil1-dbd-sqlite3 libaprutil1-ldap liblua5.1-0 ssl-cert
+0 upgraded, 10 newly installed, 0 to remove and 2 not upgraded.
+...
+Lots more output...
+...
+Processing triggers for libc-bin (2.23-0ubuntu7) ...
+Processing triggers for systemd (229-4ubuntu16) ...
+Processing triggers for ureadahead (0.100.0-19) ...
+Processing triggers for ufw (0.35-0ubuntu2) ...
 ~~~
 {: .output}
+
+### Configuring Apache to execute your first web page
+
+Before we make any configuration changes - and this goes for all software applications - we should always create a backup of the files which we intend to modify. This way, if we make any grievous errors, we can always return the configuration file back to its original state. This is particularly helpful in the event that we delete information which should never have been removed. One strategy is to create a folder in your home directory and call it **ORIG**. Back up all of your configuration files here and do your best to preserve all of the original document paths. This way you'll never need to guess where the files actually belong.
+
+As an example, we can backup the original Apache configuration files as follows:
+
+First, create the backup your home directory. Since almost every configuration directory lives in **/etc** go ahead and add this to your **ORIG** folder. NOTE: the **-pv** options tell the make directory command to create parent directories as needed and to be verbose so that you can see what's been created.
+~~~
+$ mkdir -pv ~/ORIG/etc
+~~~
+{: .bash}
+~~~
+mkdir: created directory '/home/ubuntu/ORIG'
+mkdir: created directory '/home/ubuntu/ORIG/etc'
+~~~
+{: .output}
+
+Next, use the **sudo** command to copy the entire Apache configuration contents to your backup tree. NOTE: the **-av** options tell the copy command to archive the directory contents (recurse all sub-directories, and preserve file attributes) and to be verbose so that you can see what's been copied.
+~~~
+$ sudo cp -av /etc/apache2 /home/ubuntu/ORIG/
+~~~
+{: .bash}
+~~~
+'/etc/apache2' -> '/home/ubuntu/ORIG/apache2'
+'/etc/apache2/apache2.conf' -> '/home/ubuntu/ORIG/apache2/apache2.conf'
+'/etc/apache2/envvars' -> '/home/ubuntu/ORIG/apache2/envvars'
+'/etc/apache2/ports.conf' -> '/home/ubuntu/ORIG/apache2/ports.conf'
+'/etc/apache2/magic' -> '/home/ubuntu/ORIG/apache2/magic'
+...
+Lots more files...
+...
+'/etc/apache2/conf-enabled/localized-error-pages.conf' -> '/home/ubuntu/ORIG/apache2/conf-enabled/localized-error-pages.conf'
+
+'/etc/apache2/conf-enabled/other-vhosts-access-log.conf' -> '/home/ubuntu/ORIG/apache2/conf-enabled/other-vhosts-access-log.conf'
+'/etc/apache2/conf-enabled/security.conf' -> '/home/ubuntu/ORIG/apache2/conf-enabled/security.conf'
+'/etc/apache2/conf-enabled/serve-cgi-bin.conf' -> '/home/ubuntu/ORIG/apache2/conf-enabled/serve-cgi-bin.conf'
+~~~
+{: .output}
+
+Now we can perform all sorts of configuration modifications without worring about destroying the installation.
