@@ -4,24 +4,29 @@ title: "Create a web-server"
 teaching: 30
 exercises: 0
 questions:
-- ""
+- "What is Apache?"
+- "What is LAMP?"
+- "How do we install and configure Apache?"
 objectives:
 - "To be able to create a web-server in Compute Canada's cloud and create and access a website served from it"
 keypoints:
-- "A Keypoint 0"
+- "TODO - coming soon..."
 ---
 
----
-PREREQUISITES
-* should know about Linux file structures a little (e.g. /, /etc, /var etc.)
-* should know about sudo
-* should know an editor (vim or nano, SWC picked nano since it shows the commands)
-* should know some basic HTML
+For the purposes of this course, we will install and configure an **Apache Web Server** software application. This is free, open source software that is developed and maintained by the Apache Software Foundation and is one of the most widely used web server platforms on the Internet. While most WordPress websites use Apache, alternative software, such as Nginx, could also be used.
 
----
-OUTLINE
-* use persistent VM setup on last episode
-* install apache
-* learn a bit about apache config files
-* edit some html
-* view the site
+In fact, if the purpose of your virtual machine is to run a single instance of WordPress (which is exactly what we're doing for this course), then Nginx would most likely perform much better than Apache. However, the reason that we'll stick with Apache for this course is that Nginx is a bit more complicated to administer and demands more effort to configure alongside other tools that we will require later in the course (such as PHP and SSL encryption), so again, for the purposes of this course, we'll stick with Apache.
+
+In addition, Apache is only one of the software components that will be used to run WordPress. All dynamic web applications like WordPress require an entire web service software stack which is traditionally referred to as **LAMP**. **LAMP** is an acronym which stands for a combination of the following free and open-source operating system and other software packages. They are as follows:
+
+- **Linux**: the operating system chosen for your virtual machine. In our case, it's Ubuntu.
+
+- **Apache**: the web or HTTP server. It receives and delivers requests to and from users who visit your WordPress site.  
+
+- **MySQL**: the relational database management system that stores most of the WordPress site content.
+
+- **PHP**: the programming languages used by the WordPress developers to create their web application. PHP uses its processor module to interpret this code which is then used by Apache to generate a resulting web page.
+
+We'll learn how to install and configure the **M** and **P** LAMP components during Day 2, when we finish creating our WordPress sites.
+
+## How do we install and configure Apache?
