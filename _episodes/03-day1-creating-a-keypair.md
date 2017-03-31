@@ -1,23 +1,25 @@
 ---
 layout: episode
-title: "Create a first virtual machine"
-teaching: 60
-exercises: 0
+title: "Creating a keypair"
+teaching: 15
+exercises: 15
 questions:
 - "What are keypairs used for?"
+- "How do you create them?"
 objectives:
 - "Create a key pair"
-- "Create a VM which you can log into"
+- "Understand file permissions"
+- "Learn about some basic Linux commands"
 keypoints:
-- "A Keypoint 0"
+- "An SSH key pair allows a user to be authenticated"
+- ""
 ---
 
-Now that you have an overview of OpenStack and have clicked around the dashboard it is time to create our first virtual machine. To create a virtual machine, we would click the "Launch Instance" button on the Instances panel, but before we do that there is at least one thing which we need to take care of first and that is, create a key to access our newly created virtual machine. Before we create a virtual machine we need to select a key to be injected into it which we can use to access the virtual machine.
+Now that you have an overview of OpenStack and have clicked around the dashboard it is time to create our first virtual machine. To create a virtual machine, we would click the "Launch Instance" button on the Instances panel, but before we do that there is at least one thing which we need to take care of first and that is, create a key to access our newly created virtual machine. The key will allow only the person possessing it to access the VM. Before we create a virtual machine we need to select a key to be injected into it which we can use to access the virtual machine.
 
-## Accessing a Virtual Machine
-Before we create a virtual machine we need to think about how we will access and use it. When you use your laptop or desktop computer you have a graphical interface which you click around and windows you type in to get your computer to do what you want. You might not know it but you can also run a terminal or **shell** program and type **commands** to get your computer to do things. The things done in the shell in some cases can be seen in the graphical interface. For example you can use the shell to create directories and files which you can see in the graphical file system viewer (e.g. Windows Explorer or Finder). We will use the shell to interact with our virtual machines. 
+Before we create a virtual machine we need to think about how we will access and use it. When you use your laptop or desktop computer you have a graphical interface which you click around and windows you type in to get your computer to do what you want. You might not know it but you can also run a terminal or **shell** program and type **commands** to get your computer to do things. The things done in the shell in some cases can be seen in the graphical interface. For example you can use the shell to create directories and files which you can see in a graphical file system viewer (e.g. Windows Explorer or Finder). We will use the shell to interact with our virtual machines. 
 
-There is a shell called **Secure Shell** or **SSH** for short which is used to make remote connections between machines. SSH encrypts information sent between your local computer and a remote computer using a shared key. Encryption is a way of transforming text or data which is readable and understandable by anyone into text and data which is only understandable if one posses the key. SSH authentication keys (different from the shared key used to encode the messages) come in pairs, one public and one private. The public key is used to encrypt a message which contains the shared key that can only be decoded by the owner of the private key. The shared key sent in the message allows the two machines to send and receive sensitive information which only they can decode.
+There is a shell called **Secure Shell** or **SSH** for short which is used to make remote connections between machines allowing one to execute commands on a remote machine. SSH encrypts information sent between your local computer and a remote computer using a shared key. Encryption is a way of transforming text or data which is readable and understandable by anyone into text and data which is only understandable if one posses the key. SSH authentication keys (different from the shared key used to encode the messages) come in pairs, one public and one private. The public key is used to encrypt a message which contains the shared key that can only be decoded by the owner of the private key. In this way the machine sending a message encoded using the public key can be sure that the machine responding has the private key which can decode the message in this way the key pair can be used to authenticate the user. A shared key sent in the message allows the two machines to send and receive sensitive information which only they can decode.
 
 Lets make a pair of SSH authentication keys we can use to connect to our virtual machines. Start up your shell (a.k.a. a terminal) and you will see a **prompt**. A prompt is usually some text and characters to indicate that the shell is waiting for you to enter a command. In this lesson we will use the "`$`" to indicate a prompt which is likely somewhat different from what you see in your shell.
 
@@ -40,7 +42,18 @@ More specifically, when we type `pwd` and press the Enter key, the shell:
 2. runs that program,
 3. displays that program's output, then
 4. displays a new prompt to tell us that it's ready for more commands.
-The `pwd` command's output is the **present working directory**. In this case `/home/cgeroux`. This is known as a **home directory** where settings, files and programs for the user `cgeroux` are kept.
+
+The `pwd` command's output is the **present working directory**. In this case `/home/cgeroux`. This is known as a **home directory** where settings, files and programs for the user `cgeroux` are kept. The string `/home/cgeroux` is known as a path which indicates a specific file or directory within a file system. File systems have a tree like structure, starting at the root of the file system (`/`) and branching out from there. Each new directory creates a new branch in the file system. Directories are seperated in a path by forward slashes, `/` so that a directory inside another one can be represented like `/home` in this case, the `home` directory is inside the root directory `/`.  Adding another directory in depth to the path we have `/home/cgeroux` which is a directory inside the `home` directory.
+
+There are common file system layouts within most Linux systems the below figure shows an overview of some of the more relevant directories within a linux file system for this course.
+
+![file system](../fig/filesystem-truncated.svg)
+
+* `/home`: home directories of users
+* `/bin`: essential user command binaries (e.g. `ls`,`cat`,`bash`, ...)
+* `/etc`: settings and configurations for the system
+* `/var`: variable data files (e.g. `logs` and website data `www`)
+* `/dev`: device files, (e.g. hard drive, usb, and cd-rom devices)
 
 > ## Home Directory Variation
 >
@@ -68,7 +81,7 @@ SYNOPSIS
 ...
 ~~~
 {: .output}
-If you scroll down and read the description, you will notice that this command creates a key in the `~/.ssh` directory. The `~` is a synonym for your home directory and the `.` at the beginning of the directory name indicates that the directory is hidden. In the sense that the command `ls` will not show this directory unless the `-a` option is used. 
+Many commands have manual pages, so executing the command `man <some-command-name>` will display information about that command, how to use it, and the options available for that command. Options for a command are specified after the command with a `-` followed directly by the option identifier for example, `-a`. If you scroll down the manual pages (by pressing the down arrow key) and read the description, you will notice that this command creates a key in the `~/.ssh` directory. The `~` is a synonym for your home directory (e.g. `/home/cgeroux`) and the `.` at the beginning of the directory name indicates that the directory is hidden. The command `ls` is used to list the file structure, or in other words list files and directories inside a give directory. Hidden files will not be shown by the `ls` command unless the `-a` option is used. 
 
 Lets check to see if you have a `.ssh` folder already in your home directory
 ~~~
@@ -91,7 +104,7 @@ $ ls ~/.ssh/
 id_rsa       id_rsa.pub   known_hosts
 ~~~
 {: .output}
-if you have a file pair `id_rsa` and `id_rsa.pub` or `id_dsa` and `id_dsa.pub` you already have a key pair and you can skip the next steps which create a new key pair and just use the key pair you already have.
+Notice that the a forward `/` is used to separate directories. In this case the `.ssh` directory is inside the home directory `~` (or in this case `/home/cgeroux`). If you have a pair of files `id_rsa` and `id_rsa.pub` or `id_dsa` and `id_dsa.pub` you already have a key pair and you can skip the next steps which create a new key pair and just use the key pair you already have.
 
 To create a key pair run the command
 ~~~
@@ -100,12 +113,12 @@ $ ssh-keygen -t rsa -b 2048
 {: .bash}
 ~~~
 Generating public/private rsa key pair.
-Enter file in which to save the key (/home/mobaxterm/.ssh/id_rsa):
+Enter file in which to save the key (/home/cgeroux/.ssh/id_rsa):
 ~~~
 {: .output}
 It is asking where to store the keypair, in this case lets just use the default location by pressing the `<return>` key. Then you will get
 ~~~
-Created directory '/home/mobaxterm/.ssh'.
+Created directory '/home/cgeroux/.ssh'.
 Enter passphrase (empty for no passphrase):
 ~~~
 {: .output}
@@ -116,8 +129,8 @@ Enter same passphrase again:
 {: .output}
 then reneter the passphrase and
 ~~~
-Your identification has been saved in /home/mobaxterm/.ssh/id_rsa.
-Your public key has been saved in /home/mobaxterm/.ssh/id_rsa.pub.
+Your identification has been saved in /home/cgeroux/.ssh/id_rsa.
+Your public key has been saved in /home/cgeroux/.ssh/id_rsa.pub.
 The key fingerprint is:
 SHA256:WKM/Rx7bBCqPH7DLuXww3xnu0YqL+H1enJHFER1zt/4 cgeroux@Caelia
 The key's randomart image is:
@@ -204,49 +217,7 @@ lrwxrwxrwx    1 cgeroux  UsersGrp        33 May 18  2016 MyDocuments -> /drives/
 If these permissions are to open the command we use to connect to other computers may complain. 
 > ## File permissions variations
 >
-> In the case of mobaXterm the ssh command does not require strict permissions, however on Linux machines or Macs the `ssh` command does require stricter permissions before it will allow you to connect using a private key.
+> In the case of mobaXterm the `ssh` command does not require strict permissions, however on Linux machines or Macs the `ssh` command does require stricter permissions before it will allow you to connect using a private key.
 {: .callout}
 
----
-PREREQUISITES
-* need to know `ls`, `ls -l`
- * should maybe also know a bit more
-    * `rm`
-    * `mkdir`
-    * `cat`
-* file permissions
-  * user, group, everyone
-  * wrx
-  * `chmod`
-* need to know about `.ssh` folder
-  * `authorized_keys`
-  * `known_hosts`
-  * `id_rsa`
-  * `id_rsa.pub`
-
----
-OUTLINE
-
-* Key pairs
-  * Describe key pairs and what they are for
-    * need to mention about SSH
-  * Creating one using the OS dashboard
-  * Creating one on the client (Windows/Linux/Mac) and importing it into OS
-    * `ssh-keygen`
-* Launch a VM
-  * Name: Valid host names apply
-  * Flavor: describe meaning of flavor names
-  * Boot Source: Image, will talk about other boot sources more later (e.g. persistent VMs)
-  * Image Name:
-  * Select a key pair
-  * Keep default security group
-  * Post creation, mention quickly, e.g. allows you to automatically configure your VM using a script (e.g. update OS, install software etc.) will be discussed more later (e.g. cloudInit).
-* Network
-  * Private IP vrs. Public IP
-  * Allocating a Public IP
-  * Associating it with the VM
-  * Security Groups add SSH rule
-* Connecting
-  * SSH using key pair
-    * Windows -> Putty/MobaXterm
-    * Linux/Mac -> use built in terminal
+Now we have a key pair we can use to connect to our the VM we will create in the next episode.
