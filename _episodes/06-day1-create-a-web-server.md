@@ -31,6 +31,8 @@ We'll learn how to install and configure the **M** and **P** LAMP components dur
 
 ## How do we install and configure Apache?
 
+### Connect vis SSH from your workstation to your virtual machine
+
 The first thing we need to do is connect via SSH from our workstations to the virtual machine that we created in the previous section. For review, that should look something like this:
 
 ~~~
@@ -60,9 +62,12 @@ Last login: Thu Mar 16 22:04:19 2017 from 24.86.86.43
 ~~~
 {: .output}
 
+### Install security updates and reboot
+
 So, the first thing we should do is ensure that all of our security updates have been installed. We will use both **sudo** and the **apt** command to accomplish this. The **sudo** command gives us super user (or administrator) privileges. The **apt** command is used to install, update, and remove Ubuntu software packages.
 
-First, we must update the software package database.
+First, we must update the Ubuntu software packages database.
+
 ~~~
 $ sudo apt update
 ~~~
@@ -110,4 +115,26 @@ $ sudo reboot
 ~~~
 {: .bash}
 
-And then we wait a couple of minutes before retrying to connect once again via SSH from our workstations to our virtual machines.
+And then we'll wait a couple of minutes before retrying to connect once again via SSH from our workstations to our virtual machines.
+
+### Install the Apache software package
+
+After reconnecting, we need to install the Apache software package.
+
+Once again, update the Ubuntu software packages database.
+
+~~~
+$ sudo apt update
+~~~
+{: .bash}
+
+Then install the **apache2** Ubuntu package.
+
+~~~
+$ sudo apt install apache2 -y
+~~~
+{: .bash}
+~~~
+TODO ...
+~~~
+{: .output}
