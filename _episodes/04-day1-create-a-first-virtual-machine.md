@@ -62,9 +62,15 @@ Before launching your first VM make sure to check the radio box under *Security 
 
 Finally click the *Launch* button at the bottom of the *Launch Instance* panel to create your first virtual machine!
 
+## Associating a Floating IP with a VM
+To connect to your virtual machine you will need to associate a *Public IP* or *Floating IP* with your virtual machine. Doing so will create a pointer from a publicly accessible IP to your virtual machine. This allows other machines to connect to your virtual machine across the Internet. This is different from the private or local IP your VM gets by default, which only identifies the virtual machine on the local network. To associate a floating Ip with your newly created virtual machine go click on the drop down menu on the right side of your newly create virtual machine and select *Associate Floating IP*. This will bring up a panel to select an IP Address. Chances are you will not yet have a floating IP added to your project. To add a new floating IP click the *+* button next to the drop down box *Select an IP address*. Select a *Pool* to allocate the floating IP from. There will likely only be one. The select *Allocate IP*. This will then take you back the previous panel and you can select the newly allocated floating IP from the drop down box. For *Port to be associated* your newly created VM should already be selected as indicated by the name of your VM and its private IP address. Then click *Associate*. This floating IP we just associated with your newly created VM will be the IP address we use to connect to your VM.
+
+## Adding SSH Security Rule
+To connect to the virtual machine we will be using SSH which communicates on port 22. To allow SSH connections into your virtual machine you will have to add a security rule to the `default` security group to allow it. To do this go to the *Access & Security* panel and click the *Manage Rules* button on the right in the row of the `default` security group. This will bring up a new panel showing all the rules for this security group. To allow traffic in on port 22 click the *+ Add Rule* button in the top right which brings up a new panel. For the *Rule* drop down select `SSH`. For `Remote` select `CIDR`. 
+
 ## Connecting to a virtual machine
 
-
+Once your virtual machine's status as viewd on the *Instances* OpenStack dashboard panel is *Active* you can connect to your virtual machine using SSH.
 
 > ## Create a VM with an invalid hostname
 >
