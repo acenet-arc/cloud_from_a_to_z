@@ -45,7 +45,7 @@ More specifically, when we type `pwd` and press the Enter key, the shell:
 
 The `pwd` command's output is the **present working directory**. In this case `/home/cgeroux`. This is known as a **home directory** where settings, files and programs for the user `cgeroux` are kept. The string `/home/cgeroux` is known as a path which indicates a specific file or directory within a file system. File systems have a tree like structure, starting at the root of the file system (`/`) and branching out from there. Each new directory creates a new branch in the file system. Directories are seperated in a path by forward slashes, `/` so that a directory inside another one can be represented like `/home` in this case, the `home` directory is inside the root directory `/`.  Adding another directory in depth to the path we have `/home/cgeroux` which is a directory inside the `home` directory.
 
-There are common file system layouts within most Linux systems the below figure shows an overview of some of the more relevant directories within a linux file system for this course.
+There is a common file system layout across most Linux systems. The below figure shows an overview of some of the more relevant directories within a Linux file system for this lesson, however there are more directories than are shown here.
 
 ![file system](../fig/filesystem-truncated.svg)
 
@@ -60,7 +60,7 @@ There are common file system layouts within most Linux systems the below figure 
 > The home directory path will look different on different operating systems. On Linux it might look like `/home/cgeroux` but on windows using mobaXterm it might look like `/home/mobaxterm` or on a Mac like `/Users/cgeroux`.
 {: .callout}
 
-The command to create a new key pair is `ssh-keygen` but before we run it lets have a look at the manual pages for the program by typing
+The command to create a new key pair is `ssh-keygen` but before we run it lets have a look at the manual pages for the command by typing
 ~~~
 $ man ssh-keygen
 ~~~
@@ -217,7 +217,7 @@ lrwxrwxrwx    1 cgeroux  UsersGrp        33 May 18  2016 MyDocuments -> /drives/
 If these permissions are to open the command we use to connect to other computers may complain. 
 > ## File permissions variations
 >
-> In the case of mobaXterm the `ssh` command does not require strict permissions, however on Linux machines or Macs the `ssh` command does require stricter permissions before it will allow you to connect using a private key.
+> In the case of mobaXterm the `ssh` command does not require strict permissions, however on Linux machines or Macs the `ssh` command does require stricter permissions before it will allow you to connect using a private key. In addition depending on the details of your windows operating system and version of mobaXterm you may or may not actually be able to change file permissions wihtin mobaXterm.
 {: .callout}
 
 Now we have a key pair we can use to connect to our the VM we will create in the next episode.

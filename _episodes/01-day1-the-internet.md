@@ -96,6 +96,10 @@ All the services you access over the Internet work by using IP address and ports
 
 But when you want to go to a website you don't usually enter an IP address usually something like `google.ca`. This is what is known as a domain name. Domain names can be purchased from a domain name registrar (e.g. godaddy.com, rebel.ca). The domain name can then be linked to an IP address and requests to a domain name are translated to requests to an IP address.
 
+The `.ca` part of `google.ca` domain name is known as the top level domain name. Within a given domain you can have many subdomains for example `google` is a subdomain of the `ca` domain and `translate` is subdomain of the `google.ca` domain. Each additional sub domain given to the left of the top level domain name can be referred to by the depth they are to the left, for example `google` is a second level domain name, and `translate` is a third level domain name.
+
+A domain name does not have to point to a single device, but may also point to a network with many devices connected to it.
+
 > ## What is google.ca's IP address?
 >
 > 1. Go to [ip-lookup.net](http://ip-lookup.net/) 
@@ -105,3 +109,7 @@ But when you want to go to a website you don't usually enter an IP address usual
 >
 > Do you get to the same page that you would have using the domain name?
 {: .challenge}
+
+## Hostnames
+
+A hostname identifies a specific device on a network. For example you could have a computer with a hostname `bob` and other computers on that network could refer to that device simply as `bob`. However, outside that network you would have to include the domain name for the network that the computer was on, for example `bob.example.ca` if `example.ca` pointed to the network that the device `bob` was on. In this case `bob.example.ca` is referred to as a Fully Qualified Domain Name (**FQDN**) because the domain name hierarchy can be followed up to a top level domain name (in this case `ca`).
