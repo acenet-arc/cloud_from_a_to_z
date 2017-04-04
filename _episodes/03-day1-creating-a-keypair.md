@@ -4,15 +4,20 @@ title: "Creating a keypair"
 teaching: 15
 exercises: 15
 questions:
-- "What are keypairs used for?"
-- "How do you create them?"
+- "What is a shell?"
+- "What is SSH?"
+- "What are key-pairs and how do you create one?"
+- "How do you view and set file permissions?"
 objectives:
-- "Create a key pair"
-- "Understand file permissions"
-- "Learn about some basic Linux commands"
+- "Learn how to use the shell."
+- "Learn some basic Linux commands."
+- "Get a rough overview of a Linux filesystem."
+- "Create a key pair."
+- "Understand the basics of Linux file permissions."
 keypoints:
-- "An SSH key pair allows a user to be authenticated"
-- ""
+- "A shell is a text based method for interacting with a computer."
+- "SSH is a Secure SHell that allows remote interaction with a computer."
+- "An SSH key pair allows a user to be authenticated on a remote computer."
 ---
 
 Now that you have an overview of OpenStack and have clicked around the dashboard it is time to create our first virtual machine. To create a virtual machine, we would click the "Launch Instance" button on the Instances panel, but before we do that there is at least one thing which we need to take care of first and that is, create a key to access our newly created virtual machine. The key will allow only the person possessing it to access the VM. Before we create a virtual machine we need to select a key to be injected into it which we can use to access the virtual machine.

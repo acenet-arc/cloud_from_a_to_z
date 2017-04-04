@@ -4,9 +4,15 @@ title: "Creating a virtual machine"
 teaching: 15
 exercises: 15
 questions:
-- "A question"
+- "How do you create a virtual machine?"
+- "What is an OpenStack flavor?"
+- "What is a floating IP?"
+- "How can I allow SSH traffic into my virtual machine?"
 objectives:
-- "Create a VM which you can log into"
+- "Create a VM."
+- "Associate a floating IP with a VM."
+- "Add security rules to allow traffic into a VM."
+- "Connect to a VM using SSH."
 keypoints:
 - "a key point"
 ---
