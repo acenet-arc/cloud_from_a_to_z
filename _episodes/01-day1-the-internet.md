@@ -44,6 +44,23 @@ To connect your LAN to the rest of the Internet your router is connected to an I
 > IP address are compose of numbers separated by `.` Each number is chosen from the range from 0 to 255, or one of 256 possible numbers. An IP is made up of 4 such numbers  separated by `.`s so all possible combinations of these numbers gives 256<sup>4</sup>=4.294e9 (about 4 billion) possible IP addresses. There are now ~7 billion people in the world and in 2011 we ran out of IPv4 address (e.g. IP address of the form ###.###.###.###). This is why IPv6 address were introduced which provide approximately 3.403e38 unique addresses. However IPv4 addresses are still widely used and very common.
 {: .callout}
 
+## Ports
+If your neighbour wanted to share some information with you on a website located on his device with local address `192.168.1.103` how could your computer know to connect to that device to get that information? If you know the IP address of your neighbour's router (`206.113.222.122`) you could uniquely identify your neighbours LAN, but how to route the request for their website to the local device? Your neighbour must configure their router to forward traffic to the device with local address `192.168.103`, but which traffic? What if your neighbour wanted some information to be routed to one device and other information to be routed to another? The solution to this issue is to use ports. Different types of information requests are associated with different ports and the local network can be configured to forward a request associated with certain port to a specific device (known as port forwarding). In the case of a website the convention is to use port 80. You can combine IP address and ports with a `:` for example `206.113.222.122:80` could be entered into your web-browser to access a website on your neighbours device with local IP `192.168.1.103` once your neighbour configured their router to forward requests on port 80 to that device.
+
+## Domain Names
+
+All the services you access over the Internet work by using IP address and ports to access another computer connected to the Internet which provides your computer with information (text, audio, video) stored on another computer.
+
+But when you want to go to a website you don't usually enter an IP address usually something like `google.ca`. This is what is known as a domain name. Domain names can be purchased from a domain name registrar (e.g. godaddy.com, rebel.ca). The domain name can then be linked to an IP address and requests to a domain name are translated to requests to an IP address.
+
+The `.ca` part of `google.ca` domain name is known as the top level domain name. Within a given domain you can have many subdomains for example `google` is a subdomain of the `ca` domain and `translate` is subdomain of the `google.ca` domain. Each additional sub domain given to the left of the top level domain name can be referred to by the depth they are to the left, for example `google` is a second level domain name, and `translate` is a third level domain name.
+
+A domain name does not have to point to a single device, but may also point to a network with many devices connected to it.
+
+## Hostnames
+
+A hostname identifies a specific device on a network. For example you could have a computer with a hostname `bob` and other computers on that network could refer to that device simply as `bob`. However, outside that network you would have to include the domain name for the network that the computer was on, for example `bob.example.ca` if `example.ca` pointed to the network that the device `bob` was on. In this case `bob.example.ca` is referred to as a Fully Qualified Domain Name (**FQDN**) because the domain name hierarchy can be followed up to a top level domain name (in this case `ca`).
+
 > ## What is your computer's IP?
 >
 > Go to [whatismyipaddress.com](https://whatismyipaddress.com/) and seeing what your IP address is.
@@ -68,9 +85,6 @@ To connect your LAN to the rest of the Internet your router is connected to an I
 > {: .solution}
 {: .challenge}
 
-## Ports
-If your neighbour wanted to share some information with you on a website located on his device with local address `192.168.1.103` how could your computer know to connect to that device to get that information? If you know the IP address of your neighbour's router (`206.113.222.122`) you could uniquely identify your neighbours LAN, but how to route the request for their website to the local device? Your neighbour must configure their router to forward traffic to the device with local address `192.168.103`, but which traffic? What if your neighbour wanted some information to be routed to one device and other information to be routed to another? The solution to this issue is to use ports. Different types of information requests are associated with different ports and the local network can be configured to forward a request associated with certain port to a specific device (known as port forwarding). In the case of a website the convention is to use port 80. You can combine IP address and ports with a `:` for example `206.113.222.122:80` could be entered into your web-browser to access a website on your neighbours device with local IP `192.168.1.103` once your neighbour configured their router to forward requests on port 80 to that device.
-
 > ## What happens if I specify the wrong port?
 >
 > 1. Enter a domain name or IP into your browser of a known website (e.g. google.ca). **Do not yet go the site.**
@@ -90,15 +104,6 @@ If your neighbour wanted to share some information with you on a website located
 > {: .solution}
 {: .challenge}
 
-## Domain Names
-
-All the services you access over the Internet work by using IP address and ports to access another computer connected to the Internet which provides your computer with information (text, audio, video) stored on another computer.
-
-But when you want to go to a website you don't usually enter an IP address usually something like `google.ca`. This is what is known as a domain name. Domain names can be purchased from a domain name registrar (e.g. godaddy.com, rebel.ca). The domain name can then be linked to an IP address and requests to a domain name are translated to requests to an IP address.
-
-The `.ca` part of `google.ca` domain name is known as the top level domain name. Within a given domain you can have many subdomains for example `google` is a subdomain of the `ca` domain and `translate` is subdomain of the `google.ca` domain. Each additional sub domain given to the left of the top level domain name can be referred to by the depth they are to the left, for example `google` is a second level domain name, and `translate` is a third level domain name.
-
-A domain name does not have to point to a single device, but may also point to a network with many devices connected to it.
 
 > ## What is google.ca's IP address?
 >
@@ -109,7 +114,3 @@ A domain name does not have to point to a single device, but may also point to a
 >
 > Do you get to the same page that you would have using the domain name?
 {: .challenge}
-
-## Hostnames
-
-A hostname identifies a specific device on a network. For example you could have a computer with a hostname `bob` and other computers on that network could refer to that device simply as `bob`. However, outside that network you would have to include the domain name for the network that the computer was on, for example `bob.example.ca` if `example.ca` pointed to the network that the device `bob` was on. In this case `bob.example.ca` is referred to as a Fully Qualified Domain Name (**FQDN**) because the domain name hierarchy can be followed up to a top level domain name (in this case `ca`).

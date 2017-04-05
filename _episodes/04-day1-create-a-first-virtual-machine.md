@@ -33,9 +33,9 @@ You are presented with a panel consisting of multiple tabs of fields to fill in.
 
 **Flavor:** The flavor of your VM specifies the hardware profile your VM will have. Compute Canada cloud uses a consistent naming scheme across their clouds to describe the hardware profile.  Examples of VM flavors are `p1-0.75gb` and `c1-3.75gb-36` and the different components of the name correspond to different hardware features.
 
-* Flavors beginning with a **p** indicates a persistent VM. Persistent VMs are expected to run for long periods of time and provide services such as websites. We will explore persistent VMs in more detail in the next episode.
+* Flavors beginning with a `p` indicates a persistent VM. Persistent VMs are expected to run for long periods of time and provide services such as websites. We will explore persistent VMs in more detail in the next episode. 
 
-* Flavors beginning with a **c** indicates a compute VM. Compute VMs are expected to run for shorter periods of time and be temporary. These VMs are expected to make heavy use of the CPU during their total existence with nearly 100% usage, unlike persistent VMs which may only do something ever once and a while when some one makes a request for the service they provide.
+* Flavors beginning with a `c` indicates a compute VM. Compute VMs are expected to run for shorter periods of time and be temporary. These VMs are expected to make heavy use of the CPU during their total existence with nearly 100% usage, unlike persistent VMs which may only do something ever once and a while when some one makes a request for the service they provide.
 
 * The number after the 'p' or 'c' indicates the number of virtual central processing units (VCPUs)
 
@@ -115,7 +115,7 @@ ubuntu@test:~$
 ~~~
 {: .output}
 
-At the bottom of the output you can see the prompt `ubutu@test:~$` this is now a shell prompt on the newly created virtual machine. Notice that the username we used to connect `ubuntu` is part of the prompt letting you know who the virtual machine things you are. Also notice `test` which is the hostname of your virtual machine, as mentioned earlier this derived from the **Instance Name** you give to your virtual machine. Finally the `~` indicates what directory you are currently in. In this case you are in the user `ubuntu`'s home directory.
+At the bottom of the output you can see the prompt `ubuntu@test:~$` this is now a shell prompt on the newly created virtual machine. Notice that the username we used to connect `ubuntu` is part of the prompt letting you know who the virtual machine thinks you are. Also notice `test` which is the hostname of your virtual machine, as mentioned earlier this derived from the **Instance Name** you give to your virtual machine. Finally the `~` indicates what directory you are currently in. In this case you are in the user `ubuntu`'s home directory.
 
 From this point you can start working with or configuring your virtual machine with additional capability above and beyond those included in the basic Ubuntu operating system provided by the image we selected when creating our virtual machine. The things you can do with your new VM are only limited by your imagination, time, and OpenStack quota. Some examples of what you could do with your OpenStack VMS, run python scripts to scrape twitter data, run a wordpress site to publish articles, or do large scale text processing with Spark.
 
