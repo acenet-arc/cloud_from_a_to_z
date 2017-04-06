@@ -7,6 +7,7 @@ questions:
 - "What is Apache?"
 - "What is LAMP?"
 - "How do we install and configure Apache?"
+- "Where do we put our first custom web page?"
 objectives:
 - "To be able to create a web-server in Compute Canada's cloud and create and access a website served from it"
 keypoints:
@@ -326,3 +327,7 @@ In order to see if everything is working correctly, it's a good idea to launch a
 And the results should look something like this:
 
 <img src="../fig/web-screens/ubuntu_default_web_page.png" alt="Ubuntu Default Web Page" style="width: 100%;"/>
+
+> ## Creating Your First Custom Web Page
+>
+{: .challenge}
