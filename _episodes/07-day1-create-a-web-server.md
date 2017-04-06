@@ -62,7 +62,7 @@ Last login: Thu Mar 16 22:04:19 2017 from 24.86.86.43
 ~~~
 {: .output}
 
-> ## LET'S FIX THIS: Unable to resolve hostname
+> ## LET'S FIX THIS: Unable to resolve hostname {.callout}
 >
 > Every time we use the sudo command, we're likely to receive the following warning message:
 >
@@ -76,7 +76,7 @@ Last login: Thu Mar 16 22:04:19 2017 from 24.86.86.43
 > First, you need to figure out your hostname. The hostname is the name you assigned to your VM instance when you first created it and it is displayed as the command prompt after you connect via SSH to your VM. For example, I called my VM "wordpress-vm" so my VM command prompt looks like this:
 >
 > ~~~
-> ubuntu@wordpress-vm:~$ 
+> ubuntu@wordpress-vm:~$
 > ~~~
 > {: .output}
 
