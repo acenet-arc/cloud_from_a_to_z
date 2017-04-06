@@ -27,7 +27,7 @@ In addition, Apache is only one of the software components that will be used to 
 
 - **PHP**: the programming languages used by the WordPress developers to create their web application. PHP uses its processor module to interpret this code which is then used by Apache to generate a resulting web page.
 
-We'll learn how to install and configure the **M** and **P** LAMP components during Day 2, when we finish creating our WordPress sites.
+We'll learn how to install and configure the **M** and **P** LAMP components during Day 2, when we finish creating our WordPress sites. At the same time, we'll also learn how to secure our web applications by enabling SSL encryption.
 
 ## How do we install and configure Apache?
 
@@ -154,6 +154,15 @@ Processing triggers for ureadahead (0.100.0-19) ...
 Processing triggers for ufw (0.35-0ubuntu2) ...
 ~~~
 {: .output}
+
+It's a good idea to reboot your VMs at this point - just in case you installed a new Linux kernel or any other software that needs to be restarted.
+
+~~~
+$ sudo reboot
+~~~
+{: .bash}
+
+Next, please wait about 30 seconds and then reconnect to your VMs from your workstations using SSH. After logging in, please continue to the next section.
 
 ### Configuring Apache to execute your first web page
 
