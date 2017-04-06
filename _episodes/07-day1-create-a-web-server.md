@@ -66,7 +66,7 @@ Last login: Thu Mar 16 22:04:19 2017 from 24.86.86.43
 
 > ## LET'S FIX THIS: Unable to resolve hostname
 >
-> Going forward, every time we use the **sudo** command, we're likely to receive the following warning message:
+> Going forward, every time we use the **sudo** command, we're likely to encounter the following warning message:
 >
 > ~~~
 > sudo: unable to resolve host <YOUR-VM_HOSTNAME>
