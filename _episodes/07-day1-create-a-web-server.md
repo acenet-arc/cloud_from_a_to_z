@@ -324,3 +324,5 @@ In order to see if everything is working correctly, it's a good idea to launch a
 `http://206-167-181-126.cloud.computecanada.ca`
 
 And the results should look something like this:
+
+<img src="../fig/web-screens/ubuntu_default_web_page.png" alt="Ubuntu Default Web Page" style="width: 100%;"/>
