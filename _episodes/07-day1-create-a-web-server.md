@@ -64,7 +64,7 @@ Last login: Thu Mar 16 22:04:19 2017 from 24.86.86.43
 
 > ## LET'S FIX THIS: Unable to resolve hostname
 >
-> Every time we use the sudo command, we're likely to receive the following warning message:
+> Going forward, every time we use the sudo command, we're likely to receive the following warning message:
 >
 > ~~~
 > sudo: unable to resolve host <YOUR-VM_HOSTNAME>
@@ -79,6 +79,23 @@ Last login: Thu Mar 16 22:04:19 2017 from 24.86.86.43
 > ubuntu@wordpress-vm:~$
 > ~~~
 > {: .output}
+>
+> Second, you need to figure our your internal IP address. This is not the same as the floating point IP address you used to SSH to your VMs. This information is displayed via the OpenStack dashboard in the "Instance" panel, under the heading "IP Address" and it should be something like 192.168.x.x. For example, my internal IP address is 192.168.31.11.
+>
+> Once you know this information, then you can edit the `/etc/hosts` file and append the following line:
+>
+> ~~~
+> 192.168.x.x   your-vm-hostname
+> ~~~
+> {: .output}
+>
+> Again, my example would be:
+>
+> ~~~
+> 192.168.31.11   wordpress-vm
+> ~~~
+> {: .output}
+> Then save and exit your editor program and you shouldn't ever be bothered again by this warning message.
 {: .callout}
 
 ### Install security updates and reboot
