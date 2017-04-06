@@ -330,7 +330,7 @@ And the results should look something like this:
 
 > ## Creating Your First Custom Web Page
 >
-> The default Ubuntu web page is located in `/var/www/html/index.htm`. For the purposes of this challenge, you can choose to either modify this file as you wish or simply replace it with your own **html** file.
+> The default Ubuntu web page is located in `/var/www/html/index.htm`. For the purposes of this challenge, you can choose to either modify this file as you wish or simply replace it with your own **index.html** file.
 >
 > Once you save your final version navigate back to your web page and refresh your web browser to view the changes.
 {: .challenge}
