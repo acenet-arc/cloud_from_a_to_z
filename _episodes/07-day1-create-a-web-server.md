@@ -62,6 +62,24 @@ Last login: Thu Mar 16 22:04:19 2017 from 24.86.86.43
 ~~~
 {: .output}
 
+> ## LET'S FIX THIS: Unable to resolve hostname
+>
+> Every time we use the sudo command, we're likely to receive the following warning message:
+>
+> ~~~
+> sudo: unable to resolve host <YOUR-VM_HOSTNAME>
+> ~~~
+> {: .output}
+>
+> We can easily fix this. All that's missing is an entry in the /etc/hosts file.
+>
+> First, you need to figure out your hostname. The hostname is the name you assigned to your VM instance when you first created it and it is displayed as the command prompt after you connect via SSH to your VM. For example, I called my VM "wordpress-vm" so my VM command prompt looks like this:
+>
+> ~~~
+> ubuntu@wordpress-vm:~$ 
+> ~~~
+> {: .output}
+
 ### Install security updates and reboot
 
 So, the first thing we should do is ensure that all of our security updates have been installed. We will use both **sudo** and the **apt** command to accomplish this. The **sudo** command gives us super user (or administrator) privileges. The **apt** command is used to install, update, and remove Ubuntu software packages.
@@ -155,15 +173,6 @@ Processing triggers for ufw (0.35-0ubuntu2) ...
 ~~~
 {: .output}
 
-It's a good idea to reboot your VMs at this point - just in case you installed a new Linux kernel or any other software that needs to be restarted.
-
-~~~
-$ sudo reboot
-~~~
-{: .bash}
-
-Next, please wait about 30 seconds and then reconnect to your VMs from your workstations using SSH. After logging in, please continue to the next section.
-
 ### Configuring Apache to execute your first web page
 
 Before we make any configuration changes - and this goes for all software applications - we should always create a backup of the files which we intend to modify. This way, if we make any grievous errors, we can always return the configuration file back to its original state. This is particularly helpful in the event that we delete information which should never have been removed. One strategy is to create a folder in your home directory and call it **ORIG**. Back up all of your configuration files here and do your best to preserve all of the original document paths. This way you'll never need to guess where the files actually belong.
@@ -205,4 +214,16 @@ Lots more files...
 
 Now we can perform all sorts of configuration modifications without worring about destroying the installation.
 
-To be continued...
+#### Configure a Global ServerName to Get Rid of Warnings Messages
+
+The first thing we will do is set the ServerName variable in the global apache2 configuration file. This is not critical but it will suppress a harmless (though VERY annoying) warning message - which, in the end, will make it well worth all the effort. To illustrate the warning, type the following:
+~~~
+$ sudo apache2ctl configtest
+~~~
+{: .bash}
+~~~
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.0.1. Set the 'ServerName' directive globally to supp
+ress this message
+Syntax OK
+~~~
+{: .output}
