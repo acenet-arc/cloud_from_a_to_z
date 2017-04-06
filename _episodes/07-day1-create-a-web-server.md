@@ -62,7 +62,7 @@ Last login: Thu Mar 16 22:04:19 2017 from 24.86.86.43
 ~~~
 {: .output}
 
-> ## LET'S FIX THIS: Unable to resolve hostname {.callout}
+> ## LET'S FIX THIS: Unable to resolve hostname
 >
 > Every time we use the sudo command, we're likely to receive the following warning message:
 >
@@ -79,6 +79,7 @@ Last login: Thu Mar 16 22:04:19 2017 from 24.86.86.43
 > ubuntu@wordpress-vm:~$
 > ~~~
 > {: .output}
+{: .callout}
 
 ### Install security updates and reboot
 
