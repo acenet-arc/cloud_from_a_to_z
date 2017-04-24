@@ -7,6 +7,7 @@ questions:
 - "What is Apache?"
 - "What is LAMP?"
 - "How do we install and configure Apache?"
+- "Where do we put our first custom web page?"
 objectives:
 - "To be able to create a web-server in Compute Canada's cloud and create and access a website served from it"
 keypoints:
@@ -27,7 +28,7 @@ In addition, Apache is only one of the software components that will be used to 
 
 - **PHP**: the programming languages used by the WordPress developers to create their web application. PHP uses its processor module to interpret this code which is then used by Apache to generate a resulting web page.
 
-We'll learn how to install and configure the **M** and **P** LAMP components during Day 2, when we finish creating our WordPress sites.
+We'll learn how to install and configure the **M** and **P** LAMP components during Day 2, when we finish creating our WordPress sites. At the same time, we'll also learn how to secure our web applications by enabling SSL encryption.
 
 ## How do we install and configure Apache?
 
@@ -61,6 +62,43 @@ Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-67-generic x86_64)
 Last login: Thu Mar 16 22:04:19 2017 from 24.86.86.43
 ~~~
 {: .output}
+
+
+> ## LET'S FIX THIS: Unable to resolve hostname
+>
+> Going forward, every time we use the **sudo** command, we're likely to encounter the following warning message:
+>
+> ~~~
+> sudo: unable to resolve host <YOUR-VM_HOSTNAME>
+> ~~~
+> {: .output}
+>
+> We can easily fix this. All that's missing is an entry in the `/etc/hosts` file.
+>
+> First, you need to figure out your hostname. The hostname is the name you assigned to your VM instance when you first created it and it is displayed as the command prompt after you connect via SSH to your VM. For example, I called my VM **wordpress-vm** so my VM command prompt looks like this:
+>
+> ~~~
+> ubuntu@wordpress-vm:~$
+> ~~~
+> {: .output}
+>
+> Second, you need to figure our your internal IP address. This is not the same as the floating point IP address you used to SSH to your VMs. This information is displayed via the OpenStack dashboard in the "Instance" panel, under the heading "IP Address" and it should be something like **192.168.x.x**. For example, my internal IP address is **192.168.31.11**.
+>
+> Once you know this information, then you can edit the `/etc/hosts` file and append the following line:
+>
+> ~~~
+> 192.168.x.x   your-vm-hostname
+> ~~~
+> {: .output}
+>
+> Again, my example would be:
+>
+> ~~~
+> 192.168.31.11   wordpress-vm
+> ~~~
+> {: .output}
+> Then save and exit your editor program and you shouldn't ever be bothered again by this warning message.
+{: .callout}
 
 ### Install security updates and reboot
 
@@ -115,7 +153,7 @@ $ sudo reboot
 ~~~
 {: .bash}
 
-And then we'll wait a couple of minutes before retrying to connect once again via SSH from our workstations to our virtual machines.
+And then we'll wait about a minute before retrying to connect once again via SSH from our workstations to our virtual machines.
 
 ### Install the Apache software package
 
@@ -161,7 +199,8 @@ Before we make any configuration changes - and this goes for all software applic
 
 As an example, we can backup the original Apache configuration files as follows:
 
-First, create the backup your home directory. Since almost every configuration directory lives in **/etc** go ahead and add this to your **ORIG** folder. NOTE: the **-pv** options tell the make directory command to create parent directories as needed and to be verbose so that you can see what's been created.
+First, create the backup your home directory. Since almost every configuration directory lives in `/etc` go ahead and add this to your **ORIG** folder. NOTE: the **-pv** options tell the make directory command to create parent directories as needed and to be verbose so that you can see what's been created.
+
 ~~~
 $ mkdir -pv ~/ORIG/etc
 ~~~
@@ -173,6 +212,7 @@ mkdir: created directory '/home/ubuntu/ORIG/etc'
 {: .output}
 
 Next, use the **sudo** command to copy the entire Apache configuration contents to your backup tree. NOTE: the **-av** options tell the copy command to archive the directory contents (recurse all sub-directories, and preserve file attributes) and to be verbose so that you can see what's been copied.
+
 ~~~
 $ sudo cp -av /etc/apache2 /home/ubuntu/ORIG/
 ~~~
@@ -196,4 +236,101 @@ Lots more files...
 
 Now we can perform all sorts of configuration modifications without worring about destroying the installation.
 
-To be continued...
+#### Configure a Global ServerName to Get Rid of Warnings Messages
+
+The first configuration edit is to set the ServerName variable in the global apache2 configuration file. This is not critical but it will suppress a harmless (though VERY annoying) warning message - which, in the end, will make it well worth the effort. To illustrate the warning, type the following:
+
+~~~
+$ sudo apache2ctl configtest
+~~~
+{: .bash}
+~~~
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.0.1. Set the 'ServerName' directive globally to supp
+ress this message
+Syntax OK
+~~~
+{: .output}
+
+We're going to set the ServerName variable to be the Fully Qualified Domain Name (FQDM) for our virtual machine. How do we find this out? We use the **host** command and we feed it the value of our Floating IP address. For this example, my Floating IP address is **206.167.181.126**.
+
+~~~
+host 206.167.181.126
+~~~
+{: .bash}
+~~~
+126.181.167.206.in-addr.arpa domain name pointer 206-167-181-126.cloud.computecanada.ca.
+~~~
+{: .output}
+
+So, based on the output, the FQDN for my virtual machine is **206-167-181-126.cloud.computecanada.ca**.
+
+With this information, we can now open the global **apache2** configuration file (`/etc/apache2/apache2.conf`)and add this line to the bottom of the file:
+
+~~~
+sudo nano /etc/apache2/apache2.conf
+~~~
+{: .bash}
+~~~
+ServerName YOUR_FQDN
+~~~
+{: .output}
+
+For example, mine would read as follows:
+
+~~~
+ServerName 206-167-181-126.cloud.computecanada.ca
+~~~
+{: .output}
+
+Save and exit. Then let's ensure that our configuration has no syntax errors.
+
+~~~
+sudo apache2ctl configtest
+~~~
+{: .bash}
+~~~
+Syntax OK
+~~~
+{: .output}
+
+And finally restart the **apache2** service to enable our changes.
+
+~~~
+sudo systemctl restart apache2
+~~~
+{: .bash}
+
+If you want to check the status of your **apache** server, you can type the following:
+
+~~~
+sudo systemctl status apache2
+~~~
+{: .bash}
+
+And, if everything is OK, you should see the following line in your output:
+
+~~~
+...
+Active: active (running) since [some_date_and_time...]
+...
+~~~
+{: . output}
+
+For the time being, this is the only **apache2** configuration modification that we will complete.
+
+### Visit Your Ubuntu Default Test Web page
+
+In order to see if everything is working correctly, it's a good idea to launch a web browser and see if your **apache2** installation is working as it is supposed to. By default, Ubuntu installs a basic web page which provides basic information for testing purposes. After launching your workstation's web browser application, navigate to your FQDN. In my case, I would use this URL:
+
+`http://206-167-181-126.cloud.computecanada.ca`
+
+And the results should look something like this:
+
+<img src="../fig/web-screens/ubuntu_default_web_page.png" alt="Ubuntu Default Web Page" style="width: 100%;"/>
+
+> ## Creating Your First Custom Web Page
+>
+> The default Ubuntu web page is located in `/var/www/html/index.htm`. For the purposes of this challenge, you can choose to either modify this file as you wish or simply replace it with your own **index.html** file.
+>
+> Once you save your final version navigate back to your web page and refresh your web browser to view the changes.
+{: .challenge}
