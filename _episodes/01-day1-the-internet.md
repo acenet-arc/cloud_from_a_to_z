@@ -14,7 +14,7 @@ objectives:
 keypoints:
 - "Computers often have an IP on a LAN and connect to the Internet through a router"
 - "You can see what your computer's IP is by using either `ipconfig` on windows or `ifconfig` on linux or Mac"
-- "You can see your computer's public IP using the site [whatismyipaddress.com](https://whatismyipaddress.com/)"
+- "You can see your computer's public IP using the site [ipv4.icanhazip.com](http://ipv4.icanhazip.com/)"
 - "Ports allow computers and routers to differentiate types network traffic"
 start: true
 start_time: 615
@@ -63,13 +63,13 @@ A hostname identifies a specific device on a network. For example you could have
 
 > ## What is your computer's IP?
 >
-> Go to [whatismyipaddress.com](https://whatismyipaddress.com/) and seeing what your IP address is.
+> Go to [ipv4.icanhazip.com](http://ipv4.icanhazip.com/) and see what your IP address is. To see a full description of how to use this website go to [](https://major.io/icanhazip-com-faq/)
 > Next try determining your IP from the command line.
 > 
 > If using Windows:
 > 1. open command prompt by searching "cmd.exe" in the start menu
 > 2. type `ipconfig`
-> 3. do any of the IP address match what you see at [whatismyipaddress.com](https://whatismyipaddress.com/)
+> 3. do any of the IP address match what you see at [ipv4.icanhazip.com](http://ipv4.icanhazip.com/)
 >
 > If using Linux:
 > 1. open the terminal (can be multiple ways)
@@ -79,9 +79,9 @@ A hostname identifies a specific device on a network. For example you could have
 > 1. open the terminal (TODO: give steps to do this)
 > 2. type `ifconfig`
 >
-> There is a good chance that you will not see the same IP address in the command line and from [whatismyipaddress.com](https://whatismyipaddress.com/) why?
+> There is a good chance that you will not see the same IP address in the command line and from [ipv4.icanhazip.com](http://ipv4.icanhazip.com/) why?
 > > ## Solution
-> > You likely just see a local or LAN IP address on the command line, while from [whatismyipaddress.com](https://whatismyipaddress.com/) you will see the IP address given to the router you are connecting to the Internet through.
+> > You likely just see a local or LAN IP address on the command line, while from [ipv4.icanhazip.com](http://ipv4.icanhazip.com/) you will see the IP address given to the router you are connecting to the Internet through.
 > {: .solution}
 {: .challenge}
 
