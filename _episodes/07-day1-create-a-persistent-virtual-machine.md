@@ -26,30 +26,17 @@ Another significant difference is that `p` flavors are expected to use a **volum
 
 In the last episode we created a virtual machine which booted from an image and did not make use of a volume so where did this machine boot from? When booting from an image a virtual disk is created on the local drive of the physical computer running the virtual machine, also referred to as an **ephemeral** disk as this virtual disk exists only as long as the virtual machine. When the virtual disk is created the data contained in the selected disk image was copied onto this virtual disk. The size of this virtual disk is fixed for `c` flavors at 20GB. In the case of `p` flavors, while you technically can also boot them from an image, the virtual disk that is created is only a tiny bit bigger than the original disk image. If you try to write much to the filesystem of a `p` flavor VM booted from an image you will quickly exceed the capacity of the file system. `p` flavors were designed to be booted from a volume.
 
-Now lets create a persistent VM which boots from a volume. To do so start creating a VM in the same was as last time, but select an option which boots from a volume for *Instance Boot Source*. Options which boot from a volume are:
+Now lets create a persistent VM which boots from a volume. Start by creating a VM in the same way as last time, again making sure to include your name in your VM's name but do not launch it yet. Select the flavor `p1-0.75gb` and select  for *Instance Boot Source* a source which is from a volume. Options which boot from a volume are:
 
 * **Boot from volume:** this option will allow you to create a new VM booting from a pre-existing volume.
 * **Boot from image (creates a new volume):** this option will allow you to create a new volume from a selected disk image and boot form it. You can also specify the size of the volume with this option.
 * **Boot from volume snapshot (creates a new volume):** this option will allow you to create a new volume from an existing volume snapshot and boot from the newly created volume. We have not talked about volume snapshots yet, but they can be thought of as a disk image created from a volume.
 
-In our case we do not have any existing volumes or volume snapshots, so this leaves the *Boot from image (creates a new volume)* option so lets choose that *Instance Boot Source* and crate a new VM. Lets choose the `Ubuntu-16.04-Xenial-x64-2017-02` image as before and a *Device size* of 10GB. Do not forget to switch to the *Access & Security* tab to select a *Key Pair* and *Security Groups* before clicking the *Launch* button.
+In our case we do not have any existing volumes or volume snapshots, so this leaves the *Boot from image (creates a new volume)* option so lets choose that *Instance Boot Source* and create a new VM. Lets choose the `Ubuntu-16.04-Xenial-x64-2017-02` image as before and a *Device size* of 10GB. Do not forget to switch to the *Access & Security* tab to select a *Key Pair* and *Security Groups* before clicking the *Launch* button.
 
-In the next episode we will use this VM to setup a web server so keep it around.
+In the following episodes we will use this VM to setup a basic web server allowing us to server HTML files and tomorrow we will use it to create a WordPress site.
 
 > ## Boot a `p`-flavor VM from an Image
 >
-> If you create a `p`-flavor VM booting from an image how big is the root file system. (hint run the command `df -h` to display the disk size and usage.)
+> If you create a `p`-flavor VM booting from an image how big is the root file system. **Hint**: run the command `df -h` to display the disk size and usage once connected to the VM. Be sure to terminate this VM as you can do little with it due to the small disk size.
 {: .challenge}
-
----
-OUTLINE
-
-* Volumes
-  * could talk about mounting additional volumes, formating, LVM, etc. though this is getting off the wordpress path
-* Discuss flavors again esp. 'p' versus 'c'
-* Images (backup volumes)
-  * but need CL client to download
-    * import into Virtual Box
-    * move between clouds (east/west)
-  * creating an image of a volume a VM is currently writing too can be problematic. Better to shutdown a VM first.
-* keep persistent VM for next episode

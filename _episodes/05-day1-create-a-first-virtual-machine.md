@@ -14,7 +14,11 @@ objectives:
 - "Add security rules to allow traffic into a VM."
 - "Connect to a VM using SSH."
 keypoints:
-- "a key point"
+- "The flavor of a VM prescribes the hardware profile of the VM."
+- "A boot source specifies from what the VM should boot."
+- "A public key must be inject into the VM in order to connect to it."
+- "A floating IP must be added to a VM to connect to it from outside the local network in the cloud."
+- "Port 22 must be opened in the security rules to allow SSH to connect to the VM."
 ---
 
 ## Creating a virtual machine
@@ -24,11 +28,11 @@ You are presented with a panel consisting of multiple tabs of fields to fill in.
 
 **Availability Zone:** In theory this could allow you to chose how available you would like your VM to be. This would be done by launching your VM on hosts in a different availability zone which have certain hardware or software configurations which make them less susceptible to outages. However, on the Compute Canada cloud there is only one availability zone so there is no need to choose anything but the default.
 
-**Instance Name:** specify the name of your virtual machine. OpenStack will attempt to use this name as the hostname of your virtual machine. However, if the instance name you provided is not a valid hostname OpenStack will modify it so that it is valid and use the modified version for your hostname while still referring to your VM in the OpenStack dashboard by the instance name you provided.
+**Instance Name:** specify the name of your virtual machine. OpenStack will attempt to use this name as the hostname of your virtual machine. However, if the instance name you provided is not a valid hostname OpenStack will modify it so that it is valid and use the modified version for your hostname while still referring to your VM in the OpenStack dashboard by the instance name you provided. As some of use might be sharing a project, please include your name in the instance name, something like `your-name-first-vm`.
 
 > ## What is a valid hostname?
 > A good description of a valid hostname is given in this [wikipedia page section]( https://en.wikipedia.org/wiki/Hostname#Restrictions_on_valid_hostnames). The official specifications for hostnames are given in two Internet standards requests for comments documents [RFC-952](https://tools.ietf.org/html/rfc952), and [RFC-1123](https://tools.ietf.org/html/rfc1123).
->
+> The summary of the wikipeida page is, hostnames must be less than 64 characters long, contain only numbers letters and dashes (`-`).
 {: .callout}
 
 **Flavor:** The flavor of your VM specifies the hardware profile your VM will have. Compute Canada cloud uses a consistent naming scheme across their clouds to describe the hardware profile.  Examples of VM flavors are `p1-0.75gb` and `c1-3.75gb-36` and the different components of the name correspond to different hardware features.
@@ -49,9 +53,9 @@ For this example choose the `c1-3.75gb-36` flavor. Which is a compute flavor wit
 
 **Instance Boot Source**: indicates from where your virtual machine will boot its operating system. There are several options to choose from, but for this example we will choose *Boot from image*. This choice indicates that we want to select a virtual disk image as our boot source. The combination of the flavor we chose above and the boot source we chose instructs OpenStack to create a new virtual disk of 20GB and copy the selected virtual disk image to it. This virtual disk will reside on the host machine's disk and contain the operating system files for the virtual machine. 
 
-**Image Name:** forms the starting point for our virtual machine. Usually this means choosing an operating system for your virtual machine. For this example we will choose the `Unbuntu-16.04-Xenial-x64-2017-03` image. This an image containing the Ubuntu Linux operating system, version 16.04.
+**Image Name:** specifies an Image which forms the starting point for our virtual machine. Usually this means choosing an operating system for your virtual machine. But it could include additional software packages and configurations also. We will choose the `Unbuntu-16.04-Xenial-x64-2017-03` image which contains the Ubuntu Linux operating system, version 16.04.
 
-**Key Pair:** The final piece of information we need to provide before creating a VM is the public key we created in the previous episode to allow you to connect to the VM you create. To do this select the *Access & Security* tab. Then you can add a public key to your OpenStack account by clicking the "+"  next to the *Select a key pair* drop down box. Then copy and paste in your public key into the text field. You can copy your public key text by going to your terminal where you created your key pair in the last episode and running the command
+**Key Pair:** The final piece of information we need to provide before creating a VM is the public key we created in the previous episode to allow you to connect to the VM you create. Select the *Access & Security* tab, then you can add a public key to your OpenStack account by clicking the "+"  next to the *Select a key pair* drop down box. Then copy and paste in your public key into the text field. You can copy your public key text by going to your terminal where you created your key pair in the last episode and running the command
 
 ~~~
 $ cat .ssh/id_rsa.pub

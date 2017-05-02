@@ -48,7 +48,23 @@ More specifically, when we type `pwd` and press the Enter key, the shell:
 3. displays that program's output, then
 4. displays a new prompt to tell us that it's ready for more commands.
 
-The `pwd` command's output is the **present working directory**. In this case `/home/cgeroux`. This is known as a **home directory** where settings, files and programs for the user `cgeroux` are kept. The string `/home/cgeroux` is known as a path which indicates a specific file or directory within a file system. File systems have a tree like structure, starting at the root of the file system (`/`) and branching out from there. Each new directory creates a new branch in the file system. Directories are seperated in a path by forward slashes, `/` so that a directory inside another one can be represented like `/home` in this case, the `home` directory is inside the root directory `/`.  Adding another directory in depth to the path we have `/home/cgeroux` which is a directory inside the `home` directory.
+The `pwd` command's output is the **present working directory**. In this case `/home/cgeroux`. This directory known as a **home directory** where settings, files and programs for the user `cgeroux` are kept. The string `/home/cgeroux` is known as a path which indicates a specific file or directory within a file system. File systems have a tree like structure, starting at the root of the file system (`/`) and branching out from there. Each new directory creates a new branch in the file system. Directories are seperated in a path by forward slashes, `/` so that a directory inside another one can be represented like `/home` in this case, the `home` directory is inside the root directory `/`.  Adding another directory in depth to the path we have `/home/cgeroux` which is a directory inside the `home` directory.
+
+To change your **present working directory** there is a command called `cd` for change directory.
+~~~
+$ cd /home
+$ pwd
+~~~
+{: .bash}
+~~~
+/home
+~~~
+{: .output}
+as you can see the `pwd` command now tells you that you are in the directory `/home`. Lets now move back to our home directory. Your home directory name will be different from mine and be the output from the first execution of `pwd`.
+~~~
+$ cd /home/cgeroux
+~~~
+{: .bash}
 
 There is a common file system layout across most Linux systems. The below figure shows an overview of some of the more relevant directories within a Linux file system for this lesson, however there are more directories than are shown here.
 

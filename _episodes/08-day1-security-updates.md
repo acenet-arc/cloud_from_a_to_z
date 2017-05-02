@@ -5,7 +5,7 @@ teaching: 15
 exercises: 0
 questions:
 - "How can can you keep a Linux software updated?"
-- "How can I fix the 'sudo: unable to resolve host test' message?"
+- "How can I fix the 'sudo: unable to resolve host' message?"
 objectives:
 - "Use a terminal based editor to edit a file."
 - "Learn about Ubuntu's package manager."
@@ -18,14 +18,14 @@ keypoints:
 - "You may need to repeat the `apt update`, `apt upgrade`, reboot process a few times to ensure all updates have been applied."
 ---
 
-Any computer connected to the Internet is vulnerable to attacks. One the the easiest ways to help protect your cloud VM against these attacks is applying updates regularly. To start connect to your VM from your workstation via SSH to the virtual machine that we created in the previous section. For review, that should look something like this:
+Any computer connected to the Internet is vulnerable to attacks. One of the easiest ways to help protect your cloud VM against these attacks is applying updates regularly. 
+
+Connect from your workstation via SSH to the VM that you created in the previous episode. For review, that should look something like this:
 ~~~
 [you@yourworkstation]$ ssh -i <your_priv_key> ubuntu@<your_floating_ip>
 ~~~
 {: .bash}
-My output looks something like this (your's will differ):
 ~~~
-[brentg@brentwg DHSI-cloud-course]$ ssh ubuntu@206.167.181.126
 Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-67-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com
@@ -66,7 +66,7 @@ Reading state information... Done
 
 Notice the first line of the output `sudo: unable to resolve host test` this message results from a missing line in the `/etc/hosts` file, which maps the IP of the VM to its hostname. The message can be ignored without harm but is easily fixed. The hostname is displayed as part of the command prompt after you connect to your VM. For example, I called my VM **wordpress-vm** so my VM command prompt looks like this
 ~~~
-ubuntu@wordpress-vm:~$
+ubuntu@brent--vm:~$
 ~~~
 {: .bash}
 
