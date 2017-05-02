@@ -1,6 +1,6 @@
 ---
 layout: episode
-title: "Introduction to the cloud"
+title: "Introduction to cloud computing"
 teaching: 30
 exercises: 0
 questions:

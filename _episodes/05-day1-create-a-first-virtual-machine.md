@@ -121,5 +121,5 @@ From this point you can start working with or configuring your virtual machine w
 
 > ## Create a VM with an invalid hostname
 >
-> What does the hostname become if you create a VM with an instance name which isn't a valid hostname such as `_test` or `test!abs`?
+> What does the hostname become if you create a VM with an instance name which isn't a valid hostname such as `_test` or `test!abs`? If you still have your first VM around you may need to delete (i.e. terminate) it to try this out. Do not terminate your recently created persistent VM as we will use it through out this course.
 {: .challenge}

@@ -16,8 +16,6 @@ keypoints:
 - "You can see what your computer's IP is by using either `ipconfig` on windows or `ifconfig` on linux or Mac"
 - "You can see your computer's public IP using the site [ipv4.icanhazip.com](http://ipv4.icanhazip.com/)"
 - "Ports allow computers and routers to differentiate types network traffic"
-start: true
-start_time: 615
 ---
 
 To put cloud computing into perspective, lets first take a look at how you use your computer and how it interacts with the Internet. The ideas and understanding gained here will be applicable not only to understanding how the cloud works, but also when you want to create web services using your cloud account for others to access and use.

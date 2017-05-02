@@ -17,11 +17,11 @@ keypoints:
 In this episode we will see how to use command line tools to work with our OpenStack project. These tools allow us to perform the same actions we perform in the GUI, and more, on the command line. So why would you want to use the command line when there is a nice GUI? There are two main reasons:
 
 * There are some things which can not be done with the GUI. Such as downloading an image of a volume for safe keeping.
-* Automating repetitive tasks. What if you wanted 30 VMs but didn't want to spend several hours creating them all? Or to create a backup of your VM every night at midnight without having to stay awake till midnight everything to manually create the image.
+* Automating repetitive tasks. What if you wanted 30 VMs but didn't want to spend several hours creating them all? Or to create a backup of your VM every night at midnight without having to stay awake each night till midnight to manually create the image.
 
 To use the OpenStack command line clients they need to be installed. They can be installed and used to work with your OpenStack project from any computer connected to the Internet, though a Linux machine is likely the easiest place to install them. To get started lets create a VM in which we can use the command line clients.
 
-Go to *Instances*->*Launch Instance* and specify *Instance Name* as `<your name>-test-oscli` and replace `<your name>` with your name spaces. Then select *Flavor* `c1-7.5gb-30` or `c1-3.75gb-36`. For *Instance Boot Source* choose `Boot from image` and then select the *Image Name* `Ubuntu-16.04-Xenial-x64-2017-03`. Next select the *Access & Security* tab choose your *Key Pair* and the *default* security group and click *Launch*. Then associate a floating IP with your newly created VM. To do this click on the drop down menu next to your newly created VM on the *Instances* panel and select *Associate Floating IP*. If there is not an available IP address int eh *IP Address* drop down menu click the *+* button next to it to allocate a new floating IP and then choose it in the drop down box.
+Go to *Instances*->*Launch Instance* and specify *Instance Name* as `<your name>-test-oscli` and replace `<your name>` with your name with spaces replaced with "-". Then select *Flavor* `c1-7.5gb-30` or `c1-3.75gb-36`. For *Instance Boot Source* choose `Boot from image` and then select the *Image Name* `Ubuntu-16.04-Xenial-x64-2017-03`. Next select the *Access & Security* tab choose your *Key Pair* and the *default* security group and click *Launch*. Then associate a floating IP with your newly created VM. To do this click on the drop down menu next to your newly created VM on the *Instances* panel and select *Associate Floating IP*. If there is not an available IP address in the *IP Address* drop down menu click the *+* button next to it to allocate a new floating IP and then choose it in the drop down box.
 
 The next step is to connect to your newly created VM with SSH as we have done before. In the terminal on your laptop type
 
@@ -138,7 +138,7 @@ Processing triggers for libc-bin (2.23-0ubuntu7) ...
 
 and now the OpenStack command line clients are installed.
 
-
+The next step is to tell the command line clients how to connect to your OpenStack project which is done with an OpenStack RC file. This file needs to be downloaded from the OpenStack dashboard. Go to *Compute* -> *Access & Security* select the *API Access* tab and click the *Download OpenStack RC File*. We will then need to move this file onto your VM. There are a number of ways to do this, you could open up a new file with the same name in a terminal based editor such as `vim` or `nano`
 
 ---
 PREREQUISITES
