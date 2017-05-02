@@ -1,8 +1,8 @@
 ---
 layout: episode
 title: "How the Internet works"
-teaching: 10
-exercises: 5
+teaching: 15
+exercises: 15
 questions:
 - "What is an IP address?"
 - "What is a LAN?"

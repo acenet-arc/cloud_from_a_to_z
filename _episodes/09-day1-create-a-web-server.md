@@ -234,7 +234,7 @@ To create your own web pages you may edit the file `/var/www/html/index.html` wh
 > > ## Solution
 > > Edit the file with 
 > > ~~~
-> > sudo nano /var/www/html/index.html
+> > $ sudo nano /var/www/html/index.html
 > > ~~~
 > > {: .bash}
 > > and replace the contents with something like `<h1>My page title</p>`.
@@ -248,9 +248,9 @@ To create your own web pages you may edit the file `/var/www/html/index.html` wh
 > > ## Solution
 > > Create a new HTML file with
 > > ~~~
-> > sudo nano /var/www/html/another-page.html
+> > $ sudo nano /var/www/html/another-page.html
 > > ~~~
 > > {: .bash}
-> > Then edit the original file to include a link like `<a href="another-page.html">link</a> to the `index.html` file referencing your newly created file name.
+> > Then edit the original file to include a link like `<a href="another-page.html">link</a>` in the `index.html` file referencing your newly created file name.
 > {: .solution}
 {: .challenge}
