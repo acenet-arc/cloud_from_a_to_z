@@ -5,15 +5,20 @@ teaching: 15
 exercises: 0
 questions:
 - "What is MySQL?"
+- "How do we install it securely?"
+- "How do we set the MySQL root user's password?"
 objectives:
 - "Install the MySQL relational database management system."
+- "Configure MySQL to use password authentication for its root account."
+- "'Harden' the MySQL installation by executing a command-line script."
 keypoints:
-- ""
+- "Ubuntu has a 'root' account that is used to manage the operating system."
+- "MySQL also has a different 'root' account that is used to manage only MySQL."
 ---
 
-In this episode we will install and configure the **MySQL** relational database system. MySQL is a free, open source database management system that runs as a service on your virtual machine and allows multiple clients to create and manage numerous databases.  
+In this episode we will install and configure the **MySQL Relational Database System**. MySQL is a free, open source database management system that runs as a service on your virtual machine. It allows multiple clients to create and manage numerous databases.  
 
-WordPress requires a relational database system in order to organize and provide access to a database (which we will create later) that will store our WordPress site's information. This information includes post contents, user profiles, and custom post types.
+WordPress requires a relational database system in order to organize and provide access to a database (which we will create later) that will store our WordPress site's information. This information includes posts pages, comments, categories, tags, custom fields, user data, URLs, and numerous site options.
 
 
 ## Installing the MySQL server package
@@ -27,16 +32,16 @@ $ sudo apt install mysql-server -y
 
 In my case, `apt` installed an additional 20 software packages and libraries in order to fulfill various required MySQL application dependencies.  
 
-During the installation, you will be prompted -- repeatedly -- to set a password for the MySQL administrative 'root' user. (This is not to be confused with the operating system's root user account.) You can leave this blank and select `<Ok>` because, later on, we will execute a script which allows us to better secure our MySQL environment.  
+During the installation, you will be prompted -- repeatedly -- to set a password for the MySQL administrative 'root' user. (This is not to be confused with Ubuntu's 'root' user account.) You should leave this blank and select `<Ok>` because, later on, we will execute a script which allows us to better secure our MySQL environment.  
 
 
 ## Fixing the MySQL 'root' account authentication scheme
 
-Before we do anything, we need to fix the method that Ubuntu uses to authenticate the MySQL `root` user. By default, Ubuntu does not configure the MySQL `root` account to use MySQL native password authentication. This means that you can log into Ubuntu using Ubuntu's `root` account and, when you subsequently log into MySQL, you would never be prompted for a password. We want to disable this behavior.  
+Before we do anything, we need to fix the default method that Ubuntu uses to authenticate the MySQL 'root' user. By default, Ubuntu does not configure the MySQL 'root' account to use MySQL native password authentication. This means that you can log into Ubuntu using Ubuntu's 'root' administrator account (or use `sudo`) and then, when you subsequently log into MySQL, you would never be prompted for a password. We want to disable this behavior.  
 
-To achive this, we will configure MySQL to use native password authentication for the `root` account simply by running a couple of database administrator commands.
+To achive this, we will configure MySQL to use native password authentication for its 'root' account simply by running a couple of database administrator commands.
 
-First log into MySQL using as `root`.
+First log into MySQL using as 'root'.
 
 ~~~
 $ sudo mysql -u root
@@ -75,7 +80,7 @@ Database changed
 ~~~
 {: .output}
 
-Next, execute a SQL `update` command to change the authentication scheme for the `root` user.
+Next, execute a SQL `update` command to change the authentication scheme for the MySQL 'root' user.
 
 ~~~
 mysql> UPDATE user SET plugin='mysql_native_password' WHERE User='root';
@@ -187,7 +192,7 @@ Remove anonymous users? (Press y|Y for Yes, any other key for No) : y
 ~~~
 {: .bash}
 
-Then you will be prompted disable remote MySQL 'root' account logins. This is also a good idea. Press `y` to continue.
+Then you will be prompted disable remote MySQL 'root' account logins. This is also a good idea. It is always a good practice to disable the ability for administrator accounts to log in from remote locations. Press `y` to continue.
 
 ~~~
 Normally, root should only be allowed to connect from
@@ -198,7 +203,7 @@ Disallow root login remotely? (Press y|Y for Yes, any other key for No) : y
 ~~~
 {: .bash}
 
-Next you will be asked to remove a default database named 'test'. This is a very good idea because we do not require this database for our WordPress installation. Press `y` to continue.
+Next you will be asked to remove a default database named 'test'. This is a very good idea because we do not require this database for our WordPress installation. Not to mention, often times hackers use default accounts and test databases as an attack vector in order to compromise your system or application. Press `y` to continue.
 
 ~~~
 By default, MySQL comes with a database named 'test' that
