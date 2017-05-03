@@ -23,7 +23,7 @@ WordPress requires a relational database system in order to organize and provide
 
 ## Installing the MySQL server package
 
-Lets install the MySQL server package on our VM. Once again, we will use the `apt` command and we will elevate our account to use administrative privileges via the `sudo` command.
+Let's install the MySQL server package on our VM. Once again, we will use the `apt` command and we will elevate our account to use administrative privileges via the `sudo` command.
 
 ~~~
 $ sudo apt install mysql-server -y
@@ -231,7 +231,7 @@ All done!
 {: .bash}
 
 
-## Verifying our installation
+## Verifying our MySQL installation
 
 To verify that everything works, log back into MySQL as follows:
 
@@ -242,7 +242,7 @@ $ mysql -u root -p
 
 You should be prompted for the root password. Enter `rootMySQLPassword`.
 
-Next lets run a query which lists all databases.
+Next let's run a query which lists all databases.
 
 ~~~
 mysql> SHOW DATABASES;
