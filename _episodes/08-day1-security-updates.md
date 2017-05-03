@@ -18,7 +18,7 @@ keypoints:
 - "You may need to repeat the `apt update`, `apt upgrade`, reboot process a few times to ensure all updates have been applied."
 ---
 
-Any computer connected to the Internet is vulnerable to attacks. One of the easiest ways to help protect your cloud VM against these attacks is applying updates regularly. 
+Any computer connected to the Internet is vulnerable to attacks. One of the easiest ways to help protect your cloud VM against these attacks is applying updates regularly.
 
 Connect from your workstation via SSH to the VM that you created in the previous episode. For review, that should look something like this:
 ~~~
@@ -66,11 +66,11 @@ Reading state information... Done
 
 Notice the first line of the output `sudo: unable to resolve host test` this message results from a missing line in the `/etc/hosts` file, which maps the IP of the VM to its hostname. The message can be ignored without harm but is easily fixed. The hostname is displayed as part of the command prompt after you connect to your VM. For example, I called my VM **wordpress-vm** so my VM command prompt looks like this
 ~~~
-ubuntu@brent--vm:~$
+ubuntu@wordpress-vm:~$
 ~~~
 {: .bash}
 
-To edit the `/etc/hosts` file we will use the shell based editor `nano`. This editor allows you to edit text files directly in the shell without a GUI. It displays the text of the file in the terminal and lets you navigate around the file with the arrow keys. Once you find a place you wish to edit you can start typing to insert new text. 
+To edit the `/etc/hosts` file we will use the shell based editor `nano`. This editor allows you to edit text files directly in the shell without a GUI. It displays the text of the file in the terminal and lets you navigate around the file with the arrow keys. Once you find a place you wish to edit you can start typing to insert new text.
 
 ~~~
 $ sudo nano /etc/hosts
@@ -148,7 +148,7 @@ Last login: Mon May  1 21:02:47 2017 from 173.212.77.86
 ~~~
 {: .output}
 
-Notice that, even though we installed updates, when we reboot and reconnect it shows that there are more updates which can be applied. This process can take a few iterations until all the packages have been upgraded.  Repeat the steps 
+Notice that, even though we installed updates, when we reboot and reconnect it shows that there are more updates which can be applied. This process can take a few iterations until all the packages have been upgraded.  Repeat the steps
   1. `sudo apt update`
   2. `sudo apt upgrade`
   3. `sudo reboot`
