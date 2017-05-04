@@ -7,6 +7,8 @@ questions:
 - "What is PHP?"
 objectives:
 - "Install the PHP general-purpose scripting language packages."
+- "Configure Apache to look for PHP files by default."
+- "Verify our PHP installation."
 keypoints:
 - ""
 ---
