@@ -35,7 +35,7 @@ You are presented with a panel consisting of multiple tabs of fields to fill in.
 > The summary of the wikipeida page is, hostnames must be less than 64 characters long, contain only numbers letters and dashes (`-`).
 {: .callout}
 
-**Flavor:** The flavor of your VM specifies the hardware profile your VM will have. Compute Canada cloud uses a consistent naming scheme across their clouds to describe the hardware profile.  Examples of VM flavors are `p1-0.75gb` and `c1-3.75gb-36` and the different components of the name correspond to different hardware features.
+**Flavor:** The flavor of your VM specifies the hardware profile your VM will have. Compute Canada cloud uses a consistent naming scheme across their clouds to describe the hardware profile.  Examples of VM flavors are `p1-1.5gb` and `c1-7.5gb-30` and the different components of the name correspond to different hardware features.
 
 * Flavors beginning with a `p` indicates a persistent VM. Persistent VMs are expected to run for long periods of time and provide services such as websites. We will explore persistent VMs in more detail in the next episode. 
 
@@ -43,11 +43,11 @@ You are presented with a panel consisting of multiple tabs of fields to fill in.
 
 * The number after the 'p' or 'c' indicates the number of virtual central processing units (VCPUs)
 
-* The number after then first '-' indicates the amount of RAM in GB for example the flavor `c1-3.75gb-36` has 3.75 GB of RAM
+* The number after then first '-' indicates the amount of RAM in GB for example the flavor `c1-7.5gb-30` has 7.5 GB of RAM
 
 * The final number, which only occurs in flavors starting with a `c`, is the size in GB of an extra virtual disk in addition to the disk that the virtual machine's operating system resides. This extra disk can be used to store temporary data, but will be lost once the virtual machine is terminated unless special care has been taken to save it else where.
 
-For this example choose the `c1-3.75gb-36` flavor. Which is a compute flavor with 1VCPU, 3.75GB of RAM and a 36 GB of extra temporary disk storage.
+For this example choose the `c1-7.5gb-30` flavor. Which is a compute flavor with 1VCPU, 7.5GB of RAM and a 30 GB of extra temporary disk storage.
 
 **Instance Count:**  indicates how many virtual machines you wish to create. For this example choose 1.
 
