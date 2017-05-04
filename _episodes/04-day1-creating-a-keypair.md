@@ -2,7 +2,7 @@
 layout: episode
 title: "Creating a keypair"
 teaching: 15
-exercises: 15
+exercises: 0
 questions:
 - "What is a shell?"
 - "What is SSH?"

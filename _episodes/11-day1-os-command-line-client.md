@@ -1,8 +1,8 @@
 ---
 layout: episode
 title: "Using the OpenStack CL client"
-teaching: 60
-exercises: 0
+teaching: 45
+exercises: 15
 questions:
 - "A question"
 objectives:
