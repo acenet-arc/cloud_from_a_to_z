@@ -23,3 +23,8 @@ Should have a list of projects in the event that students don't have their own. 
 * jupyter notebook
 * mediawiki (I have a template for this) 
   * Maybe they could improve/modify it
+* omeka
+* islandora
+* Spark+Hadoop for Big Data processing
+* Globus endpoint for data transfer to cloud VM
+* 
