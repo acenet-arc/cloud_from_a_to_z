@@ -4,11 +4,23 @@ title: "Using the OpenStack CL client"
 teaching: 45
 exercises: 15
 questions:
-- "A question"
+- "How do we see what OpenStack CL commands are available?"
+- "How can we find out how to use OpenStack CL commands?"
+- "How do we backup my persistent virtual machine?"
+- "How do we download/upload images to the cloud?"
 objectives:
-- "An objective"
+- "Delete a virtual machine but keep the volume to allow us to make an image of the volume."
+- "Create an image of that volume."
+- "Create a new virtual machine booting from the volume."
+- "Add a floating IP to the new virtual machine."
+- "Download the image for safe keeping."
+- "Delete the image on the Compute Canada cloud."
+- "Upload the image from safe keeping."
 keypoints:
-- "A Keypoint"
+- "`openstack help` shows the list of available commands."
+- "`openstack help <command-group>` shows the list of sub commands matching `<command-group>`."
+- "`openstack help <command-group> <command>` shows the help text for `<command>`."
+- "It is important to keep track of the volume disk type."
 ---
 
 In the last episode we setup the OpenStack CL clients and even ran a command which listed our VMs. Now we are going to dive deeper into the OpenStack CL clients starting with creating an image of our persistent VM's volume and saving it locally where we are running the commands.
@@ -204,10 +216,38 @@ $ openstack image create --volume 4adf2c1c-5415-4d97-987c-f71251b673f9 --disk-fo
 ~~~
 {: .bash}
 ~~~
-'NoneType' object is not subscript-able
+'NoneType' object is not subscriptable
 ~~~
-{: .outpu}
-From experience, this message does not indicate any problems. At this point we have now created an image of our persistent VM's root volume and are free to rebuild our VM so it is available again. For this we can use the `server create` command; lets have a look at its help text.
+{: .output}
+> ## Understanding CL tool errors
+> The OpenStack command line tools are still relatively new and have recently as last year experienced a large redesign. As such, they aren't as polished as might be liked. If you come accross errors like `'NoneType' object is not subscriptable` as above it is possible to get more information by rerunning commands with the "--debug" option which shows extra information. If we do this for the above command we get a large amount of extra output the last few lines look like:
+> ~~~
+> ...
+>
+> Traceback (most recent call last):
+>   File "/usr/lib/python3/dist-packages/openstackclient/shell.py", line 118, in run
+>     ret_val = super(OpenStackShell, self).run(argv)
+>   File "/usr/lib/python3/dist-packages/cliff/app.py", line 255, in run
+>     result = self.run_subcommand(remainder)
+>   File "/usr/lib/python3/dist-packages/openstackclient/shell.py", line 153, in run_subcommand
+>     ret_value = super(OpenStackShell, self).run_subcommand(argv)
+>   File "/usr/lib/python3/dist-packages/cliff/app.py", line 374, in run_subcommand
+>     result = cmd.run(parsed_args)
+>   File "/usr/lib/python3/dist-packages/openstackclient/common/command.py", line 38, in run
+>     return super(Command, self).run(parsed_args)
+>   File "/usr/lib/python3/dist-packages/cliff/display.py", line 92, in run
+>     column_names, data = self.take_action(parsed_args)
+>   File "/usr/lib/python3/dist-packages/openstackclient/image/v2/image.py", line 328, in take_action
+>     info['volume_type'] = info['volume_type']['name']
+> TypeError: 'NoneType' object is not subscriptable
+> 
+> END return value: 1
+> ~~~
+> {: .output}
+> This is a python stack trace coming from the OpenStack client. This stack trace tells us that the error originates from a line of code `info['volume_type'] = info['volume_type']['name']` in the file `/usr/lib/python3/dist-packages/openstackclient/image/v2/image.py` on line `328`. If we look at the OpenStack dashboard *volumes* tab we see that there is a column for *Type* next to each volume. Unless a *type* was selected when creating the volume this field will have a *-* in it to indicate no type specified. This is the cause of this error message. If you instead create a volume with a type this error will go away. However, other than getting this message and missing the output of summary information of the image just created there appear to be no other effects of this error.
+{: .callout}
+
+At this point we have now created an image of our persistent VM's root volume and are free to rebuild our VM so it is available again. For this we can use the `server create` command; lets have a look at its help text.
 ~~~
 $ openstack help server create
 ~~~
