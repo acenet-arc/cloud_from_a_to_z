@@ -7,6 +7,8 @@ questions:
 - "What is PHP?"
 objectives:
 - "Install the PHP general-purpose scripting language packages."
+- "Configure Apache to look for PHP files by default."
+- "Verify our PHP installation."
 keypoints:
 - ""
 ---
@@ -110,7 +112,7 @@ To execute the script, we need to launch our web browser and navigate to the fol
 
 You should see something like the image below.
 
-<img src="../fig/web-screens/php_info_output.png" alt="Ubuntu Default Web Page"/>
+<img src="../fig/web-screens/php_info_output.png" alt="PHP info output"/>
 
 It is a very good idea to remove this file, once you are satisfied that this test is successful. The reason is that it could give a potential attacker too much information about your environment. To remove the file, execute the following command:
 
