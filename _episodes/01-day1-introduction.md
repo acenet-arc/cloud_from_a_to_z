@@ -25,6 +25,7 @@ Outline
 * Introduce instructors
 * Get to know students
   * Get them to introduce them self's and say a few words about their backgrounds.
+  * Ask if any of them have specific projects that they would hope to apply the knowledge they learn in the course to.
 * Mention any house keeping/logistics items (e.g. bathrooms, breaks, etc.)
 * Check for setup of laptops 
   * Mac/Linux: do they know how to get a terminal?
