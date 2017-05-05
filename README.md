@@ -9,4 +9,13 @@ on the webserver then run:
 sudo bundle exec jekyll build --destination /var/www/html
 ```
 
+Content which could be added if time permits:
+Data transfer tools:
+* rsync
+* scp
+* sshfs
+* Owncloud (client, cadaver,davfs2)
+* Globus
+* Load balancer only at east cloud as of May 4th 2017
+
 
