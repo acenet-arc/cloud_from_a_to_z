@@ -15,7 +15,7 @@ keypoints:
 - "`p` flavors can have their CPUs **oversubscribed** by up to 8 times."
 - "A volume is like a virtual hard drive and allows its contents to persist from one VM to the next."
 - "`p` flavors should typically boot from a volume."
-- "a `p` flavor not booted from a volume will have a very small root disk"
+- "A `p` flavor not booted from a volume will have a very small root disk"
 ---
 
 In general a persistent virtual machine is a long running virtual machine that maintains settings and files from one session to the next (they persist). While a non-persistent virtual machine implies that it is only created when you need it and settings and files from previous sessions are lost (they do not persist). In the case of the Compute Canada cloud this difference is reflected by the two main flavor types, the persistent flavors starting with a `p` and compute flavors starting with a `c`. In the previous episode we discussed briefly the differences between `p` and `c` flavors, here we will dive deeper into these differences.
