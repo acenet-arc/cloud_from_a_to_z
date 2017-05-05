@@ -10,7 +10,9 @@ objectives:
 - "Install OpenStack command line client."
 - "Download OpenStack RC file"
 keypoints:
+- "The CL client can be used to manager your OpenStack project from any computer connected to the Internet."
 - "The OpenStack RC file provides settings to connect the CL client with your cloud project."
+- "The `source` command is used to apply settings in a file to your shell environment."
 ---
 
 In this episode we will setup the OpenStack command line tools to work with our OpenStack project. These tools allow us to perform the same actions we perform in the GUI, and more on the command line. Why would you want to use the command line when there is a nice GUI? There are two main reasons:
