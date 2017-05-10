@@ -14,6 +14,8 @@ objectives:
 keypoints:
 - "Ubuntu has a 'root' account that is used to manage the operating system."
 - "MySQL also has a different 'root' account that is used to manage only MySQL."
+start: true
+start_time: 540
 ---
 
 In this episode we will install and configure the **MySQL Relational Database System**. MySQL is a free, open source database management system that runs as a service on your virtual machine. It allows multiple clients to create and manage numerous databases.  
