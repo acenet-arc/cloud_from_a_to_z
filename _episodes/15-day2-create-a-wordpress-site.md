@@ -220,6 +220,36 @@ wordpress/wp-config-sample.php
 ~~~
 {: .output}
 
+The next step is to create a blank `.htaccess` file that WordPress will use later. Then use the `chmod` command to set appropriate file permissions.
+
+~~~
+$ touch /tmp/wordpress/.htaccess
+$ chmod 660 /tmp/wordpress/.htaccess
+~~~
+{: .bash}
+
+Basically, the `660` argument gives read/write access to both the file's specified owner and group.
+
+At this point, it's also a good idea to copy the sample WordPress configuration file.
+
+~~~
+$ cp /tmp/wordpress/wp-config-sample.php /tmp/wordpress/wp-config.php
+~~~
+{: .bash}
+
+While we're at it, we should also create an `upgrade` directory so that WordPress can use this to perform any subsequent software upgrades without running into any permission conflicts.
+
+~~~
+$ mkdir /tmp/wordpress/wp-content/upgrade
+~~~
+{: .bash}
+
+Now we can copy the entire contents to the web document root.
+
+~~~
+$ sudo cp -av /tmp/wordpress/. /var/www/html
+~~~
+{: .bash}
 
 
 ## Configure the WordPress Web Root Directory
