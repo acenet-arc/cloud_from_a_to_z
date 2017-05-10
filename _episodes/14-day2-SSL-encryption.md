@@ -1,7 +1,7 @@
 ---
 layout: episode
 title: "Create a Self-Signed SSL Certificate"
-teaching: 40
+teaching: 45
 exercises: 0
 questions:
 - "What is a Self-Signed SSL Certificate?"
