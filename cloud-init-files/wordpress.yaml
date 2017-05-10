@@ -1,0 +1,64 @@
+oud-config
+package_update: true
+package_upgrade: true
+packages:
+  - apache2
+  - mysql-server
+  - php
+  - libapache2-mod-php
+  - php-mcrypt
+  - php-mysql
+  - php-curl
+  - php-gd
+  - php-mbstring
+  - php-xml
+  - php-xmlrpc
+write_files:
+  - content: |
+      #!/bin/bash
+
+      echo "making DB_PASSWORD ..."
+      DB_PASSWORD=$(</dev/urandom tr -dc _A-Z-a-z-0-9 | head -c16) # Generate a random password
+      DB_NAME="wordpress"
+      DB_USER="wordpress"
+      DB_HOST=localhost
+
+      echo "getting latest wordpress ..."
+      wget http://wordpress.org/latest.tar.gz -O /tmp/latest.tar.gz
+      echo "untarring wordpress ..."
+      tar xzf /tmp/latest.tar.gz -C /var/www/
+
+      # create the database, and configure the wordpress user.
+      echo "configuring database ..."
+      mysql <<EOF
+      CREATE DATABASE $DB_NAME;
+      GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER
+      ON $DB_NAME.*
+      TO $DB_USER@$DB_HOST
+      IDENTIFIED BY '$DB_PASSWORD';
+      FLUSH PRIVILEGES;
+      EOF
+
+      # copy the config file and then configure database name, username, and password
+      echo "editing the wordpress configuration ..."
+      cp /var/www/wordpress/wp-config-sample.php /var/www/wordpress/wp-config.php
+      sed -i "s/database_name_here/$DB_NAME/g" /var/www/wordpress/wp-config.php
+      sed -i "s/password_here/$DB_PASSWORD/g" /var/www/wordpress/wp-config.php
+      sed -i "s/username_here/$DB_USER/g" /var/www/wordpress/wp-config.php
+
+      # configure security keys : https://codex.wordpress.org/Editing_wp-config.php#Security_Keys
+      echo "configuring wordpress security keys ..."
+      for i in `seq 1 8`; do
+        key=$(</dev/urandom tr -dc _A-Z-a-z-0-9 | head -c64)
+        sed -i "0,/put your unique phrase here/s/put your unique phrase here/$key/" /var/www/wordpress/wp-config.php
+      done
+
+      echo "moving install from /var/www/wordpress to /var/www/html ..."
+      mv /var/www/wordpress /var/www/html/
+
+      service apache2 restart
+    path: /tmp/bootstrap-wp.sh
+    permissions: "0755"
+runcmd:
+  - bash /tmp/bootstrap-wp.sh
+
