@@ -1,6 +1,6 @@
 ---
 layout: episode
-title: "Create a wordpress site"
+title: "Create a WordPress site"
 teaching: 55
 exercises: 0
 questions:
