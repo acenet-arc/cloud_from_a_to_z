@@ -1,7 +1,7 @@
 ---
 layout: episode
 title: "Create a wordpress site"
-teaching: 60
+teaching: 55
 exercises: 0
 questions:
 - "How do we download the WordPress software?"

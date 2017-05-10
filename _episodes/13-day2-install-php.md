@@ -1,7 +1,7 @@
 ---
 layout: episode
 title: "Install PHP"
-teaching: 45
+teaching: 40
 exercises: 0
 questions:
 - "What is PHP?"
