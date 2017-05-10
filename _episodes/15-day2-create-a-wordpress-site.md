@@ -86,6 +86,90 @@ mysql> QUIT;
 
 ## Modify the Apache Web Server Configuration
 
+For WordPress to function properly, we need to make a few minor modifications to our Apache web server configuration.  
+
+First, we need to enable the use of `.htaccess` files. The reason for this is that WordPress and, more specifically, many of the WordPress plugins use this file to perform "in-directory" adjustments which will affect the behavior of Apache.
+
+To do this, we need to modify the main Apache configuration file, located here: `/etc/apache2/apache2.conf`.
+
+~~~
+$ sudo nano /etc/apache2/apache2.conf
+~~~
+{: .bash}
+
+Look for the section that starts with this heading:  
+
+~~~
+# Sets the default security model of the Apache2 HTTPD server. It does
+# not allow access to the root filesystem outside of /usr/share and /var/www.
+# The former is used by web applications packaged in Debian,
+# the latter may be used for local directories served by the web server. If
+# your system is serving content from a sub-directory in /srv you must allow
+# access here, or in any related virtual host.
+~~~
+{: .output}
+
+In order to allow `.htaccess` files, we need to set an `AllowOverride` directive within a `Directory` block that points to our web root directory. For this reason, append this block to the bottom of this section:  
+
+~~~
+<Directory /var/www/html/>
+    AllowOverride All
+</Directory>
+~~~
+{: .bash}
+
+Then save and exit the file.
+
+Second, in order to user WordPress's permalink feature, we need to enable the `mod_rewrite` Apache module. To accomplish this, we can invoke the `a2enmod` command as follows:
+
+~~~
+$ sudo a2enmod rewrite
+~~~
+{: .bash}
+
+~~~
+Enabling module rewrite.
+To activate the new configuration, you need to run:
+  service apache2 restart
+~~~
+{: .output}
+
+Before restarting the Apache service, we should test to make certain that our configuration changes are correct.
+
+~~~
+$ sudo apache2ctl configtest
+~~~
+{: .bash}
+
+If you see the following result:
+
+~~~
+Syntax OK
+~~~
+{: .output}
+
+Then it is safe to restart Apache so that our changes take immediate effect.
+
+~~~
+$ sudo systemctl restart apache2
+~~~
+{: .bash}
+
+Then check the status of the Apache service by running the following:
+
+~~~
+$ sudo systemctl status apache2
+~~~
+{: .bash}
+
+Look for the line that reads:
+
+~~~
+   Active: active (running) since...
+~~~
+{: .output}
+
+
 ## Download the WordPress Software
 
 ## Configure the WordPress Web Root Directory
