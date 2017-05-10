@@ -187,12 +187,21 @@ $ curl -O https://wordpress.org/latest.tar.gz
 ~~~
 {: .output}
 
-Like most open source software available via the Internet, the file name (`latest.tar.gz`) ends with a `.tar.gz` extension. This means that this is a TAR (short for Tape Archiving) package that has been compressed using the GNU zip utility. To decompress and unpackage the file contents, we will use the following command:  
+Like most open source software available via the Internet, the file name (`latest.tar.gz`) ends with a `.tar.gz` extension. This means that this is a **TAR** (short for Tape Archiving) package that has been compressed using the **GNU zip** utility. To decompress and extract the file contents, we will use the following command:  
 
 ~~~
 $ tar xzvf latest.tar.gz
 ~~~
 {: .bash}
+
+The required command-line arguments listed above are as follows:
+
+- `x`: extract the package contents  
+- `z`: decompress the file using **GNU zip**
+- `v`: be verbose - show me all of the file paths
+- `f`: extract from a specified file (`latest.tar.gz`)
+
+If you engage is any subsequent Linux systems administration during the remainder of your lifetime, you will uses the `tar` command a lot.
 
 The output should look something like this:
 
