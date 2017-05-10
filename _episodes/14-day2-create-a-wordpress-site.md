@@ -4,7 +4,9 @@ title: "Create a wordpress site"
 teaching: 30
 exercises: 0
 questions:
-- ""
+- "How do we download the WordPress software?"
+- "How do we install the WordPress software?"
+- "How do we finalie the WordPress installation?"
 objectives:
 - "Create a WordPress database."
 - "Modify the Apache configuration."
