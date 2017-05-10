@@ -172,6 +172,47 @@ Look for the line that reads:
 
 ## Download the WordPress Software
 
+At this point, all of the prerequisite software for our virtual machine has been installed and configured. We are now ready to download the latest version of WordPress which is housed at `wordpress.org`. We'll use the `curl` command to grab the installation package and store it in the `/tmp` directory until it's ready to moved to `/var/www/html`.
+
+~~~
+$ cd /tmp
+$ curl -O https://wordpress.org/latest.tar.gz
+~~~
+{: .bash}
+
+~~~
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 7851k  100 7851k    0     0  4176k      0  0:00:01  0:00:01 --:--:-- 4176k
+~~~
+{: .output}
+
+Like most open source software available via the Internet, the file name (`latest.tar.gz`) ends with a `.tar.gz` extension. This means that this is a TAR (short for Tape Archiving) package that has been compressed using the GNU zip utility. To decompress and unpackage the file contents, we will use the following command:  
+
+~~~
+$ tar xzvf latest.tar.gz
+~~~
+{: .bash}
+
+The output should look something like this:
+
+~~~
+wordpress/
+wordpress/wp-settings.php
+wordpress/wp-cron.php
+wordpress/wp-comments-post.php
+...
+... lots and lots more files...
+...
+wordpress/wp-includes/update.php
+wordpress/wp-includes/comment.php
+wordpress/wp-includes/class-wp-text-diff-renderer-table.php
+wordpress/wp-config-sample.php
+~~~
+{: .output}
+
+
+
 ## Configure the WordPress Web Root Directory
 
 ## Complete the Installation using the WordPress GUI
