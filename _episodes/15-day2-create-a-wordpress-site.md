@@ -175,7 +175,7 @@ Look for the line that reads:
 At this point, all of the prerequisite software for our virtual machine has been installed and configured. We are now ready to download the latest version of WordPress which is housed at `wordpress.org`. We'll use the `wget` command to grab the installation package and store it in the `/tmp` directory until it's ready to moved to `/var/www/html`.
 
 ~~~
-$  wget http://wordpress.org/latest.tar.gz -O /tmp/latest.tar.gz
+$ wget http://wordpress.org/latest.tar.gz -O /tmp/latest.tar.gz
 $ cd /tmp
 ~~~
 {: .bash}
