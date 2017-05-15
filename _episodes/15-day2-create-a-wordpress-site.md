@@ -48,7 +48,7 @@ Query OK, 1 row affected (0.00 sec)
 ~~~
 {: .output}
 
-Next, it is a good idea to also create a separate MySQL (who does *NOT* have administrative access) that WordPress will use exclusively to administrate the `wordpress` database. In order to tighten security, only WordPress is required to have access to this user's authentication credentials and the only database this user has access to is the `wordpress` database. Again, to keep things simple, let's call this user `wordpressuser`. In production, you would want to create a strong and unique password for this user. However, for this course, we will use `userMySQLPassword` as the password.
+Next, it is a good idea to also create a separate MySQL user (who does *NOT* have administrative access) that WordPress will use exclusively to administrate the `wordpress` database. In order to tighten security, only WordPress is required to have access to this user's authentication credentials and the only database this user has access to is the `wordpress` database. Again, to keep things simple, let's call this user `wordpressuser`. In production, you would want to create a strong and unique password for this user. However, for this course, we will use `userMySQLPassword` as the password.
 
 ~~~
 mysql> GRANT ALL ON wordpress.* TO 'wordpressuser'@'localhost' IDENTIFIED BY 'userMySQLPassword';
@@ -253,5 +253,14 @@ $ sudo cp -av /tmp/wordpress/. /var/www/html
 
 
 ## Configure the WordPress Web Root Directory
+
+### Adjust Ownership and Permission Attributes
+
+Before we complete the installation via our web browser, we need to configure reasonable permission and ownership attributes for the WordPress web root directory.
+
+
+
+### Configure the WordPress Configuration File
+
 
 ## Complete the Installation using the WordPress GUI
