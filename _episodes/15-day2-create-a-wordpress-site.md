@@ -267,7 +267,25 @@ The two objectives for this section are as follows:
 
 1) Make the Linux user account that we used to log into the VM, `ubuntu`, the owner of all files and directories contained in `/var/www/html`.  
 
-2) Make certain that the Linux group account that runs the Apache service, `www-data`, can also perform the same file management functions.
+2) Make certain that the Linux group account that runs the Apache service, `www-data`, can also perform the same file management functions.  
+
+To accomplish both of these tasks at once, we can issue the following command:
+
+~~~
+$ sudo chown -R ubuntu:www-data /var/www/html
+~~~
+{: .bash}
+
+The `-R` option basically instructed the `chown` (or change-ownership) command to execute on every file and directory in the `/var/www/html` directory root recursively.
+
+Next, we need to ensure that all **new** files created within every subdirectory of `/var/www/html` also inherit the `www-data` group. Again, this is to make certain that the account responsible for running the Apache service still retains group ownership of all WordPress content. This attribute is referred to as a `setgid` bit. Consequently, to enable the `setgid` bit on every WordPress subdirectory, we can issue the following command:
+
+~~~
+$ sudo find /var/www/html -type d -exec chmod g+s {} \;
+~~~
+{: .bash}
+
+In this case, we basically used the `find` command to locate all subdirectories in the WordPress web root directory and then we executed the `chmod` command to enable their `setgid` attribute.
 
 
 
