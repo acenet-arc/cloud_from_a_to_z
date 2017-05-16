@@ -124,7 +124,7 @@ $ sudo reboot
 
 This will disconnect us from our VM and we will need to wait some time (~ 1 minute) for the VM to finish rebooting before trying reconnect.
 ~~~
-$ ssh ubuntu @206.167.181.126
+$ ssh ubuntu@206.167.181.126
 ~~~
 {: .bash}
 ~~~
