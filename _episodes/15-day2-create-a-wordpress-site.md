@@ -48,7 +48,7 @@ Query OK, 1 row affected (0.00 sec)
 ~~~
 {: .output}
 
-Next, it is a good idea to also create a separate MySQL (who does *NOT* have administrative access) that WordPress will use exclusively to administrate the `wordpress` database. In order to tighten security, only WordPress is required to have access to this user's authentication credentials and the only database this user has access to is the `wordpress` database. Again, to keep things simple, let's call this user `wordpressuser`. In production, you would want to create a strong and unique password for this user. However, for this course, we will use `userMySQLPassword` as the password.
+Next, it is a good idea to also create a separate MySQL user (who does *NOT* have administrative access) that WordPress will use exclusively to administrate the `wordpress` database. In order to tighten security, only WordPress is required to have access to this user's authentication credentials and the only database this user has access to is the `wordpress` database. Again, to keep things simple, let's call this user `wordpressuser`. In production, you would want to create a strong and unique password for this user. However, for this course, we will use `userMySQLPassword` as the password.
 
 ~~~
 mysql> GRANT ALL ON wordpress.* TO 'wordpressuser'@'localhost' IDENTIFIED BY 'userMySQLPassword';
@@ -253,5 +253,44 @@ $ sudo cp -av /tmp/wordpress/. /var/www/html
 
 
 ## Configure the WordPress Web Root Directory
+
+Before we complete the installation via our web browser, we need to perform a couple of necessary systems administration tasks. First, we need to set reasonable file and directory ownership and permission attributes. These values are not set by default and, unless we do this, WordPress will not function properly. Second, we need to generate secret keys which will help provide greater security for our installation.
+
+
+### Adjust Ownership and Permission Attributes
+
+To begin with, we need to execute some basic commands that will set appropriate ownership and permission attributes for the directories and files that are stored in our WordPress web root directory. Once again, this directory is `/var/www/html`.
+
+It's possible, going forward, that we might need to edit, copy, move, add, rename, or remove WordPress files and directories. For example, if we update WordPress or install a new WordPress plugin, these actions would fail unless we adjust the default file and directory settings.
+
+The two objectives for this section are as follows:  
+
+1) Make the Linux user account that we used to log into the VM, `ubuntu`, the owner of all files and directories contained in `/var/www/html`.  
+
+2) Make certain that the Linux group account that runs the Apache service, `www-data`, can also perform the same file management functions.  
+
+To accomplish both of these tasks at once, we can issue the following command:
+
+~~~
+$ sudo chown -R ubuntu:www-data /var/www/html
+~~~
+{: .bash}
+
+The `-R` option basically instructed the `chown` (or change-ownership) command to execute on every file and directory in the `/var/www/html` directory root recursively.
+
+Next, we need to ensure that all **new** files created within every subdirectory of `/var/www/html` also inherit the `www-data` group. Again, this is to make certain that the account responsible for running the Apache service still retains group ownership of all WordPress content. This attribute is referred to as a `setgid` bit. Consequently, to enable the `setgid` bit on every WordPress subdirectory, we can issue the following command:
+
+~~~
+$ sudo find /var/www/html -type d -exec chmod g+s {} \;
+~~~
+{: .bash}
+
+In this case, we basically used the `find` command to locate all subdirectories in the WordPress web root directory and then we executed the `chmod` command to enable their `setgid` attribute.
+
+
+
+
+### Configure the WordPress Configuration File
+
 
 ## Complete the Installation using the WordPress GUI
