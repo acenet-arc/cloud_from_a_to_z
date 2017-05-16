@@ -159,7 +159,7 @@ if [ -z "$OS_REGION_NAME" ]; then unset OS_REGION_NAME; fi
 {: .output}
 The last few lines of the `~/openstackrc.sh` file should look like the above if everything went well.
 
-The final step before we can start working with the command line clients is to source the `~/openstackrc.sh` file you just created. Sourcing a file applies all the settings contained in that file to your current shell. When you source the file it will ask you for your OpenStack password as it doesn't contain your password. This file contains settings such as your OpenStack project, the URL of the OpenStack cloud, and the username and password for the OpenStack cloud.
+The final step before we can start working with the command line clients is to source the `~/openstackrc.sh` file you just created using the `source` command. Sourcing a file applies all the settings contained in that file to your current shell. When you source the file it will ask you for your OpenStack password as it doesn't contain your password. This file contains settings such as your OpenStack project, the URL of the OpenStack cloud, and the username and password for the OpenStack cloud.
 ~~~
 $ source ~/openstackrc.sh
 ~~~
