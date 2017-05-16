@@ -254,9 +254,21 @@ $ sudo cp -av /tmp/wordpress/. /var/www/html
 
 ## Configure the WordPress Web Root Directory
 
+Before we complete the installation via our web browser, we need to perform a couple of necessary systems administration tasks. First, we need to set reasonable file and directory ownership and permission attributes. These values are not set by default and, unless we do this, WordPress will not function properly. Second, we need to generate secret keys which will help provide greater security for our installation.
+
+
 ### Adjust Ownership and Permission Attributes
 
-Before we complete the installation via our web browser, we need to configure reasonable permission and ownership attributes for the WordPress web root directory.
+To begin with, we need to execute some basic commands that will set appropriate ownership and permission attributes for the directories and files that are stored in our WordPress web root directory. Once again, this directory is `/var/www/html`.
+
+It's possible, going forward, that we might need to edit, copy, move, add, rename, or remove WordPress files and directories. For example, if we update WordPress or install a new WordPress plugin, these actions would fail unless we adjust the default file and directory settings.
+
+The two objectives for this section are as follows:  
+
+1) Make the Linux user account that we used to log into the VM, `ubuntu`, the owner of all files and directories contained in `/var/www/html`.  
+
+2) Make certain that the Linux group account that runs the Apache service, `www-data`, can also perform the same file management functions.
+
 
 
 
