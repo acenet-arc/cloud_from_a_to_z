@@ -50,7 +50,7 @@ More specifically, when we type `pwd` and press the Enter key, the shell:
 
 The `pwd` command's output is the **present working directory**. In this case `/home/cgeroux`. This directory known as a **home directory** where settings, files and programs for the user `cgeroux` are kept. The string `/home/cgeroux` is known as a path which indicates a specific file or directory within a file system. File systems have a tree like structure, starting at the root of the file system (`/`) and branching out from there. Each new directory creates a new branch in the file system. Directories are seperated in a path by forward slashes, `/` so that a directory inside another one can be represented like `/home` in this case, the `home` directory is inside the root directory `/`.  Adding another directory in depth to the path we have `/home/cgeroux` which is a directory inside the `home` directory.
 
-To change your **present working directory** there is a command called `cd` for change directory.
+To change your **present working directory** there is a command called `cd` for change directory. It takes one **argument** which specifies which directory to change to.
 ~~~
 $ cd /home
 $ pwd
@@ -102,7 +102,7 @@ SYNOPSIS
 ...
 ~~~
 {: .output}
-Many commands have manual pages, so executing the command `man <some-command-name>` will display information about that command, how to use it, and the options available for that command. Options for a command are specified after the command with a `-` followed directly by the option identifier for example, `-a`. If you scroll down the manual pages (by pressing the down arrow key) and read the description, you will notice that this command creates a key in the `~/.ssh` directory. The `~` is a synonym for your home directory (e.g. `/home/cgeroux`) and the `.` at the beginning of the directory name indicates that the directory is hidden. The command `ls` is used to list the file structure, or in other words list files and directories inside a give directory. Hidden files will not be shown by the `ls` command unless the `-a` option is used. 
+Many commands have manual pages, so executing the command `man <some-command-name>` will display information about that command, how to use it, and the options available for that command. Options for a command are specified after the command with a `-` followed directly by the option identifier for example, `-a`. If you scroll down the manual pages (by pressing the down arrow key) and read the description, you will notice that this command creates a key in the `~/.ssh` directory. The `~` is a synonym for your home directory (e.g. `/home/cgeroux`) and the `.` at the beginning of the directory name indicates that the directory is hidden. The command `ls` is used to list the file structure, or in other words list files and directories inside a directory given as an argument to the command. If no argument is given `ls` will list the files and directories inside the current directory. Hidden files will not be shown by the `ls` command unless the `-a` option is used. 
 
 Lets check to see if you have a `.ssh` folder already in your home directory
 ~~~
