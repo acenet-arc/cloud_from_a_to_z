@@ -12,6 +12,7 @@ keypoints:
 start: false
 ---
 
+To see more of the possibilities available with cloud-init browse through [Cloud config examples](https://cloudinit.readthedocs.io/en/latest/topics/examples.html)
 
 ---
 PREREQUISITES
