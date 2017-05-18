@@ -113,7 +113,7 @@ zaqar-server/xenial 2.0.0-1 all
 ~~~
 {: .output}
 
-In this case we can see that the package `python3-openstackclient` provides the OpenStack Command-line Client for Python 3. We can install this package with
+In this case we can see that the package `python3-openstackclient` provides the OpenStack Command-line Client for Python 3. Python is a programing language which is used heavily by OpenStack. In fact the command line tools are written with Python, and there is a Python application programing interface (API) which allows you to write programs in Python which can perform actions on your OpenStack projects. Python 3 is the current major version of Python, though Python 2 is still frequently used. We can install this package with
 ~~~
 $ sudo apt install python3-openstackclient -y
 ~~~
