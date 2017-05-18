@@ -18,7 +18,7 @@ write_files:
       #!/bin/bash
       
       echo "making DB_PASSWORD ..."
-      DB_PASSWORD=$(</dev/urandom tr -dc _A-Z-a-z-0-9 | head -c16) # Generate a random password
+      DB_PASSWORD=$(tr -dc _A-Za-z0-9 < /dev/urandom | head -c16) # Generate a random password
       DB_NAME="wordpress"
       DB_USER="wordpress"
       DB_HOST=localhost
@@ -50,14 +50,14 @@ write_files:
       echo "configuring wordpress security keys ..."
       for i in $(seq 1 8)
       do
-        key=$(</dev/urandom tr -dc _A-Z-a-z-0-9 | head -c64)
+        key=$(tr -dc _A-Za-z0-9 < /dev/urandom | head -c64)
         sed -i "0,/put your unique phrase here/s/put your unique phrase here/$key/" /var/www/wordpress/wp-config.php
       done
       
       echo "moving install from /var/www/wordpress to /var/www/html ..."
       mv /var/www/wordpress /var/www/html/
       
-      service apache2 restart
+      sudo systemctl restart apache2
     path: /tmp/bootstrap-wp.sh
     permissions: "0755"
 runcmd:
