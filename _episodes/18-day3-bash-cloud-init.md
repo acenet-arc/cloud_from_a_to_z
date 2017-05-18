@@ -4,15 +4,27 @@ title: "Bash Scripting"
 teaching: 30
 exercises: 0
 questions:
-- "What does CloudInit do?"
+- "What is Bash scripting?"
+- "Why use Bash?"
+- "How does Bash scripting relate to cloud-init?"
+- "How can passwords be automatically generated?"
 objectives:
-- "Learn how to provide a cloud config file to cloud-init."
+- "Make a Bash script"
+- "Understand how the Bash script configures and installs WordPress."
+- "Learn enough Bash scripting basics to be able to generalize to other similar installation processes."
 keypoints:
-- "A Keypoint 0"
+- "A for loop executes commands multiple times while changing the loop variable each iteration."
+- "A stream is a sequence of data elements which are made available over time."
+- "The `echo` command sends a string to a stream."
+- "The `head` command displays the begging of a file or stream."
+- "Pipes `|` are used to pipe the output of one command to the input of the next."
+- "`tr` translates characters in one set to corresponding characters in another set."
+- "Redirects `<`,`>` are used to redirect output and input to files or streams."
+- "`sed` is a stream editor which can be used to replace one string with another in a stream."
 start: false
 ---
 
-What is Bash scripting and what does it have to do with cloud-init? When we did the manual install of WordPress we ran commands in a terminal. As it turns out, there are multiple types of shells with slightly different ways of doing things. In our case we were using Bash (Born Again Shell). In addition to being able to issuse these commands interactively on the command line we can also put them into a file and tell Bash to execute these commands from the file.
+What is Bash scripting and what does it have to do with cloud-init? When we did the manual install of WordPress we ran commands in a terminal. As it turns out, there are multiple types of shells with slightly different ways of doing things. In our case we were using Bash (Born Again Shell). In addition to being able to issue these commands interactively on the command line we can also put them into a file and tell Bash to execute these commands from the file. Creating such a file is known as **Bash scripting**.
 
 Now that we have a rough, high-level concept of what Bash scripting is, how is it connected to cloud-init? In the cloud config file we used in the previous episode a large section of that was a Bash script which issues commands that we want to be performed to setup and install WordPress. Lets take a quick look at the contents of that file:
 ~~~
@@ -82,10 +94,13 @@ runcmd:
   - bash /tmp/bootstrap-wp.sh
 ~~~
 {: .output}
-All the text below the line `- content: |` down to and including the line `service apache2 restart` is a Bash script which is embedded into the cloud config file that we passed to cloud-init. We will digest the other bits of this file later, for now we will only focus on the Bash Script part. If you scan quickly through that bit of text you might even see a few commands you recognize from our manual install such as `wget http://wordpress.org/latest.tar.gz -O /tmp/latest.tar.gz` and the `tar` command which is only slightly different than the version we used previously with an extra `-C` option specifying the directory where the untarred contents of the archive should go. You will also notice lines which contain words which look like parts of the MySQL commands we ran as part of the manual setup also with some extra bits around them which might not look familiar to you. At this point you might be starting to see how this bit of text which I mentioned was a Bash script is related to the installation of the WordPress site by comparing it to the manual steps you took earlier. However, there are also likely parts which look significantly different like the lines beginning with `sed` or the `for i in `... line. In this episode we will explore various parts of Bash syntax to help us understand what the rest of this Bash script is doing to automate the manual steps from yesterday.
+All the text below the line `- content: |` down to and including the line `service apache2 restart` is a Bash script which is embedded into the cloud config file that we passed to cloud-init. We will digest the other bits of this file later, for now we will only focus on the Bash script part. If you scan quickly through that bit of text you might even see a few commands you recognize from our manual install such as `wget http://wordpress.org/latest.tar.gz -O /tmp/latest.tar.gz` and the `tar` command which is only slightly different than the version we used previously with an extra `-C` option specifying the directory where the untarred contents of the archive should go. You will also notice lines which contain words which look like parts of the MySQL commands we ran as part of the manual setup also with some extra bits around them which might not look familiar to you. At this point you might be starting to see how this bit of text which I mentioned was a Bash script is related to the installation of the WordPress site by comparing it to the manual steps you took earlier. However, there are also likely parts which look significantly different like the lines beginning with `sed` or the `for i in `... line. In this episode we will explore various parts of Bash syntax as well as the extra Bash commands to help us understand what the rest of this Bash script is doing to automate the manual steps from yesterday.
+
+## Why Bash?
+Bash has been around since 1989 and while it is powerful it is not the most elegant way of automating setup. Bash is a bit like English, in that it has many special rules and exceptions. There are many alternatives to Bash which could be used equally well, for example Python could be used in place of Bash in the cloud config files. However, to get almost anything done on a Linux computer, you have to start with Bash, even if it is to just run a Python script. In addition the commands to manage a Linux computer are all available through the Bash shell. That isn't to say you can get them in other ways with another languages, but it very might well involve invoking the Bash command from within that language. In addition we have been using and learning bash commands throughout this course and continuing with Bash limits the number of new things to be learnt. However, if you are so inclined, Python is a very nice language to learn and interfaces well with OpenStack so I would recommend it if you find your self wanting more while trying to get things done with Bash.
 
 ## A first Bash script
-To understand how this Bash script works and how we might create our own for different installation processes lets start writing our own Bash script to explore how Bash scripting works. Lets start by creating a file called `bash_test.sh`.
+To understand how this Bash script works and how we might create our own for a different installation processes (such as for [mediawiki](https://www.mediawiki.org/wiki/MediaWiki), [omeka](https://omeka.org/), [drupal](https://www.drupal.org/), or other software stack) lets start writing our own Bash script to explore how Bash scripting works. Lets start by creating a file called `bash_test.sh`.
 
 ~~~
 $ nano bash_test.sh
