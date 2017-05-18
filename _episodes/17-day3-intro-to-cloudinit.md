@@ -1,33 +1,40 @@
 ---
 layout: episode
 title: "Automating with cloud-init"
-teaching: 15
+teaching: 30
 exercises: 0
 questions:
-- "What does CloudInit do?"
+- "What does Cloud-init do?"
+- "How can I specify a cloud config file when creating a new VM?"
+- "How can I verify that the setup worked?"
 objectives:
-- "Learn how to provide a cloud config file to cloud-init."
+- "Provide a cloud config file to cloud-init."
+- "View VM logs"
 keypoints:
-- "A Keypoint 0"
+- "User data provided to a VM can be either a **cloud config** or **script** file."
+- "User data can be set using the `--user-data` on the command line or using the *Post-Creation* tab when launching a VM within horizon."
+- "Cloud-init can be used to automate the initial installation of configuration of software"
+- "Cloud-init runs once after the first boot of a newly crated VM"
+
 start: true
 start_time: 540
 ---
 
-We have worked through all the steps to configure and setup a WordPress site manually. This gave us exposure to the various components that make up many common web applications. Now image if you wanted to setup many WordPress sites or other commonly used website applications it could take a great deal of time, on the order of a day each if everything goes well. Also, if these website applications are so common would it not be nice to have a way to automate all that monotonous manual setup? In fact if someone automated that process you, as well as others, could save considerable time not just in the setup but also in having to figure out all the steps required to do the setup. In fact if the process was automated you may not have to think much at all about things like MySQL and PHP and just start using the web application once the installation finishes.
+We have worked through all the steps to configure and setup a WordPress site manually. This gave us exposure to the various components that make up many common web applications. Now image if you wanted to setup many WordPress sites or other commonly used website applications it could take a great deal of time, on the order of half a day each if everything goes well and you know what you are doing. Also, if these website applications are so common with many people using them would it not be nice to have a way to automate all that monotonous manual setup? In fact if someone automated that process, you, as well as others, could save considerable time not just in the setup but also in having to figure out all the steps required to do the setup. In fact if the process was automated you may not have to think much at all about things like MySQL and PHP and just start using the web application once the installation finishes.
 
-There are two main methods that this problem could be solved. The first method is only a very slight alteration on what was done yesterday. Once all the manual setup has been completed all that work can be saved in an image. Then the image could be reused to create new VMs. However this does not completely solve the problem because there will still be some manual steps required. For example, you would not want the same passwords to be used on all the WordPress sites, especially since anyone who had access to that image would also know those preset passwords. This could be a severe security issue. This method is OK when the image is not widely distributed and you are willing to manually changed database passwords and other passwords and keys used in the setup however this would then mean that anyone using the image would  have to know at least some of the steps required to create the image in the first place. This would limit the ease with which others could reuse the image. This method would also still require the setup of SSL certificates as a separate manual step as they can not be shared between VMs.
+There are two main methods that could solve this problem. The first method is only a very slight alteration on what was done yesterday. Once all the manual setup has been completed all that work can be saved in an image. Then the image could be reused to create new VMs. However this does not completely solve the problem because there will still be some manual steps required. For example, you would not want the same passwords to be used on all the WordPress sites, especially since anyone who had access to that image would also know those preset passwords. This could be a severe security issue. This method is OK when the image is not widely distributed and you are willing to manually change database passwords and other passwords and keys used in the setup, however this would then mean that anyone using the image would  have to know at least some of the steps required to create the image in the first place. This would limit the ease with which others could reuse the image. This method would also still require the setup of SSL certificates as a separate manual step as they can not be shared between VMs.
 
 As you might have guessed there is a better solution, [cloud-init](https://cloudinit.readthedocs.io/en/latest/index.html). Cloud-init is a set of python scripts and utilities which run various setup operations during the initial boot of your virtual machine. This can be used to automate the setup steps we performed yesterday. For common tasks such as installing packages it is not much harder than listing the names of the packages you wish to install and cloud-init will install them for you. You can also do things like configure the language and time-zone of the VM's operating system. You can add users to your VM and inject their public keys so they can login as soon as the VM has finished its first time setup. You can create files and run commands. If those files are scripts you can run them to perform various tasks such as editing configuration files, creating passwords and keys and anything you can write a script to do.
 
-To use cloud-init you provide a file or text describing what you would like cloud-init to do. This text or file can have various formats (see [cloud-init formats](https://help.ubuntu.com/community/CloudInit) for a list of available formats), but the two formats which we will be using in this course are:
+To use cloud-init you provide a file or text describing what you would like cloud-init to do. This text or file can have various formats (see [cloud-init formats](https://help.ubuntu.com/community/CloudInit) for a list of available formats), but there are two formats which are worht mentioning here:
 * **User-data script** which allows you to specify a file containing a script of various commands or code you wish to execute at a very late stage in the boot sequence of the VM.
 * **Cloud Config Data** which allows you to specify common operations to perform (files to create, commands to run, etc.) and also less common operations by explicitly specifying the commands or scripts to run using the cloud config format.
 
-Before we get into the details of creating scripts or cloud config files to use with cloud-init to configure our VMs lets see an example of cloud-config file in action. We will work through this example together, in which we create a VM with a WordPress setup similar to what we did manually in previous episodes. There are some differences however for example the steps we took in the manual install for setting up SSL certificates or running the `mysql_secure_installation` script to improve MySQL database security have been omitted. With some effort though these additional steps and others could be included.
+Before we get into the details of creating scripts or cloud config files to use with cloud-init to configure our VMs, lets see an example of a cloud-config file in action. We will work through this example together, and create a VM with a WordPress setup similar to what we did manually in previous episodes. There are some differences however for example the steps we took in the manual install for setting up SSL certificates or running the `mysql_secure_installation` script to improve MySQL database security have been omitted. With some effort though these additional steps could be included.
 
 When we can create a VM we pass the cloud config or script file to the VM which describes to cloud-init what commands should be issued. We can pass this file either in horizon, using the *Post-Creation* tab when clicking *Launch instance*. In this case you can either select *File* or *Direct Input* for your *Script Source*. If selecting *File* you can click *Choose File* to select your file from you workstation, or if selecting *Direct Input* you can copy and paste the contents of the file into the text box.
 
-Alternatively you can provide the cloud config or script file when creating the VM with the `--user-date` option followed by the path to your script file. This is the method I will choose but feel free to use which ever method is best for you.
+Alternatively you can provide the cloud config or script file when creating the VM with the `--user-data` option followed by the path to your script file. This is the method I will choose but feel free to use which ever method is best for you.
 
 ~~~
 $ ssh ubuntu@206.12.11.13
@@ -78,7 +85,17 @@ $ openstack server create --flavor c1-7.5gb-30 --image Ubuntu-16.04-Xenial-x64-2
 ~~~
 {: .output}
 
-The setup will take some time as it is downloading and installing updates to Ubuntu packages, installing PHP and MySQL packages as well as downloading and installing WordPress as well as performing some setup tasks. So how will we know when the setup is done? We can view the progress of the setup in the VMs log. This can be viewed in horizon if you click on the VM's name in the *instances* table and the select the *log* tab. This shows the last 35 lines of the console log. To see more of the log you can either increase the number of lines to display in the text box and then click *Go* or click *View Full Log* which shows the full log text in a separate tab of your browser. Click the *Go* button can also be used to update the console log as more content can be added to the log if the setup process is still ongoing. Once the setup has compeleted the last few lines in this log should look something like:
+The setup will take some time as it is performing multiple steps.
+
+* downloading and installing updates to Ubuntu packages
+* installing PHP 
+* installing MySQL 
+* downloading Wordpress
+* configuring MySQL for WordPress
+* creating  unique authentication keys
+
+So how will we know when the setup is done? We can view the progress of the setup in the VMs log. This can be viewed in horizon if you click on the VM's name in the *instances* table and the select the *log* tab. This shows the last 35 lines of the console log. To see more of the log you can either increase the number of lines to display in the text box and then click *Go* or click *View Full Log* which shows the full log text in a separate tab of your browser. Click the *Go* button can also be used to update the console log as more content can be added to the log if the setup process is still ongoing. Once the setup has compeleted the last few lines in this log should look something like:
+
 ~~~
 [  205.098433] cloud-init[1266]: 2017-05-11 17:28:05 (11.7 MB/s) - '/tmp/latest.tar.gz' saved [8040021/8040021]
 [  205.101428] cloud-init[1266]: untarring wordpress ...
@@ -117,6 +134,6 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDCZCgUgIJrY8w3e9STo0FV4484IzsTT71R+17k7fu1
 ~~~
 {: .output}
 
-It is also a good idea, especially in case of any problems, to browse through the entire log looking for any messages which might suggest a problem and watch for lines indicating that the various expected packages or commands were installed. If everything seems OK then to visit the newly installed WordPress site and finalize installation add a floating IP to your newly created VM and go to `http://<your-newly-create-vms-ip>/wordpress` in a new browser tab.
+It is also a good idea, especially in case of any problems, to browse through the entire log looking for any messages which might suggest a problem and watch for lines indicating that the various expected packages or commands were installed. If everything seems OK then add a floating IP to your newly created VM and go to `http://<your-newly-create-vms-ip>/wordpress` in a new browser tab to finalize installation.
 
-So in the matter a of a few minutes we have used a somewhat simplified and automated version of what we have done previously to create more or less the same result, a new WordPress site on a VM. In the next episodes we will look at how this was made possible with cloud-init and learn how this automation was created. Learning how to the WordPress installation was automated will allow you to generalize the creation of automated setups for other software stacks, which you know how to install so that you and others can benefit from your work in automation.
+So in the matter a of a few minutes we have used a somewhat simplified and automated version of what we have done previously to create more or less the same result, a new WordPress site on a VM. However, it is lacking an SSL certificate to encrypt data transmission. In the next episodes we will look at how this was made possible with cloud-init. Knowing how the WordPress installation was automated will allow you to generalize to the creation of automated setups for other similar software stacks.
