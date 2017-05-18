@@ -36,7 +36,7 @@ write_files:
       #!/bin/bash
       
       echo "making DB_PASSWORD ..."
-      DB_PASSWORD=$(</dev/urandom tr -dc _A-Z-a-z-0-9 | head -c16) # Generate a random password
+      DB_PASSWORD=$(tr -dc _A-Za-z0-9 < /dev/urandom | head -c16) # Generate a random password
       DB_NAME="wordpress"
       DB_USER="wordpress"
       DB_HOST=localhost
@@ -68,7 +68,7 @@ write_files:
       echo "configuring wordpress security keys ..."
       for i in $(seq 1 8)
       do
-        key=$(</dev/urandom tr -dc _A-Z-a-z-0-9 | head -c64)
+        key=$(tr -dc _A-Za-z0-9 < /dev/urandom | head -c64)
         sed -i "0,/put your unique phrase here/s/put your unique phrase here/$key/" /var/www/wordpress/wp-config.php
       done
       
@@ -109,7 +109,10 @@ $ ls -l
 {: .bash}
 ~~~
 total 1
--rwxrwxr-x 1 ubuntu ubuntu   32 May 12 15:23 bash_test.sh
+-rwxrwxr-x 1 ubuntu ubuntu         32 May 6 15:23 bash_test.sh
+-rw-rw-r-- 1 ubuntu ubuntu 1064304640 May 4 16:23 chris-geroux-persistent-june-6-2017.qcow2
+-rw-rw-r-- 1 ubuntu ubuntu       1597 May 2 17:40 openstackrc.sh
+-rw-rw-r-- 1 ubuntu ubuntu       2116 May 5 13:08 wordpress.yaml
 ~~~
 {: .output}
 notice that it has an `x` now in the permissions column for the `bash_test.sh` file indicating that it can be executed. We can now run the bash script with
@@ -138,7 +141,7 @@ hello world!
 Exploring how bash works can sometimes be easier and faster directly on the command line rather than in a script and as we just saw commands run in the terminal work similarly to those in a Bash script. For the next few sections of this episode we will simply run commands in the terminal in the interest of speed. However, when using scripts the commands will be saved and can be easily reused multiple times without having to retype all the commands, we will return to writing commands into our script later.
 
 ## Decoding the WordPress Bash script
-After the `echo` command the next line of the bash script in the cloud config file is `DB_PASSWORD=$(</dev/urandom tr -dc _A-Z-a-z-0-9 | head -c16) # Generate a random password` which has a lot happening here; lets come back to that later. Instead lets have a look at the next line, `DB_NAME="wordpress"`. This line is setting the **variable** `DB_NAME` to the string "wordpress". Lets try this out by typing the following commands in our Bash terminals:
+After the `echo` command the next line of the bash script in the cloud config file is `DB_PASSWORD=$(tr -dc _A-Za-z0-9 < /dev/urandom | head -c16) # Generate a random password` which has a lot happening here; lets come back to that later. Instead lets have a look at the next line, `DB_NAME="wordpress"`. This line is setting the **variable** `DB_NAME` to the string "wordpress". Lets try this out by typing the following commands in our Bash terminals:
 ~~~
 $ message="hello world!"
 $ echo $message
@@ -239,72 +242,164 @@ I am number 8
 ~~~
 {: .output}
 
-Lets turn our attention to the line we skipped earlier `DB_PASSWORD=$(</dev/urandom tr -dc _A-Z-a-z-0-9 | head -c16) # Generate a random password` and start to unpack it bit by bit. The portion after the `#` we know is a comment, so we can stop worrying about what that does. Also we know that the `DB_PASSWORD=` is a variable assignment. We also know that the `$( )` syntax says set the variable to the result of the command contained inside. So now we have to decode the `</dev/urandom tr -dc _A-Z-a-z-0-9 | head -c16`. Notice the `|` character, this is known as a **pipe**.
-
-Pipes allow you to direct the output of one command into another allowing you to chain a number of commands together with pipes into a pipeline. You will also notice the `head` command which displays some beginning portion a file or stream.
-
+Lets turn our attention to the line we skipped earlier `DB_PASSWORD=$(tr -dc _A-Za-z0-9 < /dev/urandom | head -c16) # Generate a random password` and start to unpack it bit by bit. The portion after the `#` we know is a comment and while the Bash shell ignores the text following the `#` it lets us know what this line is supposed to do, generate a random password. Also we know that the `DB_PASSWORD=` is a variable assignment so variable `DB_PASSWORD` will contain the final password value. We also know that the `$( )` syntax is replaced by the result of the command contained inside. So somehow the code inside the `$( )` generates the characters for the random password. So now we have to decode what `tr -dc _A-Za-z0-9 < /dev/urandom | head -c16` outputs. Lets examine this bit of Bash script one piece at a time, starting with `head -c16`. `head` is a command which displays the beginning portion of a file. 
 ~~~
-~~~
-
-## Redirects
-When we run a command the output from that command is generally printed to the terminal (also known as standard output or stdout for short). This output can be redirected to a file using the `>` redirect.
-
-~~~
-$ ls
+$ head wordpress.yaml
 ~~~
 {: .bash}
 ~~~
-bash_test.sh
+#cloud-config
+package_update: true
+package_upgrade: true
+packages:
+  - apache2
+  - mysql-server
+  - php
+  - libapache2-mod-php
+  - php-mcrypt
+  - php-mysql
 ~~~
 {: .output}
+As you can see the `head` command displayed the first 10 lines of the file. The number of lines it displays can be adjusted with the `-n` option followed by the number of lines to display
 ~~~
-$ ls > dir_list.txt
-$ cat dir_list.txt
+$ head -n 2 wordpress.yaml
 ~~~
 {: .bash}
 ~~~
-dir_list.txt
-test_bash.sh
+#cloud-config
+package_update: true
+~~~
+{: .output}
+In the cloud config Bash script, a `-c` option is used instead. This option indicates the number of bytes (and since a character is represented by a single byte in standard text files this translates into the number of characters to display. 
+
+~~~
+$ head -c 5 wordpress.yaml
+~~~
+{: .bash}
+~~~
+#clou
 ~~~
 {: .output}
 
-## Sed (Stream Editor)
+So we have some idea of what the `head -c16` is doing (note that options do not require a space between the option flag and the value), but where is it getting text from? Notice the `|` character just be for the `head` command, this is known as a **pipe**. Pipes allow you to direct the output of one command into another allowing you to chain a number of commands together with pipes into a pipeline.
 ~~~
-# sed -i
+$ cat wordpress.yaml | head -c5
 ~~~
 {: .bash}
+~~~
+#clou
+~~~
+{: .output}
+In the above pipeline we are using the `cat` command operating on the `wordpress.yaml` file which would normally display the entire file to the terminal, however, the pipe redirects that output to the head command which then only displays the first 5 bytes or characters.
 
----
-PREREQUISITES
-* Will need to describe YAML syntax and give some examples
-   * YAML lint for checking syntax
-   * very fussy about spaces/tabs etc.
-   * YAML lint might not catch errors in write_files contents.
-* file permissions (why?) Need set permissions if creating a file.
-* know about installation of packages in Linux
-* know about upgrading packages in Linux
-* have done some OpenStack CLI (e.g. `openstack server create`)
+Next lets look at the `tr` command which translates one set of characters to another set of characters. This command behaves a little different from some commands we have already been using like `cat` and `cd` in that it has been designed to work interactively. 
+~~~
+$ tr a-z A-Z
+~~~
+{: .bash}
+~~~
 
----
-OUTLINE
+~~~
+{: .output}
+After you press return, the command sits there waiting for input and does not return you to the command prompt. So lets give it some input.
+~~~
+hello
+HELLO
+what's up
+WHAT'S UP
+~~~
+{: .output}
+It is echoing back the string we type after we press enter but all in upper case. This is because when we started the `tr` command we told it to convert from the set of lower case characters `a-z` to the set of upper case characters `A-Z` and it leaves all other characters as they are. How do we stop this "parroting"? We signal to the command that we are at the end of a file by pressing `ctrl`+`D`. This command is getting its input from the characters we type into the terminal, this source of characters is referred to as standard input, stdin for short. Standard input does not have to come only from characters we type into the terminal but can also come from a file using what is known as a **redirect**. A redirect can direct the contents of a file to be directed to stdin. Redirects also work in the opposite direction, in that output going to the terminal, known as stdard output or stdout for short, can be redirected to a file. Redirects are indicated by either a `>` after a command followed by a file name to place the output to a file such as
+~~~
+$ echo "0 hello world!" > temp_out.txt
+$ cat temp_out.txt
+~~~
+{: .bash}
+~~~
+0 hello world!
+~~~
+{: .output}
+or by a `<` which directs the input for stdin should come from a file such as
+~~~
+$ tr a-z A-Z < temp_out.txt
+~~~
+{: .bash}
+~~~
+0 HELLO WORLD!
+~~~
+{: .output}
 
-The [Ubuntu CloudInit](https://help.ubuntu.com/community/CloudInit) page has a description of the various ways user-data can be used to configure a VM. Here we will focus on two: user-data scripts and cloud config data.
+Now lets look at the options given to the `tr` command in the cloud config file Bash script starting with `-d`. This option changes the behaviour of `tr` fairly substantially, instead of translating from one set to another, it deletes any characters in that set and prints all other characters to the terminal. Lets try it on our `temp_out.txt` file
+~~~
+$ tr -d a-z < temp_out.txt
+~~~
+{: .bash}
+~~~
+0  !
+~~~
+{: .output}
+It left the `0` two spaces `  ` and the `!` at the end, all the lower case letters have been deleted. The `-c` option specifies that the character set used should be the compliment of the set given, in other words all the characters except the ones specified.
+~~~
+$ tr -d -c a-z < temp_out.txt
+~~~
+{: .bash}
+~~~
+helloworld
+~~~
+{: .output}
+The output is the contents of the `temp_out.txt` file with all non-lower case letters removed.
 
-User-data script
-* runs a script, could be bash, sh, python, perl etc. provided the right requirements are met to run it on the VM
-* shebang at beginning of scripts indicates how the script should be run (e.g. "#!/bin/bash")
+> ## combining options
+> You might be wondering what the option `-cd` is. Actually it is two options the `-d` and the `-c` option. Options can often be combined together using only one `-`, though the ability to combine options can vary somewhat from command to command.
+>
+{: .callout}
 
-Cloud Config Data
-* begins with "#cloud-config"
+We are almost at the point where we can understand the line `DB_PASSWORD=$(tr -dc _A-Za-z0-9 < /dev/urandom | head -c16)`. However there is one piece left, the `/dev/urandom` this looks like a file and it does behave much like a file, however it has some special properties. For one thing every time you read from it you get different characters. In addition the "file" never ends, you can keep reading characters from it for ever, or until your computer dies. Also the characters read from this "file" are not always the usual characters we think of (e.g. lower and upper case letters, numbers, and punctuation) these characters are only a subset of all possible characters to be represented by one byte. A byte is composed of 8 bits. Each bit has 2 possible states, 0 or 1. If you have 8 bits together you have 2<sup>8</sup>=256 different possible values, so a character which is 1 byte, or 8 bits, has 256 different possible values. The list of possible values for characters represented by one byte on a computer are given by the [ASCII](http://www.asciitable.com/) table.
 
-Things which could be done using CloudInit
-* Add more than one user
-* Change the default user from (e.g. ubuntu, centos etc.)
-* Install software
-* Upgrade
-* Show them cloud init log `tail -f /var/log/cloud-init*.log`
-* Show them the log on horizon (how I usually look at it). Double check that this method and the method above contains the same information.
-* Create files
-* run commands (e.g. git clone etc.)
-* see file in dhsi-2016-master/cloud-init/step2_this_version_works.yaml (some tabs were replaced, and some echos were added)
-In the end want them to have a cloudInit yaml file which they can use to configure their wordpress site automatically using cloud init.
+![ASCII full table](../fig/asciifull.gif)
+![ASCII extended table](../fig/asciiextend.gif)
+
+The characters read from `/dev/urandom` can be any of the characters listed in the ASCII table. Lets combine what we have learnt above to see what characters we get when we read from `/dev/urandom`
+~~~
+$ head -c 10 < /dev/urandom
+~~~
+{: .bash}
+~~~
+NgH▒▒2a▒
+~~~
+{: .output}
+
+Lets now use `tr` command to remove odd characters from `/dev/urandom` and then use a pipe to send the result to `head` to limit the number of characters we get to 16.
+~~~
+$ tr -cd _a-zA-Z0-9 < /dev/urandom | head -c 16
+~~~
+{: .bash}
+~~~
+0OKlugIuS4_INaBb
+~~~
+{: .output}
+This is exactly what is used to create passwords and keys of random characters of various lengths, in this case of 16 characters.
+
+In the cloud config file there are a number of lines using the `sed` command which is a stream editor. So what is a stream? We have actually already been working with streams we just have not been calling them streams. A stream is a sequence of data elements which are made available over time. In our case these data elements have represented characters and have come from various places such as files and keyboard input. **stdin** and **stdout** we have talked about are streams. So how do you edit a stream? Well you put something in the middle of the stream to read data from it, and output different data, that is what `sed` does. 
+~~~
+# sed "s/l/d/" bash_test.yaml
+~~~
+{: .bash}
+~~~
+#!/bin/bash
+echo "hedlo world!"
+~~~
+{: .output}
+In this example we have use the file `bash_test.sh` as the input stream to `sed`. Then we told `sed` to substitute the string `l` with `d`. The `s` in the command we gave to `sed` indicates that we should substitute one string for another, with `/` bracketing each side of the search and replacement strings. This does not change the contents of the file, but instead just changed what was printed to the terminal. If we instead wanted to replace all the occurrences of `l` in the line we could append a `g` to the end of our `sed` command.
+~~~
+$ sed "s/l/d/g" bash_test.yaml
+~~~
+{: .bash}
+~~~
+#!/bin/bash
+echo "heddo wordd!"
+~~~
+{: .output}
+Finally if you feel like `sed` is doing what you want the `-i` option can be used to change the file in-place so that contents of the file are changed instead of being printed to the terminal. Be careful with this option as it overwrites what was there previously. There is much more that can be done with `sed`; here is a good [tutorial for sed](http://www.grymoire.com/Unix/Sed.html) illustrating many more of the capabilities of `sed`.
+
+The final bit of decoding of the cloud config Bash script is the lines below `mysql << EOF` which look like MySQL commands, well that is because they are. We have seen the `mysql` command already but what is the `<<` part? That is known as a **here document**. The `EOF` following the `<<` is a string which was chosen to indicate the end of the **here document**. Any string could be used for this but as soon as it is encountered the **here document** will end. So these lines are using the `mysql` command to create the "wordpress" database and grant permissions to the "wordpress" database user on this database. If the user does not exist it is created.
