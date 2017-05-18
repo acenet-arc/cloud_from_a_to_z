@@ -74,7 +74,7 @@ A hostname identifies a specific device on a network. For example you could have
 > 2. type `ifconfig`
 >
 > If using Mac:
-> 1. open the terminal (TODO: give steps to do this)
+> 1. open the terminal
 > 2. type `ifconfig`
 >
 > There is a good chance that you will not see the same IP address in the command line and from [ipv4.icanhazip.com](http://ipv4.icanhazip.com/) why?
