@@ -79,16 +79,57 @@ resources:
 ~~~
 {: .YAML}    
 
-The most important field is resource `type`. This is a required field and it specified what kind of cloud entity that will be deployed. You can find out more about resource types by using the Web GUI interface, clicking on Orchestration and then Resource Types in the menu.
+The most important field is resource `type`. This is a required field and it specified what kind of cloud entity that will be deployed. Really, the most effective way to explain the resource section is to create, execute, and then deconstruct a few basic examples - which we will do in subsequent sections. In the meantime, you can find out more about resource types by using the Web GUI interface, clicking on Orchestration and then Resource Types in the menu.
 
-<img src="../fig/web-screens/orchestration_resource_types_menu.png" alt="Web GUI Orchestration Menu"/>
+<img src="../fig/web-screens/orchestration_resource_types_menu.png" alt="Web GUI Orchestration Menu"/>  
 
-
-
-- **Output**:
+- **Output**: Again, these are outputs that provide information back to the user. The syntax for each output is similar to that used to specify an input parameter. We will include the output section in our first sample Heat template.  
 
 
 ## Creating Your First HOT
+
+To review the only required sections are: version, description, and resources. But it's import to illustrate all 5 sections in order to better understand how Heat works. The example listed below is a very basic template that creates and launches a simple virtual machine instance.
+
+~~~
+heat_template_version: 2015-04-30
+
+
+description: Simple HOT that deploys a virtual machine instance
+
+
+parameters:
+  key_name:
+    type: string
+    label: Key Pair Name
+    description: Name of the key-pair used to log into the VM
+    default: yoga3pro
+
+  image_id:
+    type: string
+    label: Image ID
+    description: Image used to deploy the VM
+    default: Ubuntu-16.04-Xenial-x64-2017-03
+
+  flavor:
+    type: string
+    label: Instance Type
+    description: Instance type used to deploy the VM
+    default: p2-3gb
+
+
+resources:
+  heat_vm:
+    type: OS::Nova::Server
+    properties:
+      key_name: { get_param: key_name }
+      image: { get_param: image_id }
+      flavor: { get_param: flavor }
+
+
+output:
+
+~~~
+{: .YAML}
 
 
 ## Executing Your First HOT
