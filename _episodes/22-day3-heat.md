@@ -83,7 +83,7 @@ The most important field is resource `type`. This is a required field and it spe
 
 <img src="../fig/web-screens/orchestration_resource_types_menu.png" alt="Web GUI Orchestration Menu"/>  
 
-- **Output**: Again, these are outputs that provide information back to the user. The syntax for each output is similar to that used to specify an input parameter. We will include the output section in our first sample Heat template.  
+- **Outputs**: Again, these are outputs that provide information back to the user. The syntax for each output is similar to that used to specify an input parameter. We will include the output section in our first sample Heat template.  
 
 
 ## Creating Your First HOT
@@ -126,15 +126,27 @@ resources:
       flavor: { get_param: flavor }
 
 
-output:
+outputs:
   instance_ip:
     description: IP Address of the deployed VM
     value: { get_attr: [heat_vm, first_address] }
 ~~~
 {: .YAML}
 
+So, in a nutshell, here's what's happening:  
+
+- First, I specified a heat template version that would be compatible with the version of OpenStack running on Arbutus.  
+
+- Then I wrote a brief description that summarizes what this template does.  
+
+- Next, I defined three parameters which describe the key pair, image, and flavor that I want to use for my instance and I assigned appropriate default values for Arbutus. (If, for example, I wanted to reuse this template to launch an instance on East Cloud, I would simply input values which were appropriate for that cluster and I wouldn't otherwise have to rewrite any sections of this template.)  
+
+- After that, I defined my virtual machine resource and assigned appropriate properties required to launch the instance.  
+
+- Finally, I defined an output which reported the IP address which was assigned to my VM.
 
 ## Executing Your First HOT
+
 
 
 ## Illustrating and Executing and Example WordPress HOT
