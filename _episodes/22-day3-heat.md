@@ -145,8 +145,33 @@ So, in a nutshell, here's what's happening:
 
 - Finally, I defined an output which reported the IP address which was assigned to my VM.
 
-## Executing Your First HOT
+## Executing Your First Stack
 
+Now that I have written my first template, I need to figure out how to execute it. The easiest method is to launch a stack using the Web Gui interface. You should already know how to log into the Web interface for Arbutus. Once there, select `Orchestration` and then click `Stacks` in the main menu. (See figure from previous section.)  
+
+NOTE from here to below is rough draft....
+
+In the Stacks window, click `Launch Stack`.
+
+[figure]
+
+In the Select Template window ensure the following:
+
+- Template Source: file
+
+- Template file: ....
+
+Then click Next
+
+[figure]
+
+In the Launch Stack window, provide a name for this stack, enter the password for your Arbutus account, and then review the default values for Instance Type, Image ID, and Key Pair Name. If you are satisfied click Launch.  
+
+[figure]
+
+Finish this when I get home...
+
+## Deleting Your First Stack
 
 
 ## Illustrating and Executing and Example WordPress HOT
