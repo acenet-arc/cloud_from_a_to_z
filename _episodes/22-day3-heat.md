@@ -18,13 +18,14 @@ In this episode we will learn how to perform automated cloud environment orchest
 
 It should be noted that Heat is considered to be a fairly advanced topic and might easily have its own dedicated course in order to cover all of its elements in depth. However, for the sake of this course, in order to get you started, we will introduce some basic information, illustrate some useful examples which you can execute yourself, and provide additional references that you can explore on your own, should you decide to increase your orchestration knowledge and skills.
 
+
 ## Terminology
 
 There are 5 basic components that make up OpenStack Heat. They are as follows:  
 
 - **Resources**: these are cloud objects that will be created or modified during the execution of your template. As previously mentioned, resources include key pairs, security groups, security rules, volumes, networks, and virtual machine instances.  
 
-- **Stack**: Heat refers to stacks as collections of cloud resources.
+- **Stacks**: Heat refers to stacks as collections of cloud resources.
 
 - **Parameters**: Heat uses parameters as a means for allowing users to provide various configuration input during the deployment state of template execution. Parameters allow you to reuse your templates in order to construct similar resources with different configuration information. For example, if you wanted to deploy 3 instances, you could use the same template but provide different input parameters for instance name, instance type, etc.  
 
@@ -33,7 +34,35 @@ There are 5 basic components that make up OpenStack Heat. They are as follows:
 - **Output**: Heat allows users to define input, as well as output parameters. Use output parameters if you require information about your stack such as private and floating IP addresses, or any additional information about your stack that you would have to look up yourself.   
 
 
-## Template Components
+## Heat Template Components
+
+As previously mentioned, a Heat Template is most commonly a YAML file that contains the following document sections:  
+
+- **Version**: Eash template must include a version key. The version key is specified in the `heat_template_version` field and it indicates both the format of the template and which features are validated and supported. In general, the version key is specified using either the date or code name of the Heat release. For example, for our course, since Arbutus is currently running OpenStack Kilo, we will specify the template version as `2015-04-30`. For more information about HOT versions, see [Heat template version](https://docs.openstack.org/developer/heat/template_guide/hot_spec.html#hot-spec-template-version).
+
+- **Description**: This is also a required section. It simply allows you to provide a brief explanation about the stack you are creating.
+
+- **Parameters**: This is an optional section. It provides a mechanism for users to specify various input parameters that are required to be provided during the template instantiation stage. These parameters are used to customize each deployment and, in order to fully automate the process, default values can be specified parameter. Parameters are defined in separate nested YAML blocks as follows:
+
+~~~
+parameters:
+  parameter_name:
+    type: string | number | json | comma_delimited_list | boolean
+    label: human-readable name of the parameter
+    description: description of the parameter
+    default: default value for parameter
+    hidden: true | false
+    constraints:
+      - parameter constraint 1
+    immutable: true | false
+~~~
+{: .YAML}
+
+Supported parameter types include: number, comma_delimited_list, json and boolean. Default values are used when a users don't specify their own values during deployment. You can declare parameters to be hidden, if you require that certain information should not be revealed upon request (such as passwords, etc). Constraints are rules that are validated by the OpenStack Heat engine during deployment. These rules might include valid instance types, images, number ranges, string length, string pattern, etc. If a specified parameter value violates a constraint, then the stack creation will fail. Finally, you can define whether or not you can later revise parameters by specifying the immutable field.  
+
+- **Resources**: This section defines the actual resources that comprise the stack deployed from an OpenStack Heat template.
+
+- **Output**:
 
 
 ## Creating Your First HOT
