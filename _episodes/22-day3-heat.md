@@ -20,6 +20,18 @@ It should be noted that Heat is considered to be a fairly advanced topic and mig
 
 ## Terminology
 
+There are 5 basic components that make up OpenStack Heat. They are as follows:  
+
+- **Resources**: these are cloud objects that will be created or modified during the execution of your template. As previously mentioned, resources include key pairs, security groups, security rules, volumes, networks, and virtual machine instances.  
+
+- **Stack**: Heat refers to stacks as collections of cloud resources.
+
+- **Parameters**: Heat uses parameters as a means for allowing users to provide various configuration input during the deployment state of template execution. Parameters allow you to reuse your templates in order to construct similar resources with different configuration information. For example, if you wanted to deploy 3 instances, you could use the same template but provide different input parameters for instance name, instance type, etc.  
+
+- **Templates**: templates are used to describe the stack and define the parameters. Another way to refer to a template is *Infrastructure as Code* (*IaC*).  
+
+- **Output**: Heat allows users to define input, as well as output parameters. Use output parameters if you require information about your stack such as private and floating IP addresses, or any additional information about your stack that you would have to look up yourself.   
+
 
 ## Template Components
 
