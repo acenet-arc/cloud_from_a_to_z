@@ -171,6 +171,8 @@ In the Launch Stack window, provide a name for this stack, enter the password fo
 
 Finish this when I get home...
 
+Still need an outputs screen shot
+
 ## Deleting Your First Stack
 
 
