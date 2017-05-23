@@ -127,7 +127,9 @@ resources:
 
 
 output:
-
+  instance_ip:
+    description: IP Address of the deployed VM
+    value: { get_attr: [heat_vm, first_address] }
 ~~~
 {: .YAML}
 
