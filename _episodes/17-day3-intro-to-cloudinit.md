@@ -4,14 +4,14 @@ title: "Automating with cloud-init"
 teaching: 30
 exercises: 0
 questions:
-- "What does Cloud-init do?"
-- "How can I specify a cloud config file when creating a new VM?"
+- "What does cloud-init do?"
+- "How can I specify a cloud-config file when creating a new VM?"
 - "How can I verify that the setup worked?"
 objectives:
-- "Provide a cloud config file to cloud-init."
+- "Provide a cloud-config file to cloud-init."
 - "View VM logs"
 keypoints:
-- "User data provided to a VM can be either a **cloud config** or **script** file."
+- "User data provided to a VM can be either a **cloud-config** or **script** file."
 - "User data can be set using the `--user-data` on the command line or using the *Post-Creation* tab when launching a VM within horizon."
 - "Cloud-init can be used to automate the initial installation of configuration of software"
 - "Cloud-init runs once after the first boot of a newly crated VM"
@@ -27,14 +27,14 @@ There are two main methods that could solve this problem. The first method is on
 As you might have guessed there is a better solution, [cloud-init](https://cloudinit.readthedocs.io/en/latest/index.html). Cloud-init is a set of python scripts and utilities which run various setup operations during the initial boot of your virtual machine. This can be used to automate the setup steps we performed yesterday. For common tasks such as installing packages it is not much harder than listing the names of the packages you wish to install and cloud-init will install them for you. You can also do things like configure the language and time-zone of the VM's operating system. You can add users to your VM and inject their public keys so they can login as soon as the VM has finished its first time setup. You can create files and run commands. If those files are scripts you can run them to perform various tasks such as editing configuration files, creating passwords and keys and anything you can write a script to do.
 
 To use cloud-init you provide a file or text describing what you would like cloud-init to do. This text or file can have various formats (see [cloud-init formats](https://help.ubuntu.com/community/CloudInit) for a list of available formats), but there are two formats which are worht mentioning here:
-* **User-data script** which allows you to specify a file containing a script of various commands or code you wish to execute at a very late stage in the boot sequence of the VM.
-* **Cloud Config Data** which allows you to specify common operations to perform (files to create, commands to run, etc.) and also less common operations by explicitly specifying the commands or scripts to run using the cloud config format.
+* **user-data script** which allows you to specify a file containing a script of various commands or code you wish to execute at a very late stage in the boot sequence of the VM.
+* **cloud-config data** which allows you to specify common operations to perform (files to create, commands to run, etc.) and also less common operations by explicitly specifying the commands or scripts to run using the cloud-config format.
 
-Before we get into the details of creating scripts or cloud config files to use with cloud-init to configure our VMs, lets see an example of a cloud-config file in action. We will work through this example together, and create a VM with a WordPress setup similar to what we did manually in previous episodes. There are some differences however for example the steps we took in the manual install for setting up SSL certificates or running the `mysql_secure_installation` script to improve MySQL database security have been omitted. With some effort though these additional steps could be included.
+Before we get into the details of creating scripts or cloud-config files to use with cloud-init to configure our VMs, lets see an example of a cloud-config file in action. We will work through this example together, and create a VM with a WordPress setup similar to what we did manually in previous episodes. There are some differences however for example the steps we took in the manual install for setting up SSL certificates or running the `mysql_secure_installation` script to improve MySQL database security have been omitted. With some effort though these additional steps could be included.
 
-When we can create a VM we pass the cloud config or script file to the VM which describes to cloud-init what commands should be issued. We can pass this file either in horizon, using the *Post-Creation* tab when clicking *Launch instance*. In this case you can either select *File* or *Direct Input* for your *Script Source*. If selecting *File* you can click *Choose File* to select your file from you workstation, or if selecting *Direct Input* you can copy and paste the contents of the file into the text box.
+When we can create a VM we pass the cloud-config or user-data file to the VM which describes to cloud-init what commands should be issued. We can pass this file either in horizon, using the *Post-Creation* tab when clicking *Launch instance*. In this case you can either select *File* or *Direct Input* for your *Script Source*. If selecting *File* you can click *Choose File* to select your file from you workstation, or if selecting *Direct Input* you can copy and paste the contents of the file into the text box.
 
-Alternatively you can provide the cloud config or script file when creating the VM with the `--user-data` option followed by the path to your script file. This is the method I will choose but feel free to use which ever method is best for you.
+Alternatively you can provide the cloud-config or user-data file when creating the VM with the `--user-data` option followed by the path to your script file. This is the method I will choose but feel free to use which ever method is best for you.
 
 ~~~
 $ ssh ubuntu@206.12.11.13
@@ -90,11 +90,11 @@ The setup will take some time as it is performing multiple steps.
 * downloading and installing updates to Ubuntu packages
 * installing PHP 
 * installing MySQL 
-* downloading Wordpress
+* downloading WordPress
 * configuring MySQL for WordPress
 * creating  unique authentication keys
 
-So how will we know when the setup is done? We can view the progress of the setup in the VMs log. This can be viewed in horizon if you click on the VM's name in the *instances* table and the select the *log* tab. This shows the last 35 lines of the console log. To see more of the log you can either increase the number of lines to display in the text box and then click *Go* or click *View Full Log* which shows the full log text in a separate tab of your browser. Click the *Go* button can also be used to update the console log as more content can be added to the log if the setup process is still ongoing. Once the setup has compeleted the last few lines in this log should look something like:
+So how will we know when the setup is done? We can view the progress of the setup in the VMs log. This can be viewed in horizon if you click on the VM's name in the *instances* table and the select the *log* tab. This shows the last 35 lines of the console log. To see more of the log you can either increase the number of lines to display in the text box and then click *Go* or click *View Full Log* which shows the full log text in a separate tab of your browser. Click the *Go* button can also be used to update the console log as more content can be added to the log if the setup process is still ongoing. Once the setup has completed the last few lines in this log should look something like:
 
 ~~~
 [  205.098433] cloud-init[1266]: 2017-05-11 17:28:05 (11.7 MB/s) - '/tmp/latest.tar.gz' saved [8040021/8040021]
@@ -133,6 +133,10 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDCZCgUgIJrY8w3e9STo0FV4484IzsTT71R+17k7fu1
 [  OK  ] Reached target Cloud-init target.
 ~~~
 {: .output}
+
+> ## Cloud-init logs
+> The information in the log displayed above is constructed from a the system log on the VM `/var/log/syslog`. The log  `/var/log/cloud-init-output.log` contains the stdout and stderr from cloud-init, the content of which is also included in `/var/log/syslog`. There is also a `/var/log/cloud-init.log` log which contains logging information written from cloud-init directly into this logging file (e.g. not written to stdout or stderr first, but instead directly to the logging file from cloud-init).
+{: .callout}
 
 It is also a good idea, especially in case of any problems, to browse through the entire log looking for any messages which might suggest a problem and watch for lines indicating that the various expected packages or commands were installed. If everything seems OK then add a floating IP to your newly created VM and go to `http://<your-newly-create-vms-ip>/wordpress` in a new browser tab to finalize installation.
 
