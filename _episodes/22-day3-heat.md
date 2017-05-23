@@ -56,11 +56,34 @@ parameters:
       - parameter constraint 1
     immutable: true | false
 ~~~
-{: .YAML}
+{: .YAML}    
 
 Supported parameter types include: number, comma_delimited_list, json and boolean. Default values are used when a users don't specify their own values during deployment. You can declare parameters to be hidden, if you require that certain information should not be revealed upon request (such as passwords, etc). Constraints are rules that are validated by the OpenStack Heat engine during deployment. These rules might include valid instance types, images, number ranges, string length, string pattern, etc. If a specified parameter value violates a constraint, then the stack creation will fail. Finally, you can define whether or not you can later revise parameters by specifying the immutable field.  
 
-- **Resources**: This section defines the actual resources that comprise the stack deployed from an OpenStack Heat template.
+- **Resources**: This section defines the actual resources that comprise the stack deployed from an OpenStack Heat template. Similar to parameters, resources are defined in separate nested YAML blocks as follows:
+
+~~~
+resources:
+  resource_id:
+    type: resource type
+    properties:
+      property_name_1: property value 1
+      ...
+    metadata:
+      <resource specific metadata>
+    depends_on: resource ID / list of resource IDs
+    update_policy: dictionary of update policies
+    deletion_policy: deletion policy
+    external_id: external resource ID
+    condition: condition name, expression, or boolean
+~~~
+{: .YAML}    
+
+The most important field is resource `type`. This is a required field and it specified what kind of cloud entity that will be deployed. You can find out more about resource types by using the Web GUI interface, clicking on Orchestration and then Resource Types in the menu.
+
+<img src="../fig/web-screens/orchestration_resource_types_menu.png" alt="Web GUI Orchestration Menu"/>
+
+
 
 - **Output**:
 
