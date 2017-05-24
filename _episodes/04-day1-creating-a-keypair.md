@@ -2,7 +2,7 @@
 layout: episode
 title: "Creating a keypair"
 teaching: 15
-exercises: 0
+exercises: 15
 questions:
 - "What is a shell?"
 - "What is SSH?"
@@ -81,6 +81,24 @@ There is a common file system layout across most Linux systems. The below figure
 > The home directory path will look different on different operating systems. On Linux it might look like `/home/cgeroux` but on windows using mobaXterm it might look like `/home/mobaxterm` or on a Mac like `/Users/cgeroux`.
 {: .callout}
 
+So far we have been using what are known as **absolute paths**. An absolute path is a path which starts with a `/` that is they start from the root of the file system. Absolute paths reference the same location no matter where they are used. There are also paths known as **relative paths** which are relative to your current working directory. These can either start with a `.` to indicate the current directory (e.g. `./Documents/pictures`), or the can just start with the directory name (e.g. `Documents/pictures`). This is different from an absolute directory which always begins with a `/`.
+
+Lets try moving up to the parent directory using a relative path.
+~~~
+$ cd ..
+$ pwd
+~~~
+{: .bash}
+~~~
+/home
+~~~
+{: .output}
+Then back to our home directory.
+~~~
+$ cd cgeroux
+~~~
+{: .bash}
+
 The command to create a new key pair is `ssh-keygen` but before we run it lets have a look at the manual pages for the command by typing
 ~~~
 $ man ssh-keygen
@@ -102,9 +120,9 @@ SYNOPSIS
 ...
 ~~~
 {: .output}
-Many commands have manual pages, so executing the command `man <some-command-name>` will display information about that command, how to use it, and the options available for that command. Options for a command are specified after the command with a `-` followed directly by the option identifier for example, `-a`. If you scroll down the manual pages (by pressing the down arrow key) and read the description, you will notice that this command creates a key in the `~/.ssh` directory. The `~` is a synonym for your home directory (e.g. `/home/cgeroux`) and the `.` at the beginning of the directory name indicates that the directory is hidden. The command `ls` is used to list the file structure, or in other words list files and directories inside a directory given as an argument to the command. If no argument is given `ls` will list the files and directories inside the current directory. Hidden files will not be shown by the `ls` command unless the `-a` option is used. 
+Many commands have manual pages, so executing the command `man <some-command-name>` will display information about that command, how to use it, and the options available for that command. Options for a command are specified after the command with a `-` followed directly by the option identifier for example, `-a`. If you scroll down the manual pages (by pressing the down arrow key) and read the description, you will notice that this command creates a key in the `~/.ssh` directory. The `~` is a synonym for your home directory (e.g. `/home/cgeroux`) and the `.` at the beginning of the directory name indicates that the directory or file is hidden. The command `ls` is used to list the file structure, or in other words list files and directories inside a directory given as an argument to the command. If no argument is given `ls` will list the files and directories inside the current directory. Hidden files will not be shown by the `ls` command unless the `-a` option is used. 
 
-Lets check to see if you have a `.ssh` folder already in your home directory
+Lets check to see if you have a `.ssh` folder already in your home directory.
 ~~~
 $ ls -a ~
 ~~~
@@ -116,7 +134,10 @@ $ ls -a ~
 .bash_history             .ssh                      MyDocuments
 ~~~
 {: .output}
-if you do, have a look inside
+
+Notice that in addition to the hidden directory `.ssh` we also have hidden directories `.` and `..` as well as others. The `.` and `..` are special directories. The double dot is a shortcut for the parent directory, or the directory which contains your home directory. The single dot is a shortcut for the directory its self, your home directory, as was mentioned when talking about relative paths. The single dot can be used to reference the current directory by starting the path with a `.` (e.g. `./MyDocuments`).
+
+If you do have a `.ssh` folder, have a look inside.
 ~~~
 $ ls ~/.ssh/
 ~~~
@@ -188,7 +209,7 @@ $ cat ~/.ssh/id_rsa.pub
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxo6H/dDFLunQOUKnTUxNfHTsDfARFdFjqyJrf2udOBAzm7hg/w4SaHAqF1b1DvmGhwKwXW6lXYkdsiA5d4IK/Cg8GZ7l74J1QTQ+e6JkdvOmVlTGnu6PTesd++6jZUeiF9Im0ksGPTYo8QH/5k1eHUMwWpUh9xfX0Z56IdUyNxx+/QaeCc61sUvIPf+w2Vm/zC44C+v5OX4lDWlamLf2b0u6be5L99UXWN8741354auMP8qVMidRq8jQjUmlto30b/2H9bMFGQ63eEApEnhe6s+qdxVlbLkKHT2H905ydXf4knAY3TGlgylBNbXjeiJEp9mKlQ5LnIi6rayxzDrIv cgeroux@Caelia
 ~~~
 {: .output}
-Your public key can be given out freely, but remember to keep your private key secret. One final thing I would like to point out about keys is their file permissions. Run the command
+Your public key can be given out freely, but remember to keep your private key secret. One final thing I would like to point out about keys is their file permissions. Run the command `ls` command with the `-l` option to show the permissions on the files inside the `.ssh` folder.
 ~~~
 $ ls -l ~/.ssh/
 ~~~
@@ -198,12 +219,14 @@ $ ls -l ~/.ssh/
 -rw-r--r--    1 cgeroux  UsersGrp       396 Mar 31 15:12 id_rsa.pub
 ~~~
 {: .output}
-to show the permissions on the files inside the `.ssh` folder. The file permissions are displayed in the far left column. Possible file permissions are `r` for read, `w` for write, and `x` for execute. You will notice the dashes which indicate unset permissions. The first `-` will be a `d` if the item is a directory next followed by the three permissions (rwx) for the owner (in this case the user `cgeroux`). Next are the permissions for the group the file belongs to (in this case `UsersGrp`) and finally the permissions for everyone else. In this case you can see that the private key `id_rsa` is actually readable by any user on this computer. Since you should keep your private key private it is good practice to set the permissions on this file to be readable only by the owner of the file. This can be done using the `chmod` command.
+The file permissions are displayed in the far left column. Possible file permissions are `r` for read, `w` for write, and `x` for execute. You will notice the dashes which indicate unset permissions. The first `-` will be a `d` if the item is a directory next followed by the three permissions (rwx) for the user who owns the file (in this case the user `cgeroux`). Next are the permissions for the group the file belongs to (in this case `UsersGrp` users and files can belong to groups) and finally the permissions for everyone else. In this case you can see that the private key `id_rsa` is actually readable by any user on this computer. Since you should keep your private key private it is good practise to set the permissions on this file to be readable only by the owner of the file. This can be done using the `chmod` command.
 ~~~
 $ chmod og-r ~/.ssh/id_rsa
 ~~~
 {: .bash}
-this will remove read (-r) permissions for others (o) and members of the files group (g). Now running
+The above command will remove (`-`) read (`r`) permissions for others (`o`) and members of the file's group (`g`). You can also specify changes in permissions for the user which owns the file with `u` and add permissions by using a `+` instead of the `-` as well as specify multiple permissions at once (e.g. `chmod u+rwx <file-name>`).
+
+Issuing the `ls` command again shows the changes to the permissions.
 ~~~
 $ ls -l ~/.ssh
 ~~~ 
@@ -235,10 +258,83 @@ lrwxrwxrwx    1 cgeroux  UsersGrp        28 May 18  2016 LauncherFolder -> /driv
 lrwxrwxrwx    1 cgeroux  UsersGrp        33 May 18  2016 MyDocuments -> /drives/C/Users/cgeroux/DOCUME~1/
 ~~~
 {: .output}
-If these permissions are to open the command we use to connect to other computers may complain. 
+If these permissions are too open the command we use to connect between computers may complain. 
 > ## File permissions variations
 >
 > In the case of mobaXterm the `ssh` command does not require strict permissions, however on Linux machines or Macs the `ssh` command does require stricter permissions before it will allow you to connect using a private key. In addition depending on the details of your windows operating system and version of mobaXterm you may or may not actually be able to change file permissions wihtin mobaXterm.
 {: .callout}
 
 Now we have a key pair we can use to connect to our the VM we will create in the next episode.
+
+> ## Absolute vs Relative Paths
+>
+> Starting from `/Users/amanda/data/`,
+> which of the following commands could Amanda use to navigate to her home directory,
+> which is `/Users/amanda`?
+>
+> 1. `cd .`
+> 2. `cd /`
+> 3. `cd /home/amanda`
+> 4. `cd ../..`
+> 5. `cd ~`
+> 6. `cd home`
+> 7. `cd ~/data/..`
+> 8. `cd`
+> 9. `cd ..`
+>
+> > ## Solution
+> > 1. No: `.` stands for the current directory.
+> > 2. No: `/` stands for the root directory.
+> > 3. No: Amanda's home directory is `/Users/amanda`.
+> > 4. No: this goes up two levels, i.e. ends in `/Users`.
+> > 5. Yes: `~` stands for the user's home directory, in this case `/Users/amanda`.
+> > 6. No: this would navigate into a directory `home` in the current directory if it exists.
+> > 7. Yes: unnecessarily complicated, but correct.
+> > 8. Yes: shortcut to go back to the user's home directory.
+> > 9. Yes: goes up one level.
+> {: .solution}
+{: .challenge}
+
+> ## Relative Path Resolution
+>
+> Using the filesystem diagram below, if `pwd` displays `/Users/thing`,
+> what will `ls ../backup` display?
+>
+> 1.  `../backup: No such file or directory`
+> 2.  `2012-12-01 2013-01-08 2013-01-27`
+> 3.  `2012-12-01/ 2013-01-08/ 2013-01-27/`
+> 4.  `original pnas_final pnas_sub`
+>
+> ![File System for Challenge Questions](../fig/filesystem-challenge.svg)
+>
+> > ## Solution
+> > 1. No: there *is* a directory `backup` in `/Users`.
+> > 2. No: this is the content of `Users/thing/backup`,
+> >    but with `..` we asked for one level further up.
+> > 3. No: see previous explanation.
+> >    Also, we did not specify `-F` to display `/` at the end of the directory names.
+> > 4. Yes: `../backup` refers to `/Users/backup`.
+> {: .solution}
+{: .challenge}
+
+> ## File permissions
+>
+> The `touch` command can be used to create a new empty file or to change the time which the file was last modified if it already exists. Use the `touch` command to create a new file. 
+> ~~~
+> $ touch ~/file-name
+> ~~~
+> {: .bash}
+> Then view and adjust the file permissions so that only "others" (`o`) have read/write access. Can you as the owner still read the file?
+> > ## Solution
+> > 
+> > ~~~
+> > $ chmod ug-rwx ~/file-name
+> > $ cat ~/file-name
+> > ~~~
+> > {: .bash}
+> > ~~~
+> > cat: /home/cgeroux/test.txt: Permission denied
+> > ~~~
+> > {: .output}
+> {: .solution}
+{: .challenge}

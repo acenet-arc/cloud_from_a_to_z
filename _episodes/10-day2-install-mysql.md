@@ -32,9 +32,9 @@ $ sudo apt install mysql-server -y
 ~~~
 {: .bash}   
 
-In my case, `apt` installed an additional 20 software packages and libraries in order to fulfill various required MySQL application dependencies.  
+In my case, `apt` installed an additional 20 software packages and libraries in order to fulfil various required MySQL application dependencies.  
 
-During the installation, you will be prompted -- repeatedly -- to set a password for the MySQL administrative 'root' user. (This is not to be confused with Ubuntu's 'root' user account.) You should leave this blank and select `<Ok>` because, later on, we will execute a script which allows us to better secure our MySQL environment.  
+During the installation, you will be prompted -- repeatedly -- to set a password for the MySQL administrative 'root' user. (This is not to be confused with Ubuntu's 'root' user account.) You should leave this blank and select `<Ok>` because, later on, we will execute a script which allows us to better secure our MySQL environment and the root password will be set then. 
 
 
 ## Fixing the MySQL 'root' account authentication scheme
@@ -43,7 +43,7 @@ Before we do anything, we need to fix the default method that Ubuntu uses to aut
 
 To achive this, we will configure MySQL to use native password authentication for its 'root' account simply by running a couple of database administrator commands.
 
-First log into MySQL using as 'root'.
+First log into MySQL as 'root'.
 
 ~~~
 $ sudo mysql -u root
@@ -81,8 +81,7 @@ You can turn off this feature to get a quicker startup with -A
 Database changed
 ~~~
 {: .output}
-
-Next, execute a SQL `update` command to change the authentication scheme for the MySQL 'root' user.
+This indicates to MySQL that all the commands to come will work with this database. Next, execute a SQL `update` command to change the authentication scheme for the MySQL 'root' user.
 
 ~~~
 mysql> UPDATE user SET plugin='mysql_native_password' WHERE User='root';
