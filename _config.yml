@@ -46,6 +46,8 @@ collections:
     permalink: /:path/
   extras:
     output: true
+  projects:
+    output: true
 
 # Set the default layout for things in the episodes collection.
 defaults:
