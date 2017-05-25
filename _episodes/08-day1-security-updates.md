@@ -20,7 +20,7 @@ keypoints:
 
 Any computer connected to the Internet is vulnerable to attacks. One of the easiest ways to help protect your cloud VM against these attacks is applying updates regularly.
 
-Connect from your workstation via SSH to the VM that you created in the previous episode. For review, that should look something like this:
+If you are not already connected from your workstation via SSH to the VM that you created in the previous episode do so now. For review, that should look something like this:
 ~~~
 [you@yourworkstation]$ ssh -i <your_priv_key> ubuntu@<your_floating_ip>
 ~~~
@@ -44,7 +44,7 @@ Last login: Thu Mar 16 22:04:19 2017 from 24.86.86.43
 ~~~
 {: .output}
 
-We will use both the `sudo` and `apt` commands to apply updates to the VM. `sudo` gives us super user or administrator privileges. `apt` is used to install, update, and remove Ubuntu software packages. You might have noticed that when you connect to a VM for the first time it actually says there are no packages to be updated. This does not actually mean that all packages are up-to-date but that the Operating system just does not know that any packages can be updated. To remedy this we use the `apt update` command which updates the packages database.
+We will use both the `sudo` and `apt` commands to apply updates to the VM. The `sudo` command gives us, temporarily, super user or administrator privileges just for the command it has been given as an argument. The `apt` command is used to install, update, and remove Ubuntu software packages. It needs super user permissions because it modifies operating system files and you wouldn't want ordinary users to do this either intentionally or by mistake. You might have noticed that when you connect to a VM for the first time it actually says there are no packages to be updated. This does not actually mean that all packages are up-to-date but that the Operating system just does not know that any packages can be updated. To remedy this we use the `apt update` command which updates the packages database.
 ~~~
 $ sudo apt update
 ~~~
@@ -95,7 +95,7 @@ ff02::3 ip6-allhosts
 ~~~
 {: .output}
 
-The line beginning `127.0.0.1` is the start of the file, lines above that display information about the file you are editing and the version of nano you are using. At the bottom you can see the tasks you can perform such as `Write Out` which writes the edits you made to a the file. To perform this task you would press the Ctrl key and the `O` key at the same time. It will prompt you to change the file name (press enter to keep the same name). In our case we want to add the text `wordpress-vm` at the end of the line starting `127.0.0.1` which is a special IP  used to identify the current VM. This means that it can not be used by another VM to refer to this VM. After the hostname is added to the end of the first line press `Ctrl+X` to exit. Be sure to answer `y` to "Save modified buffer?" to save the edits made to the file. Then press return to write to the edited file to the original file name.
+The line beginning `127.0.0.1` is the start of the file, lines above that display information about the file you are editing and the version of nano you are using. At the bottom you can see the tasks you can perform such as `Write Out` which writes the edits you made to a file. To perform this action you would press the Ctrl key and the `O` key at the same time (that is what the `^O` represents ctrl+O). It will prompt you to change the file name (press enter to keep the same name). In our case we want to add the text `wordpress-vm` (or what ever the hostname of your VM is) at the end of the line starting `127.0.0.1`. `127.0.0.1` is a special IP  used to identify the current VM within the current VM. This means that it can not be used by another VM to refer to this VM. After the hostname is added to the end of the first line press `Ctrl+X` to exit. Be sure to answer `y` to "Save modified buffer?" to save the edits made to the file. Then press return to write to the edited file to the original file name and exit nano.
 
 With that out of the way, lets install the updated packages. We will use the `-y` option with the `apt upgrade` command which tells it not to ask for confirmation and just assume we said "yes" to any questions it may ask us.
 ~~~
@@ -122,7 +122,7 @@ $ sudo reboot
 ~~~
 {: .bash}
 
-This will disconnect us from our VM and we will need to wait some time (~ 1 minute) for the VM to finish rebooting before trying reconnect.
+This will disconnect us from our VM and we will need to wait some time (~ 1 minute) for the VM to finish rebooting before trying to reconnect.
 ~~~
 $ ssh ubuntu@206.167.181.126
 ~~~
