@@ -1,6 +1,6 @@
 ---
 layout: episode
-title: "Install MySQL"
+title: "Installing MySQL"
 teaching: 40
 exercises: 0
 questions:
@@ -18,33 +18,24 @@ start: true
 start_time: 540
 ---
 
-In this episode we will install and configure the **MySQL Relational Database System**. MySQL is a free, open source database management system that runs as a service on your virtual machine. It allows multiple clients to create and manage numerous databases.  
+In this episode we will install and configure **MySQL** which is a **relational database management system** or **RDBMS**. Lets unpack what an RDBMS is. First what is a database? A MySQL database contains a set of tables (think excel or Google spread sheets where you have rows and columns of data) containing related data. So what is a *relational* database? A relational database has its data organization based on the relational [model of data](https://en.wikipedia.org/wiki/Relational_model), which basically means that data is stored in such a way to make **queries** (requests for specific pieces of the data) on the database efficient.
 
-WordPress requires a relational database system in order to organize and provide access to a database (which we will create later) that will store our WordPress site's information. This information includes posts pages, comments, categories, tags, custom fields, user data, URLs, and numerous site options.
+MySQL is a free, open source RDBMS that runs as a service on your virtual machine. It allows multiple clients to create and manage numerous databases. A client is a program or user who access or modifies data in databases which the MySQL service manages.
 
+WordPress requires an RDBMS to store our site's information, including posts, pages, comments, categories, tags, custom fields, user data, URLs, and numerous site options.
 
 ## Installing the MySQL server package
-
-Let's install the MySQL server package on our VM. Once again, we will use the `apt` command and we will elevate our account to use administrative privileges via the `sudo` command.
-
+Let's install the MySQL server package on our VM which on Ubuntu is named `mysql-server`.
 ~~~
 $ sudo apt install mysql-server -y
 ~~~
-{: .bash}   
+{: .bash}
+In this case, `apt` installed an additional 20 software packages and libraries in order to fulfil various required MySQL application dependencies.
 
-In my case, `apt` installed an additional 20 software packages and libraries in order to fulfil various required MySQL application dependencies.  
+During the installation, you will be prompted -- repeatedly -- to set a password for the MySQL administrative 'root' user (this is not to be confused with Ubuntu's 'root' user account). You should leave this blank and select `<Ok>`, as later on we will execute a script which allows us to better secure our MySQL environment and the root password will be set then.
 
-During the installation, you will be prompted -- repeatedly -- to set a password for the MySQL administrative 'root' user. (This is not to be confused with Ubuntu's 'root' user account.) You should leave this blank and select `<Ok>` because, later on, we will execute a script which allows us to better secure our MySQL environment and the root password will be set then. 
-
-
-## Fixing the MySQL 'root' account authentication scheme
-
-Before we do anything, we need to fix the default method that Ubuntu uses to authenticate the MySQL 'root' user. By default, Ubuntu does not configure the MySQL 'root' account to use MySQL native password authentication. This means that you can log into Ubuntu using Ubuntu's 'root' administrator account (or use `sudo`) and then, when you subsequently log into MySQL, you would never be prompted for a password. We want to disable this behavior.  
-
-To achive this, we will configure MySQL to use native password authentication for its 'root' account simply by running a couple of database administrator commands.
-
-First log into MySQL as 'root'.
-
+## Basic MySQL Operations
+Lets try out our newly installed MySQL server. Lets start by connecting to our MySQL server using the MySQL monitor program which comes with our installation. A MySQL server can be a local server, in that it is running on the same computer you are working on, or it could be running on some other computer, in our case it is running locally.
 ~~~
 $ sudo mysql -u root
 ~~~
@@ -66,22 +57,159 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 mysql>
 ~~~
 {: .output}
+We have just started up the `mysql` monitor command line tool and connected to our MySQL server as the MySQL `root` user. We have done this with super user privileges. We have mentioned that the MySQL root user is different from the Ubuntu root user, in fact you can have a number of users who can connect to your MySQL server and they do not have to have accounts on your VM. MySQL manages these user accounts in databases just as it does for everything else. Lets take a look around to see what we start with in our MySQL server. At this point we are presented with a new prompt `mysql>` which allows us to issuse commands to send to the MySQL server.
 
-Then select the `mysql` database.
+~~~
+mysql> SHOW DATABASES;
+~~~
+{: .bash}
+~~~
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.00 sec)
+~~~
+{: .output}
+This command tells the MySQL to show us the databases it manages. The `;` at the end of the command lets MySQL know that we have finished writing our command. This makes it easy to spread commands across lines if needed. Commands are case insensitive, meaning we can use either lower or upper case characters and it will behave the same in both cases. However, it is convention to use upper case letters for MySQL commands to distinguish them from things like database and table names. 
 
+As you can see there are already 4 databases in your fresh new installation. The `information_schema` database contains information about all the other databases managed by the MySQL server. The `performance_schema` and `sys` databases contain data about the performance of various server events such as queries on tables and how that performance data can be interpreted. Finally the `mysql` database contains information used in managing the MySQL server, such as user information. It would be nice to see a list of users on our MySQL server. Does our MySQL server only have a root user? Lets have a deeper look at this database to see if we can figure it out. To start working with a database you need to tell MySQL you want to `use` it.
 ~~~
 mysql> USE mysql;
 ~~~
 {: .bash}
-
 ~~~
-Reading table information for completion of table and column names
-You can turn off this feature to get a quicker startup with -A
-
 Database changed
 ~~~
 {: .output}
-This indicates to MySQL that all the commands to come will work with this database. Next, execute a SQL `update` command to change the authentication scheme for the MySQL 'root' user.
+
+As was mentioned, databases contain tables, so lets have a look at what tables the `mysql` database contains.
+~~~
+mysql> SHOW TABLES;
+~~~
+{: .bash}
+~~~
++---------------------------+
+| Tables_in_mysql           |
++---------------------------+
+| columns_priv              |
+| db                        |
+| engine_cost               |
+| event                     |
+| func                      |
+| general_log               |
+| gtid_executed             |
+| help_category             |
+| help_keyword              |
+| help_relation             |
+| help_topic                |
+| innodb_index_stats        |
+| innodb_table_stats        |
+| ndb_binlog_index          |
+| plugin                    |
+| proc                      |
+| procs_priv                |
+| proxies_priv              |
+| server_cost               |
+| servers                   |
+| slave_master_info         |
+| slave_relay_log_info      |
+| slave_worker_info         |
+| slow_log                  |
+| tables_priv               |
+| time_zone                 |
+| time_zone_leap_second     |
+| time_zone_name            |
+| time_zone_transition      |
+| time_zone_transition_type |
+| user                      |
++---------------------------+
+31 rows in set (0.00 sec)
+~~~
+{: .output}
+Notice the table at the bottom called `user` this is where information about MySQL users is stored. Lets see what this table looks like.
+~~~
+mysql> DESCRIBE user;
+~~~
+{: .bash}
+~~~
++------------------------+-----------------------------------+------+-----+-----------------------+-------+
+| Field                  | Type                              | Null | Key | Default               | Extra |
++------------------------+-----------------------------------+------+-----+-----------------------+-------+
+| Host                   | char(60)                          | NO   | PRI |                       |       |
+| User                   | char(32)                          | NO   | PRI |                       |       |
+| Select_priv            | enum('N','Y')                     | NO   |     | N                     |       |
+| Insert_priv            | enum('N','Y')                     | NO   |     | N                     |       |
+| Update_priv            | enum('N','Y')                     | NO   |     | N                     |       |
+| Delete_priv            | enum('N','Y')                     | NO   |     | N                     |       |
+| Create_priv            | enum('N','Y')                     | NO   |     | N                     |       |
+| Drop_priv              | enum('N','Y')                     | NO   |     | N                     |       |
+| Reload_priv            | enum('N','Y')                     | NO   |     | N                     |       |
+| Shutdown_priv          | enum('N','Y')                     | NO   |     | N                     |       |
+| Process_priv           | enum('N','Y')                     | NO   |     | N                     |       |
+| File_priv              | enum('N','Y')                     | NO   |     | N                     |       |
+| Grant_priv             | enum('N','Y')                     | NO   |     | N                     |       |
+| References_priv        | enum('N','Y')                     | NO   |     | N                     |       |
+| Index_priv             | enum('N','Y')                     | NO   |     | N                     |       |
+| Alter_priv             | enum('N','Y')                     | NO   |     | N                     |       |
+| Show_db_priv           | enum('N','Y')                     | NO   |     | N                     |       |
+| Super_priv             | enum('N','Y')                     | NO   |     | N                     |       |
+| Create_tmp_table_priv  | enum('N','Y')                     | NO   |     | N                     |       |
+| Lock_tables_priv       | enum('N','Y')                     | NO   |     | N                     |       |
+| Execute_priv           | enum('N','Y')                     | NO   |     | N                     |       |
+| Repl_slave_priv        | enum('N','Y')                     | NO   |     | N                     |       |
+| Repl_client_priv       | enum('N','Y')                     | NO   |     | N                     |       |
+| Create_view_priv       | enum('N','Y')                     | NO   |     | N                     |       |
+| Show_view_priv         | enum('N','Y')                     | NO   |     | N                     |       |
+| Create_routine_priv    | enum('N','Y')                     | NO   |     | N                     |       |
+| Alter_routine_priv     | enum('N','Y')                     | NO   |     | N                     |       |
+| Create_user_priv       | enum('N','Y')                     | NO   |     | N                     |       |
+| Event_priv             | enum('N','Y')                     | NO   |     | N                     |       |
+| Trigger_priv           | enum('N','Y')                     | NO   |     | N                     |       |
+| Create_tablespace_priv | enum('N','Y')                     | NO   |     | N                     |       |
+| ssl_type               | enum('','ANY','X509','SPECIFIED') | NO   |     |                       |       |
+| ssl_cipher             | blob                              | NO   |     | NULL                  |       |
+| x509_issuer            | blob                              | NO   |     | NULL                  |       |
+| x509_subject           | blob                              | NO   |     | NULL                  |       |
+| max_questions          | int(11) unsigned                  | NO   |     | 0                     |       |
+| max_updates            | int(11) unsigned                  | NO   |     | 0                     |       |
+| max_connections        | int(11) unsigned                  | NO   |     | 0                     |       |
+| max_user_connections   | int(11) unsigned                  | NO   |     | 0                     |       |
+| plugin                 | char(64)                          | NO   |     | mysql_native_password |       |
+| authentication_string  | text                              | YES  |     | NULL                  |       |
+| password_expired       | enum('N','Y')                     | NO   |     | N                     |       |
+| password_last_changed  | timestamp                         | YES  |     | NULL                  |       |
+| password_lifetime      | smallint(5) unsigned              | YES  |     | NULL                  |       |
+| account_locked         | enum('N','Y')                     | NO   |     | N                     |       |
++------------------------+-----------------------------------+------+-----+-----------------------+-------+
+45 rows in set (0.01 sec)
+~~~
+{: .output}
+This command tells us about all the columns in the `user` table. Some interesting columns from a security perspective are `User` which is the actual user name, `Host` which tells you which host (or computer) the user is allowed to connect from. Host is set to `localhost` if the user is only allowed to connect from the computer were the MySQL server is running. Also of interest is the `authentication_string` and `plugin` column which tells us about their password and how to authenticate a MySQL user. Passwords are often encrypted depending on the `plugin` or authentication scheme used so that looking at the `authentication_string` column for a user does not tell you their password but rather what the password will be once it has been encrypted. It is not possible to retrieve a password from an encrypted `authentication_string` except for brute force trail and error comparison, which would take a very long time. Lets construct a query which will display the `User`, `Host`, `authentication_string` and `plugin` columns for all the users on our MySQL server.
+~~~
+mysql> SELECT User,Host,authentication_string,plugin FROM user;
+~~~
+{: .bash}
+~~~
++------------------+-----------+-------------------------------------------+-----------------------+
+| User             | Host      | authentication_string                     | plugin                |
++------------------+-----------+-------------------------------------------+-----------------------+
+| root             | localhost |                                           | auth_socket           |
+| mysql.sys        | localhost | *THISISNOTAVALIDPASSWORDTHATCANBEUSEDHERE | mysql_native_password |
+| debian-sys-maint | localhost | *C1287267F257C9B8BFEC8D42A62C8E11ED394A46 | mysql_native_password |
++------------------+-----------+-------------------------------------------+-----------------------+
+3 rows in set (0.00 sec)
+~~~
+{: .output}
+There are actually 3 users on our MySQL server including the `root` user. Notice that the `root` user doesn't have an authentication string and uses the `auth_socket` plugin for authentication. What this means is that when a user tries to connect to MySQL it compares the MySQL username with the current operating system username and if they match it allows that user to connect. When we ran the `mysql` command with the `sudo` command it made us the user `root` when executing the `mysql` command. So in this case our system username was `root` and matched the MySQL user `root` so it let us in. The second plugin type we see is the `mysql_native_password` plugin which applies an encryption on the password and then saves that encrypted password in the authentication_string column. This is a more secure way to authenticate users as it adds an extra layer of authentication between users on the system and the MySQL server.
+
+## Fixing the MySQL 'root' account authentication scheme
+
+We will configure MySQL to use native password authentication for its 'root' account by issuing a couple of database commands by using an SQL `update` command to change the authentication scheme for the MySQL 'root' user.
 
 ~~~
 mysql> UPDATE user SET plugin='mysql_native_password' WHERE User='root';
