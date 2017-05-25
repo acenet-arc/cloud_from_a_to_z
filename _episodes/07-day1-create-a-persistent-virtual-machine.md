@@ -34,6 +34,8 @@ Now lets create a persistent VM which boots from a volume. Start by creating a V
 
 In our case we do not have any existing volumes or volume snapshots, so this leaves the *Boot from image (creates a new volume)* option so lets choose that *Instance Boot Source*. Lets choose the `Ubuntu-16.04-Xenial-x64-2017-02` image as before and a *Device size* of 10GB. **DO NOT** check the *Delete on Terminate* box as this will cause the volume to be deleted if the VM is. Also do not forget to switch to the *Access & Security* tab to select a *Key Pair* and *Security Groups* before clicking the *Launch* button because if a key pair is not selected you will not be able to connect to the VM and you will have to delete and recreate it.
 
+Once we have created a persistent VM we will also need to associate a public IP with it so that we can connect and also verify that we can indeed connect to the VM by `ssh`ing into the VM.
+
 In the following episodes we will use this VM to setup a basic web server allowing us to server HTML files and tomorrow we will use it to create a WordPress site.
 
 > ## Boot a `p`-flavor VM from an Image
