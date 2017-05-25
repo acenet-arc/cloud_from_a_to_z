@@ -1,6 +1,6 @@
 ---
 layout: episode
-title: "Install PHP"
+title: "Installing PHP"
 teaching: 40
 exercises: 0
 questions:
