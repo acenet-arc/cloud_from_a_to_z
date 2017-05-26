@@ -285,12 +285,114 @@ $ sudo find /var/www/html -type d -exec chmod g+s {} \;
 ~~~
 {: .bash}
 
-In this case, we basically used the `find` command to locate all subdirectories in the WordPress web root directory and then we executed the `chmod` command to enable their `setgid` attribute.
+In this case, we basically used the `find` command to locate all subdirectories in the WordPress web root directory and then we executed the `chmod` command to enable their `setgid` attribute. Let's move on...  
 
+The web server program will require to write files and make theme or plugin changes to the `wp-content` directory. To enable this, we'll issue the following three `chmod` commands:
 
+~~~
+$ sudo chmod g+w /var/www/html/wp-content
+$ sudo chmod -R g+w /var/www/html/wp-content/themes
+$ sudo chmod -R g+w /var/www/html/wp-content/plugins
+~~~
+{: .bash}
+
+And that takes care of customizing all of the required file and directory ownership and permission settings.
 
 
 ### Configure the WordPress Configuration File
+
+Now comes the part where we make specific changes to our main WordPress configuration file.
+
+The first thing we need to do is provide better security and create new secret keys. We do NOT want to use the default keys that were provided because then it would be very easy for attackers to guess at their values. Lucky for us, the WordPress website provides a useful utility that can generate new random keys for us.
+
+To generate new random keys, we will issue the following command:
+
+~~~
+$ curl -s https://api.wordpress.org/secret-key/1.1/salt/
+~~~
+{: .bash}
+
+You should get back a result that looks similar to this:
+
+~~~
+define('AUTH_KEY',         '^u,3mX7Nq^FBHHpEU-t!]`+V-pi%+[miS5K@B?G1#N])O,L(p{L5IOi@-LlRYzj=');
+define('SECURE_AUTH_KEY',  'c#|EYF@n(6L}h!f=0R!iKc@Fb3k(XbkbIh@<tLzHb(.gW;a1yh-<^{<U_+Db4edn');
+define('LOGGED_IN_KEY',    '7n_ejfieDetb<|+dEbiR<doD;t%#<^ZmHQU]m<3N38K<f/3R6C.wYQ+M|c~:CMU}');
+define('NONCE_KEY',        'LC^,-vm`9F)<b}SNw&h-/w#u~9R!G]*R3~HvMEx6+-KO|+e3gylhTDSg#Gh7-9sv');
+define('AUTH_SALT',        '(le/k2eZDhR`;^Vh%ZuFBqW<hKgrJaWo!ks)q(G^pw-O)akt0!o~{#xyciC}x_CX');
+define('SECURE_AUTH_SALT', ':@K^VRNux}t}{W r-|7(~Q!bY-)9W+S!I>R=M@R-@qXX<I{D(<lt[+-kSzvimo~3');
+define('LOGGED_IN_SALT',   '+11P|@+WO-8+`nJ^n*Qe]Z2DUG$b|1RLYr_uW0;_G-S;lZ<[q,ra@ukw+,*,5ivi');
+define('NONCE_SALT',       '3{8xtE LEaw%?j[i%%/2x]<r8|s>e(blp abLpraM;X41Z)+Yroe7mlO9%x`C!{i');
+~~~
+{: .output}
+
+Please note: Do NOT just copy and paste these keys into your own configuration. Please generate your own unique values. The above output is simply an example.  
+
+In any event, we need to paste our own unique secret keys into our WordPress configuration file. To that, please open the configuration file using your editor:
+
+~~~
+nano /var/www/html/wp-config.php
+~~~
+{: .bash}
+
+Then find the section that contains the default secret keys. It should look like this:
+
+~~~
+/**#@+
+ * Authentication Unique Keys and Salts.
+ *
+ * Change these to different unique phrases!
+ * You can generate these using the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service}
+ * You can change these at any point in time to invalidate all existing cookies. This will force all users to have to log in again.
+ *
+ * @since 2.6.0
+ */
+define('AUTH_KEY',         'put your unique phrase here');
+define('SECURE_AUTH_KEY',  'put your unique phrase here');
+define('LOGGED_IN_KEY',    'put your unique phrase here');
+define('NONCE_KEY',        'put your unique phrase here');
+define('AUTH_SALT',        'put your unique phrase here');
+define('SECURE_AUTH_SALT', 'put your unique phrase here');
+define('LOGGED_IN_SALT',   'put your unique phrase here');
+define('NONCE_SALT',       'put your unique phrase here');
+~~~
+{: .output}
+
+Delete this section and then paste the values that you generated for yourself. Once again, as an example, the lines I replaced now look like this:  
+
+~~~
+define('AUTH_KEY',         '^u,3mX7Nq^FBHHpEU-t!]`+V-pi%+[miS5K@B?G1#N])O,L(p{L5IOi@-LlRYzj=');
+define('SECURE_AUTH_KEY',  'c#|EYF@n(6L}h!f=0R!iKc@Fb3k(XbkbIh@<tLzHb(.gW;a1yh-<^{<U_+Db4edn');
+define('LOGGED_IN_KEY',    '7n_ejfieDetb<|+dEbiR<doD;t%#<^ZmHQU]m<3N38K<f/3R6C.wYQ+M|c~:CMU}');
+define('NONCE_KEY',        'LC^,-vm`9F)<b}SNw&h-/w#u~9R!G]*R3~HvMEx6+-KO|+e3gylhTDSg#Gh7-9sv');
+define('AUTH_SALT',        '(le/k2eZDhR`;^Vh%ZuFBqW<hKgrJaWo!ks)q(G^pw-O)akt0!o~{#xyciC}x_CX');
+define('SECURE_AUTH_SALT', ':@K^VRNux}t}{W r-|7(~Q!bY-)9W+S!I>R=M@R-@qXX<I{D(<lt[+-kSzvimo~3');
+define('LOGGED_IN_SALT',   '+11P|@+WO-8+`nJ^n*Qe]Z2DUG$b|1RLYr_uW0;_G-S;lZ<[q,ra@ukw+,*,5ivi');
+define('NONCE_SALT',       '3{8xtE LEaw%?j[i%%/2x]<r8|s>e(blp abLpraM;X41Z)+Yroe7mlO9%x`C!{i');
+~~~
+{: .output}
+
+Ok. We are almost done. The second last thing we need to do is modify the configuration file so that the WordPress website knows how to take to the WordPress database which we created much earlier during this episode. We need to tell the WordPress website that the database name is `wordpress`, the database user is `wordpressuser`, and the database user's password is `userMySQLPassword`. These variables are defined near the top of the configuration document. Modify them so that they look like this:
+
+~~~
+define('DB_NAME', 'wordpress');
+
+define('DB_USER', 'wordpressuser');
+
+define('DB_PASSWORD', 'userMySQLPassword');
+~~~
+{: .output}
+
+The very last configuration change is to define the method that WordPress should use to write to the Ubuntu filesystem. We've already given the web server group explicit permission to write directly to WordPress web root subdirectories (like `wp-content/themes` and `wp-content/plugins`, for example) so we can specify the method to be `direct`. If we did not specify `direct`, then WordPress would assume that we wanted to use FTP and it would prompt us for our FTP credentials every time we performed any upload, update, or installation actions.
+
+This setting can be appended to the end of the confirguration document as follows:
+
+~~~
+define('FS_METHOD', 'direct');
+~~~
+{: .output}
+
+You may now save and exit the WordPress configuration file.
 
 
 ## Complete the Installation using the WordPress GUI
