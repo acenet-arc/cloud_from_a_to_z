@@ -48,7 +48,7 @@ Query OK, 1 row affected (0.00 sec)
 ~~~
 {: .output}
 
-Next, it is a good idea to also create a separate MySQL user (who does *NOT* have administrative access) that WordPress will use exclusively to administrate the `wordpress` database. In order to tighten security, only WordPress is required to have access to this user's authentication credentials and the only database this user has access to is the `wordpress` database. Again, to keep things simple, let's call this user `wordpressuser`. In production, you would want to create a strong and unique password for this user. However, for this course, we will use `userMySQLPassword` as the password.
+Next, it is a good idea to also create a separate MySQL user (who does *NOT* have *total* and *unlimited* MySQL administrative access) that WordPress will use exclusively to administrate the `wordpress` database. In order to tighten security, only WordPress is required to have access to this user's authentication credentials and the only database this user has access to is the `wordpress` database. Again, to keep things simple, let's call this user `wordpressuser`. In production, you would want to create a strong and unique password for this user. However, for this course, we will use `userMySQLPassword` as the password.
 
 ~~~
 mysql> GRANT ALL ON wordpress.* TO 'wordpressuser'@'localhost' IDENTIFIED BY 'userMySQLPassword';
@@ -120,7 +120,7 @@ In order to allow `.htaccess` files, we need to set an `AllowOverride` directive
 
 Then save and exit the file.
 
-Second, in order to user WordPress's permalink feature, we need to enable the `mod_rewrite` Apache module. To accomplish this, we can invoke the `a2enmod` command as follows:
+Second, in order to use WordPress's permalink feature, we need to enable the `mod_rewrite` Apache module. To accomplish this, we can invoke the `a2enmod` command as follows:
 
 ~~~
 $ sudo a2enmod rewrite
@@ -141,21 +141,21 @@ $ sudo apache2ctl configtest
 ~~~
 {: .bash}
 
-If you see the following result:
+Look for the following result:
 
 ~~~
 Syntax OK
 ~~~
 {: .output}
 
-Then it is safe to restart Apache so that our changes take immediate effect.
+If everything is OK, then it is safe to restart Apache so that our changes take immediate effect.
 
 ~~~
 $ sudo systemctl restart apache2
 ~~~
 {: .bash}
 
-Then check the status of the Apache service by running the following:
+And, to be certain, please check the status of the Apache service by running the following:
 
 ~~~
 $ sudo systemctl status apache2
@@ -172,7 +172,7 @@ Look for the line that reads:
 
 ## Download the WordPress Software
 
-At this point, all of the prerequisite software for our virtual machine has been installed and configured. We are now ready to download the latest version of WordPress which is housed at `wordpress.org`. We'll use the `wget` command to grab the installation package and store it in the `/tmp` directory until it's ready to moved to `/var/www/html`.
+At this point, all of the prerequisite software for our virtual machine has been properly installed and configured. We are now ready to download the latest version of WordPress which is housed at `wordpress.org`. We'll use the `wget` command to grab the installation package and store it in the `/tmp` directory until it's ready to moved to `/var/www/html`.
 
 ~~~
 $ wget http://wordpress.org/latest.tar.gz -O /tmp/latest.tar.gz
@@ -187,7 +187,7 @@ $ cd /tmp
 ~~~
 {: .output}
 
-Like most open source software available via the Internet, the file name (`latest.tar.gz`) ends with a `.tar.gz` extension. This means that this is a **TAR** (short for Tape Archiving) package that has been compressed using the **GNU zip** utility. To decompress and extract the file contents, we will use the following command:  
+Like a lot of open source software available via the Internet, the file name (`latest.tar.gz`) ends with a `.tar.gz` extension. This means that this is a **TAR** (short for Tape Archiving) package that has been compressed using the **GNU zip** utility. To decompress and extract the file contents, we will use the following command:  
 
 ~~~
 $ tar xzvf latest.tar.gz
@@ -201,7 +201,7 @@ The required command-line arguments listed above are as follows:
 - `v`: be verbose - show me all of the file paths
 - `f`: extract from a specified file (`latest.tar.gz`)
 
-If you engage is any subsequent Linux systems administration during the remainder of your lifetime, you will uses the `tar` command a lot.
+If you engage is any subsequent Linux systems administration during the remainder of your lifetime, you will probably use the `tar` all the time.
 
 The output should look something like this:
 
@@ -230,21 +230,21 @@ $ chmod 660 /tmp/wordpress/.htaccess
 
 Basically, the `660` argument gives read/write access to both the file's specified owner and group.
 
-At this point, it's also a good idea to copy the sample WordPress configuration file.
+At this point, it's also a good idea to create a working copy the sample WordPress configuration file. Later, we will modify this file to include all of the customizations which are specific for each of our own WordPress websites.
 
 ~~~
 $ cp /tmp/wordpress/wp-config-sample.php /tmp/wordpress/wp-config.php
 ~~~
 {: .bash}
 
-While we're at it, we should also create an `upgrade` directory so that WordPress can use this to perform any subsequent software upgrades without running into any permission conflicts.
+While we're at it, we should also create an `upgrade` directory so that WordPress can use this to perform any subsequent software upgrades without running into any permission conflict errors.
 
 ~~~
 $ mkdir /tmp/wordpress/wp-content/upgrade
 ~~~
 {: .bash}
 
-Now we can copy the entire contents to the web document root.
+Now we can finally copy the entire contents to the web document root.
 
 ~~~
 $ sudo cp -av /tmp/wordpress/. /var/www/html
@@ -254,7 +254,7 @@ $ sudo cp -av /tmp/wordpress/. /var/www/html
 
 ## Configure the WordPress Web Root Directory
 
-Before we complete the installation via our web browser, we need to perform a couple of necessary systems administration tasks. First, we need to set reasonable file and directory ownership and permission attributes. These values are not set by default and, unless we do this, WordPress will not function properly. Second, we need to generate secret keys which will help provide greater security for our installation.
+Before we complete the installation via our web browser, we need to perform a couple of additional systems administration tasks. First, we need to set reasonable file and directory ownership and permission attributes. These values are not configured by default and, unless we do this, WordPress will not function properly. Second, we need to generate secret keys which will help provide greater security for our installation.
 
 
 ### Adjust Ownership and Permission Attributes
