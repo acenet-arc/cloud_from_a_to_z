@@ -396,3 +396,45 @@ You may now save and exit the WordPress configuration file.
 
 
 ## Complete the Installation using the WordPress GUI
+
+The good new is that we are now finished using the Linux command line! Now that all of the necessary system administration tasks have been completed, we are ready to complete the WordPress installation using our web browser interface.  
+
+Open your web browser and navigate as follows:
+
+~~~
+https://<your_externalserver_IP>
+~~~
+{: .output}
+
+For example, to get to my WordPress site, I navigated here:
+
+~~~
+https://206.167.181.126
+~~~
+{: .output}
+
+If everything is in proper working order, you should see a message that is prompting you to select the language which you would like to use.
+
+<img src="../fig/web-screens/wordpress_language.png" alt="Select Language"/>
+
+If you see this, congratulations! You accomplished a great deal of work to get here. In any event, I selected English. And then I clicked `Continue`.
+
+This should take you to the "Welcome" page. On this screen, You will need to provide the following information:  
+
+- Title of your WordPress site
+- WordPress administrator username
+- WordPress administrator user's password
+- Your email address
+- And whether or not you want search engines to index your website
+
+After entering this information, click `Install WordPress`.
+
+<img src="../fig/web-screens/wordpress_welcome.png" alt="Welcome to WordPress"/>
+
+If all goes well, you should see the following "Success!" message which will prompt you to log in using your new WordPress administrator account. Click `Log In`.
+
+<img src="../fig/web-screens/wordpress_success.png" alt="Success!"/>
+
+Once you log in, you will be presented with the WordPress administration dashboard interface. From here, you can make all the customizations, install all the updates and plugins, and create all the content that you so desire.
+
+<img src="../fig/web-screens/wordpress_admin_dashboard.png" alt="WordPress Admin Dashboard"/>
