@@ -5,6 +5,8 @@ teaching: 40
 exercises: 0
 questions:
 - "What is MySQL?"
+- "How can MySQL databases and tables be viewed?"
+- "How can MySQL tables be modified?"
 - "How do we install it securely?"
 - "How do we set the MySQL root user's password?"
 objectives:
@@ -12,8 +14,15 @@ objectives:
 - "Configure MySQL to use password authentication for its root account."
 - "'Harden' the MySQL installation by executing a command-line script."
 keypoints:
-- "Ubuntu has a 'root' account that is used to manage the operating system."
-- "MySQL also has a different 'root' account that is used to manage only MySQL."
+- "MySQL also has a 'root' account that is used to manage the MySQL server, this is **different** from the operating system 'root' account used to manage the operating system."
+- "The `mysql` command allows you to view and modify MySQL databases."
+- "The `SHOW DATABASES` command shows the available databases in your MySQL server."
+- "The `USE` command switches which database you actively working with."
+- "The `SHOW TABLES` command shows the tables in the active database."
+- "The `DESCRIBE <table>` command displays data columns present in the given table."
+- "The `SELECT` command displays rows from a table."
+- "The `UPDATE` command is used to modify rows in a table."
+- "The `EXIT` command exits the mysql program."
 start: true
 start_time: 540
 ---
@@ -57,7 +66,9 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 mysql>
 ~~~
 {: .output}
-We have just started up the `mysql` monitor command line tool and connected to our MySQL server as the MySQL `root` user. We have done this with super user privileges. We have mentioned that the MySQL root user is different from the Ubuntu root user, in fact you can have a number of users who can connect to your MySQL server and they do not have to have accounts on your VM. MySQL manages these user accounts in databases just as it does for everything else. Lets take a look around to see what we start with in our MySQL server. At this point we are presented with a new prompt `mysql>` which allows us to issuse commands to send to the MySQL server.
+If we were connecting to a remote server we would have to specify an IP or URL to connect to this server, when connecting locally you do not.
+
+We have just started up the `mysql` monitor command line tool and connected to our MySQL server as the MySQL `root` user. We have done this with super user privileges. We have mentioned that the MySQL root user is different from the Ubuntu root user, in fact you can have a number of users who can connect to your MySQL server and they do not have to have accounts on your VM. MySQL manages these user accounts in databases just as it does for everything else. Lets take a look around to see what we start with in our MySQL server. At this point we are presented with a new prompt `mysql>` which allows us to issue commands to send to the MySQL server.
 
 ~~~
 mysql> SHOW DATABASES;
@@ -205,51 +216,71 @@ mysql> SELECT User,Host,authentication_string,plugin FROM user;
 3 rows in set (0.00 sec)
 ~~~
 {: .output}
-There are actually 3 users on our MySQL server including the `root` user. Notice that the `root` user doesn't have an authentication string and uses the `auth_socket` plugin for authentication. What this means is that when a user tries to connect to MySQL it compares the MySQL username with the current operating system username and if they match it allows that user to connect. When we ran the `mysql` command with the `sudo` command it made us the user `root` when executing the `mysql` command. So in this case our system username was `root` and matched the MySQL user `root` so it let us in. The second plugin type we see is the `mysql_native_password` plugin which applies an encryption on the password and then saves that encrypted password in the authentication_string column. This is a more secure way to authenticate users as it adds an extra layer of authentication between users on the system and the MySQL server.
+The `SELECT` command retrieves rows selected from one or more tables. In our case we told the `SELECT` command that we wanted to retrieve the `User`, `Host`, `authentication_string`, and `plugin` columns `FROM` the `user` table. We didn't specify any specific rows so the command returned all the rows.
+
+There are actually 3 users on our MySQL server including the `root` user. The `mysql.sys` user is not a usable MySQL account as the password it not valid (as noted in the authentication string). This user is used by the MySQL server to manage the `sys` database. The user `debian-sys-maint` is a used by system scripts when starting and stopping the MySQL server and performing other maintenance tasks.
+
+Notice that the `root` user doesn't have an authentication string and uses the `auth_socket` plugin for authentication. What this means is that when a user tries to connect to MySQL it compares the MySQL username with the current operating system username and if they match it allows that user to connect. When we ran the `mysql` command with the `sudo` command it made us the user `root` when executing the `mysql` command. So in this case our system username was `root` and matched the MySQL user `root` so it let us in. The second plugin type we see is the `mysql_native_password` plugin which applies an encryption on the password and then saves that encrypted password in the authentication_string column. This is a more secure way to authenticate users as it adds an extra layer of authentication between users on the system and the MySQL server.
 
 ## Fixing the MySQL 'root' account authentication scheme
 
-We will configure MySQL to use native password authentication for its 'root' account by issuing a couple of database commands by using an SQL `update` command to change the authentication scheme for the MySQL 'root' user.
+We will configure MySQL to use native password authentication for its 'root' user by changing the value of the plugin column to `mysql_native_password` for the 'root' user. The `UPDATE` command is used to change modify a row in a table.
 
 ~~~
 mysql> UPDATE user SET plugin='mysql_native_password' WHERE User='root';
 ~~~
 {: .bash}
-
 ~~~
 Query OK, 1 row affected (0.00 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
 ~~~
 {: .output}
+So in the above command we told the `UPDATE` command that we wanted to update the table `user` by `SET`ting the column `plugin` to `mysql_native_password` for rows `WHERE` the column `User='root'`. Lets have a look at the result
+~~~
+mysql> SELECT User,Host,authentication_string,plugin FROM user;
+~~~
+{: .bash}
+~~~
++------------------+-----------+-------------------------------------------+-----------------------+
+| User             | Host      | authentication_string                     | plugin                |
++------------------+-----------+-------------------------------------------+-----------------------+
+| root             | localhost |                                           | mysql_native_password |
+| mysql.sys        | localhost | *THISISNOTAVALIDPASSWORDTHATCANBEUSEDHERE | mysql_native_password |
+| debian-sys-maint | localhost | *C1287267F257C9B8BFEC8D42A62C8E11ED394A46 | mysql_native_password |
++------------------+-----------+-------------------------------------------+-----------------------+
+~~~
+{: .output}
 
-To make the changes take effect immediately, flush database privileges.
+Now the user 'root' is using the `mysql_native_password` plugin to authenticate, but the root user still has no password. So that, until we set the password for the root MySQL user, we have actually made the security worse. Because now any user who can connect to our VM can also connect to the MySQL server as the MySQL root user without specifying a password. We will fix this in the next section.
 
+Even though we have made the changes to the way the 'root' user authenticates they have not yet taken effect, the old settings are still being used. To cause these changes to take effect we have to use the `FLUSH` command to reload the settings from the databases.
 ~~~
 mysql> FLUSH PRIVILEGES;
 ~~~
 {: .bash}
+In this case we want to reload user privileges for users which includes how they connect to the MySQL server.
 
-Finally, exit MySQL and then restart the database service.
-
+At this point we are done poking around in the MySQL databases so lets, exit MySQL and then restart the database service.
 ~~~
 mysql> EXIT;
+~~~
+{: .bash}
+~~~
 Bye
-
+~~~
+{: .output}
+~~~
 $ sudo systemctl restart mysql
 ~~~
 {: .bash}
-
-Ensure that the `mysql` service is running as follows:
-
+Then ensure that the `mysql` service is running again.
 ~~~
 $ sudo systemctl status mysql
 ~~~
 {: .bash}
-
 Look for the line that reads:
-
 ~~~
-   Active: active (running) since...
+   Active: active (running) since ...
 ~~~
 {: .output}
 
@@ -286,7 +317,7 @@ STRONG Length >= 8, numeric, mixed case, special characters and dictionary      
 
 Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: 0
 ~~~
-{: .bash}
+{: .output}
 
 Next you will be prompted to set the MySQL 'root' password. Again, in a production setting, it is highly recommended that you choose a long, strong, unique password consisting of numeric, mixed case, and special characters. However, for the purposes of this course, in order to keep things as simple as possible, we will choose `rootMySQLPassword`.
 
@@ -297,7 +328,7 @@ New password: rootMySQLPassword
 
 Re-enter new password: rootMySQLPassword
 ~~~
-{: .bash}
+{: .output}
 
 The script will naturally complain that this is a pretty weak password. So you will be prompted if you wish to continue with this password or choose another. Press `y` to continue.
 
@@ -305,7 +336,7 @@ The script will naturally complain that this is a pretty weak password. So you w
 Estimated strength of the password: 50
 Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) : y
 ~~~
-{: .bash}
+{: .output}
 
 You will next be prompted to remove anonymous users. This is a good idea. Press `y` to continue.
 
@@ -319,7 +350,7 @@ environment.
 
 Remove anonymous users? (Press y|Y for Yes, any other key for No) : y
 ~~~
-{: .bash}
+{: .output}
 
 Then you will be prompted disable remote MySQL 'root' account logins. This is also a good idea. It is always a good practice to disable the ability for administrator accounts to log in from remote locations. Press `y` to continue.
 
@@ -330,7 +361,7 @@ the root password from the network.
 
 Disallow root login remotely? (Press y|Y for Yes, any other key for No) : y
 ~~~
-{: .bash}
+{: .output}
 
 Next you will be asked to remove a default database named 'test'. This is a very good idea because we do not require this database for our WordPress installation. Not to mention, often times hackers use default accounts and test databases as an attack vector in order to compromise your system or application. Press `y` to continue.
 
@@ -343,7 +374,7 @@ environment.
 
 Remove test database and access to it? (Press y|Y for Yes, any other key for No) : y
 ~~~
-{: .bash}
+{: .output}
 
 Finally, you will be asked to reload the privilege table in order to ensure that all of the changes we just made will take immediate effect. We definitely want that to happen. So press `y` one final time to exit the script.
 
@@ -357,7 +388,7 @@ Success.
 
 All done!
 ~~~
-{: .bash}
+{: .output}
 
 
 ## Verifying our MySQL installation
@@ -377,7 +408,6 @@ Next let's run a query which lists all databases.
 mysql> SHOW DATABASES;
 ~~~
 {: .bash}
-
 ~~~
 +--------------------+
 | Database           |
@@ -389,6 +419,6 @@ mysql> SHOW DATABASES;
 +--------------------+
 4 rows in set (0.00 sec)
 ~~~
-{: .bash}
+{: .output}
 
 If you were able to log in, execute the query, and you see the above output, then you are ready to move onto the next section.
