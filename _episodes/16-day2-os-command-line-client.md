@@ -6,7 +6,7 @@ exercises: 15
 questions:
 - "How do we see what OpenStack CL commands are available?"
 - "How can we find out how to use OpenStack CL commands?"
-- "How do we backup my persistent virtual machine?"
+- "How do we backup our persistent virtual machine?"
 - "How do we download/upload images to the cloud?"
 objectives:
 - "Delete a virtual machine but keep the volume to allow us to make an image of the volume."
