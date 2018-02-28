@@ -26,4 +26,4 @@ In day two we will use WordPress as an example of how to setup and configure mor
 
 In day 3, with the knowledge of how a manual installation and setup works we will look at ways to automate this task. In the morning we will learn how to automate installation and setup of software and in the afternoon how to automate the creation of cloud resources.
 
-Before we begin make sure you have completed the steps in the [setup](./setup) page. If you have had difficulty with any part of them, now is the time to let us know and we will help you solve them.
+Before we begin make sure you have completed the steps in the [setup](../setup) page. If you have had difficulty with any part of them, now is the time to let us know and we will help you solve them.
