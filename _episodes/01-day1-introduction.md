@@ -18,7 +18,7 @@ start: true
 start_time: 615
 ---
 
-Lets get to know each other starting with introductions and a brief background about your self. Tell use why you are interested in this course and what you hope to get out of it.
+Lets get to know each other starting with introductions and a brief background about your self. Tell us why you are interested in this course and what you hope to get out of it.
 
 This course will start by introducing some basic concepts about the Internet and cloud in general to lay the foundation for the episodes to come. By the end of the first day you should have the basic tools and knowledge in hand to start working with the cloud, having created a web-server and your first website hosted on your own cloud server.
 
