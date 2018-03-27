@@ -19,7 +19,7 @@ start_time: 615
 ---
 
 ## Introductions
-Lets get to know each other starting with introductions and a brief background about your self. Tell use why you are interested in this course and what you hope to get out of it.
+Lets get to know each other starting with introductions and a brief background about your self. Tell us why you are interested in this course and what you hope to get out of it.
 
 ## Use cases
 Cloud computing offers a wide range of usage possibilities. From running basic HTML sites for publishing works, to collaborative wikis, to running persistent twitter/web scrapers automating data collection and processing, to providing platforms to help support whole research communities. Possible use cases are varied and wide ranging. One particular example using the Compute Canada cloud is [Voyant Tools](https://voyant-tools.org/), a web-based text reading and analysis environment. It is a scholarly project that is designed to facilitate reading and interpretive practises for digital humanities students and scholars as well as for the general public.
