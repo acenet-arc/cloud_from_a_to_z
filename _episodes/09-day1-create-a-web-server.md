@@ -7,7 +7,7 @@ questions:
 - "What is Apache?"
 - "What is LAMP?"
 - "How do we install and configure Apache?"
-- "How to we check that our web server is running?"
+- "How do we check that our web server is running?"
 - "Where do we put our first web page?"
 objectives:
 - "Create an Apache web server."
