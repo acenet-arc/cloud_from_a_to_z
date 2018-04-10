@@ -44,8 +44,14 @@
         <li class="dropdown">
           <a href="{{ page.root }}/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Episodes <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            {% for episode in site.episodes %}
-            <li><a href="{{ page.root }}{{ episode.url }}">{{ episode.title }}</a></li>
+            {% for item in site.episode_order %}
+              {% assign url='/'|append:item|append:'/' %}
+              {% for check_episode in site.episodes %}
+                {% if check_episode.url == url %}
+            <li><a href="{{ page.root }}{{ check_episode.url }}">{{ check_episode.title }}</a></li>
+                  {% break %}
+                {% endif %}
+              {% endfor %}
             {% endfor %}
           </ul>
         </li>

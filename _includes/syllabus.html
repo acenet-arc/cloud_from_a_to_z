@@ -17,16 +17,16 @@
   {% for item in site.episode_order %}
     
     {% comment %}this block below finds the episode matching the item in episode_order {% endcomment %}
-    {% assign path='_episodes/'|append:item|append:'.md' %}
+    {% assign url='/'|append:item|append:'/' %}
     {% assign found=false %}
     {% for check_episode in site.episodes %}
-      {% if check_episode.path == path %}
+      {% if check_episode.url == url %}
         {% assign episode=check_episode %}
         {% assign found=true %}
         {% break %}
       {% endif %}
     {% endfor %}
-    {% if found == false%}{% comment %} This else clause reports not finding the specified 
+    {% if found == false%}{% comment %} This if test reports not finding the specified 
       episode in episode_order to the HTML file. I would have hoped to raise an 
       error when the HTML is created, but alas it seems the Liquid template 
       system doesn't have that functionality yet. {% endcomment %}

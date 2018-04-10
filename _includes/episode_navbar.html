@@ -1,16 +1,50 @@
 {% comment %}
   Find previous and next episodes (if any).
 {% endcomment %}
-{% for episode in site.episodes  %}
-  {% if episode.url == page.url %}
-    {% unless forloop.first %}
-      {% assign prev_episode = prev %}
-    {% endunless %}
-    {% unless forloop.last %}
-      {% assign next_episode = site.episodes[forloop.index] %}
-    {% endunless %}
+
+{% comment %}
+Find the previous, current and next episode urls from the episode_order
+{% endcomment %}
+{% assign max_i=site.episode_order.size|minus: 1 %}
+{% assign found=false %}
+{% for i in (0..max_i) %}
+  {% assign cur=site.episode_order[i] %}
+  {% assign check_url='/'|append:cur|append:'/' %}
+  {% if i != 0 %}
+    {% assign im1=i|minus: 1 %}
+    {% assign prev=site.episode_order[im1] %}
   {% endif %}
-  {% assign prev = episode %}
+  {% if i !=max_i %}
+    {% assign ip1=i|plus: 1 %}
+    {% assign next=site.episode_order[ip1] %}
+  {% endif %}
+  {% if check_url==page.url %}
+    {% assign cur_url='/'|append:cur|append:'/' %}
+    {% if prev %}
+      {% assign prev_url='/'|append:prev|append:'/' %}
+    {% endif %}
+    {% if next %}
+      {% assign next_url='/'|append:next|append:'/' %}
+    {% endif %}
+    {% assign found=true %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+{% if found == false%}{% comment %} This test reports not finding the current 
+  page in episode_order.{% endcomment %}
+  <h3>ERROR: episode url '{{ page.url }}' not found in list 'episode_order'.</h3>
+{% endif %}
+{% comment %}
+Find the previous, current and next episodes from site.episodes
+{% endcomment %}
+
+{% for check_episode in site.episodes %}
+  {% if check_episode.url == prev_url %}
+    {% assign prev_episode=check_episode %}
+  {% endif %}
+  {% if check_episode.url == next_url %}
+    {% assign next_episode=check_episode %}
+  {% endif %}
 {% endfor %}
 
 {% comment %}
