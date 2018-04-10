@@ -26,9 +26,7 @@
         {% break %}
       {% endif %}
     {% endfor %}
-    {% if found %}
-      {{ episode.title }}<br/>
-    {% else %}{% comment %} This else clause reports not finding the specified 
+    {% if found == false%}{% comment %} This else clause reports not finding the specified 
       episode in episode_order to the HTML file. I would have hoped to raise an 
       error when the HTML is created, but alas it seems the Liquid template 
       system doesn't have that functionality yet. {% endcomment %}
