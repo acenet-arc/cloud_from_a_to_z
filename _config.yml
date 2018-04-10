@@ -64,5 +64,8 @@ exclude:
   - Makefile
   - bin
 
+episode_order: 
+  - 01-introduction
+  - blah blah
 # Turn off built-in syntax highlighting.
 highlighter: false

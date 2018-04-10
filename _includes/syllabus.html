@@ -4,7 +4,7 @@
 {% endcomment %}
 <div class="syllabus">
   <h2 id="schedule">Schedule</h2>
-
+  
   {% assign day = 0 %}
   {% assign multiday = false %}
   {% for episode in site.episodes %}
@@ -13,7 +13,29 @@
   {% assign current = site.start_time %}
 
   <table class="table table-striped">
-  {% for episode in site.episodes %}
+  
+  {% for item in site.episode_order %}
+    
+    {% comment %}this block below finds the episode matching the item in episode_order {% endcomment %}
+    {% assign path='_episodes/'|append:item|append:'.md' %}
+    {% assign found=false %}
+    {% for check_episode in site.episodes %}
+      {% if check_episode.path == path %}
+        {% assign episode=check_episode %}
+        {% assign found=true %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+    {% if found %}
+      {{ episode.title }}<br/>
+    {% else %}{% comment %} This else clause reports not finding the specified 
+      episode in episode_order to the HTML file. I would have hoped to raise an 
+      error when the HTML is created, but alas it seems the Liquid template 
+      system doesn't have that functionality yet. {% endcomment %}
+      <h3>ERROR: episode name '{{ item }}' in list 'episode_order' not found in '_episodes' folder.</h3>
+      {% break %}
+    {% endif %}
+
     {% if episode.start %} {% comment %} Starting a new day? {% endcomment %}
       {% assign day = day | plus: 1 %}
       {% if day > 1 %} {% comment %} If about to start day 2 or later, show finishing time for previous day {% endcomment %}
