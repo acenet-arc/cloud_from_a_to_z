@@ -15,7 +15,6 @@ keypoints:
 - "User data can be set using the `--user-data` on the command line or using the *Post-Creation* tab when launching a VM within horizon."
 - "Cloud-init can be used to automate the initial installation of configuration of software"
 - "Cloud-init runs once after the first boot of a newly crated VM"
-
 start: true
 start_time: 540
 ---

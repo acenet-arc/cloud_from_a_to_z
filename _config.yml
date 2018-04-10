@@ -65,7 +65,32 @@ exclude:
   - bin
 
 episode_order: 
-  - 01-introduction
-  - blah blah
+  - introduction
+  - the-internet
+  - the-cloud
+  - creating-a-keypair
+  - lunch
+  - create-a-first-virtual-machine
+  - create-a-persistent-virtual-machine
+  - security-updates
+  - create-a-web-server
+  - install-mysql
+  - install-php
+  - SSL-encryption
+  - create-a-wordpress-site
+  - lunch
+  - os-command-line-setup
+  - os-command-line-client
+  - intro-to-cloud-init
+  - bash-cloud-init
+  - yaml-syntax
+  - wo-cloud-init
+  - lunch
+  - heat
+  - your-project-I
+  - lunch
+  - your-project-II
+  - your-project-III
+  
 # Turn off built-in syntax highlighting.
 highlighter: false

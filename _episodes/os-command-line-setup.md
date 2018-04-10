@@ -181,5 +181,3 @@ $ openstack server list
 ~~~
 {: .output}
 If everything worked this command should list all the VMs in your project. We are now ready to start using the OpenStack command line clients to start performing tasks.
-
-  
