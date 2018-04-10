@@ -3,7 +3,15 @@
 {% endcomment %}
 <h2>Key Points</h2>
 <table class="table table-striped">
-{% for episode in site.episodes %}
+{% for item in site.episode_order %}
+  {% assign url='/'|append:item|append:'/' %}
+  {% for check_episode in site.episodes %}
+    {% if check_episode.url == url %}
+      {% assign episode=check_episode %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+  
   {% unless episode.break %}
     <tr>
       <td class="col-md-3">
