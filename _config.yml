@@ -86,7 +86,8 @@ episode_order:
   - yaml-syntax
   - wo-cloud-init
   - lunch
-  - heat
+  - using-hots
+  - creating-hots
   - your-project-I
   - lunch
   - your-project-II

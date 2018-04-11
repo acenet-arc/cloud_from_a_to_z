@@ -1,6 +1,6 @@
 ---
 layout: episode
-title: "Heat Orchestration Templates (HOT)"
+title: "Creating HOTs"
 teaching: 150
 exercises: 0
 questions:
