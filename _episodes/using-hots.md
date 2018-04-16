@@ -62,7 +62,7 @@ This tab shows an overview of the components created by the HOT and their status
 Lets look up our username and password by going to *Compute*->*Instances* and clicking on the name of our mediawiki VM (hint it will be named after your stack). Then select the *Log* tab. You may need to wait until the setup of the VM completes which may take several minutes. Once it is done you should see a line like:
 
 ~~~
-loud-init v. 0.7.5 finished at Mon, 16 Apr 2018 17:47:28 +0000. Datasource DataSourceOpenStack [net,ver=2].  Up 232.29 seconds
+Cloud-init v. 0.7.5 finished at Mon, 16 Apr 2018 17:47:28 +0000. Datasource DataSourceOpenStack [net,ver=2].  Up 232.29 seconds
 ~~~
 {: .output}
 
