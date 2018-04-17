@@ -9,8 +9,8 @@ questions:
 - "Why use Compute Canada's cloud?"
 - "What is OpenStack?"
 objectives:
-- "To understand common cloud terminology"
-- "Get exposure to the various parts of OpenStacks Dashboard"
+- "Introduce common cloud terminology."
+- "Exposure to the OpenStacks Dashboard."
 keypoints:
 - "**Elasticity** refers to the ability to scale devices up or down to meet demand."
 - "A **Virtual Machine** or **Virtual Device** is simulated with software running on physical hardware."
@@ -51,21 +51,21 @@ There are several other service models that are possible with clouds ranging for
 
 ## Why Compute Canada Cloud?
 
-First and for most it is a free service offered to faculty and librarians at academic institutions across Canada so that many of you may directly use what you learn hear. Second we have easy access to the resources and experts who created and maintain the Compute Canada Cloud. Third the Compute Canada cloud uses OpenStack which is a popular widely used open source cloud operating system. Many of the concepts you will learn while working with the Compute Canada cloud will be applicable to many other cloud providers such as AWS and Azure with the notable exception of how those cloud providers monitor usage and bill for usage as the Compute Canada Cloud does not bill users but instead has allocation competitions to gain access to resource above default allocations. These allocation competitions work in a similar way for cloud resources as they do with other Compute Canada resources. For more information about resource allocation competitions see the [Compute Canada RAC](https://www.computecanada.ca/research-portal/accessing-resources/resource-allocation-competitions/) page. In addition to RAC, there is also a Rapid Access Service available see [RAS](https://www.computecanada.ca/research-portal/accessing-resources/rapid-access-service/#cloud) which is a way to gain a smaller boost to your quota than with a RAC but in less time.
+First and for most it is a free service offered to faculty, librarians, researchers, post docs, and students at academic institutions across Canada, so many may directly use what is leaned here. Second we have easy access to the resources and experts who created and maintain the Compute Canada Cloud. Third the Compute Canada cloud uses **OpenStack** which is a popular widely used open source cloud operating system. Many of the concepts you will learn while working with the Compute Canada cloud will be applicable to many other cloud providers such as AWS and Azure with the notable exception of how those cloud providers monitor usage and bill for usage as the Compute Canada Cloud does not bill users but instead has allocation competitions to gain access to resource above default allocations. These allocation competitions work in a similar way for cloud resources as they do with other Compute Canada resources. For more information about resource allocation competitions see the [Compute Canada RAC](https://www.computecanada.ca/research-portal/accessing-resources/resource-allocation-competitions/) page. In addition to RAC, there is also a Rapid Access Service available see [RAS](https://www.computecanada.ca/research-portal/accessing-resources/rapid-access-service/#cloud) which is a way to gain a smaller boost to your quota than with a RAC but in less time.
 
 ## OpenStack
-If you have a Compute Canada cloud account at Arbutus (a.k.a west-cloud) you can login to the OpenStack dashboard (a.k.a Horizon) at the [Arbutus login](https://west.cloud.computecanada.ca/) or if you have an east-cloud account you can login at [east-cloud login](https://east.cloud.computecanada.ca/). Using either cloud should be fine though the two clouds do run different versions of OpenStack (see [CC Cloud Resources](https://docs.computecanada.ca/wiki/CC-Cloud_Resources) for current CC cloud OpenStack versions and hardware specs) and you may notice some minor differences between the two.
+If you have a Compute Canada cloud account at Arbutus (a.k.a west-cloud) you can login to the OpenStack dashboard (a.k.a Horizon) at the [Arbutus login page](https://west.cloud.computecanada.ca/) or if you have an east-cloud account you can login at the [east-cloud login page](https://east.cloud.computecanada.ca/). Using either cloud should be fine though the two clouds do run different versions of OpenStack (see [CC Cloud Resources](https://docs.computecanada.ca/wiki/CC-Cloud_Resources) for current CC cloud OpenStack versions and hardware specs) and you may notice some minor differences between the two.
 
 Once you login to the OpenStack dashboard you will be presented with the "Overview" panel as shown below.
  
 <img src="../fig/os-screens/Overview.png" alt="OpenStack Dashboard Overview" style="width: 100%;"/>
 
-This panel shows you an overview (go figure) of your current project's usage and quota on OpenStack. An OpenStack user can be associated with multiple projects each with their own quota and a project can have multiple users. Your project's OpenStack quota dictates the maximum number of VM instances, VCPUs, RAM, Floating IPs, Security Groups, Volumes, and Volume/Snapshot Storage you may use within that project. To increase the quota of a project you need to apply to a [RAC](https://www.computecanada.ca/research-portal/accessing-resources/resource-allocation-competitions/) or [RAS](https://www.computecanada.ca/research-portal/accessing-resources/rapid-access-service/#cloud) as mentioned above.
+This panel shows you an overview (go figure) of your current project's usage and quota on OpenStack. An OpenStack user can be associated with multiple projects each project has their own quota and a project can have multiple users. Your project's OpenStack quota dictates the maximum number of VM instances, VCPUs, RAM, Floating IPs, Security Groups, Volumes, and Volume/Snapshot Storage you may use within that project. To increase the quota of a project you need to apply to a [RAC](https://www.computecanada.ca/research-portal/accessing-resources/resource-allocation-competitions/) or [RAS](https://www.computecanada.ca/research-portal/accessing-resources/rapid-access-service/#cloud) as mentioned above.
 
 In the top right corner you have access to account settings and the sign out link. At the top is the current active project. You are likely only a member of one project, but you can potentially be a member of many projects and this drop down menu allows you to choose the project you are actively working on.
 
 ### Instances (VMs)
-The "Instances" panel shows all running instances and information about those instances. It allows you to perform actions on an instance or set of instances such as "Shutdown", "Terminate", and "Reboot" and many others. You can click on the instance name to get even more information about the instance. Of particular note is the "Log" tab which is a log of actions the VM performs, for example things that happen when the VM boots or is restarted or shutdown. If for some reason your VM is not working as expected there may be clues in the log which can help you figure out what is going on. Most importantly this panel allows you to create new instances with the "Launch Instance" button which we will explore in the next episode.
+The "Instances" panel shows all running instances and information about those instances. It allows you to perform actions on an instance or set of instances such as "Shutdown", "Terminate", and "Reboot" and many other actions. You can click on the instance name to get even more information about the instance. Of particular note is the "Log" tab which is a log of actions the VM performs, for example things that happen when the VM boots or is restarted or shutdown. If for some reason your VM is not working as expected there may be clues in the log which can help you figure out what is going on. Most importantly this panel allows you to create new instances with the "Launch Instance" button which we will explore in the next episode.
 
 <img src="../fig/os-screens/Instances.png" alt="OpenStack Dashboard Instances" style="width: 100%;"/>
 
@@ -75,12 +75,25 @@ Volumes in OpenStack act like storage devices and can be attached to VMs like at
 <img src="../fig/os-screens/Volumes.png" alt="OpenStack Dashboard Volumes" style="width: 100%;"/>
 
 ### Images
-Images allow you to make copies or backups of your volumes and virtual machines. Volumes can be created from an Image so that they contain the data in the Image. Images can be private to your project, shared with others, or completely public. There are a number of public images provided by the Compute Canada Cloud to be used as starting points for your virtual machines (e.g. Images containing the Ubuntu Linux operating system). Images can be downloaded and used in other clouds or with desktop tools such as [VirtualBox](https://www.virtualbox.org/) which allows you to run your cloud VMs on your laptop.
+Images are files which contain data from a hard drive or volume. Images allow you to make copies or backups of your volumes and virtual machines. Volumes can be created from an Image by coping the data the Image contains to the volume. Images can be private to your project, shared with others, or completely public. There are a number of public images provided by the Compute Canada Cloud to be used as starting points for virtual machines (for example and image containing the Ubuntu Linux operating system). Images can be downloaded and used in other clouds or with desktop tools such as [VirtualBox](https://www.virtualbox.org/) which allows you to run your cloud VMs on your laptop.
 
 <img src="../fig/os-screens/Images.png" alt="OpenStack Dashboard Images" style="width: 100%;"/>
 
 ### Access and Security
 
-The Access & Security panel serves a number of functions. It allows you to set rules to dictate which ports data can be sent and received from and to your VMs limiting the types of interactions your VM can have with the outside world using the "Security Groups" tab. You can specify a "key" to access your VMs on the "Key Pairs" tab (we will talk more about keys in the next episode). The Access & Security panel allows you to set Floating IPs to access your VMs from the outside world and finally to access your OpenStack projects from command line tools, which we will talk about later in this course.
+The Access & Security panel serves a number of functions. It allows you to set rules to dictate which ports data can be sent and received from and to your VMs limiting the types of interactions your VM can have with the outside world using the "Security Groups" tab. You can specify a "key" to access your VMs on the "Key Pairs" tab (we will talk more about keys in the next episode). The Access & Security panel allows you allocate Floating IPs to use in your project to access your VMs from the outside world and finally to allows you to access your OpenStack projects from command line tools on the *API Access* tab, which we will talk about later in this course.
 
 <img src="../fig/os-screens/Access-and-security.png" alt="OpenStack Dashboard Access and Security" style="width: 100%;"/>
+
+> ## Public images
+> Look at the images panel and see what images are available to create new virtual machines. Do you recongnize any of the image operating system names and or versions?
+> 
+> > ## Solution
+> > There are:
+> > * CentOS 6/7
+> > * Ubuntu 14/16
+> > * Fedora 25/26
+> > * Debian 8/9
+> > * Windows Server 2012
+> {: .solution}
+{: .challenge}
