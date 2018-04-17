@@ -4,16 +4,19 @@ title: "Introduction"
 teaching: 15
 exercises: 0
 questions:
-- "What will we do in this course?"
 - "Who are we?"
 - "Who are you?"
-- "Are we ready?"
+- "What will we do in this course?"
 objectives:
-- "Provide an overview of the course."
 - "Introduce the instructors."
-- "Get to know the students."
+- "Get to know the students and how they want to use the cloud."
+- "Provide an overview of the course."
 - "Ensure everyone has their environments setup."
-
+keypoints:
+- "Cloud computing is very flexible and has many diverse uses."
+- "Setup of Compute Canada cloud environments is left to its users."
+- "In this course we will setup a cloud environment to run WordPress."
+- "We will see methods to easy setup of cloud environments."
 start: true
 start_time: 615
 ---

@@ -18,5 +18,53 @@ elasticity
 virtual machine
 : An emulation of a computer system using software which runs on a real underlying computer.
 
-infrastructure as a service
-: A service which provides computing infrastructure often through use of [cloud computing](#cloud computing)
+IaaS
+: Infrastructer as a Service is a service which provides computing infrastructure often through use of [cloud computing](#cloud computing)
+
+PaaS
+: Platform as a Service
+
+SaaS
+: Software as a Service
+
+hypervisor
+: 
+
+OpenStack
+:
+
+Instance
+: see [virtual machine](#virtual machine)
+
+virtual machine
+:
+
+port
+:
+
+LAN
+:
+
+IP address
+:
+
+domain name
+:
+
+hostname
+:
+
+FQDN
+:
+
+hardware virtualization
+:
+
+key pair
+:
+
+VirtualBox
+:
+
+Linux
+:
