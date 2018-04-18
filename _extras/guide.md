@@ -22,6 +22,7 @@ First basic webserver will be installed on it. Then manually install WP on it an
 **Total per participant**:
 
 * 2 VCPUs
+* 9 GB RAM
 * 2 Floating IPs
 * 2 Security group
 * 10 GB storage
