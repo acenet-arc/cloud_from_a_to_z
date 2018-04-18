@@ -14,11 +14,12 @@ objectives:
 - "Add security rules to allow traffic into a VM."
 - "Connect to a VM using SSH."
 keypoints:
-- "The flavor of a VM prescribes the hardware profile of the VM."
-- "A boot source specifies from what the VM should boot."
-- "A public key must be inject into the VM in order to connect to it."
-- "A floating IP must be added to a VM to connect to it from outside the local network in the cloud."
-- "Port 22 must be opened in the security rules to allow SSH to connect to the VM."
+- "The [**flavor**](../reference#flavor) of a VM prescribes the hardware profile of the VM."
+- "A [**boot source**](../reference#boot-source) specifies from what the VM should boot."
+- "A [**public key**](../reference#public-key) must be inject into the VM in order to connect to it."
+- "A [**floating IP**](../reference#floating-ip) must be added to a VM to connect to it from outside the local network in the cloud."
+- "[**Port**](../reference#port) 22 must be opened in the security rules to allow [**SSH**](../reference#ssh) to connect to the VM."
+- "A [**security group**](../reference#security-group) controls which ports to allow traffic in and out on."
 ---
 
 ## Creating a virtual machine
@@ -68,15 +69,15 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxo6H/dDFLunQOUKnTUxNfHTsDfARFdFjqyJrf2udO
 
 and copying this text into the *Public Key* text field on the OpenStack dashboard. Provide a *Key Pair Name* which will distinguish this key from other keys you might have, something like `laptop-key` or `work-desktop-key`. Then click the *Import Key Pair* button to add that public key to your OpenStack account. This public key can then be selected from the drop down box *Select a key pair*. This public key can also be used for other future virtual machines also.
 
-Before launching your first VM make sure to check the check box under *Security Groups* next to the *default* security group. This will add your VM to the default **security group**. A security group contains rules that allow traffic into and out of your virtual machine. By selecting the default security group we can set rules to allow access to your virtual machine.
+Before launching your first VM make sure to check the check box under *Security Groups* next to the *default* security group. This will add your VM to the *default* security group. A [**security group**](../reference#security-group) contains [**security rules**](../reference#security-rule) that allow traffic into and out of your virtual machine. By selecting the default security group we can set rules to allow access to your virtual machine.
 
 Finally click the *Launch* button at the bottom of the *Launch Instance* panel to create your first virtual machine!
 
 ## Associating a Floating IP with a VM
-To connect to your virtual machine you will need to associate a **Public IP** with your virtual machine. Doing so will create a pointer from a publicly accessible IP to your virtual machine. This publicly accessible IP is also known as a **Floating IP** as this IP can "float" from one virtual machine to another. The public IP associated with your VM allows other machines to connect to your VM across the Internet. This is different from the private or local IP your VM gets by default, which only identifies the virtual machine on the local network. To associate a floating IP with your newly created virtual machine click on the drop down menu on the right side of your newly create virtual machine and select *Associate Floating IP*. This will bring up a panel to select an IP Address. Chances are you will not yet have a floating IP added to your project. To add a new floating IP click the *+* button next to the drop down box *Select an IP address*. Select a *Pool* to allocate the floating IP from. There will likely be only one. Then select *Allocate IP*. This will then take you back the previous panel and you can select the newly allocated floating IP from the drop down box. For *Port to be associated* your newly created VM should already be selected as indicated by the name of your VM and its private IP address. Then click *Associate*. The floating IP we just associated with your newly created VM will be the IP address we use to connect to your VM.
+To connect to your virtual machine you will need to associate a [**Public IP**](../reference#public-ip) with your virtual machine. Doing so will create a pointer from a publicly accessible IP to your virtual machine. This publicly accessible IP is also known as a [**Floating IP**](../reference#floating-ip) as this IP can "float" from one virtual machine to another. The public IP associated with your VM allows other machines to connect to your VM across the Internet. This is different from the private or local IP your VM gets by default, which only identifies the virtual machine on the local network. To associate a floating IP with your newly created virtual machine click on the drop down menu on the right side of your newly create virtual machine and select *Associate Floating IP*. This will bring up a panel to select an IP Address. Chances are you will not yet have a floating IP added to your project. To add a new floating IP click the *+* button next to the drop down box *Select an IP address*. Select a *Pool* to allocate the floating IP from. There will likely be only one. Then select *Allocate IP*. This will then take you back the previous panel and you can select the newly allocated floating IP from the drop down box. For *Port to be associated* your newly created VM should already be selected as indicated by the name of your VM and its private IP address. Then click *Associate*. The floating IP we just associated with your newly created VM will be the IP address we use to connect to your VM.
 
 ## Adding SSH Security Rule
-To connect to the virtual machine we will be using SSH which communicates on port 22. To allow SSH connections into your virtual machine you will have to add a security rule to the *default* security group to allow it. To do this go to the *Access & Security* panel and click the *Manage Rules* button on the right in the row of the *default* security group. This will bring up a new panel showing all the rules for this security group. To allow traffic inbound on port 22 click the *+ Add Rule* button in the top right which brings up a new panel. For the *Rule* drop down select *SSH*. For *Remote* select *CIDR*. CIDR stands for Classless Inter-Domain Routing and is a way of specifying ranges of IP address. There is a [convenient tool](http://www.ipaddressguide.com/cidr) for converting an IP range into CIDR notation. It is usually best to limit the VM to as small a set of IPs as is reasonable. From a previous episode we looked up our IP address at [whatismyipaddress.com](https://whatismyipaddress.com/?u=TRUE), use this IP to enter into the CIDR tool to for both the lower and upper IPs in the range and enter the resulting CIDR rule into the *CIDR* text field and click *Add* to add the new rule.
+To connect to the virtual machine we will be using SSH which communicates on port 22. To allow SSH connections into your virtual machine you will have to add a security rule to the *default* security group to allow it. To do this go to the *Access & Security* panel and click the *Manage Rules* button on the right in the row of the *default* security group. This will bring up a new panel showing all the rules for this security group. To allow traffic inbound on port 22 click the *+ Add Rule* button in the top right which brings up a new panel. For the *Rule* drop down select *SSH*. For *Remote* select *CIDR*. [**CIDR**](../reference#cidr) stands for Classless Inter-Domain Routing and is a way of specifying ranges of IP address. There is a [convenient tool](http://www.ipaddressguide.com/cidr) for converting an IP range into CIDR notation. It is usually best to limit the VM to as small a set of IPs as is reasonable. From a previous episode we looked up our IP address at [whatismyipaddress.com](https://whatismyipaddress.com/?u=TRUE), use this IP to enter into the CIDR tool to for both the lower and upper IPs in the range and enter the resulting CIDR rule into the *CIDR* text field and click *Add* to add the new rule.
 
 ## Connecting to a virtual machine
 
@@ -119,11 +120,39 @@ ubuntu@test:~$
 ~~~
 {: .output}
 
-At the bottom of the output you can see the prompt `ubuntu@test:~$` this is now a shell prompt on the newly created virtual machine. Notice that the username we used to connect `ubuntu` is part of the prompt letting you know who the virtual machine thinks you are. Also notice `test` which is the hostname of your virtual machine, as mentioned earlier this derived from the **Instance Name** you give to your virtual machine. Finally the `~` indicates what directory you are currently in. In this case you are in the user `ubuntu`'s home directory.
+At the bottom of the output you can see the prompt `ubuntu@test:~$` this is now a shell prompt on the newly created virtual machine. Notice that the username we used to connect `ubuntu` is part of the prompt letting you know who the virtual machine thinks you are. Also notice `test` which is the hostname of your virtual machine, as mentioned earlier this derived from the Instance Name you give to your virtual machine. Finally the `~` indicates what directory you are currently in. In this case you are in the user `ubuntu`'s home directory.
 
 From this point you can start working with or configuring your virtual machine with additional capability above and beyond those included in the basic Ubuntu operating system provided by the image we selected when creating our virtual machine. The things you can do with your new VM are only limited by your imagination, time, and OpenStack quota. Some examples of what you could do with your OpenStack VMS, run python scripts to scrape twitter data, run a wordpress site to publish articles, or do large scale text processing with Spark.
 
+> ## What do you see in your VM's log
+> The log of your virtual machine can be very helpful for understanding and debugging problems. On the *Instances* page then click on your *Instance name* and then the *Log* tab. The log shows various steps take and output generated while your VM is starting up and while running. Can you see where your public key is injected into the VM. Hint: it is put into a file called `authorized_keys`.
+>
+> > ## Solution
+> > You should see something like the following:
+> > ~~~ 
+> > ci-info: ++++++++++Authorized keys from /home/ubuntu/.ssh/authorized_keys for user ubuntu++++++++++
+> > ci-info: +---------+-------------------------------------------------+---------+------------------+
+> > ci-info: | Keytype |                Fingerprint (md5)                | Options |     Comment      |
+> > ci-info: +---------+-------------------------------------------------+---------+------------------+
+> > ci-info: | ssh-rsa | 24:8d:e7:a6:b8:f5:02:b1:0f:89:92:85:85:eb:d5:59 |    -    | rsa-key-20160303 |
+> > ci-info: +---------+-------------------------------------------------+---------+------------------+
+> > ~~~
+> > {: .output}
+> > The comment associated with the public key is usually `<user>@<hostname>`. The Fingerprint can be used to uniquely identify the key pair and can be useful when trying to verify that a public key and a private key are part of the same pair.
+> {: .solution}
+{: .challenge}
+
+> ## What does the Console tab do
+> On the *Instances* page then click on your *Instance name* and then the *Console* tab. If it shows a blank or black box, try clicking on it and pressing the enter key.
+> > ## Solution
+> > It should show a `login:` prompt, prompting you to enter your username to login, but if you do it will ask you for a password but since we are authenticating using key pairs we don't have a password. For this reason console is not very useful for Linux VMs. If you were to create a Windows VM though the authentication process is much different and the console becomes slightly more useful.
+> {: .solution}
+{: .challenge}
+
 > ## Create a VM with an invalid hostname
 >
-> What does the hostname become if you create a VM with an instance name which isn't a valid hostname such as `_test` or `test!abs`? If you still have your first VM around you may need to delete (i.e. terminate) it to try this out. Do not terminate your recently created persistent VM as we will use it through out this course.
+> What does the hostname become if you create a VM with an instance name which isn't a valid hostname such as `_test` or `test!abs`?
+> > ## Solution
+> > the instance name will be modified such that it is a valid host name be removing the invalid characters. So `_test` will become `test` and `test!abs` will become `testabs`.
+> {: .solution}
 {: .challenge}

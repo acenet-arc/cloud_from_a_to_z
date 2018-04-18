@@ -13,7 +13,7 @@ objectives:
 - "Provide an overview of the course."
 - "Ensure everyone has their environments setup."
 keypoints:
-- "Cloud computing is very flexible and has many diverse uses."
+- "[**Cloud computing**](../reference#cloud-computing) is very flexible and has many diverse uses."
 - "Setup of Compute Canada cloud environments is left to its users."
 - "In this course we will setup a cloud environment to run WordPress."
 - "We will see methods to easy setup of cloud environments."
