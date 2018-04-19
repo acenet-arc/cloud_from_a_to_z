@@ -75,7 +75,7 @@ The "Instances" panel shows all running [**instances**](../reference#instance) a
 <img src="../fig/os-screens/Volumes.png" alt="OpenStack Dashboard Volumes" style="width: 100%;"/>
 
 ### Images
-[**Images**](../referece#image) are files which contain data from a hard drive or volume. Images allow you to make copies or backups of your volumes and virtual machines. Volumes can be created from an Image by coping the data the Image contains to the volume. Images can be private to your project, shared with others, or completely public. There are a number of public images provided by the Compute Canada Cloud to be used as starting points for virtual machines (for example and image containing the Ubuntu Linux operating system). Images can be downloaded and used in other clouds or with desktop tools such as [**VirtualBox**](../reference#virtualbox) which allows you to run your cloud VMs on your laptop.
+[**Images**](../reference#image) are files which contain data from a hard drive or volume. Images allow you to make copies or backups of your volumes and virtual machines. Volumes can be created from an Image by coping the data the Image contains to the volume. Images can be private to your project, shared with others, or completely public. There are a number of public images provided by the Compute Canada Cloud to be used as starting points for virtual machines (for example and image containing the Ubuntu Linux operating system). Images can be downloaded and used in other clouds or with desktop tools such as [**VirtualBox**](../reference#virtualbox) which allows you to run your cloud VMs on your laptop.
 
 <img src="../fig/os-screens/Images.png" alt="OpenStack Dashboard Images" style="width: 100%;"/>
 
