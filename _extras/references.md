@@ -30,6 +30,15 @@ cloud computing
 command
 : a series of characters entered in a [shell](#shell) indicating an action you would like the operating system to perform.
 
+CPU
+: or central processing unit, is the electronic circuitry within a computer that carries out the instructions of a computer program.
+
+CPU oversubscription
+: is when one physical [CPU](#cpu) runs two or more [VCPUs](#vcpu). In this case the one real physical CPU will switch back and forth between running tasks for the two or more VCPUs.
+
+persistent flavor
+: is a [virtual machine](#virtual-machine) [flavor](#flavor) which is configured for short temporary usage. Because data safety is often less of a concern they are designed with a 20 GB root [ephemeral disk](#ephemeral-disk)
+
 computer network
 : is a digital telecommunications network which allows nodes in the network to share resources and exchange data.
 
@@ -47,6 +56,9 @@ encryption
 
 elasticity
 : The ability to quickly change the amount of resources being used based on demand.
+
+ephemeral disk
+: a [virtual disk](#virtual-disk) residing on the physical [node](#node) or [hypervisor](#hypervisor) which runs the [virtual machine](#virtual-machine). Ephemeral disks, as the name might suggest do not outlive their virtual machine, meaning that when their virtual machine is terminated or deleted the drive is also deleted.
 
 flavor
 : defines the virtual hardware specifications of a [virtual machine](#virtual-machine)
@@ -90,6 +102,9 @@ Linux
 ls
 : a [command](#command) to list the file system structure in the [bash](#bash) [shell](#shell) and many other common shells.
 
+node
+: often refers to a computer within a [computer network](#computer-network).
+
 OpenStack
 : is open source software for creating clouds. See [cloud computing](#cloud-computing)
 
@@ -98,6 +113,9 @@ operating system
 
 PaaS
 : Platform as a Service
+
+persistent flavor
+: is a [virtual machine](#virtual-machine) [flavor](#flavor) which is configured for long running or persisting virtual machines. These machines are typically for webservers and may spend substantial portions of their time not doing anything. As such they may have the VCPUs [oversubscribed](#oversubscribe) by up to a factor of 8. They are also meant to boot form a [volume](#volume).
 
 port
 : identifies a specific process or a type of network service.
@@ -119,6 +137,9 @@ public IP
 
 pwd
 : a [command](#command) to print the current working directory in the [bash](#bash) [shell](#shell) and many other common shells.
+
+ram
+: or random-access memory is a form of computer data storage that stores data for quick access by the [CPU](#cpu).
 
 router
 : is a networking device that forwards data between computer networks for example a [WAN](#wan) and a [LAN](#lan)
@@ -150,11 +171,14 @@ terminal
 Ubuntu
 : is an [operating system](../reference#operating-system) in the [Linux](#linux) family. See the official [Ubuntu page](https://www.ubuntu.com/) for more details.
 
+VCPU
+: is a [virtual](#hardware-virtualization) [CPU](#cpu).
+
 virtual device
 : is an emulation of a real physical device usually through means of virtualization software.
 
 virtual machine
-: is a [virtual device](#virtual-device) emulating a computer system which provides the functionality of a physical computer. A virtual machine runs a real underlying computer.
+: is a [virtual device](#virtual-device) emulating a computer system which provides the functionality of a physical computer. A virtual machine runs on a real underlying computer.
 
 VirtualBox
 : a software tool for creating and running virtual machines. See [VirtualBox website](https://www.virtualbox.org/) for more details.
