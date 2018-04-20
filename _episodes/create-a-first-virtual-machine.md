@@ -15,7 +15,7 @@ objectives:
 - "Connect to a VM using SSH."
 keypoints:
 - "The [**flavor**](../reference#flavor) of a VM prescribes the hardware profile of the VM."
-- "A [**boot source**](../reference#boot-source) specifies from what the VM should boot."
+- "A [**boot source**](../reference#boot-source) specifies from what the VM should [**boot**](../reference#boot)."
 - "A [**public key**](../reference#public-key) must be inject into the VM in order to connect to it."
 - "A [**floating IP**](../reference#floating-ip) must be added to a VM to connect to it from outside the local network in the cloud."
 - "[**Port**](../reference#port) 22 must be opened in the security rules to allow [**SSH**](../reference#ssh) to connect to the VM."
@@ -36,7 +36,7 @@ You are presented with a panel consisting of multiple tabs of fields to fill in.
 > The summary of the wikipeida page is, hostnames must be less than 64 characters long, contain only numbers letters and dashes (`-`).
 {: .callout}
 
-**Flavor:** The flavor of your VM specifies the hardware profile your VM will have. Compute Canada cloud uses a consistent naming scheme across their clouds to describe the hardware profile.  Examples of VM flavors are `p1-1.5gb` and `c1-7.5gb-30` and the different components of the name correspond to different hardware features.
+**Flavor**: The [**flavor**](../reference#flavor) of your VM specifies the hardware profile your VM will have. Compute Canada cloud uses a consistent naming scheme across their clouds to describe the hardware profile.  Examples of VM flavors are `p1-1.5gb` and `c1-7.5gb-30` and the different components of the name correspond to different hardware features.
 
 * Flavors beginning with a `p` indicates a persistent VM. Persistent VMs are expected to run for long periods of time and provide services such as websites. We will explore persistent VMs in more detail in the next episode. 
 
@@ -52,9 +52,9 @@ For this example choose the `c1-7.5gb-30` flavor. Which is a compute flavor with
 
 **Instance Count:**  indicates how many virtual machines you wish to create. For this example choose 1.
 
-**Instance Boot Source**: indicates from where your virtual machine will boot its operating system. There are several options to choose from, but for this example we will choose *Boot from image*. This choice indicates that we want to select a virtual disk image as our boot source. The combination of the flavor we chose above and the boot source we chose instructs OpenStack to create a new virtual disk of 20GB and copy the selected virtual disk image to it. This virtual disk will reside on the host machine's disk and contain the operating system files for the virtual machine. 
+**Instance Boot Source**: indicates from where your virtual machine will [**boot**](../reference#boot) its operating system. There are several options to choose from, but for this example we will choose *Boot from image*. This choice indicates that we want to select an [**ephemeral disk**](../reference#ephemeral-disk) as our boot source. The combination of the flavor we chose above and the [**boot source**](../reference#boot-source) we chose instructs OpenStack to create a new virtual disk of 20 GB and copy the selected virtual disk image to it. This virtual disk will reside on the host machine's disk and contain the operating system files for the virtual machine. 
 
-**Image Name:** specifies an Image which forms the starting point for our virtual machine. Usually this means choosing an operating system for your virtual machine. But it could include additional software packages and configurations also. We will choose the `Unbuntu-16.04-Xenial-x64-2017-03` image which contains the Ubuntu Linux operating system, version 16.04.
+**Image Name:** specifies an [**image**](../reference#image) which forms the starting point for our virtual machine. Usually this means choosing an operating system for your virtual machine. But it could include additional software packages and configurations also. We will choose the `Unbuntu-16.04-Xenial-x64-2017-03` image which contains the Ubuntu Linux operating system, version 16.04.
 
 **Key Pair:** The final piece of information we need to provide before creating a VM is the public key we created in the previous episode to allow you to connect to the VM you create. Select the *Access & Security* tab, then you can add a public key to your OpenStack account by clicking the "+"  next to the *Select a key pair* drop down box. Then copy and paste in your public key into the text field. You can copy your public key text by going to your terminal where you created your key pair in the last episode and running the command
 

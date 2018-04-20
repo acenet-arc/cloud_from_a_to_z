@@ -9,8 +9,11 @@ permalink: /reference/
 bash
 : is a replacement for the earlier Bourne shell and is the default shell for most Linux distributions. See also [shell](#shell) for a more description of shells in general.
 
+boot
+: or startup of a compute involves loading files and starting programs running which are contained on a [boot source](#boot-source).
+
 boot source
-: what the [virtual machine](#virtual-machine) boots from. Examples of a boot sources are [volumes](#volume) and [images](#image)
+: what the [virtual machine](#virtual-machine) [boots](#boot) from. Examples of a boot sources are [volumes](#volume) and [images](#image)
 
 cat
 : a [command](#command) to concatenate files and print on the standard output.
@@ -68,6 +71,12 @@ floating ip
 
 FQDN
 : is a [domain name](#domain-name) that is completely specified with all labels in the hierarchy of the domain name system.
+
+git
+: [git](git-scm.com) if a free open source, source code management tool. It keeps versioned snapshots of your code and easily displays the differences from one snapshot to the next.
+
+github
+: [github.com](https://github.com/) provides a web platform for hosting [git](#git) version control repositories.
 
 hardware virtualization
 : or sometimes referred to just as virtualization is the presentation of simulated hardware by software. For example this virtual hardware could be routers, computers, or disk drives.
@@ -164,6 +173,9 @@ SSH
 
 ssh-keygen
 : a [command](#command) for creating [key pairs](#key-pair).
+
+static website
+: a static website is a web page that is delivered to the user exactly as stored, in contrast to [dynamic websites](../references#dynamic-websites).
 
 terminal
 : is a program for entering and displaying text, see also [shell](#shell).

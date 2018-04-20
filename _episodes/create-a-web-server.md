@@ -228,6 +228,10 @@ The apache package installs a default web page to test the installation. This pa
 
 To create your own web pages you may edit the file `/var/www/html/index.html` which is the default web page shown above. You can use HTML, CSS, and more to create web pages (see [w3schools](https://www.w3schools.com/) for tutorials and references for creating web pages with these technologies).
 
+> ## Static web pages
+> At this point you have all the server setup required to create [**static websites**](../reference#static-website). By static website I mean that the contents of the site are display as they are stored on the server. Every visitor of the site sees the same site. For example, this workshop site was generated using a static website generator called [**jekyll**](https://jekyllrb.com/) which is integrated with [github](../reference#github) (a version control web tool). That isn't to say a static website can't have dynamic components. A static website can have features which change based on actions, such as menus which are animated or expandable challenge boxes as shown below. What they can't do is display information which is specific to a person visiting the site, such as shopping carts or account information. Some of the major benefits of static websites is simplicity of setup and maintenance, improved security, and improved performance. If you don't require the functionality of a dynamic site I would highly recommend investigating some of the various static site generators out there. For a good list see: [www.staticgen.com](https://www.staticgen.com/)
+{: .callout}
+
 > ## Creating your first web page
 >
 > Try modifying or replacing the `/var/www/html/index.html` file and see the changes in your browser.
