@@ -2,7 +2,7 @@
 layout: episode
 title: "Introduction to cloud computing"
 teaching: 30
-exercises: 0
+exercises: 5
 questions:
 - "What is a cloud?"
 - "What does \"virtual\" mean when applied to a computer?"
@@ -60,7 +60,7 @@ Once you login to the OpenStack dashboard you will be presented with the "Overvi
  
 <img src="../fig/os-screens/Overview.png" alt="OpenStack Dashboard Overview" style="width: 100%;"/>
 
-This panel shows you an overview (go figure) of your current project's usage and quota on OpenStack. An OpenStack user can be associated with multiple projects each project has their own quota and a project can have multiple users. Your project's OpenStack quota dictates the maximum number of VM instances, [**VCPU**](../reference#vcpu)s, RAM, Floating IPs, Security Groups, Volumes, and Volume/Snapshot Storage you may use within that project. To increase the quota of a project you need to apply to a [RAC](https://www.computecanada.ca/research-portal/accessing-resources/resource-allocation-competitions/) or [RAS](https://www.computecanada.ca/research-portal/accessing-resources/rapid-access-service/#cloud) as mentioned above.
+This panel shows you an overview (go figure) of your current project's usage and quota on OpenStack. An OpenStack user can be associated with multiple projects each project has their own quota and a project can have multiple users. Your project's OpenStack quota dictates the maximum number of VM instances, [**VCPU**](../reference#vcpu)s, RAM, Floating IPs, Security Groups, Volumes, and Volume/Snapshot Storage you may use within that project. The units for RAM and Volume storage are in GB if no unit is displayed. To increase the quota of a project you need to apply to a [RAC](https://www.computecanada.ca/research-portal/accessing-resources/resource-allocation-competitions/) or [RAS](https://www.computecanada.ca/research-portal/accessing-resources/rapid-access-service/#cloud) as mentioned above.
 
 In the top right corner you have access to account settings and the sign out link. At the top is the current active project. You are likely only a member of one project, but you can potentially be a member of many projects and this drop down menu allows you to choose the project you are actively working on.
 
@@ -86,14 +86,33 @@ The Access & Security panel serves a number of functions. It allows you to set r
 <img src="../fig/os-screens/Access-and-security.png" alt="OpenStack Dashboard Access and Security" style="width: 100%;"/>
 
 > ## Public images
-> Look at the images panel and see what images are available to create new virtual machines. Do you recongnize any of the image operating system names and or versions?
+> Look at the images panel and see what images are available to create new virtual machines. Do you recognize any of the image operating system names and or versions?
+>
+>Hint: you may need to select different tabs to see all the images available.
 > 
 > > ## Solution
-> > There are:
+> > Some images of common Linux and Windows operating systems available on the cloud:
 > > * CentOS 6/7
 > > * Ubuntu 14/16
 > > * Fedora 25/26
 > > * Debian 8/9
 > > * Windows Server 2012
+> > Images lists might be slightly different between Compute Canada clouds.
+> {: .solution}
+{: .challenge}
+
+> ## Largest Volume
+> What is the largest volume that could be newly created given the quota and usage displayed in the *Overview* page above?
+>
+> 1. 40 GB
+> 2. 40 KB
+> 3. 0 GB
+> 4. 80 GB
+>
+> > ## Solution
+> > 1. No, while the total quota is 40 GB it is actually already used up with 2 other volumes.
+> > 2. No, the total quota of 40 GB is already completely used. Note that quotas are in GB and not KB even if there is no unit indicated.
+> > 3. Yes, in fact you couldn't create a volume at all because both the storage quota and the number of allowed volumes (2) are already reached.
+> > 4. No, the total quota is 40 GB and 40 GB of it have already been used.
 > {: .solution}
 {: .challenge}

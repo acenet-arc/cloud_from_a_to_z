@@ -26,19 +26,41 @@ Another significant difference is that `p` flavors are expected to use a [**volu
 
 In the last episode we created a virtual machine which booted from an image and did not make use of a volume so where did this machine boot from? When booting from an image a virtual disk is created on the local drive of the physical computer running the virtual machine, also referred to as an [**ephemeral disk**](../reference#ephemeral-disk) as this virtual disk exists only as long as the virtual machine. When the virtual disk is created the data contained in the selected disk image was copied onto this virtual disk. The size of this virtual disk is fixed for `c` flavors at 20GB. In the case of `p` flavors, while you technically can also boot them from an image, the virtual disk that is created is only a tiny bit bigger than the original disk image. If you try to write much to the filesystem of a `p` flavor VM booted from an image you will quickly exceed the capacity of the file system. `p` flavors were designed to be booted from a volume.
 
+## Creating a persistent VM
+
 Now lets create a persistent VM which boots from a volume. Start by creating a VM in the same way as last time, again making sure to include your name in your VM's name but do not launch it yet. Select the flavor `p1-1.5gb` and select  for *Instance Boot Source* a source which is from a volume. Options which boot from a volume are:
 
 * **Boot from volume:** this option will allow you to create a new VM booting from a pre-existing volume.
 * **Boot from image (creates a new volume):** this option will allow you to create a new volume from a selected disk image and boot form it. You can also specify the size of the volume with this option.
 * **Boot from volume snapshot (creates a new volume):** this option will allow you to create a new volume from an existing volume snapshot and boot from the newly created volume. We have not talked about volume snapshots yet, but they can be thought of as a disk image created from a volume.
 
-In our case we do not have any existing volumes or volume snapshots, so this leaves the *Boot from image (creates a new volume)* option so lets choose that *Instance Boot Source*. Lets choose the `Ubuntu-16.04-Xenial-x64-2017-02` image as before and a *Device size* of 10GB. **DO NOT** check the *Delete on Terminate* box as this will cause the volume to be deleted if the VM is. Also do not forget to switch to the *Access & Security* tab to select a *Key Pair* and *Security Groups* before clicking the *Launch* button because if a key pair is not selected you will not be able to connect to the VM and you will have to delete and recreate it.
+In our case we do not have any existing volumes or volume snapshots, so this leaves only one option:
+* Choose *Boot from image (creates a new volume)* for the *Instance Boot Source*. 
+* Choose the `Ubuntu-16.04-Xenial-x64-2017-02` image as before.
+* Set the *Device size* to 10GB.
+* **DO NOT** check the *Delete on Terminate* box.<br/>This will cause the volume to be deleted if the VM is.
+* Also select a *Key Pair* and *Security Groups* on the *Access & Security* tab.
+* Then click the *Launch* button.
 
-Once we have created a persistent VM we will also need to associate a public IP with it so that we can connect and also verify that we can indeed connect to the VM by `ssh`ing into the VM.
+> ## Forgetting a key
+> If you forget to select a key-pair OpenStack may choose one for you if you only have one key-pair. If you have more than one it might not select a key-pair for you. If you end up with a VM which didn't have a public key injected into it you will not be able to connect to the VM and you will have to delete and recreate it.
+{: .callout}
+
+## Associate a floating IP
+Once we have created a persistent VM we will also need to associate a public IP with it as we did in the previous episode so that we can connect to it.
 
 In the following episodes we will use this VM to setup a basic web server allowing us to server HTML files and tomorrow we will use it to create a WordPress site.
 
-> ## Boot a `p`-flavor VM from an Image
->
-> If you create a `p`-flavor VM booting from an image how big is the root file system. **Hint**: run the command `df -h` to display the disk size and usage once connected to the VM. Be sure to terminate this VM as you can do little with it due to the small disk size.
+> ## Volume Name
+> You just created a new persistent VM booting from a volume. What is the name of that volume?
+> > ## Solution
+> > Go to *Volumes* and find the volume attached the VM you just created. The name will be an ugly string of numbers and characters like `95f62a65-39b9-4c69-a319-2fcfaaa85f3a`. When a volume is created as part of VM creation, as was the case above, it names the volume after its unique ID. Every object, volume, VM, IP, router, etc. in OpenStack has a unique ID that can be used to reference it. This means you can have two volumes or VMs with the same name but are still distinct and can be distinguished with their IDs.
+> {: .solution}
+{: .challenge}
+
+> ## Volume Device Label
+> What is the device label that the volume is attached on? The key word here is **on**.
+> > ## Solution
+> > Go to *Volumes* and find the volume attached the VM you just created. Under then *Attached To* column in the row for your volume it will tell you which device label the volume will have within the VM. In the case of a boot volume this label is usually `/dev/vda`. If the volume was added as a second or third volume to store data this device label would be `/dev/vdb` or `/dev/vdc` respectively and so on as fourth and fifth volumes are added. This device label allows you to make a connection with the drives you see in your VM with the volumes in listed in the OpenStack dashboard.
+> {: .solution}
 {: .challenge}

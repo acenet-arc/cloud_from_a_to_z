@@ -29,7 +29,7 @@ You are presented with a panel consisting of multiple tabs of fields to fill in.
 
 **Availability Zone:** In theory this could allow you to chose how available you would like your VM to be. This would be done by launching your VM on hosts in a different availability zone which have certain hardware or software configurations which make them less susceptible to outages. However, on the Compute Canada cloud there is only one availability zone so there is no need to choose anything but the default.
 
-**Instance Name:** specify the name of your virtual machine. OpenStack will attempt to use this name as the hostname of your virtual machine. However, if the instance name you provided is not a valid hostname OpenStack will modify it so that it is valid and use the modified version for your hostname while still referring to your VM in the OpenStack dashboard by the instance name you provided. As some of use might be sharing a project, please include your name in the instance name, something like `your-name-first-vm`.
+**Instance Name:** specify the name of your virtual machine. OpenStack will attempt to use this name as the [**hostname**](../reference#hostname) of your virtual machine. However, if the instance name you provided is not a valid hostname OpenStack will modify it so that it is valid and use the modified version for your hostname while still referring to your VM in the OpenStack dashboard by the instance name you provided. As some of us are sharing a project, please include your name in the instance name, something like `your-name-first-vm` so that we don't have VMs with duplicate names, it gets confusing.
 
 > ## What is a valid hostname?
 > A good description of a valid hostname is given in this [wikipedia page section]( https://en.wikipedia.org/wiki/Hostname#Restrictions_on_valid_hostnames). The official specifications for hostnames are given in two Internet standards requests for comments documents [RFC-952](https://tools.ietf.org/html/rfc952), and [RFC-1123](https://tools.ietf.org/html/rfc1123).
@@ -38,23 +38,26 @@ You are presented with a panel consisting of multiple tabs of fields to fill in.
 
 **Flavor**: The [**flavor**](../reference#flavor) of your VM specifies the hardware profile your VM will have. Compute Canada cloud uses a consistent naming scheme across their clouds to describe the hardware profile.  Examples of VM flavors are `p1-1.5gb` and `c1-7.5gb-30` and the different components of the name correspond to different hardware features.
 
-* Flavors beginning with a `p` indicates a persistent VM. Persistent VMs are expected to run for long periods of time and provide services such as websites. We will explore persistent VMs in more detail in the next episode. 
+* Flavors beginning with a `p` indicates a [**persistent flavor**](../reference#persistent-flavor). Persistent flavors or VMs are expected to run for long periods of time and provide services such as websites. We will explore persistent VMs in more detail in the next episode. 
 
-* Flavors beginning with a `c` indicates a compute VM. Compute VMs are expected to run for shorter periods of time and be temporary. These VMs are expected to make heavy use of the CPU during their total existence with nearly 100% usage, unlike persistent VMs which may only do something ever once and a while when some one makes a request for the service they provide.
+* Flavors beginning with a `c` indicates a [**compute flavor**](../reference#compute-flavor). Compute flavors or compute VMs are expected to run for shorter periods of time and be temporary. These VMs are expected to make heavy use of the CPU during their total existence with nearly 100% usage, unlike persistent VMs which may only do something ever once and a while when some one makes a request for the service they provide.
 
-* The number after the 'p' or 'c' indicates the number of virtual central processing units (VCPUs)
+* The number after the 'p' or 'c' indicates the number of virtual central processing units ([**VCPUs**](../reference#vcpu))
 
-* The number after then first '-' indicates the amount of RAM in GB for example the flavor `c1-7.5gb-30` has 7.5 GB of RAM
+* The number after then first '-' indicates the amount of RAM in GB for example the flavor `c1-7.5gb-30` has 7.5 GB of [**RAM**](../reference#ram)
 
-* The final number, which only occurs in flavors starting with a `c`, is the size in GB of an extra virtual disk in addition to the disk that the virtual machine's operating system resides. This extra disk can be used to store temporary data, but will be lost once the virtual machine is terminated unless special care has been taken to save it else where.
+* The final number, which only occurs in flavors starting with a `c`, is the size in GB of an extra [**ephemeral disk**](../reference#ephemeral-disk) in addition to the disk that the virtual machine's operating system resides. This extra disk can be used to store temporary data, but will be lost once the virtual machine is terminated unless special care has been taken to save it else where.
 
 For this example choose the `c1-7.5gb-30` flavor. Which is a compute flavor with 1VCPU, 7.5GB of RAM and a 30 GB of extra temporary disk storage.
+> ## Flavor variations
+> If you are on a different Compute Canada cloud, such as East cloud, you might have a different set of flavors, however you should still be able to pick something relatively close to this one. For example on East cloud a `c1-3.7gb-36` flavor has about half the RAM but a slightly larger ephemeral data disk. For this workshop this flavor will work just as well.
+{: .callout}
 
-**Instance Count:**  indicates how many virtual machines you wish to create. For this example choose 1.
+**Instance Count:**  indicates how many virtual machines, or instances, you wish to create. For this example choose 1.
 
-**Instance Boot Source**: indicates from where your virtual machine will [**boot**](../reference#boot) its operating system. There are several options to choose from, but for this example we will choose *Boot from image*. This choice indicates that we want to select an [**ephemeral disk**](../reference#ephemeral-disk) as our boot source. The combination of the flavor we chose above and the [**boot source**](../reference#boot-source) we chose instructs OpenStack to create a new virtual disk of 20 GB and copy the selected virtual disk image to it. This virtual disk will reside on the host machine's disk and contain the operating system files for the virtual machine. 
+**Instance Boot Source**: indicates from where your virtual machine will [**boot**](../reference#boot) its operating system. There are several options to choose from, but for this example we will choose *Boot from image*. This choice indicates that we want to select an [**ephemeral disk**](../reference#ephemeral-disk) as our boot source. The combination of the flavor we chose above and the [**boot source**](../reference#boot-source) we chose instructs OpenStack to create a new virtual disk of 20 GB and copy the selected virtual disk image to it. This virtual disk will reside on the local disk of the host machine, or [**hypervisor**](../reference#hypervisor), and contain the operating system files for the virtual machine.
 
-**Image Name:** specifies an [**image**](../reference#image) which forms the starting point for our virtual machine. Usually this means choosing an operating system for your virtual machine. But it could include additional software packages and configurations also. We will choose the `Unbuntu-16.04-Xenial-x64-2017-03` image which contains the Ubuntu Linux operating system, version 16.04.
+**Image Name:** specifies an [**image**](../reference#image) which forms the starting point for our virtual machine. Usually this means choosing an operating system for your virtual machine. But it could include additional software packages and configurations also. We will choose the `Unbuntu-16.04-Xenial-x64-2017-03` image which contains the [**Ubuntu**](../reference#ubuntu) [**Linux**](../reference#linux) operating system, version 16.04.
 
 **Key Pair:** The final piece of information we need to provide before creating a VM is the public key we created in the previous episode to allow you to connect to the VM you create. Select the *Access & Security* tab, then you can add a public key to your OpenStack account by clicking the "+"  next to the *Select a key pair* drop down box. Then copy and paste in your public key into the text field. You can copy your public key text by going to your terminal where you created your key pair in the last episode and running the command
 
@@ -67,17 +70,41 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxo6H/dDFLunQOUKnTUxNfHTsDfARFdFjqyJrf2udO
 ~~~
 {: .output}
 
-and copying this text into the *Public Key* text field on the OpenStack dashboard. Provide a *Key Pair Name* which will distinguish this key from other keys you might have, something like `laptop-key` or `work-desktop-key`. Then click the *Import Key Pair* button to add that public key to your OpenStack account. This public key can then be selected from the drop down box *Select a key pair*. This public key can also be used for other future virtual machines also.
+and copying this text into the *Public Key* text field on the OpenStack dashboard. Provide a *Key Pair Name* which will distinguish this key from other keys you might have, something like `laptop-key` or `work-desktop-key`. Then click the *Import Key Pair* button to add that public key to your OpenStack account. This public key can then be selected from the drop down box *Select a key pair*. This public key can also be used for other future virtual machines and across projects.
 
 Before launching your first VM make sure to check the check box under *Security Groups* next to the *default* security group. This will add your VM to the *default* security group. A [**security group**](../reference#security-group) contains [**security rules**](../reference#security-rule) that allow traffic into and out of your virtual machine. By selecting the default security group we can set rules to allow access to your virtual machine.
 
 Finally click the *Launch* button at the bottom of the *Launch Instance* panel to create your first virtual machine!
 
 ## Associating a Floating IP with a VM
-To connect to your virtual machine you will need to associate a [**Public IP**](../reference#public-ip) with your virtual machine. Doing so will create a pointer from a publicly accessible IP to your virtual machine. This publicly accessible IP is also known as a [**Floating IP**](../reference#floating-ip) as this IP can "float" from one virtual machine to another. The public IP associated with your VM allows other machines to connect to your VM across the Internet. This is different from the private or local IP your VM gets by default, which only identifies the virtual machine on the local network. To associate a floating IP with your newly created virtual machine click on the drop down menu on the right side of your newly create virtual machine and select *Associate Floating IP*. This will bring up a panel to select an IP Address. Chances are you will not yet have a floating IP added to your project. To add a new floating IP click the *+* button next to the drop down box *Select an IP address*. Select a *Pool* to allocate the floating IP from. There will likely be only one. Then select *Allocate IP*. This will then take you back the previous panel and you can select the newly allocated floating IP from the drop down box. For *Port to be associated* your newly created VM should already be selected as indicated by the name of your VM and its private IP address. Then click *Associate*. The floating IP we just associated with your newly created VM will be the IP address we use to connect to your VM.
+To connect to your virtual machine you will need to associate a [**Public IP**](../reference#public-ip) with your virtual machine. Doing so will create a pointer from a publicly accessible IP to your virtual machine. This publicly accessible IP is also known as a [**floating IP**](../reference#floating-ip) perhaps because the IP can "float" from one virtual machine to another. The public IP associated with your VM allows other machines to connect to your VM across the Internet. This is different from the [**private**](../reference#private-ip) or local IP your VM gets by default, which only identifies the virtual machine on the local network. 
+
+To associate a floating IP with your newly created virtual machine:
+* Click on the drop down menu on the right side of your newly create virtual machine and select *Associate Floating IP*.<br/>
+This will bring up a panel to select an IP Address. Chances are you will not yet have a floating IP added to your project.<br/>
+<br/>
+  To add a new floating IP:
+  * Click the *+* button next to the drop down box *Select an IP address*. 
+  * Select a *Pool* to allocate the floating IP from. There will likely be only one. 
+  * Select *Allocate IP*. This will then take you back the previous panel and you can select the newly allocated floating IP from the drop down box.<br/>
+<br/>
+* Check that the *Port to be associated* already has your newly created VM selected.
+* Click *Associate*.
+
+The floating IP we just associated with your newly created VM will be the IP address we use to connect to your VM.
+
+> ## Different usage of the word "Port"
+> Earlier we talked about ports as numbers indicating a type of service for example a website or the HTTP service being associated with the port number 80. In this case the OpenStack dashboard is using the word port to refer to a virtual machine. Unfortunately this vagueness of how the word port is used can be a bit confusing.
+{: .callout}
 
 ## Adding SSH Security Rule
-To connect to the virtual machine we will be using SSH which communicates on port 22. To allow SSH connections into your virtual machine you will have to add a security rule to the *default* security group to allow it. To do this go to the *Access & Security* panel and click the *Manage Rules* button on the right in the row of the *default* security group. This will bring up a new panel showing all the rules for this security group. To allow traffic inbound on port 22 click the *+ Add Rule* button in the top right which brings up a new panel. For the *Rule* drop down select *SSH*. For *Remote* select *CIDR*. [**CIDR**](../reference#cidr) stands for Classless Inter-Domain Routing and is a way of specifying ranges of IP address. There is a [convenient tool](http://www.ipaddressguide.com/cidr) for converting an IP range into CIDR notation. It is usually best to limit the VM to as small a set of IPs as is reasonable. From a previous episode we looked up our IP address at [whatismyipaddress.com](https://whatismyipaddress.com/?u=TRUE), use this IP to enter into the CIDR tool to for both the lower and upper IPs in the range and enter the resulting CIDR rule into the *CIDR* text field and click *Add* to add the new rule.
+To connect to the virtual machine we will be using SSH which communicates on port 22. To allow SSH connections into your virtual machine you will have to add a security rule to the *default* security group to allow it. To do this:
+* Go to the *Access & Security* panel and click the *Manage Rules* button on the right in the row of the *default* security group. <br/>
+This will bring up a new panel showing all the rules for this security group.
+* Click the *+ Add Rule* button in the top right which brings up a new panel.
+* For the *Rule* drop down select *SSH*.
+* For *Remote* select *CIDR*.<br/>
+[**CIDR**](../reference#cidr) stands for Classless Inter-Domain Routing and is a way of specifying ranges of IP address. There is a [convenient tool](http://www.ipaddressguide.com/cidr) for converting an IP range into CIDR notation. It is usually best to limit the VM to as small a set of IPs as is reasonable. From a previous episode we looked up our IP address at [whatismyipaddress.com](https://whatismyipaddress.com/?u=TRUE), use this IP to enter into the CIDR tool for both the lower and upper IPs in the range and enter the resulting CIDR rule into the *CIDR* text field and click *Add* to add the new rule. The CIDR rules should look something like `123.132.143.122/32` but with a different IP address and with the same `/32` on the end.
 
 ## Connecting to a virtual machine
 
@@ -124,6 +151,10 @@ At the bottom of the output you can see the prompt `ubuntu@test:~$` this is now 
 
 From this point you can start working with or configuring your virtual machine with additional capability above and beyond those included in the basic Ubuntu operating system provided by the image we selected when creating our virtual machine. The things you can do with your new VM are only limited by your imagination, time, and OpenStack quota. Some examples of what you could do with your OpenStack VMS, run python scripts to scrape twitter data, run a wordpress site to publish articles, or do large scale text processing with Spark.
 
+> ## Disconnecting
+> To disconnect from a remote machine, or exit a shell, you can type the `exit` command.
+{: .callout}
+
 > ## What do you see in your VM's log
 > The log of your virtual machine can be very helpful for understanding and debugging problems. On the *Instances* page then click on your *Instance name* and then the *Log* tab. The log shows various steps take and output generated while your VM is starting up and while running. Can you see where your public key is injected into the VM. Hint: it is put into a file called `authorized_keys`.
 >
@@ -149,10 +180,10 @@ From this point you can start working with or configuring your virtual machine w
 > {: .solution}
 {: .challenge}
 
-> ## Create a VM with an invalid hostname
+> ## VM names to hostnames
 >
-> What does the hostname become if you create a VM with an instance name which isn't a valid hostname such as `_test` or `test!abs`?
+> If you were to create two VMs with names of `_test` and `test!abs` what would the hostname for the VM be?
 > > ## Solution
-> > the instance name will be modified such that it is a valid host name be removing the invalid characters. So `_test` will become `test` and `test!abs` will become `testabs`.
+> > the VM name will be modified to remove invalid characters. So a VM name of `_test` will become a hostname of `test` and VM name of `test!abs` will become `testabs` hostname. When you log into a VM you see the hostname and not the VM name at the command prompt.
 > {: .solution}
 {: .challenge}

@@ -27,3 +27,5 @@ First basic webserver will be installed on it. Then manually install WP on it an
 * 2 Security group
 * 10 GB storage
 * 1 Volume
+
+When creating a first VM, if participants are using guest accounts in a shared project and we discovered earlier that they have different IP address, have them enter a security rule to allow their specific IP address for SSH to the default security group.

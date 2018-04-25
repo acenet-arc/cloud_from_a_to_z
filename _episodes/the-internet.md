@@ -63,7 +63,8 @@ A [**hostname**](../reference#hostname) identifies a specific device on a networ
 
 > ## What is your computer's IP?
 >
-> Go to [ipv4.icanhazip.com](http://ipv4.icanhazip.com/) and see what your IP address is. To see a full description of how to use this website go to [](https://major.io/icanhazip-com-faq/)
+> Go to [ipv4.icanhazip.com](http://ipv4.icanhazip.com/) and see what your IP address is. To see a full description of how to use this website go to [major.io/icanhaxip-com-faq](https://major.io/icanhazip-com-faq/).
+>
 > Next try determining your IP from the command line.
 > 
 > If using Windows:
@@ -79,8 +80,10 @@ A [**hostname**](../reference#hostname) identifies a specific device on a networ
 > 1. open the terminal
 > 2. type `ifconfig`
 >
-> There is a good chance that you will not see the same IP address in the command line and from [ipv4.icanhazip.com](http://ipv4.icanhazip.com/) why?
+> Depending on the network configuration you may or may not see the same IP as listed at [ipv4.icanhazip.com](http://ipv4.icanhazip.com/) why or why not?
 > > ## Solution
+> > * If you see a different IPs, does the IP you see with either `ifconfig` or `ipconfig` look something like `192.168.XXX.YYY`. If so, you are likely on a local network and connecting the the Internet through a gateway, such as a router. This is likely what you would see at home if you have a router connected to your modem.
+> > * If you see the same IP it likely means you are either directly connect to your ISP modem, or your institution provides unique public IPs for devices connected on their network.
 > > You likely just see a local or LAN IP address on the command line, while from [ipv4.icanhazip.com](http://ipv4.icanhazip.com/) you will see the IP address given to the router you are connecting to the Internet through.
 > {: .solution}
 {: .challenge}

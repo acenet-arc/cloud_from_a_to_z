@@ -98,9 +98,9 @@ There is a common file system layout across most Linux systems. The below figure
 > The home directory path will look different on different operating systems. On Linux it might look like `/home/cgeroux` but on windows using mobaXterm it might look like `/home/mobaxterm` or on a Mac like `/Users/cgeroux`.
 {: .callout}
 
-So far we have been using what are known as **absolute paths**. An absolute path is a path which starts with a `/` that is they start from the root of the file system. Absolute paths reference the same location no matter where they are used. There are also paths known as **relative paths** which are relative to your current working directory. These can either start with a `.` to indicate the current directory (e.g. `./Documents/pictures`), or the can just start with the directory name (e.g. `Documents/pictures`). This is different from an absolute directory which always begins with a `/`.
+So far we have been using what are known as **absolute paths**. An absolute path is a path which starts with a `/` that is they start from the root of the file system. Absolute paths reference the same location no matter where they are used. There are also paths known as **relative paths** which are relative to your current working directory. These can either start with a `.` to indicate the current directory (e.g. `./Documents/pictures`), or the can just start with the directory name (e.g. `Documents/pictures`). This is different from an absolute directory which always begins with a `/`. 
 
-Lets try moving up to the parent directory using a relative path.
+In addition to the `.` shorthand for the current directory there is a `..` shorthand for parent directory of the current directory. Lets try moving up to the parent directory using a relative path using the `..` shorthand.
 ~~~
 $ cd ..
 $ pwd
@@ -226,7 +226,9 @@ $ cat ~/.ssh/id_rsa.pub
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxo6H/dDFLunQOUKnTUxNfHTsDfARFdFjqyJrf2udOBAzm7hg/w4SaHAqF1b1DvmGhwKwXW6lXYkdsiA5d4IK/Cg8GZ7l74J1QTQ+e6JkdvOmVlTGnu6PTesd++6jZUeiF9Im0ksGPTYo8QH/5k1eHUMwWpUh9xfX0Z56IdUyNxx+/QaeCc61sUvIPf+w2Vm/zC44C+v5OX4lDWlamLf2b0u6be5L99UXWN8741354auMP8qVMidRq8jQjUmlto30b/2H9bMFGQ63eEApEnhe6s+qdxVlbLkKHT2H905ydXf4knAY3TGlgylBNbXjeiJEp9mKlQ5LnIi6rayxzDrIv cgeroux@Caelia
 ~~~
 {: .output}
-Your public key can be given out freely, but remember to keep your private key secret. One final thing I would like to point out about keys is their file permissions. Run the command `ls` command with the `-l` option to show the permissions on the files inside the `.ssh` folder.
+Your public key can be given out freely, but remember to keep your private key secret.
+
+One final item we should cover about keys is their file permissions. If the file permissions, specifically of the .ssh directory and the private key, are too open the command we use to connect to a VM will complain about this and not allow us to connect. To see what the current file permissions are run the `ls` command with the `-l` option to show the permissions on the files inside the `.ssh` folder.
 ~~~
 $ ls -l ~/.ssh/
 ~~~
@@ -236,12 +238,12 @@ $ ls -l ~/.ssh/
 -rw-r--r--    1 cgeroux  UsersGrp       396 Mar 31 15:12 id_rsa.pub
 ~~~
 {: .output}
-The file permissions are displayed in the far left column. Possible file permissions are `r` for read, `w` for write, and `x` for execute. You will notice the dashes which indicate unset permissions. The first `-` will be a `d` if the item is a directory next followed by the three permissions (rwx) for the user who owns the file (in this case the user `cgeroux`). Next are the permissions for the group the file belongs to (in this case `UsersGrp` users and files can belong to groups) and finally the permissions for everyone else. In this case you can see that the private key `id_rsa` is actually readable by any user on this computer. Since you should keep your private key private it is good practise to set the permissions on this file to be readable only by the owner of the file. This can be done using the `chmod` command.
+The file permissions are displayed in the far left column. Possible file permissions are `r` for read, `w` for write, and `x` for execute. You will notice the dashes which indicate unset permissions. The first `-` will be a `d` if the item is a directory, followed by the three permissions (rwx) for the user who owns the file (in this case the user `cgeroux`). Next are the permissions for the group the file belongs to (in this case `UsersGrp`) and finally the permissions for everyone else. In this case you can see that the private key `id_rsa` is actually readable by any user on this computer. Since you should keep your private key private it is good practise to set the permissions on this file to be readable only by the owner of the file. This can be done using the `chmod` command.
 ~~~
 $ chmod og-r ~/.ssh/id_rsa
 ~~~
 {: .bash}
-The above command will remove (`-`) read (`r`) permissions for others (`o`) and members of the file's group (`g`). You can also specify changes in permissions for the user which owns the file with `u` and add permissions by using a `+` instead of the `-` as well as specify multiple permissions at once (e.g. `chmod u+rwx <file-name>`).
+The above command will remove (`-`) read (`r`) permissions for others (`o`) and users who are members of the file's group (`g`). You can also specify changes in permissions for the user which owns the file with `u` and add permissions by using a `+` instead of the `-` as well as specify multiple permissions at once (e.g. `chmod u+rwx <file-name>`).
 
 Issuing the `ls` command again shows the changes to the permissions.
 ~~~
@@ -254,7 +256,11 @@ total 3
 -rw-r--r--    1 cgeroux  UsersGrp       396 Mar 31 15:12 id_rsa.pub
 ~~~
 {: .output}
-However while mobaXterm appears much like a fully functioning Linux terminal there are some limitations. For example this chmod command does not always have an effect. However, on Mac and Linux machines the correct result should be observed. The `.ssh` directory should also have restricted permissions so that only the owner has read permissions.
+> ## MobaXTerm file permissions
+> While mobaXterm appears much like a fully functioning Linux terminal there are some limitations, likely due to the fact that it is actually running on Windows. For example this chmod command does not always have an effect. However, on Mac and Linux machines the correct result should be observed.
+{: .callout}
+
+The `.ssh` directory should also have restricted permissions so that only the owner has read permissions.
 ~~~
 $ chmod og-rx ~/.ssh
 $ ls -al ~/
@@ -275,8 +281,8 @@ lrwxrwxrwx    1 cgeroux  UsersGrp        28 May 18  2016 LauncherFolder -> /driv
 lrwxrwxrwx    1 cgeroux  UsersGrp        33 May 18  2016 MyDocuments -> /drives/C/Users/cgeroux/DOCUME~1/
 ~~~
 {: .output}
-If these permissions are too open the command we use to connect between computers may complain. 
-> ## File permissions variations
+If these permissions are too open the command we use to connect between computers may complain.
+> ## SSH File permissions variations
 >
 > In the case of mobaXterm the `ssh` command does not require strict permissions, however on Linux machines or Macs the `ssh` command does require stricter permissions before it will allow you to connect using a private key. In addition depending on the details of your windows operating system and version of mobaXterm you may or may not actually be able to change file permissions wihtin mobaXterm.
 {: .callout}
@@ -285,7 +291,7 @@ Now we have a key pair we can use to connect to our the VM we will create in the
 
 > ## Absolute vs Relative Paths
 >
-> Starting from `/Users/amanda/data/`,
+> If the present working directory is `/Users/amanda/data/`,
 > which of the following commands could Amanda use to navigate to her home directory,
 > which is `/Users/amanda`?
 >

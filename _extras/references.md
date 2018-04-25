@@ -6,6 +6,9 @@ permalink: /reference/
 ## Glossary
 
 {:auto_ids}
+apt
+: is a command which provides an interface to the Ubuntu package management system. Commonly used sub-commands are update for updating the package list and upgrade for upgrading already installed packages to the newest version. See [Ubuntu manual page for apt](http://manpages.ubuntu.com/manpages/xenial/man8/apt.8.html) for more details.
+
 bash
 : is a replacement for the earlier Bourne shell and is the default shell for most Linux distributions. See also [shell](#shell) for a more description of shells in general.
 
@@ -39,8 +42,8 @@ CPU
 CPU oversubscription
 : is when one physical [CPU](#cpu) runs two or more [VCPUs](#vcpu). In this case the one real physical CPU will switch back and forth between running tasks for the two or more VCPUs.
 
-persistent flavor
-: is a [virtual machine](#virtual-machine) [flavor](#flavor) which is configured for short temporary usage. Because data safety is often less of a concern they are designed with a 20 GB root [ephemeral disk](#ephemeral-disk)
+compute flavor
+: is a [virtual machine](#virtual-machine) [flavor](#flavor) which is configured for short temporary usage. Because data safety is often less of a concern they are designed with a 20 GB root [ephemeral disk](#ephemeral-disk) and often have an extra ephemeral data disk attached. An example of a compute flavor name is `c1-7.5gb-30` which has 1 [**VCPU**](#vcpu), 7.5 GB of [**RAM**](#ram), and a 30 GB extra ephemeral data disk in addition to the 20 GB ephemeral root disk.
 
 computer network
 : is a digital telecommunications network which allows nodes in the network to share resources and exchange data.
@@ -124,13 +127,16 @@ PaaS
 : Platform as a Service
 
 persistent flavor
-: is a [virtual machine](#virtual-machine) [flavor](#flavor) which is configured for long running or persisting virtual machines. These machines are typically for webservers and may spend substantial portions of their time not doing anything. As such they may have the VCPUs [oversubscribed](#oversubscribe) by up to a factor of 8. They are also meant to boot form a [volume](#volume).
+: is a [virtual machine](#virtual-machine) [flavor](#flavor) which is configured for long running or persisting virtual machines. These machines are typically for webservers and may spend substantial portions of their time not doing anything. As such they may have the [**VCPUs**](#vcpu) [oversubscribed](#oversubscribe) by up to a factor of 8. They are also meant to boot form a [volume](#volume) for added robustness. An example of a persistent flavor name is `p1-1.5gb` indicating a virtual machine with 1 VCPU and 1.5 GB of [**RAM**](#ram).
 
 port
 : identifies a specific process or a type of network service.
 
 port-forwarding
 : also referred to as port mapping redirects communication requests from one address and port number to another while the data is traversing a network gateway or [router](#router)
+
+private IP
+: an [IP address](#ip-address) assigned to devices on a [LAN](#lan) and is only accessible from within the LAN. Private IP address often have the form `192.168.XXX.YYY`.
 
 private key
 : is a key which is part of a [key pair](#key-pair) which is intended to be kept private and is used to [decrypted](#decryption) messages [encrypted](#encryption) by the [public key](#public-key).
@@ -147,8 +153,14 @@ public IP
 pwd
 : a [command](#command) to print the current working directory in the [bash](#bash) [shell](#shell) and many other common shells.
 
-ram
+RAM
 : or random-access memory is a form of computer data storage that stores data for quick access by the [CPU](#cpu).
+
+reboot
+: is the act of shutting down and then [booting](#boot) an already running computer. It is also a Linux command which can be issued to cause a computer to reboot.
+
+root
+: can refer to the root of a file system, the root drive (which contains the root of the file system), or a root or administrative user.
 
 router
 : is a networking device that forwards data between computer networks for example a [WAN](#wan) and a [LAN](#lan)
@@ -177,11 +189,14 @@ ssh-keygen
 static website
 : a static website is a web page that is delivered to the user exactly as stored, in contrast to [dynamic websites](../references#dynamic-websites).
 
+sudo
+: is a Linux command which runs the command following it, supplied as an argument, as the [**root**](#root) user or administrative user. See [Linux man page for sudo](https://linux.die.net/man/8/sudo) for more details.
+
 terminal
 : is a program for entering and displaying text, see also [shell](#shell).
 
 Ubuntu
-: is an [operating system](../reference#operating-system) in the [Linux](#linux) family. See the official [Ubuntu page](https://www.ubuntu.com/) for more details.
+: is an [operating system](../reference#operating-system) in the [Linux](#linux) family. Ubuntu is one of the more popular Linux based operating systems and is widely used in [cloud](#cloud-computing) environments. See the official [Ubuntu page](https://www.ubuntu.com/) for more details.
 
 VCPU
 : is a [virtual](#hardware-virtualization) [CPU](#cpu).

@@ -44,7 +44,7 @@ Last login: Thu Mar 16 22:04:19 2017 from 24.86.86.43
 ~~~
 {: .output}
 
-We will use both the `sudo` and `apt` commands to apply updates to the VM. The `sudo` command gives us, temporarily, super user or administrator privileges just for the command it has been given as an argument. The `apt` command is used to install, update, and remove Ubuntu software packages. It needs super user permissions because it modifies operating system files and you wouldn't want ordinary users to do this either intentionally or by mistake. You might have noticed that when you connect to a VM for the first time it actually says there are no packages to be updated. This does not actually mean that all packages are up-to-date but that the Operating system just does not know that any packages can be updated. To remedy this we use the `apt update` command which updates the packages database.
+We will use both the [**`sudo`**](../reference#sudo) and [**`apt`**](../reference#apt) commands to apply updates to the VM. The `sudo` command gives us, temporarily, super user or administrator privileges just for the command it has been given as an argument. The `apt` command is used to install, update, and remove Ubuntu software packages. It needs super user permissions because it modifies operating system files and you wouldn't want ordinary users to do this either intentionally or by mistake. You might have noticed that when you connect to a VM for the first time it actually says there are no packages to be updated. This does not actually mean that all packages are up-to-date but that the Operating system just does not know that any packages can be updated. To remedy this we use the `apt update` command which updates the packages database.
 ~~~
 $ sudo apt update
 ~~~
@@ -115,7 +115,7 @@ Updating /boot/grub/menu.lst ... done
 ~~~
 {: .output}
 
-At this point, it is a very good idea to reboot our virtual machines.
+At this point, it is a very good idea to [**reboot**](../reference#reboot) our virtual machines. Sometimes before updating certain packages other packages on which they depend must first be updated and in effect. This can require a reboot.
 
 ~~~
 $ sudo reboot
@@ -162,3 +162,8 @@ Reading state information... Done
 All packages are up to date.
 ~~~
 {: .output}
+
+
+> ## Automating Upgrades
+> It is possible to setup upgrades to happen automatically, but this is beyond the scope of this course. You are encouraged to the [Ubuntu automatic updates](https://help.ubuntu.com/lts/serverguide/automatic-updates.html) page describing how to enable automatic updates.
+{: .callout}
