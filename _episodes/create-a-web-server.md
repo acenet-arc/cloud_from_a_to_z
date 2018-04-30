@@ -220,6 +220,10 @@ May 02 13:11:26 dhsi-testing-temp systemd[1]: Started LSB: Apache2 web server.
 {: .output}
 The line `Active: active (running) since Tue 2017-05-02 13:11:26 UTC; 16s ago` indicates that the service is running.
 
+## Add Security Rule for HTTP
+
+HTTP uses port 80 so we need to add it to our default security group as we did with the SSH port 22. However, in this case we don't need to restrict it to a specific IP address as we want anyone to be able to see our website.
+
 ## Visit the default web page
 
 The apache package installs a default web page to test the installation. This page provides basic information about your apache installation and some tips about how you might modify apache's configuration to suite your needs. After launching your workstation's web browser enter your VM's FQDN into the browsers address bar (we know the FQDN from the previous step: `http://206-167-181-126.cloud.computecanada.ca`). You should see something like the image below.

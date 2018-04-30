@@ -165,5 +165,5 @@ All packages are up to date.
 
 
 > ## Automating Upgrades
-> It is possible to setup upgrades to happen automatically, but this is beyond the scope of this course. You are encouraged to the [Ubuntu automatic updates](https://help.ubuntu.com/lts/serverguide/automatic-updates.html) page describing how to enable automatic updates.
+> It is possible to setup upgrades to happen automatically, but this is beyond the scope of this workshop. You are encouraged to look at the [Ubuntu automatic updates](https://help.ubuntu.com/lts/serverguide/automatic-updates.html) page describing how to enable automatic updates.
 {: .callout}
