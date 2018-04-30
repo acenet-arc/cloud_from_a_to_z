@@ -33,8 +33,8 @@ There are two methods of creating SSL certificates. You can pay to purchase one 
 Before we can create our certificate, we need to make certain that the OpenSSL package is installed. It should already be there but, in case that it is missing, please perform the following:  
 
 ~~~
-$ apt update
-$ apt install openssl
+$ sudo apt update
+$ sudo apt install openssl
 ~~~
 {: .bash}
 
@@ -105,36 +105,45 @@ Email Address []:admin@fake.org
 And that's it. You can verify the creation of your private key as follows:
 
 ~~~
-$ $ sudo ls -l /etc/ssl/private/
+$ sudo ls -l /etc/ssl/private/
 ~~~
 {: .bash}  
 
 ~~~
--rw-r--r-- 1 root root     1708 May  4 19:45 apache-selfsigned.key
+total 8
+-rw-r--r-- 1 root root     1704 Apr 30 14:57 apache-selfsigned.key
+-rw-r----- 1 root ssl-cert 1704 Apr 30 14:11 ssl-cert-snakeoil.key
 ~~~
 {: .output}
 
 You can also verify the creation of your public SSL certificate:  
 
 ~~~
-$ ls -ltr /etc/ssl/certs/
+$ ls -l /etc/ssl/certs/
 ~~~
 {: .bash}  
 
 ~~~
 ...
-whole bunch of other certificate files ...
+other certificate files
 ...
--rw-r--r-- 1 root root   1501 May  4 19:45 apache-selfsigned.crt
+
+-rw-r--r-- 1 root root   1411 Apr 30 14:57 apache-selfsigned.crt
+
+...
+other certificate files
+...
 ~~~
 {: .output}
 
 
 ## Creating a Diffie-Hellman group
 
-At the same time, we should also create what's called a Diffie-Hellman group. What is that? Good question.  
+At the same time, we should also create what's called a Diffie-Hellman group. What is that? Good question.
 
-Diffie-Hellman groups determine the strength of the key that is used during an encryption key exchange process. There is a trade off. Higher group numbers are more secure but they require longer duration to compute the key. As a consequence, we'll create one that will match the strength of the RSA private key that we created in the previous section. Please note, this will take more than a few moments.
+When two computers start communicating to send web content, passwords, or any other data they need to exchange some information (keys), first which lets each computer involved in the communication know how the data will be encrypted and also decrypted so that they can understand each other but other computers (and possibly humans) along the public communication network being used (in our case the Internet) can not understand the information transmitted back and forth so that this information stays private between the two computers. Diffie-Hellman groups determine the strength of the key that is used during this encryption key exchange process, so that the keys which are exchanged to encrypt the data, are themselves encrypted using these Diffie-Hellman groups.
+
+When creating a Diffie-Hellman group you can choose a group number the larger the group number the stronger the encryption. However there is a trade off. Higher group numbers also require more time to compute the key. A good compromise is to choose one that matches the strength of the RSA private key that we created in the previous section, used to encrypt the data sent and received. Please note, this will take more than a few moments.
 
 ~~~
 $ sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
@@ -386,6 +395,9 @@ $ sudo systemctl status apache2
 
 And check for the line which reads `Active: active (running)...`.
 
+## Add security rule for HTTPS
+
+As for SSH (port 22) and HTTP (port 80) we must also add a security rule for HTTPS (port 443).
 
 ## Verify that encryption works
 
