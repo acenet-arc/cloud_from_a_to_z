@@ -11,7 +11,7 @@ These instructions walk you through the process of setting up [Globus](https://w
 1. Log into globus.computecanada.ca.
 2. Select the "ENDPOINTS" panel from the left hand menu bar then click on the "Create a personal endpoint" at the top right of the screen.
 3. Give your endpoint a name, and generate a setup key, and copy this to your clipboard and perhaps also save it to a text file incase you need to use your clipboard for other things before the key is needed.
-4.Log in the VM using ssh:
+4. Log in the VM using ssh:
 	~~~
 	$ ssh ubuntu@<<206.167.180.99>>
 	~~~
