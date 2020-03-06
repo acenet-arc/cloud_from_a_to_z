@@ -9,46 +9,38 @@ These instructions walk you through the process of setting up [Globus](https://w
 **(Note that this assumes you have a running Ubuntu instance on the CC Cloud.	 Make adjustments for an alternative OS or location.	You'll need to change the elements in << >> as well since these are variables. Remember to remove the the <<'s and >>'s when making these substitutions.)**
 
 1. Log into globus.computecanada.ca.
-2. Choose the “Get Globus Connect Personal” option from the bottom right of the _Transfer Files_ screen or the "add Globus Connect Personal endpoint" from the _Endpoints_ screen.
-3. Fill in the pop-up as per usual and copy the key on your clipboard.
-4. Download the Linux client.
-5. Open a terminal and from the directory where the Linux client was downloaded and do a secure copy:
-	
+2. Select the "ENDPOINTS" panel from the left hand menu bar then click on the "Create a personal endpoint" at the top right of the screen.
+3. Give your endpoint a name, and generate a setup key, and copy this to your clipboard and perhaps also save it to a text file incase you need to use your clipboard for other things before the key is needed.
+4.Log in the VM using ssh:
 	~~~
-$ scp globusconnectpersonal-latest.tgz ubuntu@<<206.167.180.99>>:
+	$ ssh ubuntu@<<206.167.180.99>>
 	~~~
 	{: .bash}
-	Note that the `$` indicates a command prompt that should already be on the screen and is not to be typed.	 You should type _everything_ that immediately follows the `$`, making appropriate substitutions for the variable.	Anything that is shown in a code block that doesn't have a `$` in front (or another prompt) is representative of the output you should see when running the command on the prompt.
-	
-6. Login to the VM:
-	
+5. On the VM download the globus connect personal tar file:
 	~~~
-$ ssh ubuntu@<<206.167.180.99>>
+	$ wget https://downloads.globus.org/globus-connect-personal/v3/linux/stable/globusconnectpersonal-latest.tgz
 	~~~
 	{: .bash}
-
-7. Untar the file: tar -xzvf globusconnectpersonal-latest.tgz
-8. cd into the directory:
+6. Untar the file: tar -xzvf globusconnectpersonal-latest.tgz
+7. cd into the directory:
 	~~~
-$ cd globusconnectpersonal-2.2.1/
-	~~~
-	{: .bash}
-9. Setup the Globus Connect Personal instance using the key from step 3:
-	~~~
-$ ./globusconnectpersonal -setup <<2df1e93e-45f9-42a1-a321-591e4c0b941>>
+	$ cd globusconnectpersonal-2.2.1/
 	~~~
 	{: .bash}
-10. Start the Globus Connect Personal instance: 
-	
+8. Setup the Globus Connect Personal instance using the key from step 3:
 	~~~
-$ ./globusconnectpersonal -start
+	$ ./globusconnectpersonal -setup <<2df1e93e-45f9-42a1-a321-591e4c0b941>>
 	~~~
 	{: .bash}
-	
+9. Start the Globus Connect Personal instance: 
+	~~~
+	$ ./globusconnectpersonal -start
+	~~~
+	{: .bash}
 	If you want the instance to run in the background _and_ to be robust against hangups then use:
 	
 	~~~
-$ nohup ./globusconnectpersonal -start &
+	$ nohup ./globusconnectpersonal -start &
 	~~~
 	{: .bash}
 
