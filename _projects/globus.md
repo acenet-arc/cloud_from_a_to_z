@@ -21,7 +21,11 @@ These instructions walk you through the process of setting up [Globus](https://w
 	$ wget https://downloads.globus.org/globus-connect-personal/v3/linux/stable/globusconnectpersonal-latest.tgz
 	~~~
 	{: .bash}
-6. Untar the file: tar -xzvf globusconnectpersonal-latest.tgz
+6. Untar the file:
+	~~~
+	$ tar -xzvf globusconnectpersonal-latest.tgz
+	~~~
+	{: .bash}	
 7. cd into the directory:
 	~~~
 	$ cd globusconnectpersonal-2.2.1/
