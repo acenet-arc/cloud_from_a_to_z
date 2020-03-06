@@ -26,7 +26,7 @@ These instructions walk you through the process of setting up [Globus](https://w
 	$ tar -xzvf globusconnectpersonal-latest.tgz
 	~~~
 	{: .bash}	
-7. cd into the directory:
+7. cd into the directory (the version number will likely be different):
 	~~~
 	$ cd globusconnectpersonal-2.2.1/
 	~~~
