@@ -6,7 +6,7 @@ permalink: /globus/
 
 These instructions walk you through the process of setting up [Globus](https://www.globus.org/) on your cloud VM. Globus is a service for fast, reliable, secure data movement. See also [Compute Canada docs](https://docs.computecanada.ca/wiki/Globus) for Globus.
 
-**(Note that this assumes you have a running Ubuntu instance on the CC Cloud.	 Make adjustments for an alternative OS or location.	You'll need to change the elements in << >> as well since these are variables. Remember to remove the the <<'s and >>'s when making these substitutions.)**
+**(Note that this assumes you have a running Ubuntu instance on the CC Cloud with a python installation. Make adjustments for an alternative OS or location.	You'll need to change the elements in << >> as well since these are variables. Remember to remove the the <<'s and >>'s when making these substitutions.)**
 
 1. Log into globus.computecanada.ca.
 2. Select the "ENDPOINTS" panel from the left hand menu bar then click on the "Create a personal endpoint" at the top right of the screen.
@@ -36,6 +36,7 @@ These instructions walk you through the process of setting up [Globus](https://w
 	$ ./globusconnectpersonal -setup <<2df1e93e-45f9-42a1-a321-591e4c0b941>>
 	~~~
 	{: .bash}
+	If you see an error like `/usr/bin/env: ‘python’: No such file or directory` you will need to install python with something like `sudo apt install python`.
 9. Start the Globus Connect Personal instance: 
 	~~~
 	$ ./globusconnectpersonal -start
