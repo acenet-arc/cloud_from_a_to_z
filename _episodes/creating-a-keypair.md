@@ -284,7 +284,7 @@ lrwxrwxrwx    1 cgeroux  UsersGrp        33 May 18  2016 MyDocuments -> /drives/
 If these permissions are too open the command we use to connect between computers may complain.
 > ## SSH File permissions variations
 >
-> In the case of mobaXterm the `ssh` command does not require strict permissions, however on Linux machines or Macs the `ssh` command does require stricter permissions before it will allow you to connect using a private key. In addition depending on the details of your windows operating system and version of mobaXterm you may or may not actually be able to change file permissions wihtin mobaXterm.
+> In the case of mobaXterm the `ssh` command does not require strict permissions, however on Linux machines or Macs the `ssh` command does require stricter permissions before it will allow you to connect using a private key. In addition depending on the details of your windows operating system and version of mobaXterm you may or may not actually be able to change file permissions within mobaXterm.
 {: .callout}
 
 Now we have a key pair we can use to connect to our the VM we will create in the next episode.
