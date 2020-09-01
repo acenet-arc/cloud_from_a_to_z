@@ -6,16 +6,18 @@ permalink: /setup/
 
 This page describes setup that should preferably be done before you arrive at the course to help make the best use of your class time. The course exercises will be done on **your personal laptop** to better allow you to continue using what you learn in the course after you leave.
 
-## Getting a Compute Canada Cloud account
+## Getting a Compute Canada account and cloud project
 
-Before arriving for the course, if you can, it is strongly recommended to get a Compute Canada Cloud account. Getting an account usually takes a few business days as it is a manual process, ensuring you have a Compute Canada Cloud account at least a week before the course begins is recommended. There are two steps to getting a CC Cloud account:
+Before arriving for the course, if you can, it is strongly recommended to get a Compute Canada account and cloud project. Getting a Compute Canada account and cloud project usually takes a few business days each. Ensuring you have a Compute Canada account and cloud project at least a week before the course begins is recommended. There are two steps to getting a Compute Canada Cloud project:
 
-1. Get a general Compute Canada account
-2. Get a Compute Canada Cloud account
+### 1. Get a Compute Canada account
+To get a Compute Canada account you need to either be a faculty member or librarian at a recognized academic institution in Canada or know someone who is that can sponsor your Compute Canada account. To get a Compute Canada account follow the instructions provided on this [Compute Canada page](https://www.computecanada.ca/research-portal/account-management/apply-for-an-account/).
 
-To get a Compute Canada account you need to either be a faculty member or librarian at a recognized academic institution in Canada or be know someone who is that can sponsor your Compute Canada account. To get a Compute Canada account follow the instructions provided on this [Compute Canada page](https://www.computecanada.ca/research-portal/account-management/apply-for-an-account/). Once you have a CC account, you then apply for a cloud account [here](https://www.computecanada.ca/research-portal/national-services/compute-canada-cloud/create-a-cloud-account/). You will need to provide your CC account user name and an email associated with your CC account.
+### 2. Get a Compute Canada cloud project
+Once you have a Compute Canada account, you then apply for a cloud project [here](https://docs.computecanada.ca/wiki/Cloud#Getting_a_Cloud_project).
 
-For those who are unable to acquire a Compute Canada Cloud account we will have guest accounts that you can use during the course, however having your own account is preferable as you may continue to use it after the course has completed.
+
+For those who are unable to acquire a Compute Canada Cloud project we hope to guest accounts that you can use during the course, however having your own account is preferable as you may continue to use it after the course has completed.
 
 ## Ensure you can open a terminal
 

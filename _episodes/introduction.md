@@ -18,7 +18,7 @@ keypoints:
 - "In this course we will setup a cloud environment to run WordPress."
 - "We will see methods to easy setup of cloud environments."
 start: true
-start_time: 615
+start_time: 870
 ---
 
 ## Introductions
