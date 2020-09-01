@@ -73,6 +73,8 @@ episode_order:
   - create-a-persistent-virtual-machine
   - security-updates
   - create-a-web-server
+  - intro-to-jekyll
+  - jekyll-admin-or-your-project
 #  - install-mysql
 #  - install-php
 #  - SSL-encryption
