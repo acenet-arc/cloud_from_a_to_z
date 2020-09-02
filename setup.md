@@ -16,8 +16,10 @@ To get a Compute Canada account you need to either be a faculty member or librar
 ### 2. Get a Compute Canada cloud project
 Once you have a Compute Canada account, you then apply for a cloud project [here](https://docs.computecanada.ca/wiki/Cloud#Getting_a_Cloud_project).
 
+### If you are unable to get a Compute Canada account or cloud project
+If you would like a Compute Canada account but are having difficulty getting one please contact [chris.geroux@ace-net.ca](mailto:chris.geroux@ace-net.ca) and we will help you get one.
 
-For those who are unable to acquire a Compute Canada Cloud project we will provide guest accounts that you can use during the course, however having your own account is preferable as you may continue to use it after the course has completed.
+For those who are unable to acquire a Compute Canada Cloud project we will provide guest accounts that you can use during the course. However, having your own project is preferable as you may continue to use it and what you have created during the course after it has completed.
 
 ## Ensure you can open a terminal
 
