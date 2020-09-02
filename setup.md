@@ -23,7 +23,7 @@ If you aren't a PI but a sponsored user, you will also need to request to be add
 ### If you are unable to get a Compute Canada account or cloud project
 If you would like a Compute Canada account but are having difficulty getting one please contact [lydia.vermeyden@ace-net.ca ](mailto:lydia.vermeyden@ace-net.ca ) and we will help you get one.
 
-For those who are unable to acquire a Compute Canada Cloud project we will provide guest accounts that you can use during the course. However, having your own project is preferable as you may continue to use it and what you have created during the course after it has completed.
+For those who are unable to acquire a Compute Canada Cloud project we will provide guest accounts that you can use during the course. However, having your own project is preferable as you may continue to use it and what you have created during the course, after the course has completed.
 
 ## Ensure you can open a terminal
 
