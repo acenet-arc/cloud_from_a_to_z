@@ -14,10 +14,14 @@ Before arriving for the course, if you can, it is strongly recommended to get a 
 To get a Compute Canada account you need to either be a faculty member or librarian at a recognized academic institution in Canada or know someone who is that can sponsor your Compute Canada account. To get a Compute Canada account follow the instructions provided on this [Compute Canada page](https://www.computecanada.ca/research-portal/account-management/apply-for-an-account/).
 
 ### 2. Get a Compute Canada cloud project
-Once you have a Compute Canada account, you then apply for a cloud project [here](https://docs.computecanada.ca/wiki/Cloud#Getting_a_Cloud_project).
+Once you have a Compute Canada account, you (or the PI that sponsored you) will need to apply for a cloud project [here](https://docs.computecanada.ca/wiki/Cloud#Getting_a_Cloud_project).
+
+Please request a **persistent** cloud project which is well suited to running web-services. If you are unsure about what cloud resources to request for the course, the minimum possible **persistent** cloud project you can request will be sufficient for the course. If more resources are required for your projects more can be requested later as needed or now if you are confident in your requirements.
+
+If you aren't a PI but a sponsored user, you will also need to request to be added to your PI's cloud project, again using the same form linked from [here](https://docs.computecanada.ca/wiki/Cloud#Getting_a_Cloud_project).
 
 ### If you are unable to get a Compute Canada account or cloud project
-If you would like a Compute Canada account but are having difficulty getting one please contact [chris.geroux@ace-net.ca](mailto:chris.geroux@ace-net.ca) and we will help you get one.
+If you would like a Compute Canada account but are having difficulty getting one please contact [lydia.vermeyden@ace-net.ca ](mailto:lydia.vermeyden@ace-net.ca ) and we will help you get one.
 
 For those who are unable to acquire a Compute Canada Cloud project we will provide guest accounts that you can use during the course. However, having your own project is preferable as you may continue to use it and what you have created during the course after it has completed.
 
