@@ -1,7 +1,7 @@
 ---
 layout: episode
 title: "Introduction"
-teaching: 15
+teaching: 20
 exercises: 0
 questions:
 - "Who are we?"
@@ -14,9 +14,8 @@ objectives:
 - "Ensure everyone has their environments setup."
 keypoints:
 - "[**Cloud computing**](../reference#cloud-computing) is very flexible and has many diverse uses."
-- "Setup of Compute Canada cloud environments is left to its users."
-- "In this course we will setup a cloud environment to run WordPress."
-- "We will see methods to easy setup of cloud environments."
+- "Setup of Compute Canada cloud environments is left to its users, enabling great flexibility but requiring more knowledge."
+- "In this course we will setup a cloud environment to run a Jekyll site."
 start: true
 start_time: 870
 ---
@@ -31,10 +30,8 @@ Cloud computing offers a wide range of usage possibilities. From running basic H
 Humanities and social sciences often make use of computers in varied and diverse ways typically not needed by the more traditional high performance computing tasks. Cloud computing provides the required flexibility for these varied and diverse usage cases. However, this flexibility comes at a cost. To facilitate a wide array possible use cases, much of the configuration and setup must be undertaken by individual researchers and not by the central bodies which manage the cloud infrastructure. With each cloud setup being customized and unique it becomes difficult to manage centrally in a consistent manner and much of the management and customization is left to the end cloud user.
 
 ## Overview
-This course will start by introducing some basic concepts about the Internet and cloud in general to lay the foundation for the episodes to come. By the end of the first day you should have the basic tools and knowledge in hand to start working with the cloud, having created a web-server and your first website hosted on your own cloud server.
+This course will start by introducing some basic concepts about the Internet and cloud in general to lay the foundation for the episodes to come. By the end of the first half of the course you should have the basic tools and knowledge in hand to start working with the cloud, having created a web-server and your first website hosted on your own cloud server.
 
-In day two we will use WordPress as an example of how to setup and configure more complex website software.  WordPress is a content management systems (CMS). There are many different CMSs available which have many components in common. We will start with manually walking through the steps to create a WordPress site in the cloud. Understanding the manual steps of installing and configuring a CMS will allow you to generalize to other CMS systems for example wikimedia, omeka, and drupal. Day two will also cover some more advanced ways to interact with the cloud using your terminal.
-
-In day 3, with the knowledge of how a manual installation and setup works we will look at ways to automate this task. In the morning we will learn how to automate installation and setup of software and in the afternoon how to automate the creation of cloud resources.
+In second half of the course we will use Jekyll as an example of how to setup and use a static website generator to create a website with a theme selected from one of the many Jekyll theme repositories. We will walk through the steps to configure your website and how to explore our downloaded theme in order to use it. We will use Markdown to format text and include links and images in our pages. We will even use a little HTML in our markdown to embed a youtube video in one of the pages of our site. Finally we will wrap up with where you can learn more about making websites with Jekyll.
 
 Before we begin make sure you have completed the steps in the [setup](../setup) page. If you have had difficulty with any part of them, now is the time to let us know and we will help you solve them.

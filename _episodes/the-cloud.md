@@ -1,8 +1,8 @@
 ---
 layout: episode
 title: "Introduction to cloud computing"
-teaching: 30
-exercises: 5
+teaching: 20
+exercises: 15
 questions:
 - "What is a cloud?"
 - "What does \"virtual\" mean when applied to a computer?"
@@ -42,50 +42,131 @@ There are many different providers of cloud services for example, [Amazon Web Se
 
 ## Cloud Service Models
 
-So far we have been talking about clouds providing virtual devices as a service, also known as [**Infrastructure as a Service (IaaS)**](../reference#iaas). Which means the cloud provider is providing the virtualized hardware as a service. On of the benefits of IaaS is that you don't have to ensure the physical hardware keeps working the IaaS provider takes care of that for you. If instead you ran your own server for your website and a disk fails you would be responsible for replacing it. IaaS removes the requirement to actually manage the hardware. Managing the operating system and software is the responsibility of the user of the service. Infrastructure as a service allows the greatest amount of flexibility and power to configure and setup your computing environment as you like it apart from actually managing the hardware yourself. With this great flexibility comes the responsibility to ensure that security patches and operating system updates are applied and that backups are made in case of disaster. This service model also requires that the user understand how to setup and configure their environments them selves. 
+So far we have been talking about clouds providing virtual devices as a service, also known as [**Infrastructure as a Service (IaaS)**](../reference#iaas). Which means the cloud provider is providing the virtualized hardware as a service. One of the benefits of IaaS is that you don't have to ensure the physical hardware keeps working, the IaaS provider takes care of that for you. If instead you ran your own server for your website and a disk fails you would be responsible for replacing it and ensuring that there was no data loss. IaaS removes the requirement to actually manage the hardware. Managing the operating system and software is the responsibility of the user of the service. Infrastructure as a service allows the greatest amount of flexibility and power to configure and setup your computing environment as you like apart from actually managing the hardware yourself. With this great flexibility comes the responsibility to ensure that security patches and operating system updates are applied and that backups are made in case of disaster. This service model also requires that the user understand how to setup and configure their environments. 
 
-There are several other service models that are possible with clouds ranging form IaaS to [**Software as a Service (SaaS)**](../reference#saas) at the other end of the spectrum where software services, such as gmail or Facebook, are provided.  In the middle of these two extremes is [**Platform as a Service (PaaS)**](../reference#paas) which provides an environment already configured with the tools required to develop software. An example of PaaS would be an high performance computing (HPC) environment where programing languages and libraries are installed and configured to allow the user to dive into writing code to solve their problem, or a Hadoop cluster where you can write Apache Spark code to process your data. Both of these use cases could be deployed within a cloud environment or directly on hardware.
+There are several other service models that are possible with clouds ranging form IaaS to [**Software as a Service (SaaS)**](../reference#saas) at the other end of the spectrum, where software services, such as Gmail or Facebook, are provided.  In the middle of these two extremes is [**Platform as a Service (PaaS)**](../reference#paas) which provides an environment already configured with the tools required to develop software. An example of PaaS would be a high performance computing (HPC) environment where programming languages and libraries are installed and configured to allow the user to dive into writing code to solve their problem, or a Hadoop cluster where you can write Apache Spark code to process your data. Both of these use cases could be deployed within a cloud environment or directly on hardware.
 
 ![Service Models](../fig/service-models.svg)
 
 
 ## Why Compute Canada Cloud?
 
-First and for most it is a free service offered to faculty, librarians, researchers, post docs, and students at academic institutions across Canada, so many may directly use what is leaned here. Second we have easy access to the resources and experts who created and maintain the Compute Canada Cloud. Third the Compute Canada cloud uses [**OpenStack**](../reference#openstack) which is a popular widely used open source cloud operating system. Many of the concepts you will learn while working with the Compute Canada cloud will be applicable to many other cloud providers such as AWS and Azure with the notable exception of how those cloud providers monitor usage and bill for usage as the Compute Canada Cloud does not bill users but instead has allocation competitions to gain access to resource above default allocations. These allocation competitions work in a similar way for cloud resources as they do with other Compute Canada resources. For more information about resource allocation competitions see the [Compute Canada RAC](https://www.computecanada.ca/research-portal/accessing-resources/resource-allocation-competitions/) page. In addition to RAC, there is also a Rapid Access Service available see [RAS](https://www.computecanada.ca/research-portal/accessing-resources/rapid-access-service/#cloud) which is a way to gain a smaller boost to your quota than with a RAC but in less time.
+First and for most it is a free service offered to faculty, librarians, researchers, post docs, and students at academic institutions across Canada, so many may directly use what is leaned here. Second we have easy access to the resources and experts who create and maintain the Compute Canada Cloud. Third the Compute Canada cloud uses [**OpenStack**](../reference#openstack) which is a popular widely used open source cloud operating system. Many of the concepts you will learn while working with the Compute Canada cloud will be applicable to many other cloud providers such as AWS and Azure with the notable exception of how those cloud providers monitor usage and bill for usage as the Compute Canada Cloud does not bill users but instead has allocation competitions to gain access to resource above the levels available through our Rapid Access Service (RAS). 
 
 ## OpenStack
-If you have a Compute Canada cloud account at Arbutus (a.k.a west-cloud) you can login to the OpenStack dashboard (a.k.a Horizon) at the [Arbutus login page](https://west.cloud.computecanada.ca/) or if you have an east-cloud account you can login at the [east-cloud login page](https://east.cloud.computecanada.ca/). Using either cloud should be fine though the two clouds do run different versions of OpenStack (see [CC Cloud Resources](https://docs.computecanada.ca/wiki/CC-Cloud_Resources) for current CC cloud OpenStack versions and hardware specs) and you may notice some minor differences between the two.
+If you have a Compute Canada cloud project at Arbutus you can login to the OpenStack dashboard (a.k.a Horizon) at the [Arbutus login page](https://arbutus.cloud.computecanada.ca/) or if you have a project on another Compute Canada cloud you can find the login url on the "Using the Cloud" section of our [main cloud docs page](https://docs.computecanada.ca/wiki/Cloud#Using_the_Cloud). Using any Compute Canada cloud should be fine though there maybe slight differences as some of our clouds use different versions of OpenStack and some have different security protocols (see [CC Cloud Resources](https://docs.computecanada.ca/wiki/CC-Cloud_Resources) for current Compute Canada cloud OpenStack versions and hardware specs).
+
+#### Different ways to participate in this workshop:
+
+* **Use your own cloud project:** you will need to have some free quota available. You will need at least enough to create one minimal VM booting from a volume. This would likely mean at least one unused VCPU, 1.5GB of RAM, and 20 GB of volume storage. However, it would be better to have double that quota available in order to create a second VM if needed.
+
+* **Use guest account in workshop project:** If you don't have a current Compute Canada cloud project, or if you don't have the available free quota for at least for one VM we will provide you with a guest account in a shared cloud project specifically for this workshop.
+
+Lets log into a Compute Canada cloud OpenStack dashboard now and explore some of the common pages or panels you will be working within OpenStack.
+
+**Everyone logged into an OpenStack dashboard?**
 
 Once you login to the OpenStack dashboard you will be presented with the "Overview" panel as shown below.
  
-<img src="../fig/os-screens/Overview.png" alt="OpenStack Dashboard Overview" style="width: 100%;"/>
+<img src="../fig/os-screens/OpenStack_dashboard_overview.png" alt="OpenStack Dashboard Overview" style="width: 100%;"/>
 
-This panel shows you an overview (go figure) of your current project's usage and quota on OpenStack. An OpenStack user can be associated with multiple projects each project has their own quota and a project can have multiple users. Your project's OpenStack quota dictates the maximum number of VM instances, [**VCPU**](../reference#vcpu)s, RAM, Floating IPs, Security Groups, Volumes, and Volume/Snapshot Storage you may use within that project. The units for RAM and Volume storage are in GB if no unit is displayed. To increase the quota of a project you need to apply to a [RAC](https://www.computecanada.ca/research-portal/accessing-resources/resource-allocation-competitions/) or [RAS](https://www.computecanada.ca/research-portal/accessing-resources/rapid-access-service/#cloud) as mentioned above.
+This panel shows you an overview (go figure) of your current project's usage and quota on OpenStack. An OpenStack user can be associated with **multiple projects** each project has their own quota and a project can have multiple users. Your project's OpenStack quota dictates the maximum number of VM instances, [**VCPU**](../reference#vcpu)s, RAM, Floating IPs, Security Groups, Volumes, and Volume/Snapshot Storage you may use within that project. 
 
-In the top right corner you have access to account settings and the sign out link. At the top is the current active project. You are likely only a member of one project, but you can potentially be a member of many projects and this drop down menu allows you to choose the project you are actively working on.
+> ## Require more resources?
+> If you require an increase in your project quota and you are use our RAS and your new requirement still doesn't exceed our [cloud RAS limits](https://docs.computecanada.ca/wiki/Cloud_RAS_Allocations) you can request an increase in the same way as you originally requested our cloud RAS [here](https://docs.computecanada.ca/wiki/Cloud#Getting_a_Cloud_project). If you require more resources than are available through RAS you can apply for a [RAC](https://www.computecanada.ca/research-portal/accessing-resources/resource-allocation-competitions/) which occur annually, generally in the fall semester.
+{: .callout}
+
+In the top right corner there is a drop down menu where you can access account settings and the sign out link. At the top left the current active project is displayed and a drop down menu can be used to switch between projects if you are a member of multiple projects.
 
 ### Instances (VMs)
-The "Instances" panel shows all running [**instances**](../reference#instance) and information about those instances. It allows you to perform actions on an instance or set of instances such as "Shutdown", "Terminate", and "Reboot" and many other actions. You can click on the instance name to get even more information about the instance. Of particular note is the "Log" tab which is a log of actions the VM performs, for example things that happen when the VM boots or is restarted or shutdown. If for some reason your VM is not working as expected there may be clues in the log which can help you figure out what is going on. Most importantly this panel allows you to create new instances with the "Launch Instance" button which we will explore in the next episode.
+[**Instances**](../reference#instance) is a commonly used term in cloud computing which is synonymous with the term virtual machine.
 
-<img src="../fig/os-screens/Instances.png" alt="OpenStack Dashboard Instances" style="width: 100%;"/>
+The "Instances" panel shows all running instances and information about those instances. It allows you to **perform actions on an instance** or set of instances such as "Shutdown", "Delete", and "Reboot" and many other actions. You can click on the instance name to get even more information about the instance. Of particular note is the **"Log" tab** which is a log of actions the VM performs, for example things that happen when the VM boots or is restarted or shutdown. If for some reason your VM is not working as expected there may be clues in the log which can help you figure out what is going on. Most importantly this panel allows you to create new instances with the **"Launch Instance"** button which we will explore in the next episode.
+
+<img src="../fig/os-screens/OpenStack_dashboard_instances.png" alt="OpenStack Dashboard Instances" style="width: 100%;"/>
 
 ### Volumes
 [**Volumes**](../reference#volume) in OpenStack act like storage devices and can be attached to VMs like attaching an external hard drive or a USB stick. The Volumes panel allows you to view your currently created volumes and information about your volumes as well as creating and managing volumes.
 
-<img src="../fig/os-screens/Volumes.png" alt="OpenStack Dashboard Volumes" style="width: 100%;"/>
+<img src="../fig/os-screens/OpenStack_dashboard_volumes.png" alt="OpenStack Dashboard Volumes" style="width: 100%;"/>
 
 ### Images
 [**Images**](../reference#image) are files which contain data from a hard drive or volume. Images allow you to make copies or backups of your volumes and virtual machines. Volumes can be created from an Image by coping the data the Image contains to the volume. Images can be private to your project, shared with others, or completely public. There are a number of public images provided by the Compute Canada Cloud to be used as starting points for virtual machines (for example and image containing the Ubuntu Linux operating system). Images can be downloaded and used in other clouds or with desktop tools such as [**VirtualBox**](../reference#virtualbox) which allows you to run your cloud VMs on your laptop.
 
-<img src="../fig/os-screens/Images.png" alt="OpenStack Dashboard Images" style="width: 100%;"/>
+<img src="../fig/os-screens/OpenStack_dashboard_images.png" alt="OpenStack Dashboard Images" style="width: 100%;"/>
 
-### Access and Security
+### Security Groups
 
-The Access & Security panel serves a number of functions. It allows you to set rules to dictate which ports data can be sent and received from and to your VMs limiting the types of interactions your VM can have with the outside world using the "Security Groups" tab. You can specify a "key" to access your VMs on the "Key Pairs" tab (we will talk more about keys in the next episode). The Access & Security panel allows you allocate Floating IPs to use in your project to access your VMs from the outside world and finally to allows you to access your OpenStack projects from command line tools on the *API Access* tab, which we will talk about later in this course.
+Your VM can belong to a number of security groups. A **security group** contains a collection of rules that limit how connections can be made to and from the VMs belonging to that security group. These rules can limit how your VMs:
+* access the internet
+* access other VMs in the OpenStack project
+* how other computers can access VMs from the internet
 
-<img src="../fig/os-screens/Access-and-security.png" alt="OpenStack Dashboard Access and Security" style="width: 100%;"/>
+New projects all start with a default security group which contains some basic rules. These rules allow VMs full access out to the internet and between VMs belong to that security group but do not allow connections originating outside of that security group to access the VMs.
 
-> ## Public images
+<img src="../fig/os-screens/OpenStack_dashboard_security_groups.png" alt="OpenStack Dashboard Images" style="width: 100%;"/>
+
+> ## How many virtual machines can be created?
+> Looking at the above screen shots, what is the largest number of virttual machines that can be created?
+> 
+> 1. 200
+> 2. 50
+> 3. 0
+> 
+> > ## Solution
+> >
+> > 1. 200 are the number of virtual CPUs (VCPUs), a virtual machine (VM) or instance can have multiple virtual CPUs. In some cases this could limit the number of virtual machines you can make depending on how many VCPUs you choose per VM.
+> > 2. 50 instances are another name for virtual machines.
+> > 3. 0 we have enough resources to create many virtual machines, including up to our quota limit of 50 instances or virtual machines.
+> {: .solution}
+{: .challenge}
+
+> ## What can you limit with a security group?
+> What access can you limit with your security groups? Choose all that apply.
+> 
+> 1. Which sites on the Internet your VM can access.
+> 2. Which computers can access your VM from the Internet
+> 3. Which images can be accessed by your VM.
+> 4. Which VMs in your project can access other VMs in your project.
+> 5. Which volumes can be attached to your VM.
+> 6. Which of your VM users can perform administrative tasks.
+> 
+> > ## Solution
+> >
+> 1. Which sites on the Internet your VM can access. (Yes)
+> 2. Which computers can access your VM from the Internet (Yes)
+> 3. Which images can be accessed by your VM. (No, VMs typically don't access OpenStack images but rather they are used when initially creating your VM)
+> 4. Which VMs in your project can be accessed by other VMs in your project. (Yes)
+> 5. Which volumes can be attached to your VM. (No, any available volume in your project can be attached to a VM)
+> 6. Which of your VM users can perform administrative tasks. (No, this is managed totally within your VM and not within OpenStack)
+> {: .solution}
+{: .challenge}
+
+> ## Most recent image?
+> What is the most recent release of Ubuntu available?
+> 
+> Hint: look at the "Images" panel under the "Compute" section on the left hand menu of the OpenStack dashboard.
+> > ## Solution
+> > Go to 'Compute' then 'Images' to find the `Ubuntu-20.04-focal-amd64' image, and note that the middle portion '20.04' is the Ubuntu operating system version.
+> > Ubuntu 20.04
+> {: .solution}
+{: .challenge}
+
+> ## Default security group rules?
+> What are the security rules for the default security group?
+> > ## Solution
+> > Go to 'Network' then 'Security Groups' and click 'Manage Rules' in the row for the 'default' security group, to find the rules:
+> > 
+> > |Direction|Ether Type|IP Protocol|Port Range|Remote IP Prefix|Remote Security Group|
+> > |-        |-         |-          |-         |-               |-                    |
+> > |Egress   |IPv4      |Any        |Any       |0.0.0.0/0       | -                   |
+> > |Egress   |IPv6      |Any        |Any       |::/0            | -                   |
+> > |Ingress  |IPv4      |Any        |Any       | -              | default             |
+> > |Ingress  |IPv6      |Any        |Any       | -              | default             |
+> {: .solution}
+{: .challenge}
+
+<!-- > ## Public images
 > Look at the images panel and see what images are available to create new virtual machines. Do you recognize any of the image operating system names and or versions?
 >
 >Hint: you may need to select different tabs to see all the images available.
@@ -102,6 +183,7 @@ The Access & Security panel serves a number of functions. It allows you to set r
 {: .challenge}
 
 > ## Largest Volume
+> ![](../fig/os-screens/Overview.png)
 > What is the largest volume that could be newly created given the quota and usage displayed in the *Overview* page above?
 >
 > 1. 40 GB
@@ -115,4 +197,4 @@ The Access & Security panel serves a number of functions. It allows you to set r
 > > 3. Yes, in fact you couldn't create a volume at all because both the storage quota and the number of allowed volumes (2) are already reached.
 > > 4. No, the total quota is 40 GB and 40 GB of it have already been used.
 > {: .solution}
-{: .challenge}
+{: .challenge} -->

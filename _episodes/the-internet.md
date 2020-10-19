@@ -29,7 +29,9 @@ The Internet is the world wide interconnection of networks of computers. So what
 ## IP Addresses
 ![local network](../fig/local-networks.svg)
 
-How do these computers know where to send data or where to request it from? They use what is known as Internet Protocol address ([**IP address**](../reference#ip-address)). These can be thought of the computer version of postal address. Each device on a network is assigned an IP address. This address is used to by [**routers**](../reference#router) to route data to the correct device. Within a LAN, IP addresses often have the form `192.168.###.###` by convention. If you see an IP that looks like this it is likely the IP address of a computer on a local private network such as your home or office network.
+How do these computers know where to send data or where to request it from? They use what is known as Internet Protocol address ([**IP address**](../reference#ip-address)). These can be thought of the computer version of postal address. Each device on a network is assigned an IP address. This address is used to by [**routers**](../reference#router) to route data to the correct device. IP addresses are made up of 4 numbers separated by `.`s. Each of these for numbers can range from `0` to `255` and is stored in one byte (8 bits) of computer memory. A complete IP address then consisting of for of these numbers takes up 4 bytes (or 32 bits) of memory.
+
+Within a LAN, IP addresses often have the form `192.168.###.###` by convention. If you see an IP that looks like this it is likely the IP address of a computer on a local private network such as your home or office network.
 
 Many of these local area networks exist around the world and the Internet connects these smaller networks together which is where the name Internet comes from, interconnected network (Internet).
 
@@ -43,7 +45,7 @@ To connect your LAN to the rest of the Internet your router is connected to an I
 {: .callout}
 
 ## Ports
-If your neighbour wanted to share some information with you on a website located on his device with local address `192.168.1.103` how could your computer know to connect to that device to get that information? If you know the IP address of your neighbour's router (`206.113.222.122`) you could uniquely identify your neighbours LAN, but how to route the request for their website to the local device? Your neighbour must configure their router to forward traffic (data being sent back and forth) to the device with local address `192.168.103`, but which traffic? What if your neighbour wanted some information to be routed to one device and other information to be routed to another? The solution to this issue is to use [**ports**](../reference#port). Different types of information requests are associated with different ports and the local network router can be configured to forward a request associated with certain port to a specific device (known as [**port forwarding**](../reference#port-forwarding)). In the case of a website the convention is to use port 80. So your neighbour would setup a rule on their router to forward traffic arriving on port 80 to the server running the website at the local address 192.168.1.103.
+If your neighbour wanted to share some information with you on a website located on his device with local address `192.168.1.103` how could your computer know to connect to that device to get that information? If you know the IP address of your neighbour's router (`206.113.222.122`) you could uniquely identify your neighbours LAN, but how to route the request for their website to the local device? Your neighbour must configure their router to forward traffic (data being sent back and forth) to the device with local address `192.168.103`, but which traffic? What if your neighbour wanted some information to be routed to one device and other information to be routed to another? The solution to this issue is to use [**ports**](../reference#port). Different types of information requests are associated with different ports and the local network router can be configured to forward a request associated with certain port to a specific device (known as [**port forwarding**](../reference#port-forwarding)). In the case of a website the convention is to use port 443 or 80 depending on weather the data sent and received is encrypted (443) or not (80). So your neighbour would setup a rule on their router to forward traffic arriving on port 80 and or 443 to the server running the website at the local address 192.168.1.103.
 
 You can combine IP address and ports with a `:` for example `206.113.222.122:80` could be entered into your web-browser to access a website on your neighbours device with local IP `192.168.1.103` once your neighbour configured their router to forward requests on port 80 to that device.
 
@@ -70,14 +72,9 @@ A [**hostname**](../reference#hostname) identifies a specific device on a networ
 > If using Windows:
 > 1. open command prompt by searching "cmd.exe" in the start menu
 > 2. type `ipconfig`
-> 3. do any of the IP address match what you see at [ipv4.icanhazip.com](http://ipv4.icanhazip.com/)
 >
-> If using Linux:
-> 1. open the terminal (can be multiple ways)
-> 2. type `ifconfig`
->
-> If using Mac:
-> 1. open the terminal
+> If using Linux or Mac:
+> 1. open the terminal (try searching for `terminal`)
 > 2. type `ifconfig`
 >
 > Depending on the network configuration you may or may not see the same IP as listed at [ipv4.icanhazip.com](http://ipv4.icanhazip.com/) why or why not?
@@ -89,11 +86,13 @@ A [**hostname**](../reference#hostname) identifies a specific device on a networ
 {: .challenge}
 
 > ## What happens if I specify the wrong port?
->
-> 1. Enter a domain name or IP into your browser of a known website (e.g. google.ca). **Do not yet go the site.**
+> Did you know that you can specify a port to use when entering a URL into your browser? You can actually do this by appending a URL with a `:` and the port number. Lets try it.
+> 
+> 1. Enter a URL into your browser of a known website (e.g. http://google.ca). **Do not yet go the site.**
 > 2. Then append `:80` to the end and press return
 > 
-> Do you get the site you expected? What happens if you try port `81`?
+> Do you get the site you expected? What happens if you try port `81`, or `22`, or `443` the port for ssh connections?
+> Port `80` is used for the HTTP protocol. Most web-servers will be listening on port 80 for incoming requests. 
 > > ## Solution
 > > If you enter the wrong port your browser will likely spend some time trying to connect to the server on that port. If you wait long enough you will eventually see a message like:
 > > ~~~
@@ -116,4 +115,18 @@ A [**hostname**](../reference#hostname) identifies a specific device on a networ
 > 4. Copy and paste IP address into your browser
 >
 > Do you get to the same page that you would have using the domain name?
+{: .challenge}
+
+> ## What is the top level domain name?
+> What is the top level domain in `ipv4.icanhazip.com`
+> 
+> 1. `ipv4.icanhazip.com`
+> 2. `ipv4`
+> 3. `com`
+> 
+> > ## Solution
+> > 1. This is the full domain name and not just the top level domain.
+> > 2. `ipv4` is the lowest level domain and most specific component of the domain name.
+> > 3. Correct, `com` is the top level domain having many subdomains.
+> {: .solution}
 {: .challenge}

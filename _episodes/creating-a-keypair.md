@@ -1,8 +1,8 @@
 ---
 layout: episode
 title: "Creating a keypair"
-teaching: 15
-exercises: 15
+teaching: 25
+exercises: 10
 questions:
 - "What is a shell?"
 - "What is SSH?"
@@ -30,7 +30,7 @@ keypoints:
 
 Now that you have an overview of OpenStack and have clicked around the dashboard it is time to create our first virtual machine. To create a virtual machine, we would click the *Launch Instance* button on the Instances panel, but before we do that there is one thing we need to take care of first and that is creating a key (and lock) to access our newly created virtual machine. The key will allow only the person possessing it to access the VM. You wouldn't want just anyone connected to the Internet to access your newly created VM. While creating a virtual machine we need to select a lock, corresponding to a key we posses, to be put on the virtual machine.
 
-Before we create a key and lock lets take one more step back to talk about how we will connect to and interact with our virtual machines as this will influence how we use our key. When we use our laptop or desktop computer we have a graphical interface which we click around and windows you type in to get your computer to do what you want. You might not know it but you can also run a [**terminal**](../reference#terminal) or [**shell**](../reference#shell) program and type [**commands**](../reference#command) to get your computer to do things. The things done in the shell in some cases can be seen in the graphical interface. For example you can use the shell to create directories and files which you can see in a graphical file system viewer (e.g. Windows Explorer or Finder). We will use the shell to interact with our virtual machines. Also often virtual machines run a [**Linux**](https://en.wikipedia.org/wiki/Linux) operating system, which is a family of free, open-source, operating systems. In this course we will focus specifically on the [**Ubuntu**](../reference#ubuntu) distribution of Linux.
+Before we create a key and lock, lets take one more step back to talk about how we will connect to and interact with our virtual machines as this will be important when creating our key. When we use our laptop or desktop computer we have a graphical interface which we click around and windows you type in to get your computer to do what you want. You might not know it but you can also run a [**terminal**](../reference#terminal) or [**shell**](../reference#shell) program and type [**commands**](../reference#command) to get your computer to do things. The things done in the shell in some cases can be seen in the graphical interface. For example you can use the shell to create directories and files which you can see in a graphical file system viewer (e.g. Windows Explorer or Finder). We will use the shell to interact with our virtual machines. Also often virtual machines run a [**Linux**](https://en.wikipedia.org/wiki/Linux) operating system, which is a family of free, open-source, operating systems. In this course we will focus specifically on the [**Ubuntu**](../reference#ubuntu) distribution of Linux.
 
 In addition to the shell just mentioned there is a shell called **Secure Shell** or [**SSH**](../reference#ssh) for short which is a shell to interact remotely with machines to send commands and get the output back. SSH [**encrypts**](../reference#encryption) information sent between your local computer and a remote computer using a shared key. Encryption is a way of transforming text or data which is readable and understandable by anyone into text and data which is only understandable if one posses the key. SSH authentication keys (different from the shared key used to encode the messages) come in pairs, one public (think of this as a lock) and one private (think of this as the key). The [**public key**](../reference#public-key) is used to encrypt a message which contains the shared key that can only be decoded by the owner of the [**private key**](../reference#private-key). In this way the machine sending a message encoded using the public key can be sure that the machine responding has the private key which can decode the message. In this way the key pair can be used to authenticate or verify that the user is who they claim to be. A shared key sent in the message allows the two machines to send and receive sensitive information which only they can decode. Having the information sent between machines is important if any sensitive information, say a password, is sent as it is very possible that someone could eavesdrop on the data sent across the Internet to/from the remote machine.
 
@@ -165,6 +165,10 @@ id_rsa       id_rsa.pub   known_hosts
 {: .output}
 Notice that the a forward `/` is used to separate directories. In this case the `.ssh` directory is inside the home directory `~` (or in this case `/home/cgeroux`). If you have a pair of files `id_rsa` and `id_rsa.pub` or `id_dsa` and `id_dsa.pub` you already have a key pair and you can skip the next steps which create a new key pair and just use the key pair you already have.
 
+--------------------------------------------------
+
+**Only do this if you don't already have a key**
+
 To create a key pair run the command
 ~~~
 $ ssh-keygen -t rsa -b 2048
@@ -206,8 +210,11 @@ The key's randomart image is:
 +----[SHA256]-----+
 ~~~
 {: .output}
-now you have a key pair saved in the `.ssh` folder we can use with the cloud. To
-verify lets take a look in the folder
+now you have a key pair saved in the `.ssh` folder we can use with the cloud.
+
+-----------------------------
+
+To verify lets take a look in the folder
 ~~~
 $ ls ~/.ssh/
 ~~~
@@ -340,7 +347,30 @@ Now we have a key pair we can use to connect to our the VM we will create in the
 > {: .solution}
 {: .challenge}
 
-> ## File permissions
+> ## Read file permissions
+> Given the following output from an `ls -l` command
+> ~~~
+> -rw---xrw-  1 jsmith smiths     0 Oct 15 19:33 file-name
+> ~~~
+> {: .output}
+> who can read the file, select all that apply
+> 
+> 1. the owner `jsmith`
+> 2. the group `smiths`
+> 3. the owner `smiths`
+> 4. other users
+> 
+> > ## Solution
+> > 
+> > 1. yes: the file permissions for the owner of the file `jsmith` are `rw-`, which contains the `r`, or read permission.
+> > 2. no: the file permissions the group `smiths` are `--x`, which does not contain the read permission, `r`.
+> > 3. no: `smiths` is the group the file belongs to, not the user who owns the file. The file's group, `smiths`, does not have read permission.
+> > 4. yes: the file permissions for all other users on the computer are `rw-` which does contain the read permission, `r`.
+> > 
+> {: .solution}
+{: .challenge}
+
+<!-- > ## File permissions
 >
 > The `touch` command can be used to create a new empty file or to change the time which the file was last modified if it already exists. Use the `touch` command to create a new file. 
 > ~~~
@@ -360,4 +390,4 @@ Now we have a key pair we can use to connect to our the VM we will create in the
 > > ~~~
 > > {: .output}
 > {: .solution}
-{: .challenge}
+{: .challenge} -->

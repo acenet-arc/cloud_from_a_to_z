@@ -4,8 +4,7 @@ title: "Applying updates"
 teaching: 15
 exercises: 0
 questions:
-- "How can can you keep a Linux software updated?"
-- "How can I fix the 'sudo: unable to resolve host' message?"
+- "How do you keep a Linux server updated?"
 objectives:
 - "Use a terminal based editor to edit a file."
 - "Learn about Ubuntu's package manager."
@@ -22,25 +21,35 @@ Any computer connected to the Internet is vulnerable to attacks. One of the easi
 
 If you are not already connected from your workstation via SSH to the VM that you created in the previous episode do so now. For review, that should look something like this:
 ~~~
-[you@yourworkstation]$ ssh -i <your_priv_key> ubuntu@<your_floating_ip>
+$ ssh ubuntu@206.12.11.12
 ~~~
 {: .bash}
 ~~~
-Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-67-generic x86_64)
+Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.4.0-1011-kvm x86_64)
 
  * Documentation:  https://help.ubuntu.com
  * Management:     https://landscape.canonical.com
  * Support:        https://ubuntu.com/advantage
 
-  Get cloud support with Ubuntu Advantage Cloud Guest:
-    http://www.ubuntu.com/business/services/cloud
+  System information as of Wed Oct 14 15:26:10 UTC 2020
 
-0 packages can be updated.
-0 updates are security updates.
+  System load:  0.11              Processes:             67
+  Usage of /:   5.9% of 19.21GB   Users logged in:       0
+  Memory usage: 8%                IPv4 address for ens3: 192.168.181.26
+  Swap usage:   0%
 
 
+0 updates can be installed immediately.
+0 of these updates are security updates.
 
-Last login: Thu Mar 16 22:04:19 2017 from 24.86.86.43
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+Last login: Wed Oct 14 15:24:38 2020 from 198.90.95.246
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+ubuntu@john-smith:~$
 ~~~
 {: .output}
 
@@ -50,68 +59,42 @@ $ sudo apt update
 ~~~
 {: .bash}
 ~~~
-sudo: unable to resolve host test
-Get:1 http://security.ubuntu.com/ubuntu xenial-security InRelease [102 kB]
-Hit:2 http://nova.clouds.archive.ubuntu.com/ubuntu xenial InRelease
-Get:3 http://nova.clouds.archive.ubuntu.com/ubuntu xenial-updates InRelease [102 kB]
-Get:4 http://nova.clouds.archive.ubuntu.com/ubuntu xenial-backports InRelease [102 kB]
-Fetched 306 kB in 1s (183 kB/s)
-
+Get:1 http://security.ubuntu.com/ubuntu focal-security InRelease [107 kB]
+Hit:2 http://persistent-01.clouds.archive.ubuntu.com/ubuntu focal InRelease
+Get:3 http://persistent-01.clouds.archive.ubuntu.com/ubuntu focal-updates InRelease [111 kB]
+Get:4 http://persistent-01.clouds.archive.ubuntu.com/ubuntu focal-backports InRelease [98.3 kB]
+Get:5 http://security.ubuntu.com/ubuntu focal-security/main amd64 Packages [338 kB]
+.
+.
+.
+Fetched 17.4 MB in 7s (2515 kB/s)
 Reading package lists... Done
 Building dependency tree
 Reading state information... Done
-4 packages can be upgraded. Run 'apt list --upgradable' to see them.
+145 packages can be upgraded. Run 'apt list --upgradable' to see them.
 ~~~
 {: .output}
 
-Notice the first line of the output `sudo: unable to resolve host test` this message results from a missing line in the `/etc/hosts` file, which maps the IP of the VM to its hostname. The message can be ignored without harm but is easily fixed. The hostname is displayed as part of the command prompt after you connect to your VM. For example, I called my VM **wordpress-vm** so my VM command prompt looks like this
-~~~
-ubuntu@wordpress-vm:~$
-~~~
-{: .bash}
-
-To edit the `/etc/hosts` file we will use the shell based editor `nano`. This editor allows you to edit text files directly in the shell without a GUI. It displays the text of the file in the terminal and lets you navigate around the file with the arrow keys. Once you find a place you wish to edit you can start typing to insert new text.
-
-~~~
-$ sudo nano /etc/hosts
-~~~
-{: .bash}
-~~~
-  GNU nano 2.5.3                               File: /etc/hosts
-
-127.0.0.1 localhost
-
-# The following lines are desirable for IPv6 capable hosts
-::1 ip6-localhost ip6-loopback
-fe00::0 ip6-localnet
-ff00::0 ip6-mcastprefix
-ff02::1 ip6-allnodes
-ff02::2 ip6-allrouters
-ff02::3 ip6-allhosts
-
-                                          [ Read 9 lines (Warning: No write permission) ]
-^G Get Help     ^O Write Out    ^W Where Is     ^K Cut Text     ^J Justify      ^C Cur Pos      ^Y Prev Page    M-\ First Line
-^X Exit         ^R Read File    ^\ Replace      ^U Uncut Text   ^T To Spell     ^_ Go To Line   ^V Next Page    M-/ Last Line
-~~~
-{: .output}
-
-The line beginning `127.0.0.1` is the start of the file, lines above that display information about the file you are editing and the version of nano you are using. At the bottom you can see the tasks you can perform such as `Write Out` which writes the edits you made to a file. To perform this action you would press the Ctrl key and the `O` key at the same time (that is what the `^O` represents ctrl+O). It will prompt you to change the file name (press enter to keep the same name). In our case we want to add the text `wordpress-vm` (or what ever the hostname of your VM is) at the end of the line starting `127.0.0.1`. `127.0.0.1` is a special IP  used to identify the current VM within the current VM. This means that it can not be used by another VM to refer to this VM. After the hostname is added to the end of the first line press `Ctrl+X` to exit. Be sure to answer `y` to "Save modified buffer?" to save the edits made to the file. Then press return to write to the edited file to the original file name and exit nano.
-
-With that out of the way, lets install the updated packages. We will use the `-y` option with the `apt upgrade` command which tells it not to ask for confirmation and just assume we said "yes" to any questions it may ask us.
+We will use the `-y` option with the `apt upgrade` command which tells it not to ask for confirmation and just assume we said "yes" to any questions it may ask us.
 ~~~
 $ sudo apt upgrade -y
 ~~~
 {: .bash}
 
 ~~~
-Lots of various text...
-...
-...
-Found kernel: /boot/vmlinuz-4.4.0-67-generic
-Found kernel: /boot/vmlinuz-4.4.0-21-generic
-Replacing config file /run/grub/menu.lst with new version
-
-Updating /boot/grub/menu.lst ... done
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+Calculating upgrade... Done
+The following packages were automatically installed and are no longer required:
+.
+.
+.
+Found initrd image: /boot/initrd.img-5.4.0-1011-kvm
+Found Ubuntu 20.04.1 LTS (20.04) on /dev/vda1
+done
+Processing triggers for initramfs-tools (0.136ubuntu6.3) ...
+update-initramfs: Generating /boot/initrd.img-5.4.0-1026-kvm
 ~~~
 {: .output}
 
@@ -124,46 +107,36 @@ $ sudo reboot
 
 This will disconnect us from our VM and we will need to wait some time (~ 1 minute) for the VM to finish rebooting before trying to reconnect.
 ~~~
-$ ssh ubuntu@206.167.181.126
+$ ssh ubuntu@206.12.11.12
 ~~~
 {: .bash}
 ~~~
 Using username "ubuntu".
 Authenticating with public key "rsa-key-20160303"
 Passphrase for key "rsa-key-20160303":
-Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-71-generic x86_64)
+Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-1026-kvm x86_64)
 
  * Documentation:  https://help.ubuntu.com
  * Management:     https://landscape.canonical.com
  * Support:        https://ubuntu.com/advantage
 
-  Get cloud support with Ubuntu Advantage Cloud Guest:
-    http://www.ubuntu.com/business/services/cloud
+  System information as of Wed Oct 14 16:12:09 UTC 2020
 
-43 packages can be updated.
-12 updates are security updates.
+  System load:  0.53              Processes:             68
+  Usage of /:   7.8% of 19.21GB   Users logged in:       0
+  Memory usage: 8%                IPv4 address for ens3: 192.168.181.26
+  Swap usage:   0%
 
+0 updates can be installed immediately.
+0 of these updates are security updates.
 
-Last login: Mon May  1 21:02:47 2017 from 173.212.77.86
+Last login: Wed Oct 14 15:26:10 2020 from 198.90.95.246
 ~~~
 {: .output}
 
-Notice that, even though we installed updates, when we reboot and reconnect it shows that there are more updates which can be applied. This process can take a few iterations until all the packages have been upgraded.  Repeat the steps
-  1. `sudo apt update`
-  2. `sudo apt upgrade`
-  3. `sudo reboot`
-  4. reconnect to VM
-
-until the `sudo apt update` command indicates that no more updates are available with output like
-~~~
-...
-
-Reading state information... Done
-All packages are up to date.
-~~~
-{: .output}
+When we log back in it tells us there are no updates available. Sometimes this isn't the case depending the details of the updates you just installed. There are times when updates may depend on other updates which require a reboot before they are fully installed and functional. This process of update, upgrade, reboot can sometimes take a few iterations until all the packages have been upgraded.
 
 
 > ## Automating Upgrades
-> It is possible to setup upgrades to happen automatically, but this is beyond the scope of this workshop. You are encouraged to look at the [Ubuntu automatic updates](https://help.ubuntu.com/lts/serverguide/automatic-updates.html) page describing how to enable automatic updates.
+> On newer version of Ubuntu, such as 20.04, automatic updates are enabled, however this still often requires at least a reboot of the VM periodically as it doesn't do this for you automatically for you unless configured to do so.
 {: .callout}
