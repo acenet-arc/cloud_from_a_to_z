@@ -67,7 +67,7 @@ esac
 .
 .
 ~~~
-{: .bash}
+{: .output}
 There are many lines of commands in here that likely don't make a lot of sense to you at this point, however, we don't need to worry about them as we want to add a couple extra  commands to the bottom of this file to configure where Ruby installs Gems and leave the rest of it untouched. Use the down arrow to scroll down to the bottom of the file and enter the following lines of text.
 ~~~
 # Install Ruby Gems to ~/gems
