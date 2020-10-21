@@ -1,8 +1,8 @@
 ---
 layout: episode
 title: "Installing Jekyll"
-teaching: 20
-exercises: 10
+teaching: 30
+exercises: 0
 questions:
 - What software does Jekyll depend on?
 - What are Gems?
@@ -13,6 +13,9 @@ objectives:
 - Install Jekyll and bundler Gems.
 - Create a group to edit your server's website.
 keypoints:
+- Ruby is a programming language.
+- A Gem is a Ruby package.
+- Jekyll is a Ruby Gem.
 - Installing Gems in your home directory is preferred to system wide installation.
 - The command `chown`  is used to change file and directory ownerships.
 - The command `adduser` can be used to add a user to a group.
@@ -31,7 +34,7 @@ These are Ubuntu software packages which Jekyll needs to run.
 * **[zlib](https://zlib.net/)**: compression library.
 
 ~~~
-$ sudo apt-get install ruby-full build-essential zlib1g-dev
+$ sudo apt install ruby-full build-essential zlib1g-dev
 ~~~
 {: .bash}
 
@@ -42,11 +45,41 @@ Ruby has its own packaging system for distributing Ruby libraries or plug-ins. O
 > If you want to customize your Jekyll site different themes and plugins can depend on different versions of Gems. By installing Gems into a folder in your home directory you will not interfere with other people's Gems.
 {: .callout}
 
-The below commands place the text between the <code>'</code> and <code>'</code> into the file <code>~/.bashrc</code>. This is a special file which is read by the shell (a.k.a. sourced) when you first logon to the VM. You can also manually force this file to be 'sourced' using the <code>source</code> command. The first line is just a comment, note that it starts with a <code>#</code> character. The second two lines set the environment variables <code>GEM_HOME</code> and <code>PATH</code>. <code>GEM_HOME</code> is used by the Ruby package manager to know where Gems should be installed. <code>PATH</code> is a very commonly used environment variable, and it tells the operating system where to look for programs to execute. 
+There is a special file in your home directory `.bashrc` which contains a list of commands that are run in your new shell just before you get your first command prompt. This file is used for setting special configuration options you might like to have set in your shell. We are going to edit this file and add two commands to set a setting to tell Ruby where to install Gems, and one to set a setting to tell our shell where to find new commands provided by these newly installed Gems. In our case we want to install the Gems into a directory `gems` in our home directory rather than a system directory owned by the `root` user. Lets edit our `.bashrc` file with nano.
+
+Nano is a text editor you can use from within a shell. When you run the `nano file_name` command it will open up the specified file for editing. It will display the contents of the file in your shell and you can type in text to create the contents of the file. Along the bottom of the terminal screen nano lists commands you can run, like `Exit`, by pressing the `Ctrl` and `X` keys. The `ctrl` key is represented with the `^` character.
+
 ~~~
-$ echo '# Install Ruby Gems to ~/gems' >> ~/.bashrc
-$ echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc
-$ echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
+$ nano ~/.bashrc
+~~~
+{: .bash}
+~~~
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+.
+.
+.
+~~~
+{: .bash}
+There are many lines of commands in here that likely don't make a lot of sense to you at this point, however, we don't need to worry about them as we want to add a couple extra  commands to the bottom of this file to configure where Ruby installs Gems and leave the rest of it untouched. Use the down arrow to scroll down to the bottom of the file and enter the following lines of text.
+~~~
+# Install Ruby Gems to ~/gems
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"
+~~~
+{: .output}
+
+The first line that we entered beginning with a `#` is a comment line. Meaning it isn't a command we want executed when we login, but rather some text to tell us about what the following commands are for. The two lines following the comment beginning with an `export` are setting two variables that Ruby and our shell use to locate things. The first `export` line sets a setting telling Ruby where to install gems. In this case we want it in a `gems` directory in our home directory, `$HOME`. `$HOME` is replaced with the current users home directory, in our case it will be `/home/ubuntu`. The second `export` command is telling our shell where to look to find new commands provided by the gems we install. The `PATH` setting is a list of directories separated by a `:` that our shell should look in for commands we are trying to execute. In this case we are adding the `$HOME/gems/bin` directory to the beginning of the list so it will look in this directory first for any commands we try to execute and then all of the usually places already listed in the `PATH` setting. The `$` character allows you to reference the current value of a setting, for example the `$HOME` setting value, or the `$PATH` setting value.
+
+Now that we have those lines added, lets save and exit our editor. For those new settings to take effect without having to `exit` and `ssh` back into our VM we can use the `source` command, which will read through a file and run the commands listed in it.
+~~~
 $ source ~/.bashrc
 ~~~
 {: .bash}
@@ -69,11 +102,11 @@ $ bundle update --bundler
 -->
 
 ## Create and configure a group to edit your website
-Currently the default web root directory <code>/var/www/html</code> of your website is only editable by the root user. This means that any user that wants to edit files in that directory must first append all commands to modify those files with the <code>sudo</code> command. This gets tedious and there is not security reason not to have these files editable by users other than root. To do this we will create a new user group <code>webeditor</code> and add the default <code>ubuntu</code> user we are logged in as to this group.
+Currently the default web root directory `/var/www/html` of your website is only editable by the root user. This means that any user that wants to edit files in that directory must first append all commands to modify those files with the `sudo` command. This gets tedious and there is not security reason not to have these files editable by users other than root. To do this we will create a new user group `webeditor` and add the default `ubuntu` user we are logged in as to this group.
 
-Before we create our new group, lets verify that there isn't already a group with this name used for some other purpose. To check current list of user groups look in the file <code>/etc/groups</code>. We can use the <code>less</code> command to view this file without editing it.
+Before we create our new group, lets verify that there isn't already a group with this name used for some other purpose. To check current list of user groups look in the file `/etc/groups`. We can use the `cat` command to view this file without editing it.
 ~~~
-$ less /etc/group
+$ cat /etc/group
 ~~~
 {: .bash}
 ~~~
@@ -86,9 +119,9 @@ sys:x:3:
 .
 ~~~
 {: .output}
-If we scrool through that list it appears we are safe. There is no group already called <code>webeditor</code>.
+If we scrool through that list it appears we are safe. There is no group already called `webeditor`.
 
-To create a new user group we can use the command <code>addgroup</code>
+To create a new user group we can use the command `addgroup`
 ~~~
 $ sudo addgroup webeditor
 ~~~
@@ -99,7 +132,7 @@ Done.
 ~~~
 {: .output}
 
-Next we will use the <code>chown</code> command to change the group which the root directory of our website belongs too to be our new group and then verify that our change took place.
+Next we will use the `chown` command to change the group which the root directory of our website belongs too to be our new group and then verify that our change took place. The `chown` command has the following form `chown user:group path`, where `user` and `group` are the new user and group for the file or directory specified by `path`.
 ~~~
 $ sudo chown root:webeditor /var/www/html
 $ ls -l /var/www
@@ -206,13 +239,13 @@ When new files are created in the `html` folder, they will be owned by the user 
 {: .callout}
 
 
-Lets remove the default landing page that our apache2 installation put in this folder so that when we create our new website with Jekyll it can write a new <code>index.html</code> file here without having to be run as the root user to overwrite the existing <code>index.html</code> file.
+Lets remove the default landing page that our apache2 installation put in this folder so that when we create our new website with Jekyll it can write a new `index.html` file here without having to be run as the root user to overwrite the existing `index.html` file. To remove a file you use the `rm` command followed by the path to the file you wish to remove.
 ~~~
 $ sudo rm /var/www/html/index.html
 ~~~
 {: .bashrc}
 
-The last step is to add our current user to the <code>webeditor</code> group.
+The last step is to add our current user to the `webeditor` group. To do this we can use the `adduser` command which can be used to add an existing user to a new group.
 ~~~
 $ sudo adduser ubuntu webeditor
 ~~~

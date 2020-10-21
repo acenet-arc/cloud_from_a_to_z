@@ -21,7 +21,7 @@ In this episode we will install and configure an [**Apache Web Server**](https:/
 
 ## Installing the Apache web server package
 
-Lets install the Apache web server (or HTTP server) package on our VM. However the `apt` command requires a specific package name to find a specific package name we can search through the packages with
+Lets install the Apache web server (or HTTP server) package on our VM. To do this we can use the `apt` command but this time with the sub command `install`. This command however  requires a specific package name. To find a specific package name we can search through the packages with the `search` sub command for `apt`.
 
 ~~~
 $ apt search apache
@@ -221,6 +221,7 @@ To create your own web pages you may edit the file `/var/www/html/index.html` wh
 > HTTPS is HTTP Secure, many websites use HTTPS to encrypt data sent between a users web browser and their web-server. This is particularly important for websites which handle passwords and other private information such as credit cards. However, it is also possible for data sent from a web-server to be intercepted and modified before the website user receives it. This is true for any website and as such it is a good idea to use HTTPS rather than HTTP. To setup HTTPS however, requires your site to use a domain name rather than an IP address. To setup HTTPS on your site you must create and register a SSL (Secure Sockets Layer, or more recently updated to a TLS or Transport Layer Security) certificate with a third party signing authority. These third party signing authorities will verify that the site a user gets is indeed the site that was registered with that third party signing authority. So this provides more security than simply encrypting data sent to and from a web-server. Many third party signing authorities charge money for registering SSL certificates however [**letsencrypt**](https://letsencrypt.org/) is a free third party signing authority. There is also a program which you can download and install which will create the certificate for you, register it with letsencrypt and adjust your web server configuration to use the certificate and server HTTPS called [**certbot**](https://certbot.eff.org/). With the ease with which you can setup HTTPS there is almost no reason not to always use it for your sites.
 {: .callout}
 
+<!--
 > ## Creating your first web page
 >
 > Try modifying or replacing the `/var/www/html/index.html` file and see the changes in your browser.
@@ -247,3 +248,4 @@ To create your own web pages you may edit the file `/var/www/html/index.html` wh
 > > Then edit the original file to include a link like `<a href="another-page.html">link</a>` in the `index.html` file referencing your newly created file name.
 > {: .solution}
 {: .challenge}
+-->

@@ -2,18 +2,19 @@
 layout: episode
 title: "Applying updates"
 teaching: 15
-exercises: 0
+exercises: 5
 questions:
+- "How do you perform administrative tasks on a Linux server?"
 - "How do you keep a Linux server updated?"
 objectives:
-- "Use a terminal based editor to edit a file."
 - "Learn about Ubuntu's package manager."
 - "Learn how to run commands as an administrator."
 - "Install software updates."
 keypoints:
+- "Use the `sudo` command to run commands following it as an administrator."
 - "Use `sudo apt update` to update the package list."
 - "Use `sudo apt upgrade` to upgrade packages."
-- "Reboot after updates have been installed."
+- "Reboot after updates have been installed by running the `reboot` command."
 - "You may need to repeat the `apt update`, `apt upgrade`, reboot process a few times to ensure all updates have been applied."
 ---
 
@@ -26,34 +27,14 @@ $ ssh ubuntu@206.12.11.12
 {: .bash}
 ~~~
 Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.4.0-1011-kvm x86_64)
-
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/advantage
-
-  System information as of Wed Oct 14 15:26:10 UTC 2020
-
-  System load:  0.11              Processes:             67
-  Usage of /:   5.9% of 19.21GB   Users logged in:       0
-  Memory usage: 8%                IPv4 address for ens3: 192.168.181.26
-  Swap usage:   0%
-
-
-0 updates can be installed immediately.
-0 of these updates are security updates.
-
-
-The list of available updates is more than a week old.
-To check for new updates run: sudo apt update
-Last login: Wed Oct 14 15:24:38 2020 from 198.90.95.246
-To run a command as administrator (user "root"), use "sudo <command>".
-See "man sudo_root" for details.
-
+.
+.
+.
 ubuntu@john-smith:~$
 ~~~
 {: .output}
 
-We will use both the [**`sudo`**](../reference#sudo) and [**`apt`**](../reference#apt) commands to apply updates to the VM. The `sudo` command gives us, temporarily, super user or administrator privileges just for the command it has been given as an argument. The `apt` command is used to install, update, and remove Ubuntu software packages. It needs super user permissions because it modifies operating system files and you wouldn't want ordinary users to do this either intentionally or by mistake. You might have noticed that when you connect to a VM for the first time it actually says there are no packages to be updated. This does not actually mean that all packages are up-to-date but that the Operating system just does not know that any packages can be updated. To remedy this we use the `apt update` command which updates the packages database.
+We will use both the [**`sudo`**](../reference#sudo) and [**`apt`**](../reference#apt) commands to apply updates to the VM. The `sudo` command gives us, temporarily, super user or administrator privileges just for the command it has been given as an argument. The username of the administrative user on many Linux systems is `root` so operating system files and directories are often owned by the `root` user. Depending on the file permissions you may need to become the `root` user temporarily using `sudo` to edit or even read these files or directories. The `apt` command is used to install, update, and remove Ubuntu software packages. It needs super user permissions because it modifies operating system files and you wouldn't want ordinary users to do this either intentionally or by mistake. You might have noticed that when you connect to a VM for the first time it actually says there are no packages to be updated. This does not actually mean that all packages are up-to-date but that the Operating system just does not know that any packages can be updated. To remedy this we use the `apt update` command which updates the packages database.
 ~~~
 $ sudo apt update
 ~~~
@@ -138,5 +119,27 @@ When we log back in it tells us there are no updates available. Sometimes this i
 
 
 > ## Automating Upgrades
-> On newer version of Ubuntu, such as 20.04, automatic updates are enabled, however this still often requires at least a reboot of the VM periodically as it doesn't do this for you automatically for you unless configured to do so.
+> On newer version of Ubuntu, such as 20.04, automatic updates are enabled, however this still often requires at least a reboot of the VM periodically as it doesn't do this for you automatically unless specifically configured to do so.
 {: .callout}
+
+> ## Sudo
+> If `touch file_name` is a command that creates a file named `file_name` what output will the next two commands generate. If the user `ubuntu` runs those commands.
+> ~~~
+> $ sudo touch file_name
+> $ ls -l
+> ~~~
+> {: .bash}
+> 
+> 1. `-rw-rw-r--  1 ubuntu ubuntu 0 Oct 15 19:33 file_name`
+> 2. `-rw-rw-r--  1 root   root   0 Oct 15 19:33 file_name`
+> 3. `-rw-rw-r--  1 ubuntu root   0 Oct 15 19:33 file_name`
+> 4. `-rw-rw-r--  1 root   ubuntu 0 Oct 15 19:33 file_name`
+> 
+> > ## Solution
+> > 
+> > 1. No, even though the command `sudo` is run as the `ubuntu` user, it will run the `touch` command which generates the file as the `root` or administrative user.
+> > 2. yes, the `touch` command will be run as the `root` user which has the primary group `root`. The primary group of the user who creates the file is the default group for the new file or directory.
+> > 3. No, 
+> > 4. No
+> {: .solution}
+{: .challenge}
