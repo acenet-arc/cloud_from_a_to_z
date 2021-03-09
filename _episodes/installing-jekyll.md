@@ -301,6 +301,18 @@ ubuntu adm dialout cdrom floppy sudo audio dip video plugdev netdev lxd webedito
 {: .output}
 Note that we are now a member of the <code>webeditor</code> group and are ready to create our first Jekyll website.
 
-<!--Exercise ideas:
+<!-- Exercise ideas:
 1. explore groups and permissions more
+
+> ## Command line editor Nano
+> Try out some more functions in Nano
+> > ## Solution
+> > 
+> > 1. yes: the file permissions for the owner of the file `jsmith` are `rw-`, which contains the `r`, or read permission.
+> > 2. no: the file permissions the group `smiths` are `--x`, which does not contain the read permission, `r`.
+> > 3. no: `smiths` is the group the file belongs to, not the user who owns the file. The file's group, `smiths`, does not have read permission.
+> > 4. yes: the file permissions for all other users on the computer are `rw-` which does contain the read permission, `r`.
+> > 
+> {: .solution}
+{: .challenge}
 -->
