@@ -1,3 +1,7 @@
+Here is a another lesson I found from the SWC site about using Jekyll:
+
+https://carpentries-incubator.github.io/jekyll-pages-novice/
+
 To deploy on webserver with apache2 installed:
 
 first follow the setup here:
