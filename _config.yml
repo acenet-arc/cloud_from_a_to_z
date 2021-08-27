@@ -63,6 +63,7 @@ defaults:
 exclude:
   - Makefile
   - bin
+  - vendor/bundle
 
 episode_order: 
   - introduction
