@@ -9,8 +9,8 @@ questions:
 - How do you configure your site?
 objectives:
 keypoints:
-start: true
-start_time: 870
+start: false
+start_time: 720
 ---
 
 Lets create our first site using a pre-made custom theme so it looks nicer than the built in standard Jekyll theme. There are a number of places to find Jekyll themes:

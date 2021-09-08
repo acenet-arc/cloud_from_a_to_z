@@ -11,7 +11,7 @@ questions:
 objectives:
 keypoints:
 start: true
-start_time: 870
+start_time: 720
 ---
 
 We are starting to get our site looking a little more like our own, but what are these **Elements**, **Generic**, and **Landing** on our home page? If we click on them we are taken to a new page for each. The elements page shows off some of the different standard HTML elements and how they have been styled with this theme. We can also navigate to these three different pages with the *MENU* in the top right of the page.

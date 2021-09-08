@@ -68,20 +68,25 @@ exclude:
 episode_order: 
   - introduction
   - the-internet
-  - the-cloud
-  - creating-a-keypair
-  - create-a-persistent-virtual-machine
-  - security-updates
-  - create-a-web-server
   - why-static-websites
-  - installing-jekyll
   - first-jekyll-site
+  - break
   - jekyll-page-front-matter
   - jekyll-site-config
   - jekyll-pages-and-markdown-I
   - jekyll-pages-and-markdown-II
   - jekyll-pages-and-markdown-III
   - posts-and-assets
+  - git-hub-hosting-demo
+  - break
+  - the-cloud
+  - creating-a-keypair
+  - create-a-persistent-virtual-machine
+  - security-updates
+  - create-a-web-server
+  - break
+  - installing-jekyll
+  - moving-your-jekyll-site
   - jekyll-admin-or-your-project
   
 # - create-a-persistent-virtual-machine
