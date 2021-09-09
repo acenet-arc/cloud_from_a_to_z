@@ -57,7 +57,7 @@ Here we pick what the VM boots from. You could create a VM which boots from an I
 
 Select the `Ubuntu-20.04-focal-amd64` image by clicking on the arrow pointing upwards next to it so that it appears under `Allocated`.
 
-### Falvor tab
+### Flavor tab
 The [**flavor**](../reference#flavor) of your VM specifies the hardware profile your VM will have. Compute Canada cloud uses a consistent naming scheme across their clouds to describe the hardware profile.  Examples of VM flavors are `p1-1.5gb` and `c1-7.5gb-30` and the different components of the name correspond to different hardware features.
 
 * Flavors beginning with a `p` indicates a [**persistent flavor**](../reference#persistent-flavor). Persistent flavors or VMs are expected to run for long periods of time, provide web services such as websites and are run on hardware which is well suited to these workloads.
