@@ -21,7 +21,7 @@ Please request a **persistent** cloud project which is well suited to running we
 If you aren't a PI but a sponsored user, you will also need to request to be added to your PI's cloud project, again using the same form linked from [here](https://docs.computecanada.ca/wiki/Cloud#Getting_a_Cloud_project).
 
 ### If you are unable to get a Compute Canada account or cloud project
-If you would like a Compute Canada account but are having difficulty getting one please contact [lydia.vermeyden@ace-net.ca ](mailto:lydia.vermeyden@ace-net.ca ) and we will help you get one.
+If you would like a Compute Canada account but are having difficulty getting one please contact [training@computecanada.ca](mailto: training@computecanada.ca ) and we will help you get one.
 
 For those who are unable to acquire a Compute Canada Cloud project we will provide guest accounts that you can use during the course. However, having your own project is preferable as you may continue to use it and what you have created during the course, after the course has completed.
 
