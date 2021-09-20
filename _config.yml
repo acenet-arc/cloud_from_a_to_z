@@ -67,7 +67,7 @@ exclude:
 
 episode_order: 
   - introduction
-  - the-internet
+#  - the-internet
   - why-static-websites
   - first-jekyll-site
   - break

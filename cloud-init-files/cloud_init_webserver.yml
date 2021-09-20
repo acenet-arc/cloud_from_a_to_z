@@ -1,0 +1,13 @@
+#cloud-config
+package_update: true
+package_upgrade: false
+packages:
+  - apache2
+  - fail2ban
+  - ruby-full
+  - build-essential
+  - zlib1g-dev
+runcmd:
+  - ["wget","http://chrisgeroux.xyz/cgeroux/cloud-init-files/passphrase_generator.py"]
+  - ["wget","http://chrisgeroux.xyz/cgeroux/cloud-init-files/setup_jekyll_and_guest_accounts.py"]
+  - ["python3","./setup_jekyll_and_guest_accounts.py"]
