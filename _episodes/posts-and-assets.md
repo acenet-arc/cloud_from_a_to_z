@@ -15,7 +15,7 @@ start: false
 
 ## A few finishing touches
 
-We learned a lot about markdown, but now that we have an understanding of markdown, lets turn back to our website as a whole and see how our new pages integrates with the site.
+We learned a lot about markdown, but now that we have an understanding of markdown, lets turn back to our website as a whole and see how our new page integrates with the site.
 
 If we click on our site title in the top left "Awesome Site" it will take us back to the home page. If we look at the tiles of the other pages we notice that some of the pre-made pages have images as backgrounds, and they also have a sub title or descriptive text displayed. How do they get those? Also if click into one of those pages, the "Generic" page for example, the layout of content looks a bit different. It has more of a left margin than our page does and the header has an underline. Lets exit our nano text editor `^X`, and open it up with the `generic.md` page to see the differences.
 
@@ -94,7 +94,7 @@ Now write out the changes and refresh our browser again to see the changes. Grea
 
 ## Posts
 
-What's next? If you have been watching carefully you might be starting to wonder a bit about these "posts" and wondering what they are about. We have just seen that our theme gave us a special layout for posts, which is separate from pages, and also there is a entry for "All posts" in our main site menu at the top right. If we click on that it takes us to a list of pre-made "posts". However, if you scroll all the way through them, you will notice that our "Facts about dogs" page is no where to be found. So it seems that even though our page uses the `post` layout, it still isn't considered a post. So what is considered a post?
+What's next? If you have been watching carefully you might be starting to wonder a bit about these "posts" and wondering what they are about. We have just seen that our theme gave us a special layout for posts, which is separate from pages, and also there is an entry for "All posts" in our main site menu at the top right. If we click on that it takes us to a list of pre-made "posts". However, if you scroll all the way through them, you will notice that our "Facts about dogs" page is no where to be found. So it seems that even though our page uses the `post` layout, it still isn't considered a post. So what is considered a post?
 
 Lets exit nano and have a look around our site's source directory to see if we can figure out where these posts are coming form.
 
@@ -103,27 +103,26 @@ $ ls -l
 ~~~
 {: .bash}
 ~~~
--rw-rw-r-- 1 ubuntu ubuntu    68 Jun 27 16:29 404.md
--rw-rw-r-- 1 ubuntu ubuntu   693 Jun 27 16:29 CONTRIBUTING.md
--rw-rw-r-- 1 ubuntu ubuntu    38 Jun 27 16:29 Gemfile
--rw-rw-r-- 1 ubuntu ubuntu  1646 Sep 24 19:11 Gemfile.lock
--rw-rw-r-- 1 ubuntu ubuntu 17065 Jun 27 16:29 LICENSE.md
--rw-rw-r-- 1 ubuntu ubuntu  2886 Jun 27 16:29 README.md
--rw-rw-r-- 1 ubuntu ubuntu   867 Sep 24 20:08 _config.yml
--rw-rw-r-- 1 ubuntu ubuntu   379 Oct  1 17:53 _facts_about_dogs.md
-drwxrwxr-x 2 ubuntu ubuntu  4096 Jun 27 16:29 _includes
-drwxrwxr-x 3 ubuntu ubuntu  4096 Sep 24 19:16 _layouts
-drwxrwxr-x 2 ubuntu ubuntu  4096 Jun 27 16:29 _posts
-drwxrwxr-x 6 ubuntu ubuntu  4096 Jun 27 16:29 _sass
-drwxrwxr-x 2 ubuntu ubuntu  4096 Sep 28 16:53 _test
--rw-rw-r-- 1 ubuntu ubuntu   164 Jun 27 16:29 all_posts.md
-drwxrwxr-x 6 ubuntu ubuntu  4096 Jun 27 16:29 assets
--rw-rw-r-- 1 ubuntu ubuntu 15730 Oct  1 18:06 elements.md
--rw-rw-r-- 1 ubuntu ubuntu  1809 Oct  7 19:39 facts_about_dogs.md
--rw-rw-r-- 1 ubuntu ubuntu   650 Jun 27 16:29 forty_jekyll_theme.gemspec
--rw-rw-r-- 1 ubuntu ubuntu  1645 Jun 27 16:29 generic.md
--rw-rw-r-- 1 ubuntu ubuntu   169 Sep 24 19:20 index.md
--rw-rw-r-- 1 ubuntu ubuntu  3544 Jun 27 16:29 landing.md
+total 104
+-rw-rw-r-- 1 user01 user01    68 Sep  2 03:50 404.md
+-rw-rw-r-- 1 user01 user01   693 Sep  2 03:50 CONTRIBUTING.md
+-rw-rw-r-- 1 user01 user01   120 Sep  2 03:50 Gemfile
+-rw-rw-r-- 1 user01 user01  1656 Sep 20 20:07 Gemfile.lock
+-rw-rw-r-- 1 user01 user01 17065 Sep  2 03:50 LICENSE.md
+-rw-rw-r-- 1 user01 user01  2939 Sep  2 03:50 README.md
+-rw-rw-r-- 1 user01 user01  1094 Sep 21 17:33 _config.yml
+drwxrwxr-x 2 user01 user01  4096 Sep  2 03:50 _includes
+drwxrwxr-x 2 user01 user01  4096 Sep  2 03:50 _layouts
+drwxrwxr-x 2 user01 user01  4096 Sep  2 03:50 _posts
+drwxrwxr-x 6 user01 user01  4096 Sep  2 03:50 _sass
+-rw-rw-r-- 1 user01 user01   164 Sep  2 03:50 all_posts.md
+drwxrwxr-x 6 user01 user01  4096 Sep  2 03:50 assets
+-rw-rw-r-- 1 user01 user01 15761 Sep 21 17:39 elements.md
+-rw-rw-r-- 1 user01 user01  1784 Sep 22 18:57 facts_about_dogs.md
+-rw-rw-r-- 1 user01 user01   650 Sep  2 03:50 forty_jekyll_theme.gemspec
+-rw-rw-r-- 1 user01 user01  1645 Sep  2 03:50 generic.md
+-rw-rw-r-- 1 user01 user01   168 Sep 21 17:16 index.md
+-rw-rw-r-- 1 user01 user01  3544 Sep  2 03:50 landing.md
 ~~~
 {: .output}
 So where might there be something to do with "posts"? Oh look, there is a `_posts` directory, that looks promising; lets have a look in there.
@@ -133,12 +132,13 @@ $ ls -l
 ~~~
 {: .bash}
 ~~~
--rw-rw-r-- 1 ubuntu ubuntu 1636 Jun 27 16:29 2016-8-20-etiam.md
--rw-rw-r-- 1 ubuntu ubuntu 1641 Jun 27 16:29 2016-8-21-consequat.md
--rw-rw-r-- 1 ubuntu ubuntu 1633 Jun 27 16:29 2016-8-22-ipsum.md
--rw-rw-r-- 1 ubuntu ubuntu 1695 Jun 27 16:29 2016-8-23-magna.md
--rw-rw-r-- 1 ubuntu ubuntu 1637 Jun 27 16:29 2016-8-24-tempus.md
--rw-rw-r-- 1 ubuntu ubuntu 1638 Jun 27 16:29 2016-8-25-aliquam.md
+total 24
+-rw-rw-r-- 1 user01 user01 1636 Sep  2 03:50 2016-8-20-etiam.md
+-rw-rw-r-- 1 user01 user01 1641 Sep  2 03:50 2016-8-21-consequat.md
+-rw-rw-r-- 1 user01 user01 1633 Sep  2 03:50 2016-8-22-ipsum.md
+-rw-rw-r-- 1 user01 user01 1695 Sep  2 03:50 2016-8-23-magna.md
+-rw-rw-r-- 1 user01 user01 1637 Sep  2 03:50 2016-8-24-tempus.md
+-rw-rw-r-- 1 user01 user01 1638 Sep  2 03:50 2016-8-25-aliquam.md
 ~~~
 {: .output}
 Interesting, we have a list of markdown files with file names containing dates and a name. Interestingly those names look a little bit like the titles for the list of posts we saw in the "All posts" page.
@@ -155,10 +155,10 @@ YEAR-MONTH-DAY-title.MARKUP
 Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit numbers, and `MARKUP` is the file extension representing the format used in the file. All posts must begin with front matter. If we wanted our facts about dogs page to show up as a post we would need to put it in the `_posts` folder, so lets do that.
 
 ~~~
-$ cp ../facts_about_dogs.md ./2020-10-01-facts-about-dogs.md
+$ cp ../facts_about_dogs.md ./2021-09-22-facts-about-dogs.md
 ~~~
 
-So now we have both a page "facts_about_dogs.md" and a post "2020-10-01-facts-about-dogs.md". Typically you wouldn't want to have duplicate content like this but our "Facts about dogs" page will give us something interesting for our post without having to create it from scratch. Lets refresh our browser and have a look at our new post in the "All posts" page from the sites main menu. If you scroll down you will notice that other posts on this page have their image directly under their title. However, our new post doesn't; why? It turns out if you go digging through the theme's `_laouts/allposts.html` file, that it expects images to be part of your site, rather than located on a different site.
+So now we have both a page "facts_about_dogs.md" and a post "2020-10-01-facts-about-dogs.md". Typically you wouldn't want to have duplicate content like this but our "Facts about dogs" page will give us something interesting for our post without having to create it from scratch. Lets refresh our browser and have a look at our new post in the "All posts" page from the sites main menu. If you scroll down you will notice that other posts on this page have their image directly under their title. However, our new post doesn't; why? It turns out if you go digging through the theme's `_layouts/allposts.html` file and know a bit more about how to create Jekyll layouts (which we haven't covered), the layout for the allposts page expects images to be part of your site, rather than located on a different site as we have done. To fix this we would have to download the image and store it locally. This leads us to the idea of 'assets' for our site.
 
 # Assets
 Lets download the image we use on our "Facts about dogs" page and store it on our site, but first where should we store the image?
@@ -183,10 +183,10 @@ nav-menu: true
 ~~~
 {: .output}
 
-So that page is getting the image it is using from the `assets/images` directory. Lets refresh memory of what happens when our site is generated.
+So that page is getting the image it is using from the `assets/images` directory. Lets refresh our memory of what happens when our site is generated.
 
 * Directories and files beginning with an `_` are ignored by the normal Jekyll processing and are not copied to the site destination directory.
-* Files containing front matter are transformed into new files in the destination directory
+* Files containing front matter are transformed into new files in the destination directory.
 * Files without front matter that don't begin with an `_` are copied as they are into the same directory structure in destination directory as the source directory.
 
 The assets folder is not prefixed with an `_`, nor is the `images` or the file `pic11.jpg`. However, the image file does not have any front matter, it is a regular image file. So this **static** file is copied over to our destination directory, and placed in the same directory as in the source directory.
@@ -220,11 +220,11 @@ $ ls -l assets/images
 ~~~
 {: .bash}
 ~~~
--rw-rw-r-- 1 ubuntu ubuntu 589247 Jun 27 16:29 banner.jpg
--rw-rw-r-- 1 ubuntu ubuntu 137084 Feb 24  2019 dog.jpg
--rw-rw-r-- 1 ubuntu ubuntu  62690 Jun 27 16:29 forty.jpg
--rw-rw-r-- 1 ubuntu ubuntu  54651 Jun 27 16:29 pic01.jpg
--rw-rw-r-- 1 ubuntu ubuntu 155987 Jun 27 16:29 pic02.jpg
+total 2008
+-rw-rw-r-- 1 user01 user01 589247 Sep  2 03:50 banner.jpg
+-rw-rw-r-- 1 user01 user01 137084 Feb 24  2019 dog.jpg
+-rw-rw-r-- 1 user01 user01  62690 Sep  2 03:50 forty.jpg
+-rw-rw-r-- 1 user01 user01  54651 Sep  2 03:50 pic01.jpg
 .
 .
 .
@@ -232,7 +232,7 @@ $ ls -l assets/images
 {: .output}
 There we see our new dog image. Now we can reference it in our post's `image` keys so that it will be properly included in the "All posts" page.
 ~~~
-$ nano _posts/2020-10-07-facts-about-dogs.md
+$ nano _posts/2021-09-22-facts-about-dogs.md
 ~~~
 {: .bash}
 ~~~

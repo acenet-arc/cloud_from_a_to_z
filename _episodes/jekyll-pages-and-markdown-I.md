@@ -4,15 +4,17 @@ title: "Pages and markdown I"
 teaching: 20
 exercises: 10
 questions:
-- How do you create pages for you Jekyll site?
+- How do you create pages for your Jekyll site?
 - What is markdown?
 - How do you create section Headers?
+- Is there a way to get Jekyll to automatically rebuild my site?
 - How do you create lists?
 objectives:
 keypoints:
 start: false
 ---
 
+# Modify an existing page
 We are starting to get our site looking a little more like our own, but what are these **Elements**, **Generic**, and **Landing** on our home page? If we click on them we are taken to a new page for each. The elements page shows off some of the different standard HTML elements and how they have been styled with this theme. We can also navigate to these three different pages with the *MENU* in the top right of the page.
 
 Lets have a look in our sites source directory again to see if we can find out where these items are coming from.
@@ -22,29 +24,30 @@ $ ls -l
 ~~~
 {: .bash}
 ~~~
--rw-rw-r-- 1 ubuntu ubuntu    68 Jun 27 16:29 404.md
--rw-rw-r-- 1 ubuntu ubuntu   693 Jun 27 16:29 CONTRIBUTING.md
--rw-rw-r-- 1 ubuntu ubuntu    38 Jun 27 16:29 Gemfile
--rw-rw-r-- 1 ubuntu ubuntu  1646 Sep 11 19:00 Gemfile.lock
--rw-rw-r-- 1 ubuntu ubuntu 17065 Jun 27 16:29 LICENSE.md
--rw-rw-r-- 1 ubuntu ubuntu  2886 Jun 27 16:29 README.md
--rw-rw-r-- 1 ubuntu ubuntu   922 Sep 11 18:58 _config.yml
-drwxrwxr-x 2 ubuntu ubuntu  4096 Jun 27 16:29 _includes
-drwxrwxr-x 2 ubuntu ubuntu  4096 Jun 27 16:29 _layouts
-drwxrwxr-x 2 ubuntu ubuntu  4096 Jun 27 16:29 _posts
-drwxrwxr-x 6 ubuntu ubuntu  4096 Jun 27 16:29 _sass
--rw-rw-r-- 1 ubuntu ubuntu   164 Jun 27 16:29 all_posts.md
-drwxrwxr-x 6 ubuntu ubuntu  4096 Jun 27 16:29 assets
--rw-rw-r-- 1 ubuntu ubuntu 15719 Jun 27 16:29 elements.md
--rw-rw-r-- 1 ubuntu ubuntu   650 Jun 27 16:29 forty_jekyll_theme.gemspec
--rw-rw-r-- 1 ubuntu ubuntu  1645 Jun 27 16:29 generic.md
--rw-rw-r-- 1 ubuntu ubuntu   536 Jun 27 16:29 index.md
--rw-rw-r-- 1 ubuntu ubuntu  3544 Jun 27 16:29 landing.md
+total 100
+-rw-rw-r-- 1 user01 user01    68 Sep  2 03:50 404.md
+-rw-rw-r-- 1 user01 user01   693 Sep  2 03:50 CONTRIBUTING.md
+-rw-rw-r-- 1 user01 user01   120 Sep  2 03:50 Gemfile
+-rw-rw-r-- 1 user01 user01  1656 Sep 20 20:07 Gemfile.lock
+-rw-rw-r-- 1 user01 user01 17065 Sep  2 03:50 LICENSE.md
+-rw-rw-r-- 1 user01 user01  2939 Sep  2 03:50 README.md
+-rw-rw-r-- 1 user01 user01  1094 Sep 21 17:33 _config.yml
+drwxrwxr-x 2 user01 user01  4096 Sep  2 03:50 _includes
+drwxrwxr-x 2 user01 user01  4096 Sep  2 03:50 _layouts
+drwxrwxr-x 2 user01 user01  4096 Sep  2 03:50 _posts
+drwxrwxr-x 6 user01 user01  4096 Sep  2 03:50 _sass
+-rw-rw-r-- 1 user01 user01   164 Sep  2 03:50 all_posts.md
+drwxrwxr-x 6 user01 user01  4096 Sep  2 03:50 assets
+-rw-rw-r-- 1 user01 user01 15750 Sep  2 03:50 elements.md
+-rw-rw-r-- 1 user01 user01   650 Sep  2 03:50 forty_jekyll_theme.gemspec
+-rw-rw-r-- 1 user01 user01  1645 Sep  2 03:50 generic.md
+-rw-rw-r-- 1 user01 user01   168 Sep 21 17:16 index.md
+-rw-rw-r-- 1 user01 user01  3544 Sep  2 03:50 landing.md
 ~~~
 {: .output}
 
 There are files matching these three items appearing on the home page of our site. Lets look inside the `elements.md` file.
-<!--Should I have them create a saved version before we start editing it? It shows how to do a bunch of html stuff with this theme and might be good to keep for reference?-->
+
 ~~~
 $ nano elements.md
 ~~~
@@ -73,8 +76,6 @@ You will notice at the top of this file the YAML section specifying the layout s
 From the official Jekyll documentation on [pages](https://jekyllrb.com/docs/pages/):
 > Pages are the most basic building block for content. They’re useful for standalone content (content which is not date based or is not a group of content such as staff members or recipes).
 
-Pages can be created by creating a new HTML or markdown file in the site's source directory or by creating sub-directories and place the pages in those directories. In the generated site those pages will appear in the same sub-directories as they are in the source directory.
-
 Lets try changing both the `title` and the `nav-menu:` items and see what happens.
 ~~~
 ---
@@ -96,28 +97,24 @@ nav-menu: false
 {: .output}
 Save and exit nano and then regenerate our site to see the results.
 ~~~
-$ jekyll build -d /var/www/html
+$ jekyll build -d /var/www/html/<your-username>
 ~~~
 {: .bash}
 
-![Facts about dogs modification](../fig/elements_modified.png)
+![elements modified](../fig/elements_modified.png)
 
 If we look in the menu in the top right of the page, we will also see that 'ELEMENTS' entry has been removed, but it hasn't been replaced with our new title 'ELEMENTS NEW TITLE'. This is because we set `nav-menu` to `false`.
 
 It is important to note, that while the `layout` key is common to all Jekyll sites (telling Jekyll what layout to use when processing the site) many other keys are theme specific. In our case `nav-menu` and `title` are both used by our theme to customize how it displays content and while `title` is a fairly common key to many themes, exactly how they use it can differ. To learn about the keys your theme uses, there can sometimes be documentation, for example in our case there is a `README.md` file which contains some documentation which we can view on the theme's [github page](https://github.com/andrewbanchich/forty-jekyll-theme) (however nothing about these keys specifically). Usually theme documentation on its own is inadequate and the authors instead provide examples of the theme's usage within the theme its self. Looking at the files, as we have been doing, is often best way to see how individual themes work. We have already been learning about our theme in this way by looking in files that came with it, modifying settings and seeing what happens. We may well discover other useful `keys` we can set for this theme in other files.
 
-If we click on the "Elements new title" tile, and go to the page we actually don't see our new title but instead the original contents of the page. That's because the new title key isn't actually used on the page, but rather on the home page to create those tiles.
+If we click on the "Elements new title" tile, and go to the page we actually don't see our new title but instead the original contents of the page. That's because the new title key isn't actually used on the page, but rather on the home page to create those tiles. The title that appears on the page comes from the HTML in the page content in the `elements.md` file rather than the front matter. The content of pages can be Markdown or HTML or a mixture of both.
 
-<!--
-But first lets stop the elements page from being included in our site. We can do that by prepending an `_` (underscore) to the file name.
-~~~
-$ mv elements.md _elements.md
-~~~
-{: .bash}
-This way the file won't be included as a page in our final site, but if we want to later look at the content that originally came with the theme we can.
--->
+## Creating a new page
 
-Lets create a new page called "Facts about dogs" by creating a new markdown file and add the page front matter.
+Pages can be created by creating a new HTML or markdown file in the site's source directory or by creating sub-directories and place the pages in those directories. In the generated site those pages will appear in the same sub-directories as they are in the source directory.
+
+Lets create a new page called "Facts about dogs" by creating a new markdown file and add the page front matter. Markdown files typically have an `.md` suffix to indicate that they are markdown files.
+
 ~~~
 $ nano facts_about_dogs.md
 ~~~
@@ -199,18 +196,39 @@ nav-menu: true
 {: .output}
 Save and exit the file and rebuild our site.
 ~~~
-$ jekyll build -d /var/www/html
+$ jekyll build -d /var/www/html/<your-username>
 ~~~
 {: .bash}
-I don't know about you, but I am starting to get tired of having to exit the editor and rebuild our site each time. Wouldn't it be nice if there was some way to do this automatically? Well it turns out the authors of Jekyll also got tired of it and added a "-w" option to the build command, which tells the command to keep running and watch for changes to files and rebuild the site if they see any change. Lets open a new terminal and run our Jekyll build command there with the `-w` option so we can edit our file and have our site automatically rebuild. In our new terminal, first change into our site's source directory and run our build command with the new option.
+
+## Automatically rebuild site
+I don't know about you, but I am starting to get tired of having to exit the editor and rebuild our site each time. Wouldn't it be nice if there was some way to do this automatically? Well it turns out the authors of Jekyll also got tired of it and added a "-w" option to the build command, which tells the command to keep running and watch for changes to files and rebuild the site if they see any change.
+
+Lets open a new terminal, ssh into the VM, and run our Jekyll build command there with the `-w` option so we can edit our file and have our site automatically rebuild as we save our changes.
+
+~~~
+$ ssh ssh <username>@<remote-ip>
+~~~
+{: .bash}
+~~~
+Welcome to Ubuntu 20.04.2 LTS (GNU/Linux 5.4.0-73-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+...
+~~~
+{: .output}
+
+In our new terminal, first change into our site's source directory and run our build command with the new option.
 ~~~
 $ cd forty-jekyll-theme-master
-$ jekyll build -w -d /var/www/html
+$ jekyll build -d /var/www/html/<your-username> -w
 ~~~
 {: .bash}
 Now as we make changes our site will be automatically recreated to view the changes we make in our editor all we have to do now is refresh our browser.
 ![](../fig/facts_about_dogs_header.png)
 
+## More Markdown
 ### Lists
 Since this is a page entitled "Facts about dogs" it seems like we might actually want to list some facts about dogs. Markdown supports two types if lists unordered and ordered lists.
 
@@ -279,5 +297,8 @@ nav-menu: true
 * Spiked dog collars were originally designed in ancient Greece to protect dogs' throats from wolf attacks.
 ~~~
 {: .output}
+
+The save the changes (`ctrl`+`O`) and refresh your browser.
+
 ![](../fig/facts_about_dogs_list.png)
 

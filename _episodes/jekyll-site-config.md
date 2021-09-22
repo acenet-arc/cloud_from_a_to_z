@@ -62,7 +62,7 @@ phone: (716) 555-5555
 {: .output}
 Now save and exit nano and rebuild our site.
 ~~~
-$ jekyll build -d /var/www/html
+$ jekyll build -d /var/www/html/<your-username>
 ~~~
 {: .bash}
 

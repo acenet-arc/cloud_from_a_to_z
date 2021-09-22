@@ -182,7 +182,7 @@ $ cd forty-jekyll-theme-master
 {: .callout}
 -->
 
-There are a few minor configuration settings we have to make in order for that theme to work with our webserver. Confirugation settings for Jekyll sites are generally in the `_config.yml` file. This is a YAML file (YAML Ain't Markup Language) (see: [yaml.org](https://yaml.org/)). Very briefly, a YAML file is a way of specifying key value pairs in a standardized format so that computer programs and people can easily read them. These key value pairs have a format like <code>key</code><code>:</code><code>value</code>, where the key name and it's value are separated by a colon, <code>:</code>. In addition, lines which begin with a `#` are comment lines. These lines add useful information for people reading and editing these YAML files but are usually ignored by programs reading these files.
+There are a few minor configuration settings we have to make in order for that theme to work with our web-server. Configuration settings for Jekyll sites are generally in the `_config.yml` file. This is a YAML file (YAML Ain't Markup Language) (see: [yaml.org](https://yaml.org/)). Very briefly, a YAML file is a way of specifying key value pairs in a standardized format so that computer programs and people can easily read them. These key value pairs have a format like `key``:``value`, where the key name and it's value are separated by a colon, `:`. In addition, lines which begin with a `#` are comment lines. These lines add useful information for people reading and editing these YAML files but are usually ignored by programs reading these files.
 
 ~~~
 $ nano _config.yml
@@ -207,20 +207,20 @@ title: Forty
 .
 .
 .
-baseurl: "/user01" # the subpath of your site, e.g. /blog
+baseurl: "/<your-username>" # the subpath of your site, e.g. /blog
 .
 .
 .
 ~~~
 {: .output}
 
-with the username you logged in with instead of `/user01`
+with the username you logged in with instead of `/<your-username>`
 
 Then save the and exit the editor by pressing `^` (control) and `x` keys simultaneously. This will ask if you want to "Save modified buffer?" to which you answer `Y` for yes. It will then check to see if you want use the same file name, which we do, so press `return` or `enter` to confirm. You should now be back at the command prompt.
 
-Now lets install the gems that this site requires and publish it to our VM's websites root directory.
+Use the following command to publish it to our web-server's root directory.
 ~~~
-$ jekyll build -d /var/www/html/user01
+$ jekyll build -d /var/www/html/<your-username>
 ~~~
 {: .bash}
 
@@ -232,7 +232,7 @@ $ bundle install
 {: .bash}
 -->
 
-This command generates the site from the contents of the current working directory and places the newly created site in the `/var/www/html/user01` directory.
+This command generates the site from the contents of the current working directory and places the newly created site in the `/var/www/html/<your-username>` directory.
 
 Finally visit your new site at your VM's IP address in your browser with your username appended (e.g. `/user01`) to see your new Jekyll site.
 
@@ -244,7 +244,7 @@ Finally visit your new site at your VM's IP address in your browser with your us
 {: .callout}
 
 > ## Automatically rebuild your site when files are updated
-> The jekyll <code>build</code> command can be run with a <code>-w</code> option. This option will keep this command running in the terminal watching for any files to change. If it notices one change, it will automatically rebuild your site. This can be very handy when performing many frequent edits. The complete command might look like:
+> The jekyll `build` command can be run with a `-w` option. This option will keep this command running in the terminal watching for any files to change. If it notices one change, it will automatically rebuild your site. This can be very handy when performing many frequent edits. The complete command might look like:
 >~~~
 >$ jekyll build -w -d <website_root_directory>
 >~~~

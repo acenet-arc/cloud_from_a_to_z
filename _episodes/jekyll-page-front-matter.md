@@ -12,36 +12,33 @@ keypoints:
 start: false
 ---
 
-When we ran the `jekyll build -d /var/www/html` command it looks at the files in the current working directory and uses them to generate your site. Different files are handled in different ways. For example some files are converted into HTML files while other files are copied as they are. Have a look at our website root directory, where Jekyll generated our site for us, and compare that to our current working directory that Jekyll used as the source to create the site from.
+When we ran the `jekyll build -d /var/www/html/<your-username>` command it looks at the files in the current working directory and uses them to generate your site. Different files are handled in different ways. For example some files are converted into HTML files while other files are copied as they are. Have a look at our website root directory, where Jekyll generated our site for us, and compare that to our current working directory that Jekyll used as the source to create the site from.
 
+#### Destination directory contents
 ~~~
-$ ls -l /var/www/html
+$ ls -l /var/www/html/<your-username>
 ~~~
 {: .bash}
 ~~~
-total 112
-drwxrwxr-x 3 ubuntu ubuntu  4096 Sep 11 19:32 2016
--rw-rw-r-- 1 ubuntu ubuntu  4864 Sep 22 20:21 404.html
--rw-rw-r-- 1 ubuntu ubuntu   693 Jun 27 16:29 CONTRIBUTING.md
--rw-rw-r-- 1 ubuntu ubuntu 17065 Jun 27 16:29 LICENSE.md
--rw-rw-r-- 1 ubuntu ubuntu  2886 Jun 27 16:29 README.md
--rw-rw-r-- 1 ubuntu ubuntu 15488 Sep 22 20:21 all_posts.html
-drwxrwxr-x 6 ubuntu ubuntu  4096 Sep 11 19:32 assets
--rw-rw-r-- 1 ubuntu ubuntu 20207 Sep 22 20:21 elements.html
--rw-rw-r-- 1 ubuntu ubuntu   650 Jun 27 16:29 forty_jekyll_theme.gemspec
--rw-rw-r-- 1 ubuntu ubuntu  6471 Sep 22 20:21 generic.html
--rw-rw-r-- 1 ubuntu ubuntu  6901 Sep 22 20:21 index.html
--rw-rw-r-- 1 ubuntu ubuntu  8527 Sep 22 20:21 landing.html
-
+total 84
+drwxrwxr-x 3 user01 user01  4096 Sep 20 20:07 2016
+-rw-rw-r-- 1 user01 user01  5248 Sep 21 16:51 404.html
+-rw-rw-r-- 1 user01 user01 15914 Sep 21 16:51 all_posts.html
+drwxrwxr-x 6 user01 user01  4096 Sep 20 20:07 assets
+-rw-rw-r-- 1 user01 user01 20675 Sep 21 16:51 elements.html
+-rw-rw-r-- 1 user01 user01  6862 Sep 21 16:51 generic.html
+-rw-rw-r-- 1 user01 user01  7412 Sep 21 16:51 index.html
+-rw-rw-r-- 1 user01 user01  8939 Sep 21 16:51 landing.html
 ~~~
 {: .output}
 
+#### Source directory contents
 ~~~
 $ pwd
 ~~~
 {: .bash}
 ~~~
-/home/ubuntu/forty-jekyll-theme-master
+/home/<your-username>/forty-jekyll-theme-master
 ~~~
 {: .output}
 ~~~
@@ -49,28 +46,29 @@ $ ls -l
 ~~~
 {: .bash}
 ~~~
--rw-rw-r-- 1 ubuntu ubuntu    68 Jun 27 16:29 404.md
--rw-rw-r-- 1 ubuntu ubuntu   693 Jun 27 16:29 CONTRIBUTING.md
--rw-rw-r-- 1 ubuntu ubuntu    38 Jun 27 16:29 Gemfile
--rw-rw-r-- 1 ubuntu ubuntu  1646 Sep 11 19:00 Gemfile.lock
--rw-rw-r-- 1 ubuntu ubuntu 17065 Jun 27 16:29 LICENSE.md
--rw-rw-r-- 1 ubuntu ubuntu  2886 Jun 27 16:29 README.md
--rw-rw-r-- 1 ubuntu ubuntu   922 Sep 11 18:58 _config.yml
-drwxrwxr-x 2 ubuntu ubuntu  4096 Jun 27 16:29 _includes
-drwxrwxr-x 2 ubuntu ubuntu  4096 Jun 27 16:29 _layouts
-drwxrwxr-x 2 ubuntu ubuntu  4096 Jun 27 16:29 _posts
-drwxrwxr-x 6 ubuntu ubuntu  4096 Jun 27 16:29 _sass
--rw-rw-r-- 1 ubuntu ubuntu   164 Jun 27 16:29 all_posts.md
-drwxrwxr-x 6 ubuntu ubuntu  4096 Jun 27 16:29 assets
--rw-rw-r-- 1 ubuntu ubuntu 15719 Jun 27 16:29 elements.md
--rw-rw-r-- 1 ubuntu ubuntu   650 Jun 27 16:29 forty_jekyll_theme.gemspec
--rw-rw-r-- 1 ubuntu ubuntu  1645 Jun 27 16:29 generic.md
--rw-rw-r-- 1 ubuntu ubuntu   536 Jun 27 16:29 index.md
--rw-rw-r-- 1 ubuntu ubuntu  3544 Jun 27 16:29 landing.md
+total 100
+-rw-rw-r-- 1 user01 user01    68 Sep  2 03:50 404.md
+-rw-rw-r-- 1 user01 user01   693 Sep  2 03:50 CONTRIBUTING.md
+-rw-rw-r-- 1 user01 user01   120 Sep  2 03:50 Gemfile
+-rw-rw-r-- 1 user01 user01  1656 Sep 20 20:07 Gemfile.lock
+-rw-rw-r-- 1 user01 user01 17065 Sep  2 03:50 LICENSE.md
+-rw-rw-r-- 1 user01 user01  2939 Sep  2 03:50 README.md
+-rw-rw-r-- 1 user01 user01  1144 Sep 20 20:08 _config.yml
+drwxrwxr-x 2 user01 user01  4096 Sep  2 03:50 _includes
+drwxrwxr-x 2 user01 user01  4096 Sep  2 03:50 _layouts
+drwxrwxr-x 2 user01 user01  4096 Sep  2 03:50 _posts
+drwxrwxr-x 6 user01 user01  4096 Sep  2 03:50 _sass
+-rw-rw-r-- 1 user01 user01   164 Sep  2 03:50 all_posts.md
+drwxrwxr-x 6 user01 user01  4096 Sep  2 03:50 assets
+-rw-rw-r-- 1 user01 user01 15750 Sep  2 03:50 elements.md
+-rw-rw-r-- 1 user01 user01   650 Sep  2 03:50 forty_jekyll_theme.gemspec
+-rw-rw-r-- 1 user01 user01  1645 Sep  2 03:50 generic.md
+-rw-rw-r-- 1 user01 user01   536 Sep  2 03:50 index.md
+-rw-rw-r-- 1 user01 user01  3544 Sep  2 03:50 landing.md
 ~~~
 {: .output}
 
-There are a few differences between the source directory and the destination directories. First you might notice that all the directories and files beginning with a `_` have been omitted. This is a feature of Jekyll which allows you to have extra files, like our `_config.yml` which aren't directly part of the generated site but often used in some way to help generate the final site. It also looks like our `Gemfile` and `Gemfile.lock` have been omitted, indicating the Jekyll is aware of these types of files and their purpose. There is also a new `2016` directory in the destination directory, that has to do with how Jekyll handles the `_posts` directory, we will get to that later.
+There are a few differences between the source directory ( and the destination directories. First you might notice that all the directories and files beginning with a `_` have been omitted. This is a feature of Jekyll which allows you to have extra files, like our `_config.yml` which aren't directly part of the generated site but often used in some way to help generate the final site. It also looks like our `Gemfile` and `Gemfile.lock` have been omitted, indicating the Jekyll is aware of these types of files and their purpose. There is also a new `2016` directory in the destination directory, that has to do with how Jekyll handles the `_posts` directory, we will get to that later.
 
 > ## Additional omitted files and directories
 > In addition to files and directories beginning with `_`, files and directories beginning with `.`,`#`, and `~` in the source directory are also omitted from the destination.
@@ -115,11 +113,13 @@ Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris a
 ~~~
 {: .output}
 
-You will notice that the file that was converted to an HTML file contains a special section at the top of it between two sets of triple dashes, `---`. This is called **front matter** and is actually written in the same YAML syntax we saw in the `_config.yml` file. Front matter tells Jekyll how we want it to process the file. Files which don't contain this front matter receive no special processing from Jekyll. Files that don't contain this front matter that are copied as is to your destination site are refered to as **static files** because the aren't modified or changed by Jekyll when generating your site. Front matter must be at the very beginning of the file and have these two sets of triple dashes in order for Jekyll to recognize this file and needing special processing. The key-values pairs are optional.
+You will notice that the file that was converted to an HTML file contains a special section at the top of it between two sets of triple dashes, `---`. This is called **front matter** and is actually written in the same YAML syntax we saw in the `_config.yml` file. Front matter tells Jekyll how we want it to process the file. Files which don't contain this front matter receive no special processing from Jekyll. Files that don't contain this front matter are copied as they are to your destination directory and are referred to as **static files** because they aren't modified by Jekyll when generating your site. Front matter must be at the very beginning of the file and have these two sets of triple dashes for Jekyll to recognize that the file needs special processing. The key-values pairs are optional.
 
-The key values pairs tell Jekyll how to create the HTML page. In this case the `layout` key tells Jekyll to use an HTML template in the `_layouts` directory, called `home.html` as the basis for creating this HTML page. The other keys and values are used within this template to customize how it is displayed. Below the front matter is the main content of the page, written in markdown syntax. Template files often contain a section for this main content which is converted by Jekyll from markdown to HTML and placed at the location specified in the HTML template.
+The key values pairs in the front matter tell Jekyll how to create the HTML page. In this case the `layout` key tells Jekyll to use an HTML template in the `_layouts` directory, called `home.html` as the basis for creating this HTML page. The other keys and values are used within this template to customize how it is displayed.
 
-Lets try changing the title and the main content of this file and rebuild our site and look at the result.
+Below the front matter is the main content of the page, written in markdown syntax. Template files often contain a section for this main content which is converted by Jekyll from markdown to HTML and placed at the location in the page specified by the HTML template.
+
+Lets try changing the `landing-title` and the main content of this file and rebuild our site and look at the result.
 ~~~
 $ nano index.md
 ~~~
@@ -140,7 +140,7 @@ Some information I would like people to see.
 {: .output}
 Save and exit nano; then run the command to rebuild your site.
 ~~~
-$ jekyll build -d /var/www/html
+$ jekyll build -d /var/www/html/<your-username>
 ~~~
 {: .bash}
 Go back to your browser to view the changes. You will likely need to refresh the page to see them take affect. In many browsers the `F5` keyboard key will do this for you.
