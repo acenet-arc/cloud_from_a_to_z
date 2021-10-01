@@ -69,7 +69,7 @@ episode_order:
   - introduction
   - why-static-websites
   - first-jekyll-site
-  - break
+  - break-day-1
   - jekyll-page-front-matter
   - jekyll-site-config
   - jekyll-pages-and-markdown-I
@@ -77,21 +77,20 @@ episode_order:
   - jekyll-pages-and-markdown-III
   - posts-and-assets
   - git-hub-hosting-demo
-  - break
+  - break-day-2
   - the-internet
   - the-cloud
   - creating-a-keypair
   - create-a-persistent-virtual-machine
   - security-updates
   - create-a-web-server
-  - break
+  - break-day-3
   - installing-jekyll
   - moving-your-jekyll-site
-  - jekyll-admin-or-your-project
   - remote-desktop-strategy
   - remote-desktop-foundation
   - vnc-viewer
-  - break
+  - break-day-4
   - vnc-the-wrong-way
   - vnc-through-a-tunnel
   - remote-desktop-applications

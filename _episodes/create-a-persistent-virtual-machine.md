@@ -20,8 +20,6 @@ keypoints:
 - "A [**floating IP**](../reference#floating-ip) must be added to a VM to connect to it from outside the local network in the cloud."
 - "[**Port**](../reference#port) 22 must be opened in the security rules to allow [**SSH**](../reference#ssh) to connect to the VM."
 - "A [**security group**](../reference#security-group) controls which ports to allow traffic in and out on."
-start: true
-start_time: 720
 ---
 
 ## Creating a virtual machine

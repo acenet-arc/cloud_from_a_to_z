@@ -26,6 +26,8 @@ keypoints:
 - "The [**cat**](../reference#ls) command is used print the contents of a file to the terminal."
 - "The [**chmod**](../reference#chmod) command is used change the file mode or permissions."
 - "The [**private key**](../reference#private-key), <code>id_rsa</code>, must only be readable and writable by the file's owner."
+start: true
+start_time: 720
 ---
 
 Now that you have an overview of OpenStack and have clicked around the dashboard it is time to create our first virtual machine. To create a virtual machine, we would click the *Launch Instance* button on the Instances panel, but before we do that there is one thing we need to take care of first and that is creating a key (and lock) to access our newly created virtual machine. The key will allow only the person possessing it to access the VM. You wouldn't want just anyone connected to the Internet to access your newly created VM. While creating a virtual machine we need to select a lock, corresponding to a key we posses, to be put on the virtual machine.
