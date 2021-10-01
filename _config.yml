@@ -88,7 +88,14 @@ episode_order:
   - installing-jekyll
   - moving-your-jekyll-site
   - jekyll-admin-or-your-project
-  
+  - remote-desktop-strategy
+  - remote-desktop-foundation
+  - vnc-viewer
+  - break
+  - vnc-the-wrong-way
+  - vnc-through-a-tunnel
+  - remote-desktop-applications
+
 # - create-a-persistent-virtual-machine
 #  - intro-to-jekyll
 #  - install-mysql
