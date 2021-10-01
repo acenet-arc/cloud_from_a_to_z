@@ -1,0 +1,59 @@
+first jekyll site
+-----------------
+
+ - pwd
+ - cd
+ - ssh
+ - wget
+ - unzip
+ - nano
+ - jekyll
+
+Page front matter
+-----------------
+
+ - ls -l
+ - cat
+
+Posts and assets
+----------------
+- cp
+- tar (needs to be added still)
+
+Creating a keypair
+------------------
+
+- man
+- ssh-keygen
+- ls -a ~
+- chmod
+
+Applying Updates
+----------------
+
+- sudo
+- apt update
+- apt upgrade -y
+- reboot
+
+Creating a web server
+---------------------
+
+- apt search
+- apt install
+
+Installing Jekyll
+-----------------
+
+- source
+- gem install
+
+Optional (will likely remove or at the very least should go into an aside)
+- addgroup
+- chown
+- adduser
+- visudo
+- su -
+- exit
+- rm
+- groups

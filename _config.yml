@@ -67,7 +67,6 @@ exclude:
 
 episode_order: 
   - introduction
-#  - the-internet
   - why-static-websites
   - first-jekyll-site
   - break
@@ -79,6 +78,7 @@ episode_order:
   - posts-and-assets
   - git-hub-hosting-demo
   - break
+  - the-internet
   - the-cloud
   - creating-a-keypair
   - create-a-persistent-virtual-machine
