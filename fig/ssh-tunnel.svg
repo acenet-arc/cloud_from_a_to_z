@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="128.29248mm"
+   height="34.480614mm"
+   viewBox="0 0 128.29249 34.480614"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   sodipodi:docname="ssh-tunnel.svg">
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       id="marker1687"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#800000;fill-opacity:1;fill-rule:evenodd;stroke:#800000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1685" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker1671"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         style="fill:#800000;fill-opacity:1;fill-rule:evenodd;stroke:#800000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1669" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#0000ff;fill-opacity:1;fill-rule:evenodd;stroke:#0000ff;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path886" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lstart"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         style="fill:#0000ff;fill-opacity:1;fill-rule:evenodd;stroke:#0000ff;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path883" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.6167849"
+     inkscape:cx="233.38962"
+     inkscape:cy="199.30695"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1148"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-left="5"
+     fit-margin-top="5"
+     fit-margin-right="5"
+     fit-margin-bottom="5"
+     lock-margins="true" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-17.918672,-52.646463)">
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.817548;stroke-linejoin:round"
+       id="rect833"
+       width="39.10173"
+       height="18.626467"
+       x="23.327446"
+       y="62.991585"
+       inkscape:export-xdpi="70.279999"
+       inkscape:export-ydpi="70.279999" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.798321;stroke-linejoin:round"
+       id="rect835"
+       width="46.175674"
+       height="18.846191"
+       x="94.636314"
+       y="62.881725"
+       inkscape:export-xdpi="70.279999"
+       inkscape:export-ydpi="70.279999" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.175px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="37.573978"
+       y="60.093342"
+       id="text839"
+       inkscape:export-xdpi="70.279999"
+       inkscape:export-ydpi="70.279999"><tspan
+         sodipodi:role="line"
+         id="tspan837"
+         x="37.573978"
+         y="60.093342"
+         style="stroke-width:0.264583px">Laptop</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.175px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="109.75812"
+       y="60.251526"
+       id="text843"
+       inkscape:export-xdpi="70.279999"
+       inkscape:export-ydpi="70.279999"><tspan
+         sodipodi:role="line"
+         id="tspan841"
+         x="109.75812"
+         y="60.251526"
+         style="stroke-width:0.264583px">Cloud VM</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.175px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#782121;stroke:#782121;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="111.72578"
+       y="69.484451"
+       id="text857"
+       inkscape:export-xdpi="70.279999"
+       inkscape:export-ydpi="70.279999"><tspan
+         sodipodi:role="line"
+         id="tspan855"
+         x="111.72578"
+         y="69.484451"
+         style="fill:#782121;stroke:#782121;stroke-width:0.264583px">VNC server</tspan><tspan
+         sodipodi:role="line"
+         x="111.72578"
+         y="73.453201"
+         style="fill:#782121;stroke:#782121;stroke-width:0.264583px"
+         id="tspan867">listens on</tspan><tspan
+         sodipodi:role="line"
+         x="111.72578"
+         y="77.421951"
+         style="fill:#782121;stroke:#782121;stroke-width:0.264583px"
+         id="tspan871">localhost:5901</tspan><tspan
+         sodipodi:role="line"
+         x="111.72578"
+         y="81.390701"
+         style="fill:#782121;stroke:#782121;stroke-width:0.264583px"
+         id="tspan869" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.175px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:none;stroke:#782121;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="26.596243"
+       y="69.90728"
+       id="text861"
+       inkscape:export-xdpi="70.279999"
+       inkscape:export-ydpi="70.279999"><tspan
+         sodipodi:role="line"
+         id="tspan859"
+         x="26.596243"
+         y="69.90728"
+         style="stroke:#782121;stroke-width:0.264583px">VNC client</tspan><tspan
+         sodipodi:role="line"
+         x="26.596243"
+         y="73.87603"
+         style="stroke:#782121;stroke-width:0.264583px"
+         id="tspan863">connects to</tspan><tspan
+         sodipodi:role="line"
+         x="26.596243"
+         y="77.84478"
+         style="stroke:#782121;stroke-width:0.264583px"
+         id="tspan865">localhost:5901</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.175px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#0000ff;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="68.252266"
+       y="60.633274"
+       id="text875"
+       inkscape:export-xdpi="70.279999"
+       inkscape:export-ydpi="70.279999"><tspan
+         sodipodi:role="line"
+         id="tspan873"
+         x="68.252266"
+         y="60.633274"
+         style="fill:#0000ff;stroke:#0000ff;stroke-width:0.264583px">SSH connects</tspan><tspan
+         sodipodi:role="line"
+         x="68.252266"
+         y="64.60202"
+         style="fill:#0000ff;stroke:#0000ff;stroke-width:0.264583px"
+         id="tspan877">to Port 22</tspan><tspan
+         sodipodi:role="line"
+         x="68.252266"
+         y="68.57077"
+         style="fill:#0000ff;stroke:#0000ff;stroke-width:0.264583px"
+         id="tspan879">of Cloud VM</tspan></text>
+    <path
+       style="fill:#ffffff;fill-rule:evenodd;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 59.408403,71.006148 h 38.304762 v -2.85157 l 5.515915,4.75287 -5.515915,4.37345 v -2.46962 H 59.408403 v 2.1264 l -5.935908,-4.03023 5.935908,-4.6497 z"
+       id="path1455"
+       sodipodi:nodetypes="ccccccccccc"
+       inkscape:export-xdpi="70.279999"
+       inkscape:export-ydpi="70.279999" />
+    <path
+       style="fill:#800000;fill-rule:evenodd;stroke:#800000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker1671);marker-end:url(#marker1687)"
+       d="M 48.129828,72.283931 H 108.99391"
+       id="path1667"
+       sodipodi:nodetypes="cc"
+       inkscape:export-xdpi="70.279999"
+       inkscape:export-ydpi="70.279999" />
+  </g>
+</svg>
