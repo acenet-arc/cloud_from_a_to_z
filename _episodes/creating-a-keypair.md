@@ -32,34 +32,21 @@ start_time: 720
 
 Now that you have an overview of OpenStack and have clicked around the dashboard it is time to create our first virtual machine. To create a virtual machine, we would click the *Launch Instance* button on the Instances panel, but before we do that there is one thing we need to take care of first and that is creating a key (and lock) to access our newly created virtual machine. The key will allow only the person possessing it to access the VM. You wouldn't want just anyone connected to the Internet to access your newly created VM. While creating a virtual machine we need to select a lock, corresponding to a key we posses, to be put on the virtual machine.
 
-Before we create a key and lock, lets take one more step back to talk about how we will connect to and interact with our virtual machines as this will be important when creating our key. When we use our laptop or desktop computer we have a graphical interface which we click around and windows you type in to get your computer to do what you want. You might not know it but you can also run a [**terminal**](../reference#terminal) or [**shell**](../reference#shell) program and type [**commands**](../reference#command) to get your computer to do things. The things done in the shell in some cases can be seen in the graphical interface. For example you can use the shell to create directories and files which you can see in a graphical file system viewer (e.g. Windows Explorer or Finder). We will use the shell to interact with our virtual machines. Also often virtual machines run a [**Linux**](https://en.wikipedia.org/wiki/Linux) operating system, which is a family of free, open-source, operating systems. In this course we will focus specifically on the [**Ubuntu**](../reference#ubuntu) distribution of Linux.
+We have already been using SSH to issue commands on a shared remote computer to build our Jekyll sites and connected using a username, password and the IP address of the remote computer. However, when we create our own virtual machines we will have administrative access to those machines. This greater control, should be accompanied with greater security and using an ssh key pair will improve our ssh security greatly.
 
-In addition to the shell just mentioned there is a shell called **Secure Shell** or [**SSH**](../reference#ssh) for short which is a shell to interact remotely with machines to send commands and get the output back. SSH [**encrypts**](../reference#encryption) information sent between your local computer and a remote computer using a shared key. Encryption is a way of transforming text or data which is readable and understandable by anyone into text and data which is only understandable if one posses the key. SSH authentication keys (different from the shared key used to encode the messages) come in pairs, one public (think of this as a lock) and one private (think of this as the key). The [**public key**](../reference#public-key) is used to encrypt a message which contains the shared key that can only be decoded by the owner of the [**private key**](../reference#private-key). In this way the machine sending a message encoded using the public key can be sure that the machine responding has the private key which can decode the message. In this way the key pair can be used to authenticate or verify that the user is who they claim to be. A shared key sent in the message allows the two machines to send and receive sensitive information which only they can decode. Having the information sent between machines is important if any sensitive information, say a password, is sent as it is very possible that someone could eavesdrop on the data sent across the Internet to/from the remote machine.
+> ## Password Authentication & Brute force attacks
+> In the shared VMs we used in the beginning of this workshop we used password authentication rather than ssh keys mainly to keep things simple when we started out. In order keep the VM secure a program called [fail2ban](https://www.fail2ban.org/wiki/index.php/Main_Page) was installed and configured on this VM. This program bans any IPs with multiple failed ssh connection attempts.
+>
+> This was to thwart ssh **brute force attacks**. A brute force attack is when many usernames and passwords are attempted, usually in an automated way, to try and gain access. Brute force attacks are exceedingly common and often in a few minutes to days any computer accessible publicly over ssh will receive a brute force attack. SSH keys are the best way to thwart these attacks, but if password authentication is really needed it must be combined with some method of mitigating brute force attacks such as fail2ban.
+>
+> Another great way of controlling access is to restrict which IP address can connect to your VM. We will see how to do that shortly. In general though, it is best have security in layers. If one layer should fail, another layer will prevent access.
+{: .callout}
+
+SSH keys come in pairs, one public (think of this as a lock) and one private (think of this as the key). The [**public key**](../reference#public-key) is used to encrypt a message which can only be decoded by the owner of the [**private key**](../reference#private-key). In this way the machine sending a message encoded using the public key can be sure that the machine responding has the private key which can decode the message is in possession of the private key. In this way the key pair can be used to authenticate or verify that the user is who they claim to be or at the very least that they posses the matching private key.
 
 Lets make a pair of SSH authentication keys we can use to connect to our virtual machines.
 
-The command to create a new key pair is `ssh-keygen` but before we run it lets have a look at the manual pages for the command by typing
-~~~
-$ man ssh-keygen
-~~~
-{: .bash}
-~~~
-SSH-KEYGEN(1)                                  BSD General Commands Manual                                 SSH-KEYGEN(1)
-
-NAME
-     ssh-keygen — authentication key generation, management and conversion
-
-SYNOPSIS
-     ssh-keygen [-q] [-b bits] [-t dsa | ecdsa | ed25519 | rsa | rsa1] [-N new_passphrase] [-C comment]
-                [-f output_keyfile]
-     ssh-keygen -p [-P old_passphrase] [-N new_passphrase] [-f keyfile]
-     ssh-keygen -i [-m key_format] [-f input_keyfile]
-     ssh-keygen -e [-m key_format] [-f input_keyfile]
-     ssh-keygen -y [-f input_keyfile]
-...
-~~~
-{: .output}
-Many commands have manual pages, so executing the command `man <some-command-name>` will display information about that command, how to use it, and the options available for that command. Options for a command are specified after the command with a `-` followed directly by the option identifier for example, `-a`. If you scroll down the manual pages (by pressing the down arrow key) and read the description, you will notice that this command creates a key in the `~/.ssh` directory. The `~` is a synonym for your home directory (e.g. `/home/cgeroux`) and the `.` at the beginning of the directory name indicates that the directory or file is hidden. The command `ls` is used to list the file structure, or in other words list files and directories inside a directory given as an argument to the command. If no argument is given `ls` will list the files and directories inside the current directory. Hidden files will not be shown by the `ls` command unless the `-a` option is used. 
+The command to create a new key pair is `ssh-keygen` which creates a key in the `~/.ssh` directory. The `~` is a synonym for your home directory (e.g. `/home/cgeroux`) and the `.` at the beginning of the directory name indicates that the directory or file is hidden. Hidden files will not be shown by the `ls` command unless the `-a` option is used.
 
 Lets check to see if you have a `.ssh` folder already in your home directory.
 ~~~
@@ -74,7 +61,9 @@ $ ls -a ~
 ~~~
 {: .output}
 
-Notice that in addition to the hidden directory `.ssh` we also have hidden directories `.` and `..` as well as others. The `.` and `..` are special directories. The double dot is a shortcut for the parent directory, or the directory which contains your home directory. The single dot is a shortcut for the directory its self, your home directory, as was mentioned when talking about relative paths. The single dot can be used to reference the current directory by starting the path with a `.` (e.g. `./MyDocuments`).
+> ## `.` and `..` directories
+> Notice that in addition to the hidden directory `.ssh` we also have hidden directories `.` and `..` as well as others. The `.` and `..` are special directories. The double dot is a shortcut for the parent directory, or the directory which contains your home directory (e.g. `/home/`). The single dot is a shortcut for the directory its self, your home directory (e.g. `/home/cgeroux`). The single dot can be used to reference the current directory by starting the path with a `.` (e.g. `./MyDocuments`). Remember when we did `cd ..` to go up one directory? How about when we talked about relative directories `./Documents/pictures`. Both of these use the `..` and `.` shortcuts.
+{: .callout}
 
 If you do have a `.ssh` folder, have a look inside.
 ~~~
@@ -87,9 +76,9 @@ id_rsa       id_rsa.pub   known_hosts
 {: .output}
 Notice that the a forward `/` is used to separate directories. In this case the `.ssh` directory is inside the home directory `~` (or in this case `/home/cgeroux`). If you have a pair of files `id_rsa` and `id_rsa.pub` or `id_dsa` and `id_dsa.pub` you already have a key pair and you can skip the next steps which create a new key pair and just use the key pair you already have.
 
---------------------------------------------------
+## Creating a key-pair
 
-**Only do this if you don't already have a key**
+**Only create a new key-pair if you don't already have a key**
 
 To create a key pair run the command
 ~~~
@@ -155,7 +144,11 @@ $ cat ~/.ssh/id_rsa.pub
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxo6H/dDFLunQOUKnTUxNfHTsDfARFdFjqyJrf2udOBAzm7hg/w4SaHAqF1b1DvmGhwKwXW6lXYkdsiA5d4IK/Cg8GZ7l74J1QTQ+e6JkdvOmVlTGnu6PTesd++6jZUeiF9Im0ksGPTYo8QH/5k1eHUMwWpUh9xfX0Z56IdUyNxx+/QaeCc61sUvIPf+w2Vm/zC44C+v5OX4lDWlamLf2b0u6be5L99UXWN8741354auMP8qVMidRq8jQjUmlto30b/2H9bMFGQ63eEApEnhe6s+qdxVlbLkKHT2H905ydXf4knAY3TGlgylBNbXjeiJEp9mKlQ5LnIi6rayxzDrIv cgeroux@Caelia
 ~~~
 {: .output}
-Your public key can be given out freely, but remember to keep your private key secret.
+Your public key can be given out freely, **but remember to keep your private key secret**.
+
+We will use this public key in the next episode when we create our first virtual machine.
+
+### Key file and directory permissions
 
 One final item we should cover about keys is their file permissions. If the file permissions, specifically of the .ssh directory and the private key, are too open the command we use to connect to a VM will complain about this and not allow us to connect. To see what the current file permissions are run the `ls` command with the `-l` option to show the permissions on the files inside the `.ssh` folder.
 ~~~
@@ -217,57 +210,6 @@ If these permissions are too open the command we use to connect between computer
 {: .callout}
 
 Now we have a key pair we can use to connect to our the VM we will create in the next episode.
-
-> ## Absolute vs Relative Paths
->
-> If the present working directory is `/Users/amanda/data/`,
-> which of the following commands could Amanda use to navigate to her home directory,
-> which is `/Users/amanda`?
->
-> 1. `cd .`
-> 2. `cd /`
-> 3. `cd /home/amanda`
-> 4. `cd ../..`
-> 5. `cd ~`
-> 6. `cd home`
-> 7. `cd ~/data/..`
-> 8. `cd`
-> 9. `cd ..`
->
-> > ## Solution
-> > 1. No: `.` stands for the current directory.
-> > 2. No: `/` stands for the root directory.
-> > 3. No: Amanda's home directory is `/Users/amanda`.
-> > 4. No: this goes up two levels, i.e. ends in `/Users`.
-> > 5. Yes: `~` stands for the user's home directory, in this case `/Users/amanda`.
-> > 6. No: this would navigate into a directory `home` in the current directory if it exists.
-> > 7. Yes: unnecessarily complicated, but correct.
-> > 8. Yes: shortcut to go back to the user's home directory.
-> > 9. Yes: goes up one level.
-> {: .solution}
-{: .challenge}
-
-> ## Relative Path Resolution
->
-> Using the filesystem diagram below, if `pwd` displays `/Users/thing`,
-> what will `ls ../backup` display?
->
-> 1.  `../backup: No such file or directory`
-> 2.  `2012-12-01 2013-01-08 2013-01-27`
-> 3.  `2012-12-01/ 2013-01-08/ 2013-01-27/`
-> 4.  `original pnas_final pnas_sub`
->
-> ![File System for Challenge Questions](../fig/filesystem-challenge.svg)
->
-> > ## Solution
-> > 1. No: there *is* a directory `backup` in `/Users`.
-> > 2. No: this is the content of `Users/thing/backup`,
-> >    but with `..` we asked for one level further up.
-> > 3. No: see previous explanation.
-> >    Also, we did not specify `-F` to display `/` at the end of the directory names.
-> > 4. Yes: `../backup` refers to `/Users/backup`.
-> {: .solution}
-{: .challenge}
 
 > ## Read file permissions
 > Given the following output from an `ls -l` command

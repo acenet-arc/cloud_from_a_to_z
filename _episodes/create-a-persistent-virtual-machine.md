@@ -23,7 +23,9 @@ keypoints:
 ---
 
 ## Creating a virtual machine
-Now we will create your first virtual machine and connect to it using SSH. To do so go to the OpenStack dashboard and select from the left hand menu *Compute*->*Instances* and click *Launch Instance* button in the top right of the panel.
+Now we will create your first virtual machine and connect to it using SSH.
+
+To do so go to the OpenStack dashboard and select from the left hand menu *Compute*->*Instances* and click *Launch Instance* button in the top right of the panel.
 
 You are presented with a panel consisting of multiple tabs of fields to fill in. There are many optional fields which can allow additional functionality, but for this first exposure will stick to the basics.
 
@@ -43,7 +45,9 @@ You are presented with a panel consisting of multiple tabs of fields to fill in.
 **Count:** this specifies the number of VMs to create. We want to create only 1 VM so leave it at `1`.
 
 ### Source tab
-Here we pick what the VM boots from. You could create a VM which boots from an Image, volume, or snapshot. We want to start with a basic operating system, since we don't have any existing volumes or snapshots. We also want this VM to boot from a volume so we want to create a new volume when the VM is create onto which the selected image will be copied. 20 GB is a good size to hold our operating system and some programs and files we might want to work with. We also want to be able to delete our VM and keep our volume.
+Here we pick what the VM boots from. Booting means to start a computer and put it into a state in which it is ready to operate. When we say it will boot from something, that means it will use the data and programs on that disk or file to start running.
+
+You can create a VM which boots from an Image, volume, or snapshot. Since we don't have any existing volumes or snapshots we will choose an image as a boot source. Because we are creating a persistent VM we will want to create a new volume onto which the selected image will be copied. Persistent VMs are designed to work best with volumes where data is more permanent than other options. 20 GB is a good size to hold our operating system and some programs and files we might want to work with. We also want to be able to delete our VM and keep our volume. I would highly recommend always selecting "No" for "Delete Volume on Instance Delete" as there are situations where having these to decoupled can be very handy, for example injecting a new public key if you accidentally lost your private key.
 
 **Select Boot Source:** Image
 
@@ -53,7 +57,7 @@ Here we pick what the VM boots from. You could create a VM which boots from an I
 
 **Delete Volume on Instance Delete:** No
 
-Select the `Ubuntu-20.04-focal-amd64` image by clicking on the arrow pointing upwards next to it so that it appears under `Allocated`.
+Select the `Ubuntu-20.04.2-Focal-x64-2021-05` image by clicking on the arrow pointing upwards next to it so that it appears under `Allocated`.
 
 ### Flavor tab
 The [**flavor**](../reference#flavor) of your VM specifies the hardware profile your VM will have. Compute Canada cloud uses a consistent naming scheme across their clouds to describe the hardware profile.  Examples of VM flavors are `p1-1.5gb` and `c1-7.5gb-30` and the different components of the name correspond to different hardware features.
@@ -88,9 +92,11 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxo6H/dDFLunQOUKnTUxNfHTsDfARFdFjqyJrf2udO
 ~~~
 {: .output}
 
-and copying this text into the *Public Key* text field on the OpenStack dashboard. Provide a *Key Pair Name* which will distinguish this key from other keys you might have, something like `laptop-key` or `work-desktop-key`. Then click the *Import Key Pair* button to add that public key to your OpenStack account. This public key can then be selected from the drop down box *Select a key pair*. This public key can also be used for other future virtual machines and across projects.
+and copying this text into the *Public Key* text field on the OpenStack dashboard. Provide a *Key Pair Name* which will distinguish this key from other keys you might have, something like `laptop-key` or `work-desktop-key` and the *Key Type* is 'SSH Key'.
 
-Finally click the *Launch* button at the bottom of the *Launch Instance* panel to create your first virtual machine!
+Then click the *Import Key Pair* button to add that public key to your OpenStack account. This public key can then be selected from list of key pairs below by clicking on the up arrow next to the key-pair name. This public key can also be used for other future virtual machines and across projects.
+
+Finally click the *Launch Instance* button at the bottom of the *Launch Instance* panel to create your first virtual machine!
 
 ## Associating a Floating IP with a VM
 To connect to your virtual machine you will need to associate a [**Public IP**](../reference#public-ip) with your virtual machine. Doing so will create a pointer from a publicly accessible IP to your virtual machine. This publicly accessible IP is also known as a [**floating IP**](../reference#floating-ip) perhaps because the IP can "float" from one virtual machine to another. The public IP associated with your VM allows other machines to connect to your VM across the Internet. This is different from the [**private**](../reference#private-ip) or local IP your VM gets by default, which only identifies the virtual machine on the local network within your cloud project.
@@ -100,7 +106,7 @@ To associate a floating IP with your newly created virtual machine:
 This will bring up a panel to select an IP Address. Chances are you will not yet have a floating IP added to your project.<br/>
 <br/>
   To add a new floating IP:
-  * Click the *+* button next to the drop down box *Select an IP address*. 
+  * Click the *+* button next to the drop down box *IP Address*. 
   * Select a *Pool* to allocate the floating IP from. There will likely be only one. 
   * Select *Allocate IP*. This will then take you back the previous panel and you can select the newly allocated floating IP from the drop down box.<br/>
 <br/>
@@ -114,7 +120,7 @@ The floating IP we just associated with your newly created VM will be the IP add
 {: .callout}
 
 ## Adding SSH Security Rule
-To connect to the virtual machine we will be using SSH which communicates on port 22. To allow SSH connections into your virtual machine you will have to add a security rule to the *default* security group to allow it. To do this:
+To connect to the virtual machine we will be using SSH which uses port 22. To allow SSH connections into your virtual machine you will have to add a security rule to the *default* security group to allow it. To do this:
 * Go to the *Network* panel by selecting it form the lefthand menu. Then click *Security Groups*, again from the left hand menu, and in the row for the *default* security group click the *Manage Rules* button on the right. <br/>
 This will bring up a new panel showing all the rules for this security group.
 * Click the *+ Add Rule* button in the top right which brings up a new panel.
@@ -126,7 +132,7 @@ This will bring up a new panel showing all the rules for this security group.
 > [**CIDR**](../reference#cidr) stands for Classless Inter-Domain Routing and is a way of specifying ranges of IP address. There is a [convenient tool](http://www.ipaddressguide.com/cidr) for converting an IP range into CIDR notation.
 {: .callout}
 
-It is usually best to limit access to VMs to as small a set of IPs as is reasonable. From a previous episode we looked up our IP addresses at [whatismyipaddress.com](https://whatismyipaddress.com/?u=TRUE), use the IP address you get from this site to enter into the *CIDR* box followed by a `/32`. The `/32` we added to the end of your IP address indicates that all 32 bits of an IP address of a machine trying to access a VM in this security group should match the IP given. A single CIDR rule can allow multiple IP address to connect by adjusting the number of bits that must match, starting from the most significant or left most bit.
+It is usually best to limit access to VMs to as small a set of IPs as is reasonable. From a previous episode we looked up our IP addresses at [ipv4.icanhazip.com](https://ipv4.icanhazip.com), use the IP address you get from this site to enter into the *CIDR* box followed by a `/32`. The `/32` we added to the end of your IP address indicates that all 32 bits of an IP address of a machine trying to access a VM in this security group should match the IP given. A single CIDR rule can allow multiple IP address to connect by adjusting the number of bits that must match, starting from the most significant or left most bit.
 
 
 ## Connecting to a virtual machine

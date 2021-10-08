@@ -7,6 +7,7 @@ questions:
 - Why use Jekyll?
 - How does Jekyll work?
 - What is YAML?
+- What is an IP address?
 - How do you use ready made themes?
 - How do you configure your site?
 objectives:
@@ -127,7 +128,33 @@ $ cd cgeroux
 ## Connecting to a workshop VM
 We just ran some commands in our shell on our laptops, however, to work on our Jekyll websites we are going to work on a remote computer already setup on the Compute Canada cloud for us with Jekyll already installed.
 
-We can interact with this remote computer in the same way we have been interacting with our local laptops, using a shell. To interact with a remote computer using a shell we must first connect to it using a program called `ssh`, which is short for secure shell. This command allows you to type commands as we did on our laptops but the commands are executed and affect the remote computer. It is secure because it encrypts data sent to and from the remote computer so that people intercepting these communications can not decipher them.
+We can interact with this remote computer in the same way we have been interacting with our local laptops, using a shell. To interact with a remote computer using a shell we must first connect to it using a program called `ssh`, which is short for secure shell. This command allows you to type commands as we did on our laptops but the commands are executed and affect the remote computer. It is secure because it [**encrypts**](../reference#encryption) data sent to and from the remote computer so that people intercepting these communications can not decipher them.
+
+Before we run the `ssh` command lets take a look at the manual entry for it.
+~~~
+$ man ssh
+~~~
+{: .bash}
+~~~
+SSH(1)                      General Commands Manual                     SSH(1)
+
+NAME
+     ssh - OpenSSH SSH client (remote login program)
+
+SYNOPSIS
+     ssh [-1246AaCfgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]
+         [-D [bind_address:]port] [-E log_file] [-e escape_char]
+         [-F configfile] [-I pkcs11] [-i identity_file]
+         [-L [bind_address:]port:host:hostport] [-l login_name] [-m mac_spec]
+         [-O ctl_cmd] [-o option] [-p port]
+         [-Q cipher | cipher-auth | mac | kex | key]
+         [-R [bind_address:]port:host:hostport] [-S ctl_path] [-W host:port]
+         [-w local_tun[:remote_tun]] [user@]hostname [command]
+...
+~~~
+{: .output}
+
+Many commands have manual pages, so executing the command `man <some-command-name>` will display information about that command, how to use it, and the options available for that command. Options for a command are specified after the command with a `-` followed directly by the option identifier for example, `-d`.
 
 Run the `ssh` command below replacing `<username>` with the username you have been provided with for the course and `<remote-ip>` with the IP address identifying the workshop remote computer.
 
@@ -237,6 +264,57 @@ This command generates the site from the contents of the current working directo
 Finally visit your new site at your VM's IP address in your browser with your username appended (e.g. `/user01`) to see your new Jekyll site.
 
 ![First Jekyll Site](../fig/first_jekyll_site.png)
+
+> ## Absolute vs Relative Paths
+>
+> If the present working directory is `/Users/amanda/data/`,
+> which of the following commands could Amanda use to navigate to her home directory,
+> which is `/Users/amanda`?
+>
+> 1. `cd .`
+> 2. `cd /`
+> 3. `cd /home/amanda`
+> 4. `cd ../..`
+> 5. `cd ~`
+> 6. `cd home`
+> 7. `cd ~/data/..`
+> 8. `cd`
+> 9. `cd ..`
+>
+> > ## Solution
+> > 1. No: `.` stands for the current directory.
+> > 2. No: `/` stands for the root directory.
+> > 3. No: Amanda's home directory is `/Users/amanda`.
+> > 4. No: this goes up two levels, i.e. ends in `/Users`.
+> > 5. Yes: `~` stands for the user's home directory, in this case `/Users/amanda`.
+> > 6. No: this would navigate into a directory `home` in the current directory if it exists.
+> > 7. Yes: unnecessarily complicated, but correct.
+> > 8. Yes: shortcut to go back to the user's home directory.
+> > 9. Yes: goes up one level.
+> {: .solution}
+{: .challenge}
+
+> ## Relative Path Resolution
+>
+> Using the filesystem diagram below, if `pwd` displays `/Users/thing`,
+> what will `ls ../backup` display?
+>
+> 1.  `../backup: No such file or directory`
+> 2.  `2012-12-01 2013-01-08 2013-01-27`
+> 3.  `2012-12-01/ 2013-01-08/ 2013-01-27/`
+> 4.  `original pnas_final pnas_sub`
+>
+> ![File System for Challenge Questions](../fig/filesystem-challenge.svg)
+>
+> > ## Solution
+> > 1. No: there *is* a directory `backup` in `/Users`.
+> > 2. No: this is the content of `Users/thing/backup`,
+> >    but with `..` we asked for one level further up.
+> > 3. No: see previous explanation.
+> >    Also, we did not specify `-F` to display `/` at the end of the directory names.
+> > 4. Yes: `../backup` refers to `/Users/backup`.
+> {: .solution}
+{: .challenge}
 
 <!--
 > ## Gemfiles and gemspec

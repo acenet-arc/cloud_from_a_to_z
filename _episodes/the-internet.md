@@ -4,10 +4,10 @@ title: "How the Internet works"
 teaching: 15
 exercises: 15
 questions:
-- "What is an IP address?"
 - "What is a LAN?"
 - "What are ports and what do they do?"
 - "What is a domain name?"
+- "What is a hostname?"
 objectives:
 - "Know your computer's IP address and if it is a LAN address."
 
@@ -18,20 +18,21 @@ keypoints:
 - "[**Ports**](../reference#port) allow computers and routers to differentiate types network traffic."
 ---
 
-To put cloud computing into perspective, lets first take a look at how you use your computer and how it interacts with the Internet. The ideas and understanding gained here will be applicable not only to understanding how the cloud works, but also when you want to create web services using your cloud account for others to access and use.
-
-Everyone uses a computer connected to the Internet. Being connected to the Internet allows your computer to access multitudes of information, from bus schedules, maps and travel planning, to wikipedia. It also provides entertainment through services like netflix, spotify, and online gaming with other people. But how does this actually work, what is the Internet, and where does this data come from?
+To put cloud computing into perspective, lets first take a look at how your peronsal computer interacts with the Internet. A first model of what the internet looks like might be something like a bunch of computers connected together with the Internet being the glue that connects them together into a [**computer network**](../reference#computer-network) allowing them to share resources and exchange data.
 
 ![the internet](../fig/the-internet.svg)
 
-The Internet is the world wide interconnection of networks of computers. So what is a [**computer network**](../reference#computer-network)? Many of us have a local network at home and at work. We have a router (often wi-fi) which our computer or computers connect to which routes information from one computer to another. We can communicate between software programs and transfer files between computers on such a network even if they were not connected to the Internet. This is what many of the first networks of computers were like, though they used wires instead of wifi. These networks only allowed sharing of information between local computers, often called a Local Area Network ([**LAN**](../reference#lan)).
+To improve our model of the Internet lets add a little more detail to this picture.
 
-## IP Addresses
+## Local Area Networks
+
+Many of us have a local network at home and at work. We have a router (often wi-fi) which our computers connect to which routes information from one computer to another. We can communicate between software programs and transfer files between computers on such a network even if they were not connected to the Internet. This is what many of the first networks of computers were like, though they used wires instead of wifi. These networks only allowed sharing of information between local computers, often called a Local Area Network ([**LAN**](../reference#lan)).
+
 ![local network](../fig/local-networks.svg)
 
-How do these computers know where to send data or where to request it from? They use what is known as Internet Protocol address ([**IP address**](../reference#ip-address)). These can be thought of the computer version of postal address. Each device on a network is assigned an IP address. This address is used to by [**routers**](../reference#router) to route data to the correct device. IP addresses are made up of 4 numbers separated by `.`s. Each of these for numbers can range from `0` to `255` and is stored in one byte (8 bits) of computer memory. A complete IP address then consisting of for of these numbers takes up 4 bytes (or 32 bits) of memory.
+Within a LAN or local area network, IP addresses often have the form `192.168.###.###` by convention. If you see an IP that looks like this it is likely the IP address of a computer on a local private network such as your home or office network.
 
-Within a LAN, IP addresses often have the form `192.168.###.###` by convention. If you see an IP that looks like this it is likely the IP address of a computer on a local private network such as your home or office network.
+## Layers of Networks
 
 Many of these local area networks exist around the world and the Internet connects these smaller networks together which is where the name Internet comes from, interconnected network (Internet).
 
@@ -49,11 +50,15 @@ If your neighbour wanted to share some information with you on a website located
 
 You can combine IP address and ports with a `:` for example `206.113.222.122:80` could be entered into your web-browser to access a website on your neighbours device with local IP `192.168.1.103` once your neighbour configured their router to forward requests on port 80 to that device.
 
+## How does this relate to cloud?
+
+When we start using the cloud you will have a virtual local area network, or private network, to which your virtual computers will connect. This virtual local area network or private network will act very similarly to the LAN described above. You will have private IPs in the range `192.168.###.###` and you will be able to manage which ports are accessible from the internet to your virtual computers.
+
 ## Domain Names
 
 All the services you access over the Internet work by using IP address and ports to access another computer connected to the Internet which provides your computer with information (text, audio, video) stored on another computer.
 
-But when you want to go to a website you don't usually enter an IP address usually something like `google.ca`. This is what is known as a [**domain name**](../reference#domain-name). Domain names can be purchased from a domain name registrar (e.g. godaddy.com, rebel.ca). The domain name can then be linked to an IP address and requests to a domain name are translated to requests to an IP address. Domain name registrars run servers which do these domain name to IP address translations which are known as Domain Name Servers ([**DNS**](../reference#dns)).
+But when you want to go to a website you don't usually enter an IP address usually something like `google.ca`. This is what is known as a [**domain name**](../reference#domain-name). Domain names can be purchased from a domain name registrar (e.g. godaddy.com, rebel.ca). The domain name can then be linked to an IP address and requests to a domain name are translated to requests to an IP address. Domain name registrars run servers (special purpose computers) which do these domain name to IP address translations which are known as Domain Name Servers ([**DNS**](../reference#dns)).
 
 The `.ca` part of `google.ca` domain name is known as the top level domain name. Within a given domain you can have many sub-domains for example `google` is a sub-domain of the `ca` domain and `translate` is sub-domain of the `google.ca` domain. Each additional sub domain given to the left of the top level domain name can be referred to by the depth they are to the left, for example `google` is a second level domain name, and `translate` is a third level domain name.
 

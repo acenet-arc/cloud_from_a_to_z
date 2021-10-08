@@ -34,7 +34,9 @@ ubuntu@john-smith:~$
 ~~~
 {: .output}
 
-We will use both the [**`sudo`**](../reference#sudo) and [**`apt`**](../reference#apt) commands to apply updates to the VM. The `sudo` command gives us, temporarily, super user or administrator privileges just for the command it has been given as an argument. The username of the administrative user on many Linux systems is `root` so operating system files and directories are often owned by the `root` user. Depending on the file permissions you may need to become the `root` user temporarily using `sudo` to edit or even read these files or directories. The `apt` command is used to install, update, and remove Ubuntu software packages. It needs super user permissions because it modifies operating system files and you wouldn't want ordinary users to do this either intentionally or by mistake. You might have noticed that when you connect to a VM for the first time it actually says there are no packages to be updated. This does not actually mean that all packages are up-to-date but that the Operating system just does not know that any packages can be updated. To remedy this we use the `apt update` command which updates the packages database.
+We will use both the [**`sudo`**](../reference#sudo) and [**`apt`**](../reference#apt) commands to apply updates to the VM. The `sudo` command gives us, temporarily, super user or administrator privileges just for the command it has been given as an argument. The username of the administrative user on many Linux systems is `root` so operating system files and directories are often owned by the `root` user. Depending on the file permissions you may need to become the `root` user temporarily using `sudo` to edit or even read these files or directories.
+
+The `apt` command is used to install, update, and remove Ubuntu software packages. It needs super user permissions because it modifies operating system files and you wouldn't want ordinary users to do this either intentionally or by mistake. You might have noticed that when you connect to a VM for the first time it actually says there are no packages to be updated. This does not actually mean that all packages are up-to-date but that the Operating system just does not know that any packages can be updated. To remedy this we use the `apt update` command which updates the packages database.
 ~~~
 $ sudo apt update
 ~~~
@@ -119,7 +121,7 @@ When we log back in it tells us there are no updates available. Sometimes this i
 
 
 > ## Automating Upgrades
-> On newer version of Ubuntu, such as 20.04, automatic updates are enabled, however this still often requires at least a reboot of the VM periodically as it doesn't do this for you automatically unless specifically configured to do so.
+> It is possible to setup automatic updates on most Linux distributions. For a tutorial for Ubuntu Linux see [Enabling and Disabling Unattended Upgrades in Ubuntu](https://linuxhint.com/enable-disable-unattended-upgrades-ubuntu/).
 {: .callout}
 
 > ## Sudo

@@ -15,6 +15,8 @@ start: false
 When we ran the `jekyll build -d /var/www/html/<your-username>` command it looks at the files in the current working directory and uses them to generate your site. Different files are handled in different ways. For example some files are converted into HTML files while other files are copied as they are. Have a look at our website root directory, where Jekyll generated our site for us, and compare that to our current working directory that Jekyll used as the source to create the site from.
 
 #### Destination directory contents
+The `ls` command is used to list the contents of a directory given as an argument to the command. The `ls` command can be used with the `-l` option to get a long listing which including additional information about the files and directories instead of only providing their names. If no argument is given `ls` will list the files and directories inside the current directory.
+
 ~~~
 $ ls -l /var/www/html/<your-username>
 ~~~

@@ -73,6 +73,7 @@ episode_order:
   - jekyll-page-front-matter
   - jekyll-site-config
   - jekyll-pages-and-markdown-I
+  - day-1-homework
   - jekyll-pages-and-markdown-II
   - jekyll-pages-and-markdown-III
   - posts-and-assets
