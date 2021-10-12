@@ -73,11 +73,9 @@ episode_order:
   - jekyll-page-front-matter
   - jekyll-site-config
   - jekyll-pages-and-markdown-I
-  - day-1-homework
   - jekyll-pages-and-markdown-II
   - jekyll-pages-and-markdown-III
   - posts-and-assets
-  - git-hub-hosting-demo
   - break-day-2
   - the-internet
   - the-cloud
@@ -88,6 +86,7 @@ episode_order:
   - break-day-3
   - installing-jekyll
   - moving-your-jekyll-site
+  - git-hub-hosting-demo
   - remote-desktop-strategy
   - remote-desktop-foundation
   - vnc-viewer

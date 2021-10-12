@@ -27,4 +27,14 @@ For those who are unable to acquire a Compute Canada Cloud project we will provi
 
 ## Ensure you can open a terminal
 
-The only setup required on your laptop is ensuring you can open a Linux command line terminal. For Windows users [MobaXterm](http://mobaxterm.mobatek.net/) is recommended. Download and install MobaXterm and verify you can run it. For Linux and Mac users you already have a terminal built in. To see how to open your terminal on your Mac see this [youtube video](https://www.youtube.com/watch?v=zw7Nd67_aFw). If you are a Linux user running Ubuntu the first 30 seconds of this [youtube video](https://www.youtube.com/watch?v=_xUvH2iRizU) shows you how to access the terminal. If you are having trouble accessing a terminal on your laptop before you arrive we can help you at the beginning of the course.
+The only setup required on your laptop is ensuring you can open a Linux command line terminal. For Windows users [MobaXterm](http://mobaxterm.mobatek.net/) is recommended. Be sure to get the **Installer edition** not the portable edition. Download and install MobaXterm and verify you can run it. For Linux and Mac users you already have a terminal built in. To see how to open your terminal on your Mac see this [youtube video](https://www.youtube.com/watch?v=zw7Nd67_aFw). If you are a Linux user running Ubuntu the first 30 seconds of this [youtube video](https://www.youtube.com/watch?v=_xUvH2iRizU) shows you how to access the terminal. If you are having trouble accessing a terminal on your laptop before you arrive we can help you at the beginning of the course.
+
+### Ensure MobaXterm has a persistent home directory
+If you are using Windows and MobaXterm you need to ensure you have a persistent home directory. If you got the **Installer edition** it should have already configured a persistent home directory for you, however if you got the portable edition by mistake you will need to configure a persistent home folder as outlined below.
+
+* Open MobaXterm
+* Go to MobaXterm **Settings** menu
+* Select **Configuration**
+* Under the **General tab** make sure you have a **Persistent home directory** set.
+* If you made changes be sure to **Restart MobaXterm**
+
