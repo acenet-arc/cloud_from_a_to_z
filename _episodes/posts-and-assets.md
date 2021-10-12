@@ -268,7 +268,26 @@ Lets write those changes out to the file (`^O`) and exit nano(`^X`) and have a l
 > If you took a picture with your camera and uploaded it to your laptop, or if you created a figure in a graphics tool like [GIMP](https://www.gimp.org/) or [InkScape](https://inkscape.org/), you can upload it to your VM using SFTP. MobaXterm has built in SFTP support, and Mac and Linux operating systems have a built in `sftp` command. If you would like to use a GUI SFTP client, [filezilla](https://filezilla-project.org/) is a good cross platform GUI SFTP client.
 {: .callout}
 
-# What next?
+# Preparing to move our site
+In the next part of our workshop we will walk through how to setup the cloud infrastructure to host our Jekyll site in the Compute Canada Cloud. Once we have this setup we can move the site we have already created over to our VM and deploy it there. In order to do this we will create a zipped, tape archive file containing all of our source directory. We will create this file in our website's directory to make it easy to download later.
+
+To do this we will use the `tar` command which creates tape archives.
+
+~~~
+$ cd ~
+$ tar -czf /var/www/html/user01/cloud_workshop_site.tar.gz ./forty-jekyll-theme-master/
+~~~
+{: .bash}
+
+This command creates (`-c`) a [Gzipped](https://www.gnu.org/software/gzip/) (`z`) archive file (`f`) `cloud_workshop_site.tar.gz` in the same directory as our website `/var/www/html/user01/`. We can then later download this G-zipped archive from our website to our site's new location.
+
+If everything went correctly we should be able to go to
+
+`http://<your-site-ip>/<your-username>/cloud_workshop_site.tar.gz`
+
+in your browser and it should start downloading your zipped archive. We don't actually need to download it but it is a good way to check that the archive has been created properly and you can access it over the internet.
+
+# More to learn about Jekyll?
 We have covered most of the basics of Jekyll which will allow you to create pages, posts, and upload and include your own pictures and videos on your pages. However, there are more advanced topics to learn about which will help you when developing your Jekyll sites. We won't cover them here but I wanted to make you aware of them so you would have some idea of where to look if you wanted to do more.
 
 * **HTML** is used to create the layouts of your theme, to customize your theme you will need to know some HTML at a minimum. A good place to learn about HTML is [w3schools](https://www.w3schools.com/html/).
@@ -280,5 +299,7 @@ There is also more to learn about Jekyll its self.
 * Jekyll also provides the concept of [**Collections**](https://jekyllrb.com/docs/collections/) which allows you to group related content and has some interesting uses when combined with HTML page layouts and the Liquid templating language.
 * Finally Jekyll also has support for [**plugins**](https://jekyllrb.com/docs/plugins/), which allow you create or use different types of page generators for example.
 
+<!--
 #### GitHub can host your jekyll site
 [github.com](https://github.com/) is a web platform to host [git](https://git-scm.com/) repositories. Git is a version control software which helps manage different versions of your documents. GitHub offers [GitHub pages](https://pages.github.com/) to host your [jekyll](https://jekyllrb.com/docs/github-pages/) based sites. See this [guide](https://guides.github.com/features/pages/) for more information about creating Jekyll pages on GitHub.
+-->

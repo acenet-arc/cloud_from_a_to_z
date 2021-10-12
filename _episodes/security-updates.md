@@ -34,9 +34,25 @@ ubuntu@john-smith:~$
 ~~~
 {: .output}
 
+## Update our software package list
 We will use both the [**`sudo`**](../reference#sudo) and [**`apt`**](../reference#apt) commands to apply updates to the VM. The `sudo` command gives us, temporarily, super user or administrator privileges just for the command it has been given as an argument. The username of the administrative user on many Linux systems is `root` so operating system files and directories are often owned by the `root` user. Depending on the file permissions you may need to become the `root` user temporarily using `sudo` to edit or even read these files or directories.
 
 The `apt` command is used to install, update, and remove Ubuntu software packages. It needs super user permissions because it modifies operating system files and you wouldn't want ordinary users to do this either intentionally or by mistake. You might have noticed that when you connect to a VM for the first time it actually says there are no packages to be updated. This does not actually mean that all packages are up-to-date but that the Operating system just does not know that any packages can be updated. To remedy this we use the `apt update` command which updates the packages database.
+
+To illustrate what happens if you forget to include `sudo` lets first run the command ommiting it
+~~~
+$ apt update
+~~~
+{: .bash}
+~~~
+E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permission denied)
+E: Unable to lock directory /var/lib/apt/lists/
+W: Problem unlinking the file /var/cache/apt/pkgcache.bin - RemoveCaches (13: Permission denied)
+W: Problem unlinking the file /var/cache/apt/srcpkgcache.bin - RemoveCaches (13: Permission denied)
+~~~
+{: .output}
+
+Now with `sudo`.
 ~~~
 $ sudo apt update
 ~~~
@@ -58,7 +74,10 @@ Reading state information... Done
 ~~~
 {: .output}
 
-We will use the `-y` option with the `apt upgrade` command which tells it not to ask for confirmation and just assume we said "yes" to any questions it may ask us.
+![xkcd sandwich](https://imgs.xkcd.com/comics/sandwich.png)
+
+## Upgrade our software packages
+Now lets upgrade our software packages. We will use the `-y` option with the `apt upgrade` command which tells it not to ask for confirmation and just assume we said "yes" to any questions it may ask us.
 ~~~
 $ sudo apt upgrade -y
 ~~~

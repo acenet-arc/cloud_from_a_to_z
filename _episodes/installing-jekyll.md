@@ -1,7 +1,7 @@
 ---
 layout: episode
 title: "Installing Jekyll"
-teaching: 30
+teaching: 15
 exercises: 0
 questions:
 - What software does Jekyll depend on?
@@ -11,16 +11,11 @@ objectives:
 - Install Jekyll's dependencies.
 - Configure Ruby to install Gems in your home directory.
 - Install Jekyll and bundler Gems.
-- Create a group to edit your server's website.
 keypoints:
 - Ruby is a programming language.
 - A Gem is a Ruby package.
 - Jekyll is a Ruby Gem.
 - Installing Gems in your home directory is preferred to system wide installation.
-- The command `chown`  is used to change file and directory ownerships.
-- The command `adduser` can be used to add a user to a group.
-- The command `groups` can be used to list groups the current user is a member of.
-- User groups can be used to allow shared access to files and directories.
 start: false
 ---
 
@@ -37,6 +32,7 @@ These are Ubuntu software packages which Jekyll needs to run.
 $ sudo apt install ruby-full build-essential zlib1g-dev
 ~~~
 {: .bash}
+This took about 2 minutes.
 
 ## Configure Ruby to install gems to your home directory
 Ruby has its own packaging system for distributing Ruby libraries or plug-ins. One of these packages is referred to as a **Gem**. It is advisable to install these Ruby Gems into your own personal directory space. This can be beneficial if other users on the VM wish to install conflicting versions of Gems.
@@ -91,6 +87,9 @@ $ gem install jekyll bundler
 ~~~
 {: .bash}
 
+This took about 5.5 minutes.
+
+
 <!--Note sure I need this. Some themes I tried needed to have a newer version
 of bundler, but other's do not. Maybe this should be a "break out" or something?
 
@@ -101,6 +100,7 @@ $ bundle update --bundler
 {: .bash}
 -->
 
+<!--
 ## Create and configure a group to edit your website
 Currently the default web root directory `/var/www/html` of your website is only editable by the root user. This means that any user that wants to edit files in that directory must first append all commands to modify those files with the `sudo` command. This gets tedious and there is not security reason not to have these files editable by users other than root. To do this we will create a new user group `webeditor` and add the default `ubuntu` user we are logged in as to this group.
 
@@ -300,7 +300,7 @@ ubuntu adm dialout cdrom floppy sudo audio dip video plugdev netdev lxd webedito
 ~~~
 {: .output}
 Note that we are now a member of the <code>webeditor</code> group and are ready to create our first Jekyll website.
-
+-->
 <!-- Exercise ideas:
 1. explore groups and permissions more
 
