@@ -77,7 +77,7 @@ The TigerVNC server appears to handle many software packages (even ones that do 
 
 We can checkout some defaults that are configured for our system:
 
-```update-alternatives --get-selections`
+```update-alternatives --get-selections```
 
 We hopefully see the lines:
 
@@ -87,3 +87,4 @@ and
 
 ```x-session-manager              auto     /usr/bin/icewm-session```
 
+This tells us that `tigervnc` is the default VNC server for our system, and that `icewmw` is the default window manager that will be used in a desktop session.

@@ -77,11 +77,11 @@ Try to connect your VNC viewer again to your IP address (display `:1` or port `5
 We now have a working VNC connection (hopefully).
 This approach might be fine if we are on a secure private network, but the problem now is that anybody on the internet can also connect to this port on our VM. The intruder probably won't know your password, but there are other ways around ... check out this list of known vulnerabilities with various VNC software:
 
-https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=vnc
+<https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=vnc>
 
 This one hits pretty close to home:
 
-https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-15694
+<https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-15694>
 
 (We can check out our VNC server version with `dpkg -s tigervnc-standalone-server`.)
 
@@ -95,10 +95,8 @@ First, let's undo the two mistakes listed above. First, let's kill the VNC serve
 
 Second, let's undo the hole in our firewall.
 
-Do to Network -> Security Groups
-
-Click on 'Manage Rules' for the default security group.
-
-Delete the rule that allows traffic to port 5901.
+* Go to Network -> Security Groups
+* Click on 'Manage Rules' for the default security group.
+* Delete the rule that allows traffic to port 5901.
 
 So now that we've been able to fix things, let's take an alternative strategy to connect to our remote desktop in a secure way.
