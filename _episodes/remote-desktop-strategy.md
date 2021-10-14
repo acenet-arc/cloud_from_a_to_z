@@ -85,7 +85,16 @@ And so on ...
 
 The network protocol (RFB) that allows VNC to work is pretty basic, and doesn't really handle security well. This means that a third party could potentially look at the stream of data travelling between our desktop and the remote machine and intercept pictures of what our computer desktop looks like. Or look at the key presses we are making on our keyboard.
 
-With this in mind, many people prefer to use VNC through an encrypted channel. This channel is often called a tunnel, and the software used to create the tunnel is the same SSH software we are using to connect to our VM for a command line interface.
+VNC software often supports certificate based encryption to alleviate this.
+This is fairly difficult to set up, and is often used in multi-user systems.
+An example of such a system is the Graham VDI nodes provided by
+Compute Canada:
+
+<https://docs.computecanada.ca/wiki/VNC#VDI_Nodes>
+
+Many people prefer to use VNC through an encrypted channel.
+This channel is often called a tunnel, and the software used to create the tunnel
+is the same SSH software we are using to connect to our VM for a command line interface.
 
 This also solves a problem of opening up our firewall further. Recall that the SSH server is running on port `22`. We want to connect to port `5901` to access the remote desktop via VNC. Ordinarily this would mean opening up port 5901 of our Openstack firewall to the Internet. Every time you open another port in the firewall, you increase the chances that an intruder can come in ...
 
