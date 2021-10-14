@@ -51,9 +51,19 @@ We will look at a very minimal desktop today (`icewm`), which installs in only a
 
 Here we go, we'll time how long it takes to install `icewm` as we install it:
 
-```time sudo apt install -y icewm```
 
-How long did it take to install on your VM?
+~~~
+time sudo apt install -y icewm
+~~~
+{: .bash}
+
+> ## How long did it take to install on your VM?
+> We asked the shell to time how long it took to install these
+> packages. How long did it take for you?
+>
+> In comparison, more advanced window managers like `ubuntu-mate-desktop` can
+> take up to half an hour to install.
+{: .callout}
 
 ### Okay, so what?
 
@@ -61,13 +71,26 @@ Well, now we have a desktop environment/window manager. How do we connect to it?
 
 Linux is about choice. As we saw there were many choices for window manager. It turns out that there are many different choices for VNC servers as well. Here's a command that is useful for finding all packages related to `vnc`:
 
-```apt-cache search vnc```
+~~~
+apt-cache search vnc
+~~~
+{: .bash}
 
 Wow, what a list!
 
-If we are only interested in servers, can you think of a way to filter this list?
-
-```apt-cache search vnc | grep server```
+> ## Question
+> 
+> If we are only interested in servers related to VNC, can you think of a way to
+> filter this list?
+>
+> > ## Solution
+> >
+> > ~~~
+> > apt-cache search vnc | grep server
+> > ~~~
+> > {: .bash}
+> {: .solution}
+{: .challenge}
 
 The server package that we will install is `tigervnc-standalone-server`. We will also grab the `tigervnc-common` package.
 
@@ -77,14 +100,23 @@ The TigerVNC server appears to handle many software packages (even ones that do 
 
 We can checkout some defaults that are configured for our system:
 
-```update-alternatives --get-selections```
+~~~
+update-alternatives --get-selections
+~~~
+{: .bash}
 
 We hopefully see the lines:
 
-```vncserver                      auto     /usr/bin/tigervncserver```
+~~~
+vncserver                      auto     /usr/bin/tigervncserver
+~~~
+{: .output}
 
 and
 
-```x-session-manager              auto     /usr/bin/icewm-session```
+~~~
+x-session-manager              auto     /usr/bin/icewm-session
+~~~
+{: .output}
 
 This tells us that `tigervnc` is the default VNC server for our system, and that `icewmw` is the default window manager that will be used in a desktop session.

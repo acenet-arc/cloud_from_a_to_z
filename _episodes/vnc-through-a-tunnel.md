@@ -15,19 +15,43 @@ keypoints:
 - "Our VNC server only accepts connections from localhost"
 ---
 
-```
-ssh -L 5901:localhost:5901 <IP for VM>
-```
+## A tunnel?
 
-This is actually shorthand for:
+The [Concordia University School of Engineering](https://www.concordia.ca/ginacody/aits/support/faq/ssh-tunnel.html) has a nice, consise description of
+what an SSH tunnel is:
 
-```
-ssh -L localhost:5901:localhost:5901 <IP for VM>
-```
+> SSH tunneling, or SSH port forwarding, is a method of transporting arbitrary data over an encrypted SSH connection. SSH tunnels allow connections made to a local port (that is, to a port on your own desktop) to be forwarded to a remote machine via a secure channel.
 
+Our goal will be to trick our computer to take connections to port `5901` or our
+own computer and send the to port `5901` of our cloud VM. Better yet: all of the traffic
+goes through the standard SSH port (`22`), so we don't need to open any more
+holes in our filewall.
+
+How do we do this?
+
+~~~
+ssh -L 5901:localhost:5901 ubuntu@<IP for VM>
+~~~
+{: .bash}
+
+> ## Try it!
+>
+> Our tunnel is open as long as we are connected to our machine through SSH
+{: .callout}
+
+The above is actually shorthand for:
+
+~~~
+ssh -L localhost:5901:localhost:5901 ubuntu@<IP for VM>
+~~~
+{: .bash}
+
+Translation: 'When we send/recieve data to/from port 5901 on our local machine, send it to our cloud VM through the SSH port (22), and send/recieve the data to/from port 5901 there (to localhost on the cloud VM).'
+
+There are many different ways we can set up tunnels for various applications.
 From the man page for ssh:
 
-```
+~~~
      -L [bind_address:]port:host:hostport
      -L [bind_address:]port:remote_socket
      -L local_socket:host:hostport
@@ -42,13 +66,51 @@ From the man page for ssh:
              a connection is made to either host port hostport, or the Unix
              socket remote_socket, from the remote machine.
 
-```
+~~~
+{: .output}
 
-Translation: 'When we send/recieve data to/from port 5901 on our local machine, send it to our cloud VM through the SSH port (22), and send/recieve the data to/from port 5901 there (to localhost on the cloud VM).'
+Now we can tell our VNC client/viewer to connect to display `:1` of
+our local machine, e.g., on Linux:
 
+~~~
+vncviewer :1
+~~~
+{: .bash}
 
-Example trick:
+(On other systems, you will want to tell the VNC client to connect to display `:1`,
+but possible leave the host blank, or set it to `localhost` or `127.0.0.1`.)
 
-```ssh ubuntu@206.167.180.170 -L 5908:localhost:5901```
+## What have we done?
 
-Then ```vncviewer :8```
+We now have a connection to our VNC server on our remote VM with the following
+properties:
+
+* We did not need to open additional holes in our firewall
+* We did not need to run our VNC server so that it accepts connections
+  from arbitrary internet addresses.
+
+This is exactly where we want to be; we have the secure remote desktop we want.
+
+In the next section we'll discuss some things we can do with our
+remote desktop.
+
+> ## A trick! (Optional!)
+>
+> The ports on the localhost and the remote VM do not have to be the same!
+> For example:
+>
+> ~~~
+> ssh -L 5908:localhost:5901 ubuntu@<IP for VM>
+> ~~~
+> {: .bash}
+>
+> Translation: 'When we send/recieve data to/from port 5908 on our local machine, send it to our cloud VM through the SSH port (22), and send/recieve the data to/from port 5901 there (to localhost on the cloud VM).'
+>
+> We can now connect to the VNC server, pretending it's on display `:8` of our local
+machine:
+>
+> ~~~
+> vncviewer :8
+> ~~~
+> {: .bash}
+{: .callout}
