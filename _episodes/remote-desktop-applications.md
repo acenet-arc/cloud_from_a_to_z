@@ -35,7 +35,10 @@ Try right-clicking on a terminal window to get a window to increase the size of 
 
 You can use a terminal to start another terminal with a very specific font:
 
-```xterm -fa 'Monospace' -fs 14 &```
+~~~
+xterm -fa 'Monospace' -fs 14 &
+~~~
+{: .bash}
 
 Note that the `&` at the end of that line says
 "put the program in the background" -- it allows our original terminal to still
@@ -52,15 +55,24 @@ desktop environment.
 
 Many such editors depend on having an entire desktop editor installed (for example `gedit` which comes with Gnome). One that has a very small list of dependencies is `nedit`:
 
-`sudo apt install nedit`
+~~~
+sudo apt install nedit
+~~~
+{: .bash}
 
 When installed, we can start nedit from a terminal with:
 
-`nedit &`
+~~~
+nedit &
+~~~
+{: .bash}
 
 Or if we have a specific file that we want to edit or create, open it with:
 
-`nedit my_file.txt &`
+~~~
+nedit my_file.txt &
+~~~
+{: .bash}
 
 ## Browser
 
@@ -68,11 +80,17 @@ We'll install the firefox browser. You could also install the Google Chrome
 browser by going to the Chrome website and downloading the Debian/Ubuntu package
 for it.
 
-`sudo apt install firefox`
+~~~
+sudo apt install firefox
+~~~
+{: .bash}
 
 Again at the terminal:
 
-`firefox &`
+~~~
+firefox &
+~~~
+{: .bash}
 
 ## R Studio
 
@@ -80,20 +98,27 @@ R is a programming language for doing data science/statistics.
 
 We can install the R language with:
 
-`sudo apt install r-base`
+~~~
+sudo apt install r-base
+~~~
+{: .bash}
 
 The R language does not rely on having a desktop environment and runs in
 a terminal, simply by typing:
 
-`R`
+~~~
+R
+~~~
+{: .bash}
 
 We can assign a variable `x` the numbers from 1 through 5 and compute the mean:
 
-```
+~~~
 x <- 1:5
 mean(x)
+~~~
+{: .language-r}
 
-```
 (Ctrl-D to quit, don't save the workspace image.)
 
 Many R programmers prefer to work with RStudio, an integrated graphical program
@@ -102,15 +127,24 @@ for programming, inspecting and visualizing data.
 This program isn't in the main Ubuntu repositories, so we need to download it
 directly:
 
-`wget https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.4.1717-amd64.deb`
+~~~
+wget https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.4.1717-amd64.deb
+~~~
+{: .bash}
 
 Now that we have the package, we can install it (and it's dependencies) with:
 
-`sudo apt install ./rstudio-1.4.1717-amd64.deb`
+~~~
+sudo apt install ./rstudio-1.4.1717-amd64.deb
+~~~
+{: .bash}
 
 Now at the terminal, start it up:
 
-`rstudio`
+~~~
+rstudio &
+~~~
+{: .bash}
 
 Try the same short program above in RStudio...
 
@@ -126,8 +160,15 @@ cards on non-virtual desktops).
 The follow appears to work with TigerVNC, but not with some of the
 other VNC providers.
 
-`sudo apt install blender`
+~~~
+sudo apt install blender
+~~~
+{: .bash}
 
 Start it with:
 
-`blender &`
+~~~
+blender &
+~~~
+{: .bash}
+
