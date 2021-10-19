@@ -209,7 +209,9 @@ $ cd forty-jekyll-theme-master
 {: .callout}
 -->
 
-There are a few minor configuration settings we have to make in order for that theme to work with our web-server. Configuration settings for Jekyll sites are generally in the `_config.yml` file. This is a YAML file (YAML Ain't Markup Language) (see: [yaml.org](https://yaml.org/)). Very briefly, a YAML file is a way of specifying key value pairs in a standardized format so that computer programs and people can easily read them. These key value pairs have a format like `key``:``value`, where the key name and it's value are separated by a colon, `:`. In addition, lines which begin with a `#` are comment lines. These lines add useful information for people reading and editing these YAML files but are usually ignored by programs reading these files.
+There are a few minor configuration settings we have to make in order for that theme to work with our web-server. Configuration settings for Jekyll sites are generally in the `_config.yml` file. This is a YAML file (YAML Ain't Markup Language) (see: [yaml.org](https://yaml.org/)). Very briefly, a YAML file is a way of specifying key value pairs in a standardized format so that computer programs and people can easily read them. These key value pairs have a format like `key``:``value`, where the key name and it's value are separated by a colon, `:`. **There must be a space between the colon, `:` and the value.**
+
+In addition, lines which begin with a `#` are comment lines. These lines add useful information for people reading and editing these YAML files but are usually ignored by programs reading these files.
 
 ~~~
 $ nano _config.yml

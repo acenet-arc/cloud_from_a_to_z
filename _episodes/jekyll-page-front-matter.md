@@ -150,3 +150,17 @@ Go back to your browser to view the changes. You will likely need to refresh the
 ![First Jekyll site modified](../fig/first_jekyll_site_modified.png)
 
 You can easily see the result of having changed the `landing-title` key value. However, where is our new content? To see that scroll down the page.
+
+> ## Modifying page front matter
+> Open up your site's `index.md` file again in nano. Try editing the the value `show_title` key from `false` to `true`. Then rebuild your site and look at the result in your browser. Remember to refresh your browser either by pressing the `F5` key, you may need to do a refresh and tell your browser not to use the cached version of the page with by pressing the keys (on Windows: `control`+`shift`+`R` or on Mac: `command`+`shift`+`R`) simultaneously. What did it change?
+> 1. Nothing
+> 2. Added a new tile
+> 3. Generated an error message like:
+> > `YAML Exception reading /home/user48/forty-jekyll-theme-master/index.md: (<unknown>): could not find expected ':' while scanning a simple key at line 8 column 1`
+> 
+> > ## Solution
+> > 1. No: it should have added a new tile. Did you get an error message?
+> > 2. Yes: it should have added a new tile called "home"
+> > 3. No: YAML syntax is a bit picking, you need to have a space between the `:` and the value.
+> {: .solution}
+{: .challenge}
