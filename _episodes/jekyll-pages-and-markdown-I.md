@@ -302,3 +302,20 @@ The save the changes (`ctrl`+`O`) and refresh your browser.
 
 ![](../fig/facts_about_dogs_list.png)
 
+> ## Add a second level heading
+> Try adding a second level heading to the page.
+> 
+> > ## Solution
+> > `## new heading`
+> {: .solution}
+{: .challenge}
+
+> ## Add an ordered list
+> Try adding an ordered list to your page.
+> 
+> > ## Solution
+> > `2. Thing one`<br/>
+> > `1. Thing two`<br/>
+> > `3. Thing three`<br/>
+> {: .solution}
+{: .challenge}
