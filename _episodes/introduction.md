@@ -45,6 +45,6 @@ This course is composed of three main parts.
 
 **Part II** will introduce basic concepts of cloud computing and get our hands dirty creating a virtual machine to host the Jekyll site created in Part I. We will apply software and security updates on our virtual machine and install a webserver to publish our Jekyll site to the world. There will also be a quick demonstration of an alternate hosting method involving [github](https://github.com/).
 
-**Part III** will show how to setup a graphical and connect to a remote GUI desktop on our virtual machines and use it with GUI applications.
+**Part III** will show how to setup a graphical user interface (e.g. GUI or desktop) and connect to a remote GUI desktop on our virtual machines and use it with GUI applications.
 
 Before we begin make sure you have completed the steps in the [setup](../setup) page. If you have had difficulty with any part of them, now is the time to let us know and we will help you solve them.
