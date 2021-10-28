@@ -53,7 +53,7 @@ Again, from [Wikipedia](https://en.wikipedia.org/wiki/Virtual_Network_Computing)
 
 | In computing, Virtual Network Computing (VNC) is a graphical desktop-sharing system that uses the Remote Frame Buffer protocol (RFB) to remotely control another computer. It transmits the keyboard and mouse input from one computer to another, relaying the graphical-screen updates, over a network.
 
-What we can take away from this (but not something that we'll need to think about typically) is that VNC is a system that uses a specific network protocal to achieve a task (in this case, viewing and controlling another computer). That protocol is called RFB, so the client machine (e.g., your laptop) and the remote machine (the cloud VM) need to speak it for the remote desktop connection to work.
+What we can take away from this (but not something that we'll need to think about typically) is that VNC is a system that uses a specific network protocol to achieve a task (in this case, viewing and controlling another computer). That protocol is called RFB, so the client machine (e.g., your laptop) and the remote machine (the cloud VM) need to speak it for the remote desktop connection to work.
 
 There are a number of separate software implementations of VNC, and some common ones are:
 
