@@ -78,6 +78,8 @@ apt-cache search vnc
 
 Wow, what a list!
 
+Note: `apt-cache` is the "old way" of searching for packages in Ubuntu. The new way is to use `apt search`. Compare the output of `apt-cache search vnc` with the output of `apt search vnc`. Do you see any differences?
+
 > ## Question
 > 
 > If we are only interested in servers related to VNC, can you think of a way to
