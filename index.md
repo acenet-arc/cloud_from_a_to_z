@@ -14,5 +14,5 @@ One of the more interesting use cases for the cloud is its ability to provide we
 > * You will need to have your own laptop or desktop on which you can install the required software (see the [setup](./setup/) for more details).
 > * Students should be comfortable working with computer file systems. They should know how to create and delete directories and files on their own personal computer.
 > * [Software Carpentry's Unix Shell](https://swcarpentry.github.io/shell-novice/), or similar experience is required.
-> * Programming experience is an asset but also not required.
+> * Programming experience is an asset but not required.
 {: .prereq}
