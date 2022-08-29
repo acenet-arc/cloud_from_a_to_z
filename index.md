@@ -13,6 +13,6 @@ One of the more interesting use cases for the cloud is its ability to provide we
 > * You are very strongly encouraged to have a Compute Canada account and cloud project well before the course begins. It can take several business days to obtain an account and project (see the [setup](./setup/) for more details). Having your own cloud project means you can continue to use what you have created after the course concludes.
 > * You will need to have your own laptop or desktop on which you can install the required software (see the [setup](./setup/) for more details).
 > * Students should be comfortable working with computer file systems. They should know how to create and delete directories and files on their own personal computer.
-> * Familiarity with a Unix style command line environment is strongly encouraged but not required.
+> * [Software Carpentry's Unix Shell](https://swcarpentry.github.io/shell-novice/), or similar experience is required.
 > * Programming experience is an asset but also not required.
 {: .prereq}
