@@ -8,6 +8,6 @@ packages:
   - build-essential
   - zlib1g-dev
 runcmd:
-  - ["wget","http://chrisgeroux.xyz/cgeroux/cloud-init-files/passphrase_generator.py"]
-  - ["wget","http://chrisgeroux.xyz/cgeroux/cloud-init-files/setup_jekyll_and_guest_accounts.py"]
-  - ["python3","./setup_jekyll_and_guest_accounts.py"]
+  - ["wget","https://raw.githubusercontent.com/acenet-arc/cloud_from_a_to_z/master/cloud-init-files/passphrase_generator.py"]
+  - ["wget","https://raw.githubusercontent.com/acenet-arc/cloud_from_a_to_z/master/cloud-init-files/setup_jekyll_and_guest_accounts.py"]
+  - ["python3","./setup_jekyll_and_guest_accounts.py",1]
