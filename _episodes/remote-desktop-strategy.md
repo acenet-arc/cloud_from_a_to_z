@@ -20,7 +20,7 @@ keypoints:
 - "VNC traffic is not secure"
 - "We can use VNC securely by running it through an SSH tunnel"
 start: true
-start_time: 720
+start_time: 780
 ---
 
 In this section we will provide some background for remote desktop, and discuss the strategy we will take to get it to work.
@@ -29,7 +29,7 @@ In this section we will provide some background for remote desktop, and discuss 
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Remote_desktop_software):
 
-| In computing, the term remote desktop refers to a software or operating system feature that allows a personal computer's desktop environment to be run remotely on one system (usually a PC, but the concept applies equally to a server), while being displayed on a separate client device. 
+| In computing, the term remote desktop refers to a software or operating system feature that allows a personal computer's desktop environment to be run remotely on one system (usually a PC, but the concept applies equally to a server), while being displayed on a separate client device.
 
 The below image shows an illustration of this:
 

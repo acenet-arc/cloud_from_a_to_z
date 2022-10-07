@@ -17,7 +17,7 @@ keypoints:
 - "Setup of Compute Canada cloud environments is left to its users, enabling great flexibility but requiring more knowledge."
 - "In this course we will setup a cloud environment to run a Jekyll site."
 start: true
-start_time: 720
+start_time: 780
 ---
 
 ## Office hours

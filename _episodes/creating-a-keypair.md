@@ -27,7 +27,7 @@ keypoints:
 - "The [**chmod**](../reference#chmod) command is used change the file mode or permissions."
 - "The [**private key**](../reference#private-key), <code>id_rsa</code>, must only be readable and writable by the file's owner."
 start: true
-start_time: 720
+start_time: 780
 ---
 
 Now that you have an overview of OpenStack and have clicked around the dashboard it is time to create our first virtual machine. To create a virtual machine, we would click the *Launch Instance* button on the Instances panel, but before we do that there is one thing we need to take care of first and that is creating a key (and lock) to access our newly created virtual machine. The key will allow only the person possessing it to access the VM. You wouldn't want just anyone connected to the Internet to access your newly created VM. While creating a virtual machine we need to select a lock, corresponding to a key we posses, to be put on the virtual machine.
@@ -170,7 +170,7 @@ The above command will remove (`-`) read (`r`) permissions for others (`o`) and 
 Issuing the `ls` command again shows the changes to the permissions.
 ~~~
 $ ls -l ~/.ssh
-~~~ 
+~~~
 {: .bash}
 ~~~
 total 3
@@ -218,32 +218,32 @@ Now we have a key pair we can use to connect to our the VM we will create in the
 > ~~~
 > {: .output}
 > who can read the file, select all that apply
-> 
+>
 > 1. the owner `jsmith`
 > 2. the group `smiths`
 > 3. the owner `smiths`
 > 4. other users
-> 
+>
 > > ## Solution
-> > 
+> >
 > > 1. yes: the file permissions for the owner of the file `jsmith` are `rw-`, which contains the `r`, or read permission.
 > > 2. no: the file permissions the group `smiths` are `--x`, which does not contain the read permission, `r`.
 > > 3. no: `smiths` is the group the file belongs to, not the user who owns the file. The file's group, `smiths`, does not have read permission.
 > > 4. yes: the file permissions for all other users on the computer are `rw-` which does contain the read permission, `r`.
-> > 
+> >
 > {: .solution}
 {: .challenge}
 
 <!-- > ## File permissions
 >
-> The `touch` command can be used to create a new empty file or to change the time which the file was last modified if it already exists. Use the `touch` command to create a new file. 
+> The `touch` command can be used to create a new empty file or to change the time which the file was last modified if it already exists. Use the `touch` command to create a new file.
 > ~~~
 > $ touch ~/file-name
 > ~~~
 > {: .bash}
 > Then view and adjust the file permissions so that only "others" (`o`) have read/write access. Can you as the owner still read the file?
 > > ## Solution
-> > 
+> >
 > > ~~~
 > > $ chmod ug-rwx ~/file-name
 > > $ cat ~/file-name
