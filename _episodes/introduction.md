@@ -22,12 +22,10 @@ start_time: 780
 
 ## Office hours
 
-| Day of the week | Date | Time (PDT) | Time (EDT) | Time (ADT) |
+| Day of the week | Date | Time (ADT) |
 | :-- | :-- | :-- |
-| Wednesday | October 20<sup>th</sup> | 9:00 - 10:00am | 12:00 - 1:00pm | 1:00 - 2:00pm |
-| Friday    | October 22<sup>nd</sup> | 9:00 - 10:00am | 12:00 - 1:00pm | 1:00 - 2:00pm |
-| Wednesday | October 27<sup>th</sup> | 9:00 - 10:00am | 12:00 - 1:00pm | 1:00 - 2:00pm |
-| Friday    | October 29<sup>th</sup> | 9:00 - 10:00am | 12:00 - 1:00pm | 1:00 - 2:00pm |
+| Friday    | October 21<sup>st</sup> | 1:00 - 3:00pm |
+| Friday    | October 28<sup>th</sup> | 1:00 - 3:00pm |
 
 
 
