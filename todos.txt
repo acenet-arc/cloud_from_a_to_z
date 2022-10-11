@@ -1,5 +1,4 @@
 Cloud course todo:
-  1) move requirement for a CC cloud project to seperate page
   2) login info about VM and OpenStack project guest accounts
   3) post workshop survey needs to be mentioned in the first hour
 

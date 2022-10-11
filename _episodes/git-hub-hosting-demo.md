@@ -4,18 +4,18 @@ title: "Hosting a site on github"
 teaching: 15
 exercises: 0
 questions:
-- 
+-
 objectives:
-- 
+-
 keypoints:
-- 
+-
 ---
 
 # Jekyll site hosting options
 
-First off, what does it mean to host a site? So far we have created and viewed our Jekyll websites from a computer setup for you on the Compute Canada cloud. This computer provides the necessary software to generate your static Jekyll site from your markdown and HTML and CSS source content. It also has a webserver setup and configured to allow your site to be viewed from the internet. This service of providing a computer on which you site is served up to the public on the internet is known as site hosting.
+First off, what does it mean to host a site? So far we have created and viewed our Jekyll websites from a computer setup for you on the Alliance cloud and later on a VM we setup ourselves in this workshop. These computers provided the necessary software to generate your static Jekyll site from your markdown and HTML and CSS source content. It also has a webserver setup and configured to allow your site to be viewed from the internet. This service of providing a computer on which you site is served up to the public on the internet is known as site hosting.
 
-Shortly we will walk through the process of creating such a setup to host our Jekyll sites. However, another popular and free hosting option for Jekyll websites is something called github, which will take a look at now.
+However for static sites and in particular Jekyll sites, another popular and free hosting option is available. A service called github, which will take a look at now.
 
 # What is github?
 
@@ -96,7 +96,7 @@ Then it tells us that there are "No commits yet" which mean we have not yet save
 
 Further git lists a number of "Untracked files", these are files which git is not currently tracking the changes of but reside in the same directory as the git repository. Git even gives us a hint that we should use `git add` to start tracking those files. This is exactly what we want to do next let git know all the files we want it to track lets do that now.
 
-At the top of this list of files we see 
+At the top of this list of files we see
 ~~~
 .gitub/
 .gitignore
@@ -262,7 +262,7 @@ We only see the could untracked files we didn't add to our repository to be trac
 
 To continue working on our site we could then go and edit files or create new files and repeat the process of `git add -u` to add any updated files and or `git add <new-file-name>` to add new files. Then follow this with a `git commit` to save our new changes as a new commit to the repository.
 
-We now have a local git repository which is tracking changes to our site. The next step is to create a new remote github repository and configure our local repository to push up to it. 
+We now have a local git repository which is tracking changes to our site. The next step is to create a new remote github repository and configure our local repository to push up to it.
 
 By pushing our local repository up to our remote github repository we can configure our remote github repository to generate our Jekyll site and make the generated site publicly accessible.
 
@@ -347,7 +347,7 @@ To github.com:cgeroux/first-jekyll-site.git
 ~~~
 {: output}
 
-Now lets see the results on github. 
+Now lets see the results on github.
 
 Got back to the github website, click on the drop down menu on the top right corner and click "Your repositories". You should see your newly create repository listed there, click on it's name. You should now see a list of all the files we added to our git repository.
 
@@ -357,7 +357,7 @@ The under the **Source** drop down select, "master". This is the name of the bra
 
 It then tells you "Your site is ready to be published at https://cgeroux.github.io/first-jekyll-site/". If you go to that link you will likely see a 404 if you go there right away as it can take a little time for github to generate the site. Try again in a few more seconds.
 
-Ok I can now see my site, but the styling is all messed up, more specifically there is no styling. This is because the configuration we setup for our site on the computer we were using on the Compute Canada cloud had the site under a sub directory `/<your-user-name>` this is not the case on github. On github it is in a sub directory with the name of the repository `first-jekyll-site` as we can see from the URL above. We can fix this by editing our _config.yml file and setting the `baseurl` to "first-jekyll-site".
+<!--Ok I can now see my site, but the styling is all messed up, more specifically there is no styling. This is because the configuration we setup for our site on the computer we were using on the Compute Canada cloud had the site under a sub directory `/<your-user-name>` this is not the case on github. On github it is in a sub directory with the name of the repository `first-jekyll-site` as we can see from the URL above. We can fix this by editing our _config.yml file and setting the `baseurl` to "first-jekyll-site".
 
 After this change, add the modified files to the local git repository and commit the changes.
 
@@ -372,5 +372,4 @@ Add the commit message "Fixed baseurl for github", then press `ctrl`+`x`, follow
 $ git push origin master
 ~~~
 {: .bash}
-Check back on the github website to see if our commit shows up. Again it will take github a few seconds to render your new site so it might not show up right away. When github is done rendering your new site a green check mark will show up next to the most recent commit. At the point go checkout your updated site.
-
+Check back on the github website to see if our commit shows up. Again it will take github a few seconds to render your new site so it might not show up right away. When github is done rendering your new site a green check mark will show up next to the most recent commit. At the point go checkout your updated site. -->

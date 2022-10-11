@@ -26,7 +26,7 @@ $ ssh ubuntu@206.12.11.12
 ~~~
 {: .bash}
 ~~~
-Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.4.0-1011-kvm x86_64)
+Welcome to Ubuntu 22.04.1 LTS (GNU/Linux 5.15.0-46-generic x86_64)
 .
 .
 .
@@ -74,7 +74,11 @@ Reading state information... Done
 ~~~
 {: .output}
 
-![xkcd sandwich](https://imgs.xkcd.com/comics/sandwich.png)
+It does seem a little funny that you should need to put a `sudo` in front of your command, as illustrated in this [xkcd commic](https://xkcd.com/149/) shown below:
+
+[![xkcd sandwich](https://imgs.xkcd.com/comics/sandwich.png)](https://xkcd.com/149/)
+
+but it turns out it helps prevent doing things unintentionally and improves security.
 
 ## Upgrade our software packages
 Now lets upgrade our software packages. We will use the `-y` option with the `apt upgrade` command which tells it not to ask for confirmation and just assume we said "yes" to any questions it may ask us.
@@ -85,18 +89,28 @@ $ sudo apt upgrade -y
 
 ~~~
 Reading package lists... Done
-Building dependency tree
+Building dependency tree... Done
 Reading state information... Done
 Calculating upgrade... Done
-The following packages were automatically installed and are no longer required:
+The following NEW packages will be installed:
 .
 .
 .
-Found initrd image: /boot/initrd.img-5.4.0-1011-kvm
-Found Ubuntu 20.04.1 LTS (20.04) on /dev/vda1
-done
-Processing triggers for initramfs-tools (0.136ubuntu6.3) ...
-update-initramfs: Generating /boot/initrd.img-5.4.0-1026-kvm
+Restarting services...
+ systemctl restart cron.service multipathd.service packagekit.service polkit.service rsyslog.service ssh.service udisks2.service
+Service restarts being deferred:
+ systemctl restart ModemManager.service
+ /etc/needrestart/restart.d/dbus.service
+ systemctl restart networkd-dispatcher.service
+ systemctl restart systemd-logind.service
+ systemctl restart unattended-upgrades.service
+ systemctl restart user@1000.service
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
 ~~~
 {: .output}
 
@@ -108,33 +122,40 @@ $ sudo reboot
 {: .bash}
 
 This will disconnect us from our VM and we will need to wait some time (~ 1 minute) for the VM to finish rebooting before trying to reconnect.
+
+**HINT:** you can likely press the "up-arrow" on your keyboard while in the shell to bring back the last command you used to connect to your VM without having to retype it.
 ~~~
 $ ssh ubuntu@206.12.11.12
 ~~~
 {: .bash}
 ~~~
-Using username "ubuntu".
-Authenticating with public key "rsa-key-20160303"
-Passphrase for key "rsa-key-20160303":
-Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-1026-kvm x86_64)
+Welcome to Ubuntu 22.04.1 LTS (GNU/Linux 5.15.0-50-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com
  * Management:     https://landscape.canonical.com
  * Support:        https://ubuntu.com/advantage
 
-  System information as of Wed Oct 14 16:12:09 UTC 2020
+  System information as of Tue Oct 11 17:48:14 UTC 2022
 
-  System load:  0.53              Processes:             68
-  Usage of /:   7.8% of 19.21GB   Users logged in:       0
-  Memory usage: 8%                IPv4 address for ens3: 192.168.181.26
+  System load:  0.48193359375     Processes:             93
+  Usage of /:   9.6% of 19.20GB   Users logged in:       0
+  Memory usage: 12%               IPv4 address for ens3: 192.168.0.207
   Swap usage:   0%
 
-0 updates can be installed immediately.
-0 of these updates are security updates.
 
-Last login: Wed Oct 14 15:26:10 2020 from 198.90.95.246
+0 updates can be applied immediately.
+
+
+Last login: Tue Oct 11 16:06:30 2022 from 64.66.220.94
 ~~~
 {: .output}
+
+If you get
+~~~
+ssh: connect to host 206.12.11.12 port 22: Connection refused
+~~~
+{: .output}
+it likely just means your VM hasn't booted back up fully yet. Wait a little longer and try again.
 
 When we log back in it tells us there are no updates available. Sometimes this isn't the case depending the details of the updates you just installed. There are times when updates may depend on other updates which require a reboot before they are fully installed and functional. This process of update, upgrade, reboot can sometimes take a few iterations until all the packages have been upgraded.
 
@@ -150,17 +171,17 @@ When we log back in it tells us there are no updates available. Sometimes this i
 > $ ls -l
 > ~~~
 > {: .bash}
-> 
+>
 > 1. `-rw-rw-r--  1 ubuntu ubuntu 0 Oct 15 19:33 file_name`
 > 2. `-rw-rw-r--  1 root   root   0 Oct 15 19:33 file_name`
 > 3. `-rw-rw-r--  1 ubuntu root   0 Oct 15 19:33 file_name`
 > 4. `-rw-rw-r--  1 root   ubuntu 0 Oct 15 19:33 file_name`
-> 
+>
 > > ## Solution
-> > 
+> >
 > > 1. No, even though the command `sudo` is run as the `ubuntu` user, it will run the `touch` command which generates the file as the `root` or administrative user.
 > > 2. yes, the `touch` command will be run as the `root` user which has the primary group `root`. The primary group of the user who creates the file is the default group for the new file or directory.
-> > 3. No, 
+> > 3. No,
 > > 4. No
 > {: .solution}
 {: .challenge}

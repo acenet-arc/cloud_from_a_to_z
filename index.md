@@ -10,7 +10,7 @@ One of the more interesting use cases for the cloud is its ability to provide we
 **This is an intense workshop for users with no prior cloud experience, at the end of which you will have a live Jekyll website.**
 
 > ## Prerequisites
-> * You are very strongly encouraged to have a Compute Canada account and cloud project well before the course begins. It can take several business days to obtain an account and project (see the [setup](./setup/) for more details). Having your own cloud project means you can continue to use what you have created after the course concludes.
+> * Make sure you have performed the required [setup](./setup/) before the workshop begins.
 > * You will need to have your own laptop or desktop on which you can install the required software (see the [setup](./setup/) for more details).
 > * Students should be comfortable working with computer file systems. They should know how to create and delete directories and files on their own personal computer.
 > * [Software Carpentry's Unix Shell](https://swcarpentry.github.io/shell-novice/), or similar experience is required.

@@ -28,39 +28,39 @@ $ apt search apache
 ~~~
 {: .bash}
 ~~~
-orting... Done
+Sorting... Done
 Full Text Search... Done
-activemq/focal 5.15.11-1 all
+activemq/jammy 5.16.1-1 all
   Java message broker - server
 
-alpine/focal 2.22+dfsg1-1 amd64
+alpine/jammy 2.25+dfsg1-1build1 amd64
   Text-based email client, friendly for novices but powerful
 
-alpine-doc/focal 2.22+dfsg1-1 all
+alpine-doc/jammy 2.25+dfsg1-1build1 all
   Text-based email client's documentation
 
-ant/focal 1.10.7-1 all
+ant/jammy 1.10.12-1 all
   Java based build tool like make
 
-ant-contrib/focal 1.0~b3+svn177-11 all
+ant-contrib/jammy 1.0~b3+svn177-12 all
   collection of tasks, types and other tools for Apache Ant
 
-ant-doc/focal 1.10.7-1 all
+ant-doc/jammy 1.10.12-1 all
   Java based build tool like make - API documentation and manual
 
-ant-optional/focal 1.10.7-1 all
+ant-optional/jammy 1.10.12-1 all
   Java based build tool like make - optional libraries
 
-apache2/focal-updates,focal-security 2.4.41-4ubuntu3.1 amd64
+apache2/jammy-updates,jammy-security 2.4.52-1ubuntu4.1 amd64
   Apache HTTP Server
 
-apache2-bin/focal-updates,focal-security 2.4.41-4ubuntu3.1 amd64
+apache2-bin/jammy-updates,jammy-security 2.4.52-1ubuntu4.1 amd64
   Apache HTTP Server (modules and other binary files)
 
-apache2-data/focal-updates,focal-security 2.4.41-4ubuntu3.1 all
+apache2-data/jammy-updates,jammy-security 2.4.52-1ubuntu4.1 all
   Apache HTTP Server (common files)
 
-apache2-dev/focal-updates,focal-security 2.4.41-4ubuntu3.1 amd64
+apache2-dev/jammy-updates,jammy-security 2.4.52-1ubuntu4.1 amd64
   Apache HTTP Server (development headers)
 .
 .
@@ -74,16 +74,23 @@ $ sudo apt install apache2 -y
 {: .bash}
 ~~~
 Reading package lists... Done
-Building dependency tree
+Building dependency tree... Done
 Reading state information... Done
-The following packages were automatically installed and are no longer required:
+The following additional packages will be installed:
 .
 .
 .
-Processing triggers for ufw (0.36-6) ...
-Processing triggers for systemd (245.4-4ubuntu3.2) ...
-Processing triggers for man-db (2.9.1-1) ...
-Processing triggers for libc-bin (2.31-0ubuntu9.1) ...
+Scanning linux images...
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
 ~~~
 {: .output}
 
@@ -226,7 +233,7 @@ To create your own web pages you may edit the file `/var/www/html/index.html` wh
 >
 > Try modifying or replacing the `/var/www/html/index.html` file and see the changes in your browser.
 > > ## Solution
-> > Edit the file with 
+> > Edit the file with
 > > ~~~
 > > $ sudo nano /var/www/html/index.html
 > > ~~~
@@ -237,7 +244,7 @@ To create your own web pages you may edit the file `/var/www/html/index.html` wh
 
 > ## Add another page
 >
-> Create a new page under `/var/www/html/` and link to it from the `index.html` page. 
+> Create a new page under `/var/www/html/` and link to it from the `index.html` page.
 > **Hint**: look at this [w3schools page on HTML links](https://www.w3schools.com/html/html_links.asp).
 > > ## Solution
 > > Create a new HTML file with

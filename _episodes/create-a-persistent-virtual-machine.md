@@ -57,7 +57,7 @@ You can create a VM which boots from an Image, volume, or snapshot. Since we don
 
 **Delete Volume on Instance Delete:** No
 
-Select the `Ubuntu-20.04.2-Focal-x64-2021-05` image by clicking on the arrow pointing upwards next to it so that it appears under `Allocated`.
+Select the `Ubuntu-22.04-Jammy-x64-2022-08` image by clicking on the arrow pointing upwards next to it so that it appears under `Allocated`.
 
 ### Flavor tab
 The [**flavor**](../reference#flavor) of your VM specifies the hardware profile your VM will have. Compute Canada cloud uses a consistent naming scheme across their clouds to describe the hardware profile.  Examples of VM flavors are `p1-1.5gb` and `c1-7.5gb-30` and the different components of the name correspond to different hardware features.
@@ -79,6 +79,9 @@ We will use the `p1-1.5gb` flavor. Click the arrow pointing up in the row for th
 > ## Flavor variations
 > If you are on a different Compute Canada cloud, such as East cloud, you might have a different set of flavors, however you should still be able to pick something relatively close to this one. For example on East cloud a `p1-0.75gb` flavor has about half the RAM but the same number of VCPUs and is also a persistent flavor. For this workshop this flavor will work just as well.
 {: .callout}
+
+### Networks tab
+Arbutus cloud now supports both IPv4 and the newer IPv6 protocols. Each of these protocols is associated with a different network within an OpenStack project. In this workshop will stick to using the older IPv4 protocols. However, this means we must select the *private* network rather than the *IPv6-GUA* network for our VM to connect to.
 
 ### Key Pair tab
 The final piece of information we need to provide before creating a VM is the public key we created in the previous episode to allow you to connect to the VM you create. Click on the `Import Key Pair` to bring up a dialouge allowing you to specify the key pair name, type, and the public key itself. You can copy your public key text by going to your terminal on your laptop where you created your key pair in the last episode and running the command
@@ -106,8 +109,8 @@ To associate a floating IP with your newly created virtual machine:
 This will bring up a panel to select an IP Address. Chances are you will not yet have a floating IP added to your project.<br/>
 <br/>
   To add a new floating IP:
-  * Click the *+* button next to the drop down box *IP Address*. 
-  * Select a *Pool* to allocate the floating IP from. There will likely be only one. 
+  * Click the *+* button next to the drop down box *IP Address*.
+  * Select a *Pool* to allocate the floating IP from. There will likely be only one.
   * Select *Allocate IP*. This will then take you back the previous panel and you can select the newly allocated floating IP from the drop down box.<br/>
 <br/>
 * Check that the *Port to be associated* already has your newly created VM selected.
@@ -145,26 +148,25 @@ $ ssh ubuntu@206.12.11.12
 {: .bash}
 in this command `ubuntu` is the username of the user you are connecting to the virtual machine as and `206.12.11.12` is the floating IP address of your newly created virtual machine.
 ~~~
-Warning: Permanently added '206.12.11.12' (RSA) to the list of known hosts.
-Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.4.0-1011-kvm x86_64)
+Welcome to Ubuntu 22.04.1 LTS (GNU/Linux 5.15.0-46-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com
  * Management:     https://landscape.canonical.com
  * Support:        https://ubuntu.com/advantage
 
-  System information as of Wed Oct 14 15:24:33 UTC 2020
+  System information as of Tue Oct 11 16:06:19 UTC 2022
 
-  System load:  0.37              Processes:             67
-  Usage of /:   5.9% of 19.21GB   Users logged in:       0
-  Memory usage: 8%                IPv4 address for ens3: 192.168.181.26
+  System load:  0.689453125       Processes:             94
+  Usage of /:   7.1% of 19.20GB   Users logged in:       0
+  Memory usage: 12%               IPv4 address for ens3: 192.168.0.207
   Swap usage:   0%
 
-0 updates can be installed immediately.
-0 of these updates are security updates.
+0 updates can be applied immediately.
 
 
 The list of available updates is more than a week old.
 To check for new updates run: sudo apt update
+
 
 The programs included with the Ubuntu system are free software;
 the exact distribution terms for each program are described in the
@@ -180,7 +182,7 @@ ubuntu@john-smith:~$
 ~~~
 {: .output}
 
-At the bottom of the output you can see the prompt `ubuntu@test:~$` this is now a shell prompt on the newly created virtual machine. Notice that the username we used to connect `ubuntu` is part of the prompt letting you know who the virtual machine thinks you are. Also notice `test` which is the hostname of your virtual machine, as mentioned earlier this derived from the Instance Name you give to your virtual machine. Finally the `~` indicates what directory you are currently in. In this case you are in the user `ubuntu`'s home directory.
+At the bottom of the output you can see the prompt `ubuntu@john-smith:~$` this is now a shell prompt on the newly created virtual machine. Notice that the username we used to connect `ubuntu` is part of the prompt letting you know who the virtual machine thinks you are. Also notice `john-smith` which is the hostname of your virtual machine, as mentioned earlier this derived from the Instance Name you give to your virtual machine. Finally the `~` indicates what directory you are currently in. In this case you are in the user `ubuntu`'s home directory.
 
 From this point you can start working with or configuring your virtual machine with additional capability above and beyond those included in the basic Ubuntu operating system provided by the image we selected when creating our virtual machine. The things you can do with your new VM are only limited by your imagination, time, and OpenStack quota. Some examples of what you could do with your OpenStack VMS, run python scripts to scrape twitter data, run a wordpress site to publish articles, or do large scale text processing with Spark.
 
@@ -194,7 +196,7 @@ From this point you can start working with or configuring your virtual machine w
 >
 > > ## Solution
 > > You should see something like the following:
-> > ~~~ 
+> > ~~~
 > > ci-info: ++++++++++Authorized keys from /home/ubuntu/.ssh/authorized_keys for user ubuntu++++++++++
 > > ci-info: +---------+-------------------------------------------------+---------+------------------+
 > > ci-info: | Keytype |                Fingerprint (md5)                | Options |     Comment      |
