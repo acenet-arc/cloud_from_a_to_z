@@ -14,7 +14,7 @@ objectives:
 - "Ensure everyone has their environments setup."
 keypoints:
 - "[**Cloud computing**](../reference#cloud-computing) is very flexible and has many diverse uses."
-- "Setup of Compute Canada cloud environments is left to its users, enabling great flexibility but requiring more knowledge."
+- "Setup of Alliance cloud environments is left to its users, enabling great flexibility but requiring more knowledge."
 - "In this course we will setup a cloud environment to run a Jekyll site."
 start: true
 start_time: 780

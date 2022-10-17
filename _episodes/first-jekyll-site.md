@@ -59,7 +59,7 @@ $
 ~~~
 {: .bash}
 
-First lets find out where we are by typing the command `pwd`, then press the Enter key to send the command to the shell. 
+First lets find out where we are by typing the command `pwd`, then press the Enter key to send the command to the shell.
 ~~~
 $ pwd
 ~~~
@@ -107,7 +107,7 @@ There is a common file system layout across most Linux systems. The below figure
 > The home directory path will look different on different operating systems. On Linux it might look like `/home/cgeroux` but on windows using mobaXterm it might look like `/home/mobaxterm` or on a Mac like `/Users/cgeroux`.
 {: .callout}
 
-So far we have been using what are known as **absolute paths**. An absolute path is a path which starts with a `/` that is they start from the root of the file system. Absolute paths reference the same location no matter where they are used. There are also paths known as **relative paths** which are relative to your current working directory. These can either start with a `.` to indicate the current directory (e.g. `./Documents/pictures`), or the can just start with the directory name (e.g. `Documents/pictures`). This is different from an absolute directory which always begins with a `/`. 
+So far we have been using what are known as **absolute paths**. An absolute path is a path which starts with a `/` that is they start from the root of the file system. Absolute paths reference the same location no matter where they are used. There are also paths known as **relative paths** which are relative to your current working directory. These can either start with a `.` to indicate the current directory (e.g. `./Documents/pictures`), or the can just start with the directory name (e.g. `Documents/pictures`). This is different from an absolute directory which always begins with a `/`.
 
 In addition to the `.` shorthand for the current directory there is a `..` shorthand for parent directory of the current directory. Lets try moving up to the parent directory using a relative path using the `..` shorthand.
 ~~~
@@ -126,7 +126,7 @@ $ cd cgeroux
 {: .bash}
 
 ## Connecting to a workshop VM
-We just ran some commands in our shell on our laptops, however, to work on our Jekyll websites we are going to work on a remote computer already setup on the Compute Canada cloud for us with Jekyll already installed.
+We just ran some commands in our shell on our laptops, however, to work on our Jekyll websites we are going to work on a remote computer already setup on an Alliance cloud for us with Jekyll already installed.
 
 We can interact with this remote computer in the same way we have been interacting with our local laptops, using a shell. To interact with a remote computer using a shell we must first connect to it using a program called `ssh`, which is short for secure shell. This command allows you to type commands as we did on our laptops but the commands are executed and affect the remote computer. It is secure because it [**encrypts**](../reference#encryption) data sent to and from the remote computer so that people intercepting these communications can not decipher them.
 

@@ -99,7 +99,7 @@ What's next? If you have been watching carefully you might be starting to wonder
 Lets exit nano and have a look around our site's source directory to see if we can figure out where these posts are coming form.
 
 ~~~
-$ ls -l 
+$ ls -l
 ~~~
 {: .bash}
 ~~~
@@ -269,7 +269,7 @@ Lets write those changes out to the file (`^O`) and exit nano(`^X`) and have a l
 {: .callout}
 
 # Preparing to move our site
-In the next part of our workshop we will walk through how to setup the cloud infrastructure to host our Jekyll site in the Compute Canada Cloud. Once we have this setup we can move the site we have already created over to our VM and deploy it there. In order to do this we will create a zipped, tape archive file containing all of our source directory. We will create this file in our website's directory to make it easy to download later.
+In the next part of our workshop we will walk through how to setup the cloud infrastructure to host our Jekyll site in the Alliance Cloud. Once we have this setup we can move the site we have already created over to our VM and deploy it there. In order to do this we will create a zipped, tape archive file containing all of our source directory. We will create this file in our website's directory to make it easy to download later.
 
 To do this we will use the `tar` command which creates tape archives.
 

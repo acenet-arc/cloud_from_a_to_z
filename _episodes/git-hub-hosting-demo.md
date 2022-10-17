@@ -357,7 +357,7 @@ The under the **Source** drop down select, "master". This is the name of the bra
 
 It then tells you "Your site is ready to be published at https://cgeroux.github.io/first-jekyll-site/". If you go to that link you will likely see a 404 if you go there right away as it can take a little time for github to generate the site. Try again in a few more seconds.
 
-<!--Ok I can now see my site, but the styling is all messed up, more specifically there is no styling. This is because the configuration we setup for our site on the computer we were using on the Compute Canada cloud had the site under a sub directory `/<your-user-name>` this is not the case on github. On github it is in a sub directory with the name of the repository `first-jekyll-site` as we can see from the URL above. We can fix this by editing our _config.yml file and setting the `baseurl` to "first-jekyll-site".
+<!--Ok I can now see my site, but the styling is all messed up, more specifically there is no styling. This is because the configuration we setup for our site on the computer we were using on the Alliance cloud had the site under a sub directory `/<your-user-name>` this is not the case on github. On github it is in a sub directory with the name of the repository `first-jekyll-site` as we can see from the URL above. We can fix this by editing our _config.yml file and setting the `baseurl` to "first-jekyll-site".
 
 After this change, add the modified files to the local git repository and commit the changes.
 

@@ -88,7 +88,7 @@ The network protocol (RFB) that allows VNC to work is pretty basic, and doesn't 
 VNC software often supports certificate based encryption to alleviate this.
 This is fairly difficult to set up, and is often used in multi-user systems.
 An example of such a system is the Graham VDI nodes provided by
-Compute Canada:
+the Alliance:
 
 <https://docs.computecanada.ca/wiki/VNC#VDI_Nodes>
 
