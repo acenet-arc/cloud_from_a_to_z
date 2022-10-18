@@ -25,7 +25,7 @@ First what is a static website? **A static website is a website in which the con
 #### Jekyll
 * [IBM Mobile](https://mobilefirstplatform.ibmcloud.com/)
 * [US Freedom of Informaiton Act (FOIA)](https://www.foia.gov/)
-* [Hildegard](http://chrisgeroux.xyz/hildegard/)
+* [Hildegard](https://hildegard-1877bibliography.ca/)
 
 #### Hugo
 * [letsencrypt](https://letsencrypt.org/)
@@ -61,7 +61,7 @@ We mentioned above that dynamic websites are ones in which the site visitors can
 If we look on [CVEdetails.com](https://www.cvedetails.com) (a site which lists Common Vulnerabilities and Exposures of various software) at some modern website systems we see:
 
 Popular dynamic web site systems:
-* [Wordpress](https://www.cvedetails.com/vendor/2337/Wordpress.html): 369 total, 3 in 2021, 21 in 2020, 23 in 2019, 18 in 2018 
+* [Wordpress](https://www.cvedetails.com/vendor/2337/Wordpress.html): 369 total, 3 in 2021, 21 in 2020, 23 in 2019, 18 in 2018
 * [Drupal](https://www.cvedetails.com/vendor/1367/Drupal.html): 322 total, 7 in 2021, 10 in 2020, 23 in 2019, 13 in 2018
 * [Mediawiki](https://www.cvedetails.com/vendor/2360/Mediawiki.html): 267 total, 30 in 2021, 39 in 2020, 21 in 2019, 16 in 2018
 * [Joomla](https://www.cvedetails.com/vendor/3496/Joomla.html): 426 total, 28 in 2021, 39 in 2020, 27 in 2019, 24 in 2018
