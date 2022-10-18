@@ -53,7 +53,7 @@ Here we go, we'll time how long it takes to install `icewm` as we install it:
 
 
 ~~~
-time sudo apt install -y icewm
+$ time sudo apt install -y icewm
 ~~~
 {: .bash}
 
@@ -72,7 +72,7 @@ Well, now we have a desktop environment/window manager. How do we connect to it?
 Linux is about choice. As we saw there were many choices for window manager. It turns out that there are many different choices for VNC servers as well. Here's a command that is useful for finding all packages related to `vnc`:
 
 ~~~
-apt-cache search vnc
+$ apt-cache search vnc
 ~~~
 {: .bash}
 
@@ -81,7 +81,7 @@ Wow, what a list!
 Note: `apt-cache` is the "old way" of searching for packages in Ubuntu. The new way is to use `apt search`. Compare the output of `apt-cache search vnc` with the output of `apt search vnc`. Do you see any differences?
 
 > ## Question
-> 
+>
 > If we are only interested in servers related to VNC, can you think of a way to
 > filter this list?
 >
@@ -100,7 +100,7 @@ The server package that we will install is `tigervnc-standalone-server`. We will
 
 The TigerVNC server appears to handle many software packages (even ones that do 3D rendering).
 
-We can checkout some defaults that are configured for our system:
+<!--We can checkout some defaults that are configured for our system:
 
 ~~~
 update-alternatives --get-selections
@@ -122,3 +122,4 @@ x-session-manager              auto     /usr/bin/icewm-session
 {: .output}
 
 This tells us that `tigervnc` is the default VNC server for our system, and that `icewmw` is the default window manager that will be used in a desktop session.
+-->

@@ -15,6 +15,11 @@ objectives:
 - Download a Jekyll theme
 - Create your first Jekyll site
 keypoints:
+- Jekyll converts Markdown to HTML
+- Site wide configuration in `_config.yml`
+- "YAML is used to express settings using `key : value` pairs"
+- Setting up a site in a new location often requires changing the sites `baseurl`
+- The `jekyll build` command generates a site from Markdown and a theme
 start: false
 start_time: 720
 ---

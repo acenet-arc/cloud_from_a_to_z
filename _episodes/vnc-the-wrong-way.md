@@ -49,20 +49,20 @@ If a program (like VNC) is running on port `5901` and allows connections from ar
 The command we need to start a VNC server is (surprise) `vncserver`. We can provide an optional argument to the VNC server to specify what display to use (default is `:1`, which listens for connections to port `5901`).
 
 ~~~
-vncserver :1
+$ vncserver :1
 ~~~
 {: .bash}
 
 Since this is the first time you have run `vncserver`, the server asks you to put
 in a password (twice). This password will allow users to access the VNC server
-remotely. A hashed version of the passwrod is stored in the file `~/.vnc/passwd`.
+remotely. A hashed version of the password is stored in the file `~/.vnc/passwd`.
 
 When asked about adding a "view-only password", press `n` (no).
- 
-Now, point your VNC Viewer program on your computer to your VNC server on display `:1`. You'll need your floating IP address (e.g, `206.167.180.170`). E.g., tell your VNC viewer to attach to the server at `206.167.180.170:1`. For example, on Linux you can run:
+
+Now, point your VNC Viewer program on your computer to your VNC server on display `:1`. You'll need your VM's floating IP address (e.g, `206.167.180.170`). E.g., tell your VNC viewer to attach to the server at `206.167.180.170:1`. For example, on Linux you can run:
 
 ~~~
-vncviewer 206.167.180.170:1
+$ vncviewer <ip-of-your-VM>:1
 ~~~
 {: .bash}
 
@@ -82,7 +82,7 @@ How can we check that the server is even trying to accept connections?
 There is a utility `lsof` (list open file handles) that can help:
 
 ~~~
-lsof | grep 5901
+$ lsof | grep 5901
 ~~~
 {: .bash}
 
@@ -90,7 +90,7 @@ You will see that the VNC server is running (listening), but it only allows
 connections from `localhost` (that is, it will accept network connections from itself,
 but not from other addresses on the internet).
 
-> This is actually the right way to run a VNC server, because it won't 
+> This is actually the right way to run a VNC server, because it won't
 > allow possible intruders to connect from the internet! Unfortunately,
 > as a side effect, it won't let us connect either!
 {: .callout}
@@ -98,7 +98,7 @@ but not from other addresses on the internet).
 Let's kill the VNC server:
 
 ~~~
-vncserver -kill :1
+$ vncserver -kill :1
 ~~~
 {: .bash}
 
@@ -108,7 +108,7 @@ vncserver -kill :1
 > Can you figure out a way to do this by looking at `vncserver -help`?
 > Restart the server using what you have learned.
 > > ## Solution
-> > 
+> >
 > > There is an option `-localhost` that takes values `yes` or `no`.
 > >
 > > `yes` is the default option, which is why we couldn't connect
@@ -116,7 +116,7 @@ vncserver -kill :1
 > >
 > > Let's restart the VNC server with:
 > > ~~~
-> > vncserver -localhost no :1
+> > $ vncserver -localhost no :1
 > > ~~~
 > > {: .bash}
 > {: .solution}
@@ -129,7 +129,7 @@ connections from arbitrary addresses on the internet.
 > Now we can try `lsof | grep 5901` again ... what difference do you see?
 >
 > > ## Solution
-> > 
+> >
 > > We now see a bunch of lines of the form `*.5901`. This means
 > > That our VNC server is accepting connections from arbitrary
 > > addresses from the internet
@@ -154,10 +154,10 @@ This one hits pretty close to home:
 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-15694>
 
 > ## Question: Are we vulnerable?
-> 
+>
 > We can check out our VNC server version with
 > ~~~
-> dpkg -s tigervnc-standalone-server
+> $ dpkg -s tigervnc-standalone-server
 > ~~~
 > {: .bash}
 >
@@ -165,7 +165,7 @@ This one hits pretty close to home:
 {: .challenge}
 
 > ## Unencrypted!
-> 
+>
 > Worse, VNC by default doesn't encypt data that it sends or recieves.
 > This means that unscrupulous people may be able to listen to this data
 > and pick up key strokes or pictures of your desktop.
@@ -176,7 +176,7 @@ This one hits pretty close to home:
 First, let's undo the two mistakes listed above. First, let's kill the VNC server:
 
 ~~~
-vncserver -kill :1
+$ vncserver -kill :1
 ~~~
 {: .bash}
 
