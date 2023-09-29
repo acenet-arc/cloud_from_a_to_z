@@ -13,7 +13,7 @@ objectives:
 - "We'll score an easy win, paying through reduced security"
 keypoints:
 - "We can score an easy win by doing VNC the wrong way (but we shouldn't)"
-- "We can expose our VM to unneccessary risk"
+- "We can expose our VM to unnecessary risk"
 - "VNC traffic is not secure by default"
 - "Reducing the holes in your firewall enhances security"
 - "Binding a server to only accept connections from localhost enhances security"
@@ -66,7 +66,7 @@ $ vncviewer <ip-of-your-VM>:1
 ~~~
 {: .bash}
 
-Your VNC program may have seperate options for host, display, or port.
+Your VNC program may have separate options for host, display, or port.
 
 > ## Question
 >
@@ -166,7 +166,7 @@ This one hits pretty close to home:
 
 > ## Unencrypted!
 >
-> Worse, VNC by default doesn't encypt data that it sends or recieves.
+> Worse, VNC by default doesn't encrypt data that it sends or receives.
 > This means that unscrupulous people may be able to listen to this data
 > and pick up key strokes or pictures of your desktop.
 {: .callout}

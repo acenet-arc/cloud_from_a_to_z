@@ -60,7 +60,7 @@ If you have an Alliance cloud project at Arbutus you can login to the OpenStack 
 
 * **Use your own cloud project:** you will need to have some free quota available. You will need at least enough to create one minimal VM booting from a volume. This would likely mean at least one unused VCPU, 1.5GB of RAM, and 20 GB of volume storage. However, it would be better to have double that quota available in order to create a second VM if needed.
 
-* **Use guest account in workshop project:** If you don't have a current Allinace cloud project, or if you don't have the available free quota for at least for one VM we will provide you with a guest account in a shared cloud project specifically for this workshop.
+* **Use guest account in workshop project:** If you don't have a current Alliance cloud project, or if you don't have the available free quota for at least for one VM we will provide you with a guest account in a shared cloud project specifically for this workshop.
 
 Lets log into an Allinace cloud OpenStack dashboard now and explore some of the common pages or panels you will be working within OpenStack.
 
@@ -73,7 +73,7 @@ Once you login to the OpenStack dashboard you will be presented with the "Overvi
 This panel shows you an overview (go figure) of your current project's usage and quota on OpenStack. An OpenStack user can be associated with **multiple projects** each project has their own quota and a project can have multiple users. Your project's OpenStack quota dictates the maximum number of VM instances, [**VCPU**](../reference#vcpu)s, RAM, Floating IPs, Security Groups, Volumes, and Volume/Snapshot Storage you may use within that project.
 
 > ## Require more resources?
-> If you require an increase in your project quota and you are use our RAS and your new requirement still doesn't exceed our [cloud RAS limits](https://docs.computecanada.ca/wiki/Cloud_RAS_Allocations) you can request an increase in the same way as you originally requested our cloud RAS [here](https://docs.computecanada.ca/wiki/Cloud#Getting_a_Cloud_project). If you require more resources than are available through RAS you can apply for a [RAC](https://www.computecanada.ca/research-portal/accessing-resources/resource-allocation-competitions/) which occur annually, generally in the fall semester.
+> If you require an increase in your project quota and you are use our RAS and your new requirement still doesn't exceed our [cloud RAS limits](https://docs.alliancecan.ca/wiki/Cloud_RAS_Allocations) you can request an increase in the same way as you originally requested our cloud RAS [here](https://docs.alliancecan.ca/wiki/Cloud#Getting_a_Cloud_project). If you require more resources than are available through RAS you can apply for a [RAC](https://alliancecan.ca/en/services/advanced-research-computing/accessing-resources/resource-allocation-competition) which occur annually, generally in the fall semester.
 {: .callout}
 
 In the top right corner there is a drop down menu where you can access account settings and the sign out link. At the top left the current active project is displayed and a drop down menu can be used to switch between projects if you are a member of multiple projects.
@@ -91,7 +91,7 @@ The "Instances" panel shows all running instances and information about those in
 <img src="../fig/os-screens/OpenStack_dashboard_volumes.png" alt="OpenStack Dashboard Volumes" style="width: 100%;"/>
 
 ### Images
-[**Images**](../reference#image) are files which contain data from a hard drive or volume. Images allow you to make copies or backups of your volumes and virtual machines. Volumes can be created from an Image by coping the data the Image contains to the volume. Images can be private to your project, shared with others, or completely public. There are a number of public images provided by the Allinace Cloud to be used as starting points for virtual machines (for example and image containing the Ubuntu Linux operating system). Images can be downloaded and used in other clouds or with desktop tools such as [**VirtualBox**](../reference#virtualbox) which allows you to run your cloud VMs on your laptop.
+[**Images**](../reference#image) are files which contain data from a hard drive or volume. Images allow you to make copies or backups of your volumes and virtual machines. Volumes can be created from an Image by coping the data the Image contains to the volume. Images can be private to your project, shared with others, or completely public. There are a number of public images provided by the Alliance Cloud to be used as starting points for virtual machines (for example and image containing the Ubuntu Linux operating system). Images can be downloaded and used in other clouds or with desktop tools such as [**VirtualBox**](../reference#virtualbox) which allows you to run your cloud VMs on your laptop.
 
 <img src="../fig/os-screens/OpenStack_dashboard_images.png" alt="OpenStack Dashboard Images" style="width: 100%;"/>
 

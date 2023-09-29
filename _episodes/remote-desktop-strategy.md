@@ -90,7 +90,7 @@ This is fairly difficult to set up, and is often used in multi-user systems.
 An example of such a system is the Graham VDI nodes provided by
 the Alliance:
 
-<https://docs.computecanada.ca/wiki/VNC#VDI_Nodes>
+<https://docs.alliancecan.ca/wiki/VNC#VDI_Nodes>
 
 Many people prefer to use VNC through an encrypted channel.
 This channel is often called a tunnel, and the software used to create the tunnel

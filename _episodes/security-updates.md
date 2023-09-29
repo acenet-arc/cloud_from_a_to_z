@@ -39,7 +39,7 @@ We will use both the [**`sudo`**](../reference#sudo) and [**`apt`**](../referenc
 
 The `apt` command is used to install, update, and remove Ubuntu software packages. It needs super user permissions because it modifies operating system files and you wouldn't want ordinary users to do this either intentionally or by mistake. You might have noticed that when you connect to a VM for the first time it actually says there are no packages to be updated. This does not actually mean that all packages are up-to-date but that the Operating system just does not know that any packages can be updated. To remedy this we use the `apt update` command which updates the packages database.
 
-To illustrate what happens if you forget to include `sudo` lets first run the command ommiting it
+To illustrate what happens if you forget to include `sudo` lets first run the command omitting it
 ~~~
 $ apt update
 ~~~
@@ -74,7 +74,7 @@ Reading state information... Done
 ~~~
 {: .output}
 
-It does seem a little funny that you should need to put a `sudo` in front of your command, as illustrated in this [xkcd commic](https://xkcd.com/149/) shown below:
+It does seem a little funny that you should need to put a `sudo` in front of your command, as illustrated in this [xkcd comic](https://xkcd.com/149/) shown below:
 
 [![xkcd sandwich](https://imgs.xkcd.com/comics/sandwich.png)](https://xkcd.com/149/)
 
