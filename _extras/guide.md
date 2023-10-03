@@ -4,13 +4,11 @@ title: "Instructor Notes"
 permalink: /guide/
 ---
 
-To create a VM for students to use for creating their first jekyll site use the `cloud_init_webserver.yml` file in the [cloud-init-files](../cloud-init-files/) folder when creating the VM to perform setup. Copy and paste the contents of that file into "Customization Script" under the "Configuration" tab in the popup while creating a VM in OpenStack.
+To create a VM for students to use for creating their first jekyll site use the `cloud_init_webserver.yml` file in the [cloud-init-files](../cloud-init-files/) folder when creating the VM to perform setup. Copy and paste the contents of that file into "Customization Script" under the "Configuration" tab in the popup while creating a VM in OpenStack. In the last line of the `cloud_init_webserver.yml` (`["python3","./setup_jekyll_and_guest_accounts.py","1"]`) change the `1` to the number of guest accounts you would like. With a `p16-24gb` flavor VM, 30 guest users is a very comfortable number.
 
 Once setup has completed have a look at the VM log to find the login password for guest accounts. Search for "Guest accounts passphrase:".
 
-TODO: add support for setup of variable number of guest accounts. For now this can be adjusted be editing the `setup_jekyll_and_guest_accounts.py` and changing the number passed to the `createGuestAccounts` function.
-
-Also, before users try to create their first jekyll site, some gems need to be installed for the theme I choose.
+Also, before users try to create their first jekyll site, some gems need to be installed for the theme I chose.
 
 As a sudo user on the workshop VM do the following to ensure regular users won't need to install those gems:
 
@@ -18,7 +16,7 @@ As a sudo user on the workshop VM do the following to ensure regular users won't
 $ wget https://github.com/andrewbanchich/forty-jekyll-theme/archive/master.zip
 $ unzip master.zip
 $ cd forty-jekyll-theme-master
-$ bundle install
+$ sudo bundle install
 ~~~
 {: .bash}
 
