@@ -10,4 +10,4 @@ packages:
 runcmd:
   - ["wget","https://raw.githubusercontent.com/acenet-arc/cloud_from_a_to_z/master/cloud-init-files/passphrase_generator.py"]
   - ["wget","https://raw.githubusercontent.com/acenet-arc/cloud_from_a_to_z/master/cloud-init-files/setup_jekyll_and_guest_accounts.py"]
-  - ["python3","./setup_jekyll_and_guest_accounts.py",1]
+  - ["python3","./setup_jekyll_and_guest_accounts.py","1"]
