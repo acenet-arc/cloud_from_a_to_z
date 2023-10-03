@@ -24,7 +24,7 @@ title: Forty
 subtitle: by HTML5 UP
 email: youremailaddress@gmail.com
 description: A responsive site template designed by HTML5 Up<br /> and released under the Creative Commons.
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/<your-username>" # the subpath of your site, e.g. /blog
 url: # the base hostname & protocol for your site
 author:
 street_address: 1234 Somewhere Road
@@ -46,7 +46,7 @@ title: Awesome Site
 subtitle: by Chris Geroux
 email: chris.geroux@ace-net.ca
 description: A place to share things I find interesting.
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/<your-username>" # the subpath of your site, e.g. /blog
 url: # the base hostname & protocol for your site
 author: Chris Geroux
 street_address: 1234 Some st.
