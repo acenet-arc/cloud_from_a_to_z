@@ -12,13 +12,13 @@ objectives:
 - "Know your computer's IP address and if it is a LAN address."
 
 keypoints:
-- "Computers often have an [**IP**](../reference#ip-address) on a [**LAN**](../reference#lan) and connect to the Internet through a [**router**](../referece#router)."
+- "Computers often have an [**IP**](../reference#ip-address) on a [**LAN**](../reference#lan) and connect to the Internet through a [**router**](../reference#router)."
 - "You can see what your computer's IP address is by using either `ipconfig` on windows or `ifconfig` commands on linux or Mac."
 - "You can see your computer's public IP using the site [ipv4.icanhazip.com](http://ipv4.icanhazip.com/)."
 - "[**Ports**](../reference#port) allow computers and routers to differentiate types network traffic."
 ---
 
-To put cloud computing into perspective, lets first take a look at how your peronsal computer interacts with the Internet. A first model of what the internet looks like might be something like a bunch of computers connected together with the Internet being the glue that connects them together into a [**computer network**](../reference#computer-network) allowing them to share resources and exchange data.
+To put cloud computing into perspective, lets first take a look at how your personal computer interacts with the Internet. A first model of what the internet looks like might be something like a bunch of computers connected together with the Internet being the glue that connects them together into a [**computer network**](../reference#computer-network) allowing them to share resources and exchange data.
 
 ![the internet](../fig/the-internet.svg)
 

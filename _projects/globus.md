@@ -4,11 +4,11 @@ title: Globus
 permalink: /globus/
 ---
 
-These instructions walk you through the process of setting up [Globus](https://www.globus.org/) on your cloud VM. Globus is a service for fast, reliable, secure data movement. See also [Compute Canada docs](https://docs.computecanada.ca/wiki/Globus) for Globus.
+These instructions walk you through the process of setting up [Globus](https://www.globus.org/) on your cloud VM. Globus is a service for fast, reliable, secure data movement. See also [Compute Canada docs](https://docs.alliancecan.ca/wiki/Globus) for Globus.
 
 **(Note that this assumes you have a running Ubuntu instance on the CC Cloud with a python installation. Make adjustments for an alternative OS or location.	You'll need to change the elements in << >> as well since these are variables. Remember to remove the the <<'s and >>'s when making these substitutions.)**
 
-1. Log into globus.computecanada.ca.
+1. Log into globus.alliancecan.ca.
 2. Select the "ENDPOINTS" panel from the left hand menu bar then click on the "Create a personal endpoint" at the top right of the screen.
 3. Give your endpoint a name, and generate a setup key, and copy this to your clipboard and perhaps also save it to a text file incase you need to use your clipboard for other things before the key is needed.
 4. Log in the VM using ssh:
@@ -51,7 +51,7 @@ These instructions walk you through the process of setting up [Globus](https://w
 
 # How to add a volume / directory outside the home directory.
 
-What you have done so far will give you access to the home directory on the system and all the subfolders within it.	If you would like to grant access to directories outside the scope of the home directory or remove access to directories within the scope of the home directory then you'll need to do some further configuration.	We'll break this down into two steps.	 The first is creating, attaching, and mounting a new volume.	 The second is configuring Globus to access that volume.	We'll do step one in this section and step two in the next.
+What you have done so far will give you access to the home directory on the system and all the subfolders within it. If you would like to grant access to directories outside the scope of the home directory or remove access to directories within the scope of the home directory then you'll need to do some further configuration.	We'll break this down into two steps. The first is creating, attaching, and mounting a new volume. The second is configuring Globus to access that volume. We'll do step one in this section and step two in the next.
 
 1. Go to the _Volumes_ tab within the OpenStack dashboard and create a volume with the settings that make sense for your research.	Typically this will be a "no image" volume with a total size in gigabytes just slightly larger than the amount of data you expect the volume to hold.
 2. From the "more" button to the right of the newly created volume choose "Edit Attachments" and attach the volume to the appropriate instance that you are running.
@@ -293,7 +293,7 @@ $ nano ~/.globusonline/lta/config-paths
 	~~~
 	{: .output}
 	
-	Similarily, if we wanted to share the directory but keep it read only we'd have written:
+	Similarly, if we wanted to share the directory but keep it read only we'd have written:
 	
 	~~~
 ~/,0,1
