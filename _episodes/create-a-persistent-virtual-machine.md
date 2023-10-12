@@ -57,7 +57,7 @@ You can create a VM which boots from an Image, volume, or snapshot. Since we don
 
 **Delete Volume on Instance Delete:** No
 
-Select the `Ubuntu-22.04-Jammy-x64-2022-08` image by clicking on the arrow pointing upwards next to it so that it appears under `Allocated`.
+Select the `Ubuntu-22.04.2-Jammy-x64-2023-02` image by clicking on the arrow pointing upwards next to it so that it appears under `Allocated`.
 
 ### Flavor tab
 The [**flavor**](../reference#flavor) of your VM specifies the hardware profile your VM will have. Alliance clouds use a consistent naming scheme across their clouds to describe the hardware profile.  Examples of VM flavors are `p1-1.5gb` and `c1-7.5gb-30` and the different components of the name correspond to different hardware features.
