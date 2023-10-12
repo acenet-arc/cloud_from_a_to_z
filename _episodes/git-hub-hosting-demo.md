@@ -98,7 +98,7 @@ Further git lists a number of "Untracked files", these are files which git is no
 
 At the top of this list of files we see
 ~~~
-.gitub/
+.github/
 .gitignore
 /gitlab-ci.yml
 ~~~

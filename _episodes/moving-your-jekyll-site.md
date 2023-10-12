@@ -114,7 +114,7 @@ country: Canada
 ~~~
 {: .output}
 
-To fix this we now need to change the `basurl` to be set to an empty string so that the line `baseurl: "user01"` becomes `baseurl: ""`. Then exit and save the file and rebuild our site.
+To fix this we now need to change the `baseurl` to be set to an empty string so that the line `baseurl: "user01"` becomes `baseurl: ""`. Then exit and save the file and rebuild our site.
 ~~~
 $ jekyll build -d /var/www/html
 ~~~

@@ -76,7 +76,7 @@ FQDN
 : is a [domain name](#domain-name) that is completely specified with all labels in the hierarchy of the domain name system.
 
 git
-: [git](git-scm.com) if a free open source, source code management tool. It keeps versioned snapshots of your code and easily displays the differences from one snapshot to the next.
+: [git](https://git-scm.com) if a free open source, source code management tool. It keeps versioned snapshots of your code and easily displays the differences from one snapshot to the next.
 
 github
 : [github.com](https://github.com/) provides a web platform for hosting [git](#git) version control repositories.
@@ -91,7 +91,7 @@ hypervisor
 : is computer software or hardware that creates and runs [virtual machines](#virtual-machine)
 
 IaaS
-: Infrastructer as a Service is a service which provides computing infrastructure often through use of [cloud computing](#cloud-computing)
+: Infrastructure as a Service is a service which provides computing infrastructure often through use of [cloud computing](#cloud-computing)
 
 image
 : an image is a file which contains the contents of a virtual drive or [volume](#volume). Images are however more portable than volumes as they can be downloaded and uploaded to various clouds and used with software such as [VirtualBox](#virtualbox)

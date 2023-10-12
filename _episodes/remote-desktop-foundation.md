@@ -43,7 +43,7 @@ Some choices for Ubuntu packages are here:
 * `cinnamon`
 * `icewm`
 
-Some of these extend or modify the other ones. For example, `xubuntu-desktop` is an extention of `xfce4`.
+Some of these extend or modify the other ones. For example, `xubuntu-desktop` is an extension of `xfce4`.
 
 When installing some of these packages, sometimes over 1500 additional packages may need to get installed, taking up several gigabytes of disk. The download and install process can take up as much as 30 minutes. This won't work out in a workshop setting!
 

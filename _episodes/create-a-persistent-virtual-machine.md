@@ -34,13 +34,13 @@ You are presented with a panel consisting of multiple tabs of fields to fill in.
 **Instance Name:** specify the name of your virtual machine. OpenStack will attempt to use this name as the [**hostname**](../reference#hostname) of your virtual machine. However, if the instance name you provided is not a valid hostname OpenStack will modify it so that it is valid and use the modified version for your hostname while still referring to your VM in the OpenStack dashboard by the instance name you provided. As some of us are sharing a project, please include your name in the instance name. If you name was `John Smith` you might use something like `john-smith`. That way it will be obvious who's VM is who's.
 
 > ## What is a valid hostname?
-> A good description of a valid hostname is given in this [wikipedia page section]( https://en.wikipedia.org/wiki/Hostname#Restrictions_on_valid_hostnames). The official specifications for hostnames are given in two Internet standards requests for comments documents [RFC-952](https://tools.ietf.org/html/rfc952), and [RFC-1123](https://tools.ietf.org/html/rfc1123).
-> The summary of the wikipeida page is, hostnames must be less than 64 characters long, contain only numbers letters and dashes (`-`).
+> A good description of a valid hostname is given in this [wikipedia page section](https://en.wikipedia.org/wiki/Hostname#Syntax). The official specifications for hostnames are given in two Internet standards requests for comments documents [RFC-952](https://tools.ietf.org/html/rfc952), and [RFC-1123](https://tools.ietf.org/html/rfc1123).
+> The summary of the wikipedia page is, hostnames must be less than 64 characters long, contain only numbers letters and dashes (`-`).
 {: .callout}
 
 **Description:** optionally enter a description of the VM.
 
-**Availability Zone:** this allows you some control over where your VM is run. For example if you want to have less of a chance that two VMs will be unavailble at the same time it maybe helpful to put them into different availability zones. For now we will leave it as `Any Availability Zone`.
+**Availability Zone:** this allows you some control over where your VM is run. For example if you want to have less of a chance that two VMs will be unavailable at the same time it maybe helpful to put them into different availability zones. For now we will leave it as `Any Availability Zone`.
 
 **Count:** this specifies the number of VMs to create. We want to create only 1 VM so leave it at `1`.
 
@@ -84,7 +84,8 @@ We will use the `p1-1.5gb` flavor. Click the arrow pointing up in the row for th
 Arbutus cloud now supports both IPv4 and the newer IPv6 protocols. Each of these protocols is associated with a different network within an OpenStack project. In this workshop will stick to using the older IPv4 protocols. However, this means we must select the *private* network rather than the *IPv6-GUA* network for our VM to connect to.
 
 ### Key Pair tab
-The final piece of information we need to provide before creating a VM is the public key we created in the previous episode to allow you to connect to the VM you create. Click on the `Import Key Pair` to bring up a dialouge allowing you to specify the key pair name, type, and the public key itself. You can copy your public key text by going to your terminal on your laptop where you created your key pair in the last episode and running the command
+
+The final piece of information we need to provide before creating a VM is the public key we created in the previous episode to allow you to connect to the VM you create. Click on the `Import Key Pair` to bring up a dialogue allowing you to specify the key pair name, type, and the public key itself. You can copy your public key text by going to your terminal on your laptop where you created your key pair in the last episode and running the command
 
 ~~~
 $ cat .ssh/id_rsa.pub
@@ -136,7 +137,6 @@ This will bring up a new panel showing all the rules for this security group.
 {: .callout}
 
 It is usually best to limit access to VMs to as small a set of IPs as is reasonable. From a previous episode we looked up our IP addresses at [ipv4.icanhazip.com](https://ipv4.icanhazip.com), use the IP address you get from this site to enter into the *CIDR* box followed by a `/32`. The `/32` we added to the end of your IP address indicates that all 32 bits of an IP address of a machine trying to access a VM in this security group should match the IP given. A single CIDR rule can allow multiple IP address to connect by adjusting the number of bits that must match, starting from the most significant or left most bit.
-
 
 ## Connecting to a virtual machine
 

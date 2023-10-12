@@ -17,7 +17,7 @@ keypoints:
 
 ## A tunnel?
 
-The [Concordia University School of Engineering](https://www.concordia.ca/ginacody/aits/support/faq/ssh-tunnel.html) has a nice, consise description of
+The [Concordia University School of Engineering](https://www.concordia.ca/ginacody/aits/support/faq/ssh-tunnel.html) has a nice, concise description of
 what an SSH tunnel is:
 
 > SSH tunneling, or SSH port forwarding, is a method of transporting arbitrary data over an encrypted SSH connection. SSH tunnels allow connections made to a local port (that is, to a port on your own desktop) to be forwarded to a remote machine via a secure channel.
@@ -25,7 +25,7 @@ what an SSH tunnel is:
 Our goal will be to trick our computer to take connections to port `5901` or our
 own computer and send the to port `5901` of our cloud VM. Better yet: all of the traffic
 goes through the standard SSH port (`22`), so we don't need to open any more
-holes in our filewall.
+holes in our firewall.
 
 How do we do this?
 
@@ -46,7 +46,7 @@ ssh -L localhost:5901:localhost:5901 ubuntu@<IP for VM>
 ~~~
 {: .bash}
 
-Translation: 'When we send/recieve data to/from port 5901 on our local machine, send it to our cloud VM through the SSH port (22), and send/recieve the data to/from port 5901 there (to localhost on the cloud VM).'
+Translation: 'When we send/receive data to/from port 5901 on our local machine, send it to our cloud VM through the SSH port (22), and send/receive the data to/from port 5901 there (to localhost on the cloud VM).'
 
 There are many different ways we can set up tunnels for various applications.
 From the man page for ssh:
@@ -104,7 +104,7 @@ remote desktop.
 > ~~~
 > {: .bash}
 >
-> Translation: 'When we send/recieve data to/from port 5908 on our local machine, send it to our cloud VM through the SSH port (22), and send/recieve the data to/from port 5901 there (to localhost on the cloud VM).'
+> Translation: 'When we send/receive data to/from port 5908 on our local machine, send it to our cloud VM through the SSH port (22), and send/receive the data to/from port 5901 there (to localhost on the cloud VM).'
 >
 > We can now connect to the VNC server, pretending it's on display `:8` of our local
 machine:
