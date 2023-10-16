@@ -152,7 +152,7 @@ Go back to your browser to view the changes. You will likely need to refresh the
 You can easily see the result of having changed the `landing-title` key value. However, where is our new content? To see that scroll down the page.
 
 > ## Modifying page front matter
-> Open up your site's `index.md` file again in nano. Try editing the the value `show_title` key from `false` to `true`. Then rebuild your site and look at the result in your browser. Remember to refresh your browser either by pressing the `F5` key, you may need to do a refresh and tell your browser not to use the cached version of the page with by pressing the keys (on Windows: `control`+`shift`+`R` or on Mac: `command`+`shift`+`R`) simultaneously. What did it change?
+> Open up your site’s `index.md` in nano. Edit the value `show_title` key from `false` to `true`. Then rebuild your site and look at the result in your browser. Remember to refresh your browser either by pressing the F5 key, or reload without using the cache (on Windows: `control`+`shift`+`R` or on Mac: `command`+`shift`+`R`). What did it change?
 > 1. Nothing
 > 2. Added a new tile
 > 3. Generated an error message like:
