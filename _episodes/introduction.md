@@ -24,8 +24,8 @@ start_time: 780
 
 | Day of the week | Date | Time (ADT) |
 | :-- | :-- | :-- |
-| Friday    | October 21<sup>st</sup> | 1:00 - 3:00pm |
-| Friday    | October 28<sup>th</sup> | 1:00 - 3:00pm |
+| Friday    | October 20<sup>st</sup> | 1:00 - 3:00pm |
+| Friday    | October 27<sup>th</sup> | 1:00 - 3:00pm |
 
 
 
