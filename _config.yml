@@ -72,6 +72,7 @@ episode_order:
   - break-day-1
   - jekyll-page-front-matter
   - jekyll-site-config
+  - break-day-1b
   - jekyll-pages-and-markdown-I
   - jekyll-pages-and-markdown-II
   - jekyll-pages-and-markdown-III
