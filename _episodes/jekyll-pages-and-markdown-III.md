@@ -51,11 +51,11 @@ Our page is starting to get a bit more interesting, but to really start to make 
 > * ND: may only be used to distribute and display verbatim copies of the work.
 {: .callout}
 
-The main creative commons website is at [creativecommons.org](https://creativecommons.org/), but to search their works you can go to the search site at [search.creativecommons.org](https://search.creativecommons.org/). Lets find an image of a dog we would like to use on our page. I also wanted to make sure that image I choose was OK to use for commercial use in case we charged for this workshop at some point. 
+The main creative commons website is at [creativecommons.org](https://creativecommons.org/), but to search their works you can go to the search site at [search.creativecommons.org](https://search.creativecommons.org/). Lets find an image of a dog we would like to use on our page.
 
-So I type in "dog" in the search box, and check "Use commercial" before hitting the "search" button.
+So I type in "dog" in the search box and click "search". I also wanted to make sure that image I choose is OK to use for commercial use in case we charged for this workshop at some point. To do this ensure that under "Use" the "Use commercially" box is checked.
 
-The first image I liked in this search is [here](https://search.creativecommons.org/photos/b2648677-cee5-4bd8-b9ea-8749b5ad2baf). The use of this image requires giving the author attribution. 
+The first image I liked in this search is [here](https://openverse.org/image/b2648677-cee5-4bd8-b9ea-8749b5ad2baf?q=dog). The use of this image requires giving the author attribution. 
 
 To include this image we first need the URL of the image. We can get this by right clicking on the image and in the menu that appears we can select "Copy Image Address" in Chrome, "Copy Image Location" in Firefox,  "Copy image link" in Microsoft edge, and "" in Safari. This copies a URL into your clip board we can use to refer directly to the image. Lets use that to include an image in our page.
 
