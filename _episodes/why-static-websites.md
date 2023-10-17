@@ -61,10 +61,10 @@ We mentioned above that dynamic websites are ones in which the site visitors can
 If we look on [CVEdetails.com](https://www.cvedetails.com) (a site which lists Common Vulnerabilities and Exposures of various software) at some modern website systems we see:
 
 Popular dynamic web site systems:
-* [Wordpress](https://www.cvedetails.com/vendor/2337/Wordpress.html): 369 total, 3 in 2021, 21 in 2020, 23 in 2019, 18 in 2018
-* [Drupal](https://www.cvedetails.com/vendor/1367/Drupal.html): 322 total, 7 in 2021, 10 in 2020, 23 in 2019, 13 in 2018
-* [Mediawiki](https://www.cvedetails.com/vendor/2360/Mediawiki.html): 267 total, 30 in 2021, 39 in 2020, 21 in 2019, 16 in 2018
-* [Joomla](https://www.cvedetails.com/vendor/3496/Joomla.html): 426 total, 28 in 2021, 39 in 2020, 27 in 2019, 24 in 2018
+* [Wordpress](https://www.cvedetails.com/vendor/2337/Wordpress.html): 402 total, 8 in 2023, 9 in 2022, 9 in 2021, 21 in 2020, 23 in 2019, 18 in 2018
+* [Drupal](https://www.cvedetails.com/vendor/1367/Drupal.html): 408 total, 9 in 2023, 20 in 2022, 14 in 2021, 11 in 2020, 26 in 2019, 14 in 2018
+* [Mediawiki](https://www.cvedetails.com/vendor/2360/Mediawiki.html): 363 total, 38 in 2023, 37 in 2022, 46 in 2021, 39 in 2020, 22 in 2019, 16 in 2018
+* [Joomla](https://www.cvedetails.com/vendor/3496/Joomla.html): 485 total, 5 in 2023, 13 in 2022, 28 in 2021, 39 in 2020, 27 in 2019, 24 in 2018
 
 Popular static website systems:
 * [Next.js](https://www.cvedetails.com/product/43198/Zeit-Next.js.html?vendor_id=17577): 4 total, 1 in 2020, 2 in 2018, 1 in 2017
