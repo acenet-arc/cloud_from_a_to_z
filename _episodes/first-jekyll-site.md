@@ -26,7 +26,7 @@ start_time: 720
 
 ## Why Jekyll?
 
-There are a growing number of static website generators. For this workshop we have chosen [Jekyll](https://jekyllrb.com/) because it has been around a while. First released in 2008 and was one of the first in new the trend of static website generators. It was also adopted by [github](https://github.com/) which is a free service for hosting **git** repositories which is very widely used. With this background we can see that Jekyll is a pretty solid project and will be supported well into the future.
+There are a growing number of static website generators. For this workshop we have chosen [Jekyll](https://jekyllrb.com/) because it has been around a while. First released in 2008 and was one of the first in the new trend of static website generators. It was also adopted by [github](https://github.com/) which is a free service for hosting **git** repositories which is very widely used. With this background we can see that Jekyll is a pretty solid project and will be supported well into the future.
 
 What is Git? Very quickly, Git is a program that helps manage and track changes to sets of files (mainly plain text files) and facilitates parallel editing of these by many authors and later merging of these changes together. To learn more about git, Software Carpentry has an excellent lesson on [git](https://swcarpentry.github.io/git-novice/). Fully teaching Git is beyond the scope of this workshop but it is highly recommended you look into it. If you do track changes to your website using git you can create a github repository and upload your site there and github will provide free website hosting with no need to manage a web server yourself.
 
