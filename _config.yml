@@ -76,9 +76,10 @@ episode_order:
   - jekyll-pages-and-markdown-I
   - jekyll-pages-and-markdown-II
   - jekyll-pages-and-markdown-III
-  - posts-and-assets
   - break-day-2
+  - posts-and-assets
   - the-internet
+  - break-day-2b
   - the-cloud
   - creating-a-keypair
   - create-a-persistent-virtual-machine
