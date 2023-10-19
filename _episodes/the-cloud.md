@@ -91,7 +91,9 @@ The "Instances" panel shows all running instances and information about those in
 <img src="../fig/os-screens/OpenStack_dashboard_volumes.png" alt="OpenStack Dashboard Volumes" style="width: 100%;"/>
 
 ### Images
-[**Images**](../reference#image) are files which contain data from a hard drive or volume. Images allow you to make copies or backups of your volumes and virtual machines. Volumes can be created from an Image by coping the data the Image contains to the volume. Images can be private to your project, shared with others, or completely public. There are a number of public images provided by the Alliance Cloud to be used as starting points for virtual machines (for example and image containing the Ubuntu Linux operating system). Images can be downloaded and used in other clouds or with desktop tools such as [**VirtualBox**](../reference#virtualbox) which allows you to run your cloud VMs on your laptop.
+[**Images**](../reference#image) are files which contain data from a hard drive or volume. Images allow you to make copies or backups of your volumes and virtual machines. Volumes can be created from an Image by coping the data the Image contains to the volume. Images can be private to your project, shared with others, or completely public. Images can be downloaded and used in other clouds or with desktop tools such as [**VirtualBox**](../reference#virtualbox) which allows you to run your cloud VMs on your laptop.
+
+There are a number of public images provided by the Alliance Cloud to be used as starting points for virtual machines (for example and image containing the Ubuntu Linux operating system) and will be periodically updated as new releases come out. These image names typically have the format `<OS-name>`-`<OS-version>`-`<OS-version-name>`-`<architecutre>`-`<date>`. Examples of `<OS-name>` are "Ubuntu", "Centos", "Fedora", "Debian" which are different Linux distributions. `<OS-version>` might look something like "37-1.7" or "20.04.5". `<OS-version-name>` might be something like 'Buster', but not all Linux distributions use version names so not all images provided by the Alliance team will have those. `<architecutre>` is often "x64" to indicate the operating systems are 64-bit.
 
 <img src="../fig/os-screens/OpenStack_dashboard_images.png" alt="OpenStack Dashboard Images" style="width: 100%;"/>
 
@@ -109,7 +111,7 @@ Security group rules often pertain to specific ports or ranges of ports and allo
 <img src="../fig/os-screens/OpenStack_dashboard_security_groups.png" alt="OpenStack Dashboard Images" style="width: 100%;"/>
 
 > ## How many virtual machines can be created?
-> Looking at the above screen shots, what is the largest number of virttual machines that can be created?
+> Looking at the above screen shots, what is the largest number of virtual machines that can be created?
 >
 > 1. 200
 > 2. 50
@@ -131,7 +133,7 @@ Security group rules often pertain to specific ports or ranges of ports and allo
 > 3. Which images can be accessed by your VM.
 > 4. Which VMs in your project can access other VMs in your project.
 > 5. Which volumes can be attached to your VM.
-> 6. Which of your VM users can perform administrative tasks.
+> 6. Which of your VM's users can perform administrative tasks.
 >
 > > ## Solution
 > >
@@ -149,8 +151,8 @@ Security group rules often pertain to specific ports or ranges of ports and allo
 >
 > Hint: look at the "Images" panel under the "Compute" section on the left hand menu of the OpenStack dashboard.
 > > ## Solution
-> > Go to 'Compute' then 'Images' to find the `Ubuntu-20.04-focal-amd64' image, and note that the middle portion '20.04' is the Ubuntu operating system version.
-> > Ubuntu 20.04
+> > Go to 'Compute' then 'Images' to find the `Ubuntu-22.04.2-Jammy-x64-2023-02' image, and note that the middle portion '22.04.2' is the Ubuntu operating system version.
+> > Ubuntu 22.04.2
 > {: .solution}
 {: .challenge}
 
