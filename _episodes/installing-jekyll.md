@@ -32,7 +32,7 @@ These are Ubuntu software packages which Jekyll needs to run.
 $ sudo apt install ruby-full build-essential zlib1g-dev
 ~~~
 {: .bash}
-This took about 2 minutes.
+This took about 5 minutes.
 
 ## Configure Ruby to install gems to your home directory
 Ruby has its own packaging system for distributing Ruby libraries or plug-ins. One of these packages is referred to as a **Gem**. It is advisable to install these Ruby Gems into your own personal directory space. This can be beneficial if other users on the VM wish to install conflicting versions of Gems.

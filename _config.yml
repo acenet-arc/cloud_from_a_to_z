@@ -84,8 +84,9 @@ episode_order:
   - creating-a-keypair
   - create-a-persistent-virtual-machine
   - security-updates
-  - create-a-web-server
   - break-day-3
+  - create-a-web-server
+  - break-day-3b
   - installing-jekyll
   - moving-your-jekyll-site
   - git-hub-hosting-demo

@@ -83,9 +83,10 @@ total 12
 Now lets rebuild our jekyll site in our newly setup VM.
 
 ~~~
-$ jekyll build -d /var/www/html
+$ bundle exec jekyll build -d /var/www/html
 ~~~
 {: .bash}
+The `bundle exec` allows us to run the specific version of ruby gems specified in the Gemfile rather than the, likely newer, default versions.
 
 If we go to the IP address of our virtual machine in our browser, we should see our newly moved website. 
 
@@ -116,7 +117,7 @@ country: Canada
 
 To fix this we now need to change the `baseurl` to be set to an empty string so that the line `baseurl: "user01"` becomes `baseurl: ""`. Then exit and save the file and rebuild our site.
 ~~~
-$ jekyll build -d /var/www/html
+$ bundle exec jekyll build -d /var/www/html
 ~~~
 {: .bash}
 

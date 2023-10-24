@@ -81,7 +81,13 @@ It does seem a little funny that you should need to put a `sudo` in front of you
 but it turns out it helps prevent doing things unintentionally and improves security.
 
 ## Upgrade our software packages
-Now lets upgrade our software packages. We will use the `-y` option with the `apt upgrade` command which tells it not to ask for confirmation and just assume we said "yes" to any questions it may ask us.
+
+Typically on a new VM you would want to update all the software on it right away as many of these updates are security fixes.
+
+Depending on exactly how many updates need to be applied this can take quite a bit of time. With the current base Ubuntu image this can take about 30 minutes. This is prohibitively long for a workshop so **we will NOT run the comands in the rest of this episode** and instead just talk through the process.
+
+The `apt upgrade` command is the command to use to update all the software. We can add a `-y` option to tel it to skip confirmation before performing the upgrade.
+
 ~~~
 $ sudo apt upgrade -y
 ~~~
@@ -114,7 +120,9 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 ~~~
 {: .output}
 
-At this point, it is a very good idea to [**reboot**](../reference#reboot) our virtual machines. Sometimes before updating certain packages other packages on which they depend must first be updated and in effect. This can require a reboot.
+Depending on exactly what software needed to be updated, it may ask if you want to restart particular services during the update process. It is best to accept the services already selected for restart, and allow the software upgrade process to restart them.
+
+At this point, it is a good idea to [**reboot**](../reference#reboot) our virtual machines. Sometimes before updating certain packages other packages on which they depend must first be updated and in effect. This can require a reboot.
 
 ~~~
 $ sudo reboot

@@ -74,7 +74,17 @@ $ ls ~/.ssh/
 id_rsa       id_rsa.pub   known_hosts
 ~~~
 {: .output}
-Notice that the a forward `/` is used to separate directories. In this case the `.ssh` directory is inside the home directory `~` (or in this case `/home/cgeroux`). If you have a pair of files `id_rsa` and `id_rsa.pub` or `id_dsa` and `id_dsa.pub` you already have a key pair and you can skip the next steps which create a new key pair and just use the key pair you already have.
+Notice that the a forward `/` is used to separate directories. In this case the `.ssh` directory is inside the home directory `~` (or in this case `/home/cgeroux`). If you have a pair of files `id_rsa` and `id_rsa.pub` you already have a key pair. If you **remember the passphrase**, if it has one, you can skip the next steps which create a new key pair and just use the key pair you already have.
+
+> ## Have an `id_rsa` key pair but forget the passphrase?
+> Lets rename your existing `id_rsa` and matching `id_rsa.pub` to new file names to save key in case you need it later.
+> ~~~
+> $ mv ~/.ssh/id_rsa ~/.ssh/old_id_rsa
+> $ mv ~/.ssh/id_rsa.pub ~/.ssh/old_id_rsa.pub
+> ~~~
+> {: .bash}
+> This way we won't overwrite the existing key when we create a new one so that if you find you need it later you still have the key.
+{: .callout}
 
 ## Creating a key-pair
 

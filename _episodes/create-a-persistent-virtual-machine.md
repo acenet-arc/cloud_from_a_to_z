@@ -81,7 +81,7 @@ We will use the `p1-1.5gb` flavor. Click the arrow pointing up in the row for th
 {: .callout}
 
 ### Networks tab
-Arbutus cloud now supports both IPv4 and the newer IPv6 protocols. Each of these protocols is associated with a different network within an OpenStack project. In this workshop will stick to using the older IPv4 protocols. However, this means we must select the *private* network rather than the *IPv6-GUA* network for our VM to connect to.
+Arbutus cloud now supports both IPv4 and the newer IPv6 protocols. Each of these protocols is associated with a different network within an OpenStack project. In this workshop will stick to using the older IPv4 protocols. However, this means we must select the network name which contains the project name (e.g. `def-training-cloud`) rather than the *IPv6-GUA* network.
 
 ### Key Pair tab
 
