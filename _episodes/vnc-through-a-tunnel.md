@@ -30,7 +30,7 @@ holes in our firewall.
 How do we do this?
 
 ~~~
-ssh -L 5901:localhost:5901 ubuntu@<IP for VM>
+$ ssh -L 5901:localhost:5901 ubuntu@<IP for VM>
 ~~~
 {: .bash}
 
@@ -39,12 +39,7 @@ ssh -L 5901:localhost:5901 ubuntu@<IP for VM>
 > Our tunnel is open as long as we are connected to our machine through SSH
 {: .callout}
 
-The above is actually shorthand for:
-
-~~~
-ssh -L localhost:5901:localhost:5901 ubuntu@<IP for VM>
-~~~
-{: .bash}
+The above is actually shorthand for: `ssh -L localhost:5901:localhost:5901 ubuntu@<IP for VM>`
 
 Translation: 'When we send/receive data to/from port 5901 on our local machine, send it to our cloud VM through the SSH port (22), and send/receive the data to/from port 5901 there (to localhost on the cloud VM).'
 
@@ -69,11 +64,18 @@ From the man page for ssh:
 ~~~
 {: .output}
 
-Now we can tell our VNC client/viewer to connect to display `:1` of
+Lets also restart our vncserver 
+
+~~~
+$ vncserver :1
+~~~
+{: .bash}
+
+In a separate local terminal we can tell our VNC client/viewer to connect to display `:1` of
 our local machine, e.g., on Linux:
 
 ~~~
-vncviewer :1
+$ vncviewer :1
 ~~~
 {: .bash}
 

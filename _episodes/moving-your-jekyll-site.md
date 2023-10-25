@@ -95,9 +95,9 @@ If we go to the IP address of our virtual machine in our browser, we should see 
 Wait, something doesn't look right. Our site is completely unstyled. If we poke around a little bit maybe looking at the pages source (possibly by pressing `ctrl`+`shift`+`i` depending on your browser) we might notice that the link to our slyte sheets is `/<your-username>/assets/css/main.css`. This worked great on the pre-configured workshop server where our site lived under `/<your-username>` but not on our new server where our site is no longer in a sub directory. To fix this we need to edit our sites `_config.yml` file again.
 
 ~~~
-nano _config.yml
+$ nano _config.yml
 ~~~
-{ .bash}
+{: .bash}
 ~~~
 # site settings
 title: Awesome Site
